@@ -26,12 +26,12 @@ namespace Stnc.CMS.Web.Mapping.AutoMapperProfile
             #endregion
 
             #region AppUser-AppUserDto
-            CreateMap<AppUserAddDto, AppUser>();
-            CreateMap<AppUser, AppUserAddDto>();
-            CreateMap<AppUserListDto, AppUser>();
-            CreateMap<AppUser, AppUserListDto>();
-            CreateMap<AppUserSignInDto, AppUser>();
-            CreateMap<AppUser, AppUserSignInDto>();
+            //CreateMap<AppUserAddDto, AppUser>();
+            //CreateMap<AppUser, AppUserAddDto>();
+            //CreateMap<AppUserListDto, AppUser>();
+            //CreateMap<AppUser, AppUserListDto>();
+            //CreateMap<AppUserSignInDto, AppUser>();
+            //CreateMap<AppUser, AppUserSignInDto>();
             #endregion
 
             #region Bildirim-BildirimDto
