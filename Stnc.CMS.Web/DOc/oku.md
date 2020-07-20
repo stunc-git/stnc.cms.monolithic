@@ -7,7 +7,7 @@ update-database
 ,
 # core  için 
 
-add-migration testDB
+add-migration initalCreate
 
 update-database
 

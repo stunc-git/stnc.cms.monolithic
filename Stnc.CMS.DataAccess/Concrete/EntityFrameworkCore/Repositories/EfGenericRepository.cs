@@ -27,7 +27,7 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Repositories
         public void Guncelle(Tablo tablo)
         {
             using var context = new StncCMSContext();
-            context.Set<Tablo>().Update(tablo);
+            context.Set<Tablo>().Update(tablo); 
             context.SaveChanges();
         }
 
