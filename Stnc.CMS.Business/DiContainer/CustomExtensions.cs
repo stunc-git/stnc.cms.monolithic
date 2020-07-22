@@ -21,6 +21,9 @@ namespace Stnc.CMS.Business.DiContainer
             services.AddScoped<IDosyaService, DosyaManager>();
             services.AddScoped<IBildirimService, BildirimManager>();
 
+            //post
+            services.AddScoped<IPostService, PostManager>();
+            services.AddScoped<IPostDal, EfPostRepository>();
 
             services.AddScoped<IGorevDal, EfGorevRepository>();
             services.AddScoped<IAciliyetDal, EfAciliyetRepository>();

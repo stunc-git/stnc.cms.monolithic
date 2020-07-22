@@ -17,11 +17,14 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
     public class HomeController : BaseIdentityController
     {
         private readonly IGorevService _gorevService;
+        private readonly IPostService _postService;
         private readonly IBildirimService _bildirimService;
         private readonly IRaporService _raporService;
-        public HomeController(IGorevService gorevService, IBildirimService bildirimService, UserManager<AppUser> userManager, IRaporService raporService) : base(userManager)
+
+        public HomeController(IGorevService gorevService, IPostService postService, IBildirimService bildirimService, UserManager<AppUser> userManager, IRaporService raporService) : base(userManager)
         {
             _raporService = raporService;
+            _postService = postService;
             _bildirimService = bildirimService;
             _gorevService = gorevService;
         }
@@ -44,6 +47,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
             ViewBag.OkunmamisBildirimSayisi = _bildirimService.GetirOkunmayanSayisiileAppUserId(user.Id);
 
             ViewBag.ToplamRaporSayisi = _raporService.GetirRaporSayisi();
+            //ViewBag.ToplamRaporSayisi = _postService.ToplamPostAdeti();
             return View();
         }
 

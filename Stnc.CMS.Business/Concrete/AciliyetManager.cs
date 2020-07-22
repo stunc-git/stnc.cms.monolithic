@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Stnc.CMS.Business.Interfaces;
-using Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Repositories;
+﻿using Stnc.CMS.Business.Interfaces;
 using Stnc.CMS.DataAccess.Interfaces;
 using Stnc.CMS.Entities.Concrete;
+using System.Collections.Generic;
 
 namespace Stnc.CMS.Business.Concrete
 {

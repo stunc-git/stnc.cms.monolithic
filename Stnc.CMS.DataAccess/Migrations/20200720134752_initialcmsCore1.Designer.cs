@@ -10,8 +10,8 @@ using Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts;
 namespace Stnc.CMS.DataAccess.Migrations
 {
     [DbContext(typeof(StncCMSContext))]
-    [Migration("20200720134752_initialcmsCore1")]
-    partial class initialcmsCore1
+    [Migration("20200720134752_InitialcmsCore1")]
+    partial class InitialcmsCore1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

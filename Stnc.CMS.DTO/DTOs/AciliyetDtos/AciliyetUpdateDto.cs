@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Stnc.CMS.DTO.DTOs.AciliyetDtos
+﻿namespace Stnc.CMS.DTO.DTOs.AciliyetDtos
 {
     public class AciliyetUpdateDto
     {

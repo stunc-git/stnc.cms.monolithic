@@ -14,10 +14,13 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Repositories
         public List<AppUser> GetirAdminOlmayanlar()
         {
             /*
+             
 select * from AspNetUsers inner join AspNetUserRoles 
 on AspNetUsers.Id=AspNetUserRoles.UserId
 inner join AspNetRoles 
-on AspNetUserRoles.RoleId = AspNetRoles.Id where AspNetRoles.Name='Member'*/
+on AspNetUserRoles.RoleId = AspNetRoles.Id where AspNetRoles.Name='Member'
+
+            */
             using var context = new StncCMSContext();
 
             return context.Users.Join(context.UserRoles, user => user.Id, userRole => userRole.UserId, (resultUser, resultUserRole) => new

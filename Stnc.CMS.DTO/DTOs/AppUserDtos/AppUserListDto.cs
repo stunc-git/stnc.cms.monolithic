@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Stnc.CMS.DTO.DTOs.AppUserDtos
+﻿namespace Stnc.CMS.DTO.DTOs.AppUserDtos
 {
     public class AppUserListDto
     {

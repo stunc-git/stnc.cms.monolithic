@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Stnc.CMS.DataAccess.Migrations
 {
-    public partial class initialcmsCore1 : Migration
+    public partial class InitialcmsCore1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
