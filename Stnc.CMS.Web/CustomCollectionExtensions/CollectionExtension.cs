@@ -35,7 +35,7 @@ namespace Stnc.CMS.Web.CustomCollectionExtensions
 
             services.ConfigureApplicationCookie(opt =>
             {
-                opt.Cookie.Name = "IsTakipCookie";
+                opt.Cookie.Name = "StncCRMCookie";
                 opt.Cookie.SameSite = Microsoft.AspNetCore.Http.SameSiteMode.Strict;
                 opt.Cookie.HttpOnly = true;
                 opt.ExpireTimeSpan = TimeSpan.FromDays(20);
@@ -54,6 +54,7 @@ namespace Stnc.CMS.Web.CustomCollectionExtensions
             services.AddTransient<IValidator<GorevUpdateDto>, GorevUpdateValidator>();
             services.AddTransient<IValidator<RaporAddDto>, RaporAddValidator>();
             services.AddTransient<IValidator<RaporUpdateDto>, RaporUpdateValidator>();
+
         }
     }
 }

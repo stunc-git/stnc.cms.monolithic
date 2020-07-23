@@ -46,8 +46,8 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
 
             ViewBag.OkunmamisBildirimSayisi = _bildirimService.GetirOkunmayanSayisiileAppUserId(user.Id);
 
-            ViewBag.ToplamRaporSayisi = _raporService.GetirRaporSayisi();
-            //ViewBag.ToplamRaporSayisi = _postService.ToplamPostAdeti();
+           // ViewBag.ToplamRaporSayisi = _raporService.GetirRaporSayisi();
+           ViewBag.ToplamRaporSayisi = _postService.GetTotalPost();
             return View();
         }
 

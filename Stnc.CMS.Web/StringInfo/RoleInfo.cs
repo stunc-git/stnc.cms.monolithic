@@ -25,5 +25,6 @@ namespace Stnc.CMS.Web.StringInfo
         public const string Anasayfa = "anasayfa";
         public const string IsEmri = "isemri";
         public const string Profil = "profil";
+        public const string Post = "içerikler";
     }
 }

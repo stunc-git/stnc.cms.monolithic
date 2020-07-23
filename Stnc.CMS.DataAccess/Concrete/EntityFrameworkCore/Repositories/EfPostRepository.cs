@@ -13,11 +13,21 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Repositories
     {
        
 
-        public int ToplamPostAdeti()
+        public int GetTotalPost()
         {
             using var context = new StncCMSContext();
             return context.Posts.Count();
         }
+
+
+
+        public List<Posts> PostList()
+        {
+            using var context = new StncCMSContext();
+            //return context.Gorevler.Include(I => I.Aciliyet).Where(I => !I.Durum).OrderByDescending(I => I.OlusturulmaTarih).ToList();
+           return context.Posts.Where(I => I.PostStatus).OrderByDescending(I => I.Id).ToList();
+        }
+
 
     }
 }

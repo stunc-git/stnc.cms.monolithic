@@ -13,12 +13,12 @@ namespace Stnc.CMS.Entities.Concrete
         public string PostContent { get; set; }
 
         public string PostExcerpt { get; set; }
-        public string PostStatus { get; set; }
-        public string CommentStatus { get; set; }
+        public bool PostStatus { get; set; }
+        public bool CommentStatus { get; set; }
         public string PostPassword { get; set; }
         public string PostSlug { get; set; }
         public int MenuOrder { get; set; }
-        public string PostType { get; set; }
+      //  public string PostType { get; set; }
       
         public long CommentCount { get; set; }
         public DateTime? CreatedAt { get; set; } = DateTime.Now;

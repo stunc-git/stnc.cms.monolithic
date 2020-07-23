@@ -28,10 +28,10 @@ namespace Stnc.CMS.Web
             {
                 AppUser user = new AppUser
                 {
-                    Name = "Yavuz",
-                    Surname = "Kahraman",
-                    UserName = "yavuz",
-                    Email = "yavuz@gmail.com"
+                    Name = "selman",
+                    Surname = "tunç",
+                    UserName = "stnc",
+                    Email = "selmantunc@gmail.com"
                 };
                 await userManager.CreateAsync(user,"1");
                 await userManager.AddToRoleAsync(user, "Admin");

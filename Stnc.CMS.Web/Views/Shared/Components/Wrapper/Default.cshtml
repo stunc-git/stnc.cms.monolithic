@@ -24,8 +24,11 @@
             AnaSayfa
         </a>
 
+        <a asp-action="Index" asp-controller="Icerik" class="list-group-item list-group-item-action @(active=="post"?"active":"")"><i class="fas fa-tasks mr-2"></i> İçerikler</a>
 
         <a asp-action="Index" asp-controller="Gorev" class="list-group-item list-group-item-action @(active=="gorev"?"active":"")"><i class="fas fa-tasks mr-2"></i> Görev İşlemleri</a>
+
+
         <a asp-action="Index" asp-controller="Aciliyet" class="list-group-item list-group-item-action  @(active=="aciliyet"?"active":"")">
             <i class="fas fa-exclamation mr-2"></i>
             Aciliyet İşlemleri

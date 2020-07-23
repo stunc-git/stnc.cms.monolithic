@@ -15,9 +15,16 @@ namespace Stnc.CMS.Business.Concrete
             
         }
 
-        public int ToplamPostAdeti()
+        public int GetTotalPost()
         {
-            return _postDal.ToplamPostAdeti();
+            return _postDal.GetTotalPost();
+        }
+
+
+
+        public List<Posts> PostList()
+        {
+            throw new System.NotImplementedException();
         }
 
         public void Guncelle(Posts tablo)
@@ -46,5 +53,6 @@ namespace Stnc.CMS.Business.Concrete
             return _postDal.GetirHepsi();
 
         }
+
     }
 }

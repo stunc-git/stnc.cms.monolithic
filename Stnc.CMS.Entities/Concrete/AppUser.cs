@@ -16,6 +16,6 @@ namespace Stnc.CMS.Entities.Concrete
         public List<Bildirim> Bildirimler { get; set; }
         public List<Gorev> Gorevler { get; set; }
         //public object Posts { get; set; }
-        public List<Posts> Posts { get; set; }
+        public List<Posts> Posts { get; set; } //ilişki foreing
     }
 }

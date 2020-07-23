@@ -1,13 +1,11 @@
 ﻿using AutoMapper;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Stnc.CMS.DTO.DTOs.AciliyetDtos;
 using Stnc.CMS.DTO.DTOs.AppUserDtos;
 using Stnc.CMS.DTO.DTOs.BildirimDtos;
 using Stnc.CMS.DTO.DTOs.GorevDtos;
 using Stnc.CMS.DTO.DTOs.RaporDtos;
+using Stnc.CMS.DTO.DTOs.PostDtos;
+
 using Stnc.CMS.Entities.Concrete;
 
 namespace Stnc.CMS.Web.Mapping.AutoMapperProfile
@@ -58,6 +56,12 @@ namespace Stnc.CMS.Web.Mapping.AutoMapperProfile
             CreateMap<RaporDosyaDto, Rapor>();
             CreateMap<Rapor, RaporDosyaDto>();
             #endregion
+
+            #region Post-PostDto
+            CreateMap<PostListAllDto, Gorev>();
+            CreateMap<Posts, PostListAllDto>();
+            #endregion
+
         }
     }
 }

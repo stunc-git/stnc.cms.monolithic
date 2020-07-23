@@ -23,7 +23,7 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Mapping
             builder.Property(I => I.PostPassword).HasMaxLength(255);
             builder.Property(I => I.PostSlug).HasMaxLength(255);
             builder.Property(I => I.MenuOrder).HasMaxLength(255);
-            builder.Property(I => I.PostType).HasDefaultValue(1); 
+           // builder.Property(I => I.PostType).HasDefaultValue(1); 
             builder.Property(I => I.CommentCount).HasDefaultValue(0); 
          
 

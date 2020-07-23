@@ -1,11 +1,14 @@
 ﻿using Stnc.CMS.Entities.Concrete;
+using System.Collections.Generic;
 
 namespace Stnc.CMS.Business.Interfaces
 {
     public interface IPostService : IGenericService<Posts>
     {
 
-        int ToplamPostAdeti();
+        int GetTotalPost();
+        
+        List<Posts> PostList();
         /*
         List<Gorev> GetirAciliyetIleTamamlanmayan();
         List<Gorev> GetirTumTablolarla();
