@@ -1,4 +1,4 @@
-﻿@model List<AciliyetListDto>
+﻿@model List<CategoryListDto>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
@@ -13,7 +13,7 @@
     <table class="table table-sm table-hover">
         <thead>
             <tr>
-                <th>Tanim</th>
+                <th>Category adı</th>
                 <th>İşlem</th>
             </tr>
         </thead>
@@ -22,9 +22,9 @@
             @foreach (var item in Model)
             {
                 <tr>
-                    <td>@item.Tanim</td>
+                    <td>@item.Name</td>
                     <td>
-                        <a asp-action="GuncelleAciliyet" asp-controller="Aciliyet" asp-route-id="@item.Id" class="btn btn-warning btn-sm"><i class="far fa-edit mr-2"></i>Düzenle</a>
+                        <a asp-action="UpdateCategory" asp-controller="Category" asp-route-id="@item.ID" class="btn btn-warning btn-sm"><i class="far fa-edit mr-2"></i>Düzenle</a>
                     </td>
                 </tr>
             }
@@ -37,7 +37,7 @@ else
         <p class="lead">
             Sistemde kayıtlı aciliyet durumu bulanamadı.
         </p>
-        <a asp-action="EkleAciliyet" asp-controller="Aciliyet" class="btn btn-sm btn-info my-2">Yeni Aciliyet Ekle</a>
+        <a asp-action="AddCategory" asp-controller="Category" class="btn btn-sm btn-info my-2">Yeni Categori Ekle</a>
 
     </div>
 

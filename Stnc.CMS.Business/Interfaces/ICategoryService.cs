@@ -5,8 +5,8 @@ using Stnc.CMS.Entities.Concrete;
 
 namespace Stnc.CMS.Business.Interfaces
 {
-    public interface IAciliyetService : IGenericService<Aciliyet>
+    public interface  ICategoryService: IGenericService<Category>
     {
-        void Kaydet(Aciliyet aciliyet);
+        void Kaydet(Category category);
     }
 }

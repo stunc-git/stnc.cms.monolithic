@@ -58,10 +58,15 @@ namespace Stnc.CMS.Web.Mapping.AutoMapperProfile
             #endregion
 
             #region Post-PostDto
-            CreateMap<PostListAllDto, Gorev>();
+            CreateMap<PostListAllDto, Posts>();
             CreateMap<Posts, PostListAllDto>();
             #endregion
 
+
+            #region Category-CategoryDto
+            CreateMap<CategoryListAllDto, Category>();
+            CreateMap<Category, CategoryListAllDto>();
+            #endregion
         }
     }
 }

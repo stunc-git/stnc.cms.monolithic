@@ -25,6 +25,12 @@ namespace Stnc.CMS.Business.DiContainer
             services.AddScoped<IPostService, PostManager>();
             services.AddScoped<IPostDal, EfPostRepository>();
 
+
+            //category 
+            services.AddScoped<ICategoryService, CategoryManager>();
+            services.AddScoped<ICategoryDal, EfCategoryRepository>();
+
+
             services.AddScoped<IGorevDal, EfGorevRepository>();
             services.AddScoped<IAciliyetDal, EfAciliyetRepository>();
             services.AddScoped<IRaporDal, EfRaporRepository>();

@@ -2,7 +2,8 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Stnc.CMS.Business.Interfaces;
-using Stnc.CMS.DTO.DTOs.AciliyetDtos;
+
+using Stnc.CMS.DTO.DTOs.CategoryDtos;
 using Stnc.CMS.Entities.Concrete;
 using Stnc.CMS.Web.StringInfo;
 using System.Collections.Generic;
@@ -11,43 +12,45 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
 {
     [Authorize(Roles = RoleInfo.Admin)]
     [Area(AreaInfo.Admin)]
-    public class AciliyetController : Controller
+    public class CategoryController : Controller
     {
-        private readonly IAciliyetService _aciliyetService;
+        private readonly ICategoryService _categoryservice;
         private readonly IMapper _mapper;
-        public AciliyetController(IAciliyetService aciliyetService, IMapper mapper)
+        public CategoryController(ICategoryService categoryservice, IMapper mapper)
         {
             _mapper = mapper;
-            _aciliyetService = aciliyetService;
+            _categoryservice = categoryservice;
         }
 
         public IActionResult Index()
         {
-            TempData["Active"] = TempdataInfo.Aciliyet;          
-            return View(_mapper.Map<List<AciliyetListDto>>(_aciliyetService.GetirHepsi()));
+            TempData["Active"] = TempdataInfo.Category;          
+            return View(_mapper.Map<List<CategoryListDto>>(_categoryservice.GetirHepsi()));
+
+ 
         }
 
-        public IActionResult EkleAciliyet()
+        public IActionResult AddCategory()
         {
-            TempData["Active"] = TempdataInfo.Aciliyet;
-            return View(new AciliyetAddDto());
+            TempData["Active"] = TempdataInfo.Category;
+            return View(new CategoryAddDto());
         }
 
         [HttpPost]
-        public IActionResult EkleAciliyet(AciliyetAddDto model)
+        public IActionResult AddCategory(CategoryAddDto model)
         {
             if (ModelState.IsValid)
             {
-                _aciliyetService.Kaydet(new Aciliyet()
+                _categoryservice.Kaydet(new Category()
                 {
-                    Tanim = model.Tanim
+                    Name = model.Name
                 });
 
                 return RedirectToAction("Index");
             }
             return View(model);
         }
-
+        /*
         public IActionResult GuncelleAciliyet(int id)
         {
             TempData["Active"] = TempdataInfo.Aciliyet;
@@ -69,6 +72,6 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
             }
             return View(model);
            
-        }
+        }*/
     }
 }

@@ -35,7 +35,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
      
 
 
-
+        /*
         public IActionResult EkleGorev()
         {
             TempData["Active"] = TempdataInfo.Post;
@@ -62,7 +62,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
             ViewBag.Aciliyetler = new SelectList(_aciliyetService.GetirHepsi(), "Id", "Tanim");
             return View(model);
         }
-
+        */
 
 
         
