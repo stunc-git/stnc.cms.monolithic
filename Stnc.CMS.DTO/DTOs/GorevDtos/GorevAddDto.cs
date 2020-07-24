@@ -6,6 +6,8 @@ namespace Stnc.CMS.DTO.DTOs.GorevDtos
 {
     public class GorevAddDto
     {
+
+
         //[Required(ErrorMessage = "Ad alanı gereklidir")]
         public string Ad { get; set; }
 

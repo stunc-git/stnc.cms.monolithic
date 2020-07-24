@@ -10,8 +10,8 @@ using Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts;
 namespace Stnc.CMS.DataAccess.Migrations
 {
     [DbContext(typeof(StncCMSContext))]
-    [Migration("20200720134900_dropColoumb")]
-    partial class dropColoumb
+    [Migration("20200724065609_InıtalCreate")]
+    partial class InıtalCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -471,9 +471,8 @@ namespace Stnc.CMS.DataAccess.Migrations
                         .HasColumnType("bigint")
                         .HasDefaultValue(0L);
 
-                    b.Property<string>("CommentStatus")
-                        .HasColumnType("nvarchar(1)")
-                        .HasMaxLength(1);
+                    b.Property<bool>("CommentStatus")
+                        .HasColumnType("bit");
 
                     b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("datetime2");
@@ -505,20 +504,13 @@ namespace Stnc.CMS.DataAccess.Migrations
                         .HasColumnType("nvarchar(255)")
                         .HasMaxLength(255);
 
-                    b.Property<string>("PostStatus")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(1)")
-                        .HasMaxLength(1);
+                    b.Property<bool>("PostStatus")
+                        .HasColumnType("bit");
 
                     b.Property<string>("PostTitle")
                         .IsRequired()
                         .HasColumnType("nvarchar(250)")
                         .HasMaxLength(250);
-
-                    b.Property<string>("PostType")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("nvarchar(max)")
-                        .HasDefaultValue("1");
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2");

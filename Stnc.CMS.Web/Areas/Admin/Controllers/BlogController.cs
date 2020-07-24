@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Stnc.CMS.Business.Interfaces;
-
+using Stnc.CMS.DTO.DTOs.PostDtos;
 using Stnc.CMS.Entities.Concrete;
 using Stnc.CMS.Web.StringInfo;
 
@@ -30,11 +30,41 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
         public IActionResult Index()
         {
             TempData["Active"] = TempdataInfo.Post;
-            return View(_mapper.Map<List<PostListAllDto>>(postService.PostList()));
+            return View(_mapper.Map<List<PostListAllDto>>(_postService.PostList()));
+        }
+     
 
-          //  TempData["Active"] = TempdataInfo.Gorev;
-         //   return View(_mapper.Map<List<GorevListDto>>(_gorevService.GetirAciliyetIleTamamlanmayan()));
+
+
+        public IActionResult EkleGorev()
+        {
+            TempData["Active"] = TempdataInfo.Post;
+
+            ViewBag.Aciliyetler = new (_postService.GetirHepsi(), "Id", "Tanim");
+            return View(new GorevAddDto());
         }
 
+        [HttpPost]
+        public IActionResult EkleGorev(GorevAddDto model)
+        {
+            if (ModelState.IsValid)
+            {
+                _gorevService.Kaydet(new Gorev
+                {
+                    Aciklama = model.Aciklama,
+                    Ad = model.Ad,
+                    AciliyetId = model.AciliyetId,
+
+                });
+
+                return RedirectToAction("Index");
+            }
+            ViewBag.Aciliyetler = new SelectList(_aciliyetService.GetirHepsi(), "Id", "Tanim");
+            return View(model);
+        }
+
+
+
+        
     }
 }

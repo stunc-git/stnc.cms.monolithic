@@ -7,23 +7,18 @@ namespace Stnc.CMS.Entities.Concrete
     public class Posts : ITablo
     {
         public long Id { get; set; }
-        public DateTime PostDate { get; set; }
-        public DateTime PostDateGmt { get; set; }
         public string PostTitle { get; set; }
         public string PostContent { get; set; }
-
         public string PostExcerpt { get; set; }
-        public bool PostStatus { get; set; }
-        public bool CommentStatus { get; set; }
+        public bool PostStatus { get; set; } = false;
+        public bool CommentStatus { get; set; } = false;
         public string PostPassword { get; set; }
         public string PostSlug { get; set; }
-        public int MenuOrder { get; set; }
-      //  public string PostType { get; set; }
-      
+        public int MenuOrder { get; set; } = 0;
         public long CommentCount { get; set; }
         public DateTime? CreatedAt { get; set; } = DateTime.Now;
         public DateTime? UpdatedAt { get; set; } = DateTime.Now;
-        public DateTime? DeletedAt { get; set; } = DateTime.Now;
+        public DateTime? DeletedAt { get; set; } 
 
 
         public int AppUserId { get; set; }

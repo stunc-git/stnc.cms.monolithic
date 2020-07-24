@@ -1,24 +1,24 @@
-﻿using Stnc.CMS.Entities.Concrete;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Stnc.CMS.DTO.DTOs.PostDtos
 {
-    public class PostListAllDto
+    public class PostAddDto
     {
-
-
         public long Id { get; set; }
-        public DateTime PostDate { get; set; }
         public string PostTitle { get; set; }
         public string PostContent { get; set; }
         public string PostExcerpt { get; set; }
+        public bool PostStatus { get; set; }
+        public bool CommentStatus { get; set; }
+        public string PostPassword { get; set; }
+        public string PostSlug { get; set; }
+        public int MenuOrder { get; set; }
+        public long CommentCount { get; set; }
         public DateTime? CreatedAt { get; set; } = DateTime.Now;
         public DateTime? UpdatedAt { get; set; } = DateTime.Now;
-        public DateTime? DeletedAt { get; set; } = DateTime.Now;
-        public int AppUserId { get; set; }
-        public AppUser AppUser { get; set; }
-       // public List<CategoryBlog> CategoryBlogs { get; set; }
+        public DateTime? DeletedAt { get; set; }
+
     }
 }

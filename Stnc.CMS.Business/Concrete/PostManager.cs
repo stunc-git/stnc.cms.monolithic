@@ -24,7 +24,7 @@ namespace Stnc.CMS.Business.Concrete
 
         public List<Posts> PostList()
         {
-            throw new System.NotImplementedException();
+            return _postDal.PostList();
         }
 
         public void Guncelle(Posts tablo)

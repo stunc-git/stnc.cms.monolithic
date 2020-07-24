@@ -11,19 +11,12 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Mapping
     {
         public void Configure(EntityTypeBuilder<Category> builder)
         {
-
-            builder.HasKey(I => I.ID);
-            builder.Property(I => I.ID).UseIdentityColumn();
-
-
-                builder.Property(I => I.Name).HasMaxLength(100).IsRequired();
-                builder.Property(I => I.Slug).HasMaxLength(100);
-                builder.Property(I => I.Description).HasColumnType("ntext");
-
-
-            builder.HasMany(I => I.CategoryBlogs).WithOne(I => I.Category).HasForeignKey(I => I.CategoryID);
-
-
+           builder.HasKey(I => I.ID);
+           builder.Property(I => I.ID).UseIdentityColumn();
+           builder.Property(I => I.Name).HasMaxLength(100).IsRequired();
+           builder.Property(I => I.Slug).HasMaxLength(100);
+           builder.Property(I => I.Description).HasColumnType("ntext");
+           builder.HasMany(I => I.CategoryBlogs).WithOne(I => I.Category).HasForeignKey(I => I.CategoryID);
         }
     }
 }
