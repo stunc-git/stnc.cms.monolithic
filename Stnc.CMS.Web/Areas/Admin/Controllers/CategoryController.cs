@@ -50,28 +50,28 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
             }
             return View(model);
         }
-        /*
-        public IActionResult GuncelleAciliyet(int id)
+    
+        public IActionResult UpdateCategory(int id)
         {
-            TempData["Active"] = TempdataInfo.Aciliyet;
-            return View(_mapper.Map<AciliyetUpdateDto>(_aciliyetService.GetirIdile(id)));
+            TempData["Active"] = TempdataInfo.Category;
+            return View(_mapper.Map<CategoryUpdateDto>(_categoryservice.GetirIdile(id)));
         }
 
         [HttpPost]
-        public IActionResult GuncelleAciliyet(AciliyetUpdateDto model)
+        public IActionResult UpdateCategory(CategoryUpdateDto model)
         {
             if (ModelState.IsValid)
             {
-                _aciliyetService.Guncelle(new Aciliyet
+                _categoryservice.Guncelle(new Category
                 {
-                    Id = model.Id,
-                    Tanim = model.Tanim
+                    ID = model.ID,
+                    Name = model.Name
                 });
 
                 return RedirectToAction("Index");
             }
             return View(model);
            
-        }*/
+        }
     }
 }

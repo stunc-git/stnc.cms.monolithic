@@ -1,15 +1,15 @@
-﻿@model AciliyetUpdateDto
+﻿@model CategoryUpdateDto
 @{
     ViewData["Title"] = "GuncelleAciliyet";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
-<form asp-action="GuncelleAciliyet" class="w-75 mx-auto p-3" method="post">
-    <input type="hidden" asp-for="Id" />
+<form asp-action="UpdateCategory" class="w-75 mx-auto p-3" method="post">
+    <input type="hidden" asp-for="ID" />
     <div class="form-group">
-        <label asp-for="Tanim">Tanım :</label>
-        <span asp-validation-for="Tanim" class="text-danger"></span>
-        <input asp-for="Tanim" type="text" class="form-control" />
+        <label asp-for="Name">İsim :</label>
+        <span asp-validation-for="Name" class="text-danger"></span>
+        <input asp-for="Name" type="text" class="form-control" />
     </div>
     <button type="submit" class="btn btn-info btn-sm"><i class="fas fa-check mr-2"></i>Kaydet</button>
 </form>
