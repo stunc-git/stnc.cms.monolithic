@@ -7,6 +7,7 @@ using Stnc.CMS.DTO.DTOs.RaporDtos;
 using Stnc.CMS.DTO.DTOs.PostDtos;
 
 using Stnc.CMS.Entities.Concrete;
+using Stnc.CMS.DTO.DTOs.CategoryDtos;
 
 namespace Stnc.CMS.Web.Mapping.AutoMapperProfile
 {
@@ -64,8 +65,8 @@ namespace Stnc.CMS.Web.Mapping.AutoMapperProfile
 
 
             #region Category-CategoryDto
-            CreateMap<CategoryListAllDto, Category>();
-            CreateMap<Category, CategoryListAllDto>();
+            CreateMap<CategoryListDto, Category>();
+            CreateMap<Category, CategoryListDto>();
             #endregion
         }
     }
