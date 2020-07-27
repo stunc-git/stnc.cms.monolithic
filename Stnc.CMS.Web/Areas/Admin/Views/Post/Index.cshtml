@@ -9,7 +9,7 @@
 {
     <a asp-action="AddPost" class="btn btn-outline-dark btn-sm my-2">
         <i class="fas fa-plus-circle mr-2"></i>
-    Yeni İçerik</a>
+    Yeni Görev</a>
     <table class="table table-sm table-hover">
         <tr>
             <th>Ad</th>
@@ -24,7 +24,7 @@
             <tr>
                 <td>@item.PostTitle</td>
                 <td>@item.PostContent</td>
-                <td>@item.PostDate.ToString("D")</td>
+                <td>@item.CreatedAt.Value.ToString("dd MMM yyyy")</td>
             
                 <td>
                     <a asp-action="UpdatePost" asp-route-id="@item.Id" class="btn btn-warning btn-sm"><i class="far fa-edit mr-2"></i>Düzenle </a>
@@ -41,7 +41,7 @@ else
 {
     <div class="p-3 text-center mt-3 ">
         <p class="lead">
-            Herhangi bir görev bulunamadı
+            Herhangi bir içerik bulunamadı
         </p>
         <a asp-action="AddPost" class="btn btn-info btn-sm">Yeni İçerik Oluştur</a>
 

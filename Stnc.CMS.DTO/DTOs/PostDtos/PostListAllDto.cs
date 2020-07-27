@@ -9,7 +9,7 @@ namespace Stnc.CMS.DTO.DTOs.PostDtos
 
 
         public long Id { get; set; }
-        public DateTime PostDate { get; set; }
+  
         public string PostTitle { get; set; }
         public string PostContent { get; set; }
         public string PostExcerpt { get; set; }
