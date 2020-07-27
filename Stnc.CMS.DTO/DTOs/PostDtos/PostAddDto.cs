@@ -14,6 +14,8 @@ namespace Stnc.CMS.DTO.DTOs.PostDtos
         //public bool CommentStatus { get; set; } = false;
         //public string PostPassword { get; set; } = "0";
         public string PostSlug { get; set; }
+        public string Picture { get; set; }
+        public int MenuOrder { get; set; } = 1;
         public DateTime? CreatedAt { get; set; } = DateTime.Now;
         public DateTime? UpdatedAt { get; set; } = DateTime.Now;
         public DateTime? DeletedAt { get; set; }

@@ -1,5 +1,6 @@
 ﻿using Stnc.CMS.Entities.Concrete;
 using System;
+using System.Collections.Generic;
 
 namespace Stnc.CMS.DTO.DTOs.PostDtos
 {
@@ -15,8 +16,8 @@ namespace Stnc.CMS.DTO.DTOs.PostDtos
         public DateTime? CreatedAt { get; set; } = DateTime.Now;
         public DateTime? UpdatedAt { get; set; } = DateTime.Now;
         public DateTime? DeletedAt { get; set; } = DateTime.Now;
-        public int AppUserId { get; set; }
+       // public int AppUserId { get; set; }
         public AppUser AppUser { get; set; }
-       // public List<CategoryBlog> CategoryBlogs { get; set; }
+        public List<CategoryBlog> CategoryBlogs { get; set; }
     }
 }

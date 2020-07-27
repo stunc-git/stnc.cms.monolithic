@@ -10,14 +10,14 @@ using Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts;
 namespace Stnc.CMS.DataAccess.Migrations
 {
     [DbContext(typeof(StncCMSContext))]
-    [Migration("20200724065609_InıtalCreate")]
-    partial class InıtalCreate
+    [Migration("20200727081853_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.3")
+                .HasAnnotation("ProductVersion", "3.1.6")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -270,7 +270,7 @@ namespace Stnc.CMS.DataAccess.Migrations
 
             modelBuilder.Entity("Stnc.CMS.Entities.Concrete.Category", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:IdentityIncrement", 1)
@@ -298,7 +298,7 @@ namespace Stnc.CMS.DataAccess.Migrations
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.ToTable("Categories");
                 });
@@ -469,7 +469,7 @@ namespace Stnc.CMS.DataAccess.Migrations
                     b.Property<long>("CommentCount")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint")
-                        .HasDefaultValue(0L);
+                        .HasDefaultValue(1L);
 
                     b.Property<bool>("CommentStatus")
                         .HasColumnType("bit");
@@ -481,17 +481,13 @@ namespace Stnc.CMS.DataAccess.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<int>("MenuOrder")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasMaxLength(255);
+                        .HasMaxLength(255)
+                        .HasDefaultValue(1);
 
                     b.Property<string>("PostContent")
                         .HasColumnType("ntext");
-
-                    b.Property<DateTime>("PostDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("PostDateGmt")
-                        .HasColumnType("datetime2");
 
                     b.Property<string>("PostExcerpt")
                         .HasColumnType("ntext");
@@ -631,7 +627,7 @@ namespace Stnc.CMS.DataAccess.Migrations
                         .HasForeignKey("ParentCommentId");
 
                     b.HasOne("Stnc.CMS.Entities.Concrete.Posts", "Posts")
-                        .WithMany("Comments")
+                        .WithMany()
                         .HasForeignKey("PostsId");
                 });
 

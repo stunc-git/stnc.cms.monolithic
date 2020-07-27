@@ -64,7 +64,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
             {
                 _categoryservice.Guncelle(new Category
                 {
-                    ID = model.ID,
+                    Id = model.Id,
                     Name = model.Name
                 });
 

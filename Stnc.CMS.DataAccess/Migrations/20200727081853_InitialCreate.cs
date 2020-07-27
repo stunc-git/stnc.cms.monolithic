@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Stnc.CMS.DataAccess.Migrations
 {
-    public partial class InıtalCreate : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -68,7 +68,7 @@ namespace Stnc.CMS.DataAccess.Migrations
                 name: "Categories",
                 columns: table => new
                 {
-                    ID = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(maxLength: 100, nullable: false),
                     Slug = table.Column<string>(maxLength: 100, nullable: true),
@@ -79,7 +79,7 @@ namespace Stnc.CMS.DataAccess.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Categories", x => x.ID);
+                    table.PrimaryKey("PK_Categories", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -245,8 +245,6 @@ namespace Stnc.CMS.DataAccess.Migrations
                 {
                     Id = table.Column<long>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    PostDate = table.Column<DateTime>(nullable: false),
-                    PostDateGmt = table.Column<DateTime>(nullable: false),
                     PostTitle = table.Column<string>(maxLength: 250, nullable: false),
                     PostContent = table.Column<string>(type: "ntext", nullable: true),
                     PostExcerpt = table.Column<string>(type: "ntext", nullable: true),
@@ -254,8 +252,8 @@ namespace Stnc.CMS.DataAccess.Migrations
                     CommentStatus = table.Column<bool>(nullable: false),
                     PostPassword = table.Column<string>(maxLength: 255, nullable: true),
                     PostSlug = table.Column<string>(maxLength: 255, nullable: true),
-                    MenuOrder = table.Column<int>(maxLength: 255, nullable: false),
-                    CommentCount = table.Column<long>(nullable: false, defaultValue: 0L),
+                    MenuOrder = table.Column<int>(maxLength: 255, nullable: false, defaultValue: 1),
+                    CommentCount = table.Column<long>(nullable: false, defaultValue: 1L),
                     CreatedAt = table.Column<DateTime>(nullable: true),
                     UpdatedAt = table.Column<DateTime>(nullable: true),
                     DeletedAt = table.Column<DateTime>(nullable: true),
@@ -309,7 +307,7 @@ namespace Stnc.CMS.DataAccess.Migrations
                         name: "FK_CategoryBlogs_Categories_CategoryID",
                         column: x => x.CategoryID,
                         principalTable: "Categories",
-                        principalColumn: "ID",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_CategoryBlogs_Posts_PostID",

@@ -1,21 +1,14 @@
 ﻿using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Stnc.CMS.Business.Concrete;
-using Stnc.CMS.Business.Interfaces;
 using Stnc.CMS.Business.ValidationRules.FluentValidation;
 using Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts;
-using Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Repositories;
-using Stnc.CMS.DataAccess.Interfaces;
 using Stnc.CMS.DTO.DTOs.AciliyetDtos;
 using Stnc.CMS.DTO.DTOs.AppUserDtos;
 using Stnc.CMS.DTO.DTOs.GorevDtos;
+using Stnc.CMS.DTO.DTOs.PostDtos;
 using Stnc.CMS.DTO.DTOs.RaporDtos;
 using Stnc.CMS.Entities.Concrete;
+using System;
 
 namespace Stnc.CMS.Web.CustomCollectionExtensions
 {
@@ -54,6 +47,9 @@ namespace Stnc.CMS.Web.CustomCollectionExtensions
             services.AddTransient<IValidator<GorevUpdateDto>, GorevUpdateValidator>();
             services.AddTransient<IValidator<RaporAddDto>, RaporAddValidator>();
             services.AddTransient<IValidator<RaporUpdateDto>, RaporUpdateValidator>();
+
+            services.AddTransient<IValidator<PostUpdateDto>, PostUpdateValidator>();
+            services.AddTransient<IValidator<PostAddDto>, PostAddValidator>();
 
         }
     }
