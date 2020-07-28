@@ -7,6 +7,6 @@ namespace Stnc.CMS.Business.Interfaces
 {
     public interface  ICategoryService: IGenericService<Category>
     {
-        void Kaydet(Category category);
+   
     }
 }

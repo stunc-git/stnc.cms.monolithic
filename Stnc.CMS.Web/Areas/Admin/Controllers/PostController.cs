@@ -26,13 +26,15 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
         private readonly IPostService _postService;
 
         private readonly ICategoryService _categoryService;
+        private readonly ICategoryBlogsService _categoryBlogService;
         private readonly IMapper _mapper;
-        public PostController(IPostService postService, ICategoryService categoryService, UserManager<AppUser> userManager, IMapper mapper) : base(userManager)
+        public PostController(IPostService postService, ICategoryService categoryService, ICategoryBlogsService categoryBlogService, UserManager<AppUser> userManager, IMapper mapper) : base(userManager)
         {
             _mapper = mapper;
    
             _postService = postService;
             _categoryService = categoryService;
+            _categoryBlogService = categoryBlogService;
         }
 
         public IActionResult Index()
@@ -92,7 +94,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
                         PostID = success.Id,
                         CategoryID = int.Parse(category)
                     };
-                    context.CategoryBlogs.Add(categoryBlog);
+                    context.CategoryBlog.Add(categoryBlog);
                     context.SaveChanges();
                 }
 
@@ -107,8 +109,8 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
         {
             TempData["Active"] = TempdataInfo.Post;
             var post = _postService.GetirIdile(id);
-            var catID = _categoryService.GetirIdile(id);
-            ViewBag.Categories = new SelectList(_categoryService.GetirHepsi(), "Id", "Tanim", post.AciliyetId);
+            var catList = _categoryBlogService.GetCategoryPostIDList(id);
+         //   ViewBag.Categories = new SelectList(_categoryService.GetirHepsi(), "Id", "Tanim", post.AciliyetId);
 
 
             return View(_mapper.Map<PostUpdateDto>(post));

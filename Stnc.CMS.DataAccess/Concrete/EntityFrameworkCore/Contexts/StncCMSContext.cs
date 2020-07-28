@@ -41,7 +41,7 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts
 
         public DbSet<Posts> Posts { get; set; }
         public DbSet<Category> Categories { get; set; }
-        public DbSet<CategoryBlog> CategoryBlogs { get; set; }
+        public DbSet<CategoryBlog> CategoryBlog { get; set; }
         public DbSet<Comments> Comments { get; set; }
     }
 }

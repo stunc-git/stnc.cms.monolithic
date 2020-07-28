@@ -7,6 +7,6 @@ namespace Stnc.CMS.Business.Interfaces
 {
     public interface IAciliyetService : IGenericService<Aciliyet>
     {
-        void Kaydet(Aciliyet aciliyet);
+       
     }
 }

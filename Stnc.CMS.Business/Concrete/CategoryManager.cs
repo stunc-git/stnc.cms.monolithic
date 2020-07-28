@@ -35,7 +35,7 @@ namespace Stnc.CMS.Business.Concrete
 
         public Category KaydetReturn(Category tablo)
         {
-            throw new System.NotImplementedException();
+          return  _categoryDal.KaydetReturn(tablo);
         }
 
         public void Sil(Category tablo)

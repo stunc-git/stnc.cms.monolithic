@@ -11,6 +11,9 @@ namespace Stnc.CMS.DataAccess.Interfaces
         void Sil(Tablo tablo);
         void Guncelle(Tablo tablo);
         Tablo GetirIdile(int id);
+
+        Tablo KaydetReturn(Tablo tablo);
+
         List<Tablo> GetirHepsi();
        
     }

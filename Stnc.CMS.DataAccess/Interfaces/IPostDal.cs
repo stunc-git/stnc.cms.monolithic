@@ -21,6 +21,6 @@ namespace Stnc.CMS.DataAccess.Interfaces
        
         List<Posts> PostList();
         int GetTotalPost();
-        Posts KaydetReturn(Posts tablo);
+       //Posts KaydetReturn(Posts tablo);
     }
 }
