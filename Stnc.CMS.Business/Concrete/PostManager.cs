@@ -54,5 +54,9 @@ namespace Stnc.CMS.Business.Concrete
 
         }
 
+        public Posts KaydetReturn(Posts tablo)
+        {
+            return _postDal.KaydetReturn(tablo);
+        }
     }
 }

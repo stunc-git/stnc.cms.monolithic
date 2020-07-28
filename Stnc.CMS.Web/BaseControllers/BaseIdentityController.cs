@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -25,16 +26,20 @@ namespace Stnc.CMS.Web.BaseControllers
           return  await _userManager.FindByNameAsync(User.Identity.Name);
         }
 
-        protected async  Task<AppUser> GetLoginUserID()
+
+        protected async  Task<string> Uploader(IFormFile file,string pathName)
         {
-         ///   return  User.FindFirstValue(ClaimTypes.NameIdentifier); // will give the user's userId
-        //var userName = User.FindFirstValue(ClaimTypes.Name); // will give the user's userName
-
-           return await _userManager.GetUserAsync(User);
-           // string userEmail = applicationUser?.Email; // will give the user's Email
-
-
+            string FileExtension = Path.GetExtension(file.FileName);
+            string fileName = Guid.NewGuid() + FileExtension;
+            string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/"+ pathName+"/" + fileName);
+            using (var stream = new FileStream(path, FileMode.Create))
+            {
+                await file.CopyToAsync(stream);
+            }
+            return fileName;
         }
+
+
 
         protected void HataEkle(IEnumerable<IdentityError> errors)
         {

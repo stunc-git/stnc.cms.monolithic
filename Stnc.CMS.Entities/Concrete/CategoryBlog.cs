@@ -8,7 +8,7 @@ namespace Stnc.CMS.Entities.Concrete
   public class CategoryBlog : ITablo
     {
         public int Id { get; set; }
-        public long PostID { get; set; }
+        public int PostID { get; set; }
         public Posts Posts { get; set; }
         public int CategoryID { get; set; }
         public Category Category { get; set; }

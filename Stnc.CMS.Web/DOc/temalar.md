@@ -25,3 +25,14 @@ https://colorlib.com/preview/theme/learnit/
 https://colorlib.com/preview/#university
 
 https://colorlib.com/preview/#academy
+
+
+event al 
+https://colorlib.com/preview/theme/edustage/
+https://colorlib.com/preview/theme/wiser/
+
+blog kısmı güzel 
+https://colorlib.com/preview/theme/university/
+
+
+txt efeckt https://codepen.io/rgg/pen/ozLzbz/

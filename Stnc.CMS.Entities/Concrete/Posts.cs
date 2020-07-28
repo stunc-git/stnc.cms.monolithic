@@ -6,7 +6,7 @@ namespace Stnc.CMS.Entities.Concrete
 {
     public class Posts : ITablo
     {
-        public long Id { get; set; }
+        public int Id { get; set; }
         public string PostTitle { get; set; }
         public string PostContent { get; set; }
         public string PostExcerpt { get; set; }
@@ -16,7 +16,7 @@ namespace Stnc.CMS.Entities.Concrete
         public string PostSlug { get; set; }
         public int MenuOrder { get; set; } = 1;
         public long CommentCount { get; set; }
-        public string? Picture { get; set; }
+        public string Picture { get; set; } = "default.jpg";
 
 
         public DateTime? CreatedAt { get; set; } = DateTime.Now;

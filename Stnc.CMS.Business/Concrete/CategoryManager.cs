@@ -33,6 +33,11 @@ namespace Stnc.CMS.Business.Concrete
             _categoryDal.Kaydet(tablo);
         }
 
+        public Category KaydetReturn(Category tablo)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public void Sil(Category tablo)
         {
             _categoryDal.Sil(tablo);

@@ -18,7 +18,9 @@ namespace Stnc.CMS.DataAccess.Interfaces
         //int GetirGorevSayisiTamamlananileAppUserId(int id);
         //int GetirGorevSayisiTamamlanmasiGerekenileAppUserId(int id);
         //int GetirGorevSayisiAtanmayiBekleyen();
+       
         List<Posts> PostList();
         int GetTotalPost();
+        Posts KaydetReturn(Posts tablo);
     }
 }

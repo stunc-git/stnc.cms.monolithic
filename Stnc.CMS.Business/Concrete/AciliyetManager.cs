@@ -33,6 +33,11 @@ namespace Stnc.CMS.Business.Concrete
             _aciliyetDal.Kaydet(tablo);
         }
 
+        public Aciliyet KaydetReturn(Aciliyet tablo)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public void Sil(Aciliyet tablo)
         {
             _aciliyetDal.Sil(tablo);

@@ -313,8 +313,8 @@ namespace Stnc.CMS.DataAccess.Migrations
                     b.Property<int>("CategoryID")
                         .HasColumnType("int");
 
-                    b.Property<long>("PostID")
-                        .HasColumnType("bigint");
+                    b.Property<int>("PostID")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -396,8 +396,8 @@ namespace Stnc.CMS.DataAccess.Migrations
                     b.Property<long>("PostID")
                         .HasColumnType("bigint");
 
-                    b.Property<long?>("PostsId")
-                        .HasColumnType("bigint");
+                    b.Property<int?>("PostsId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2");
@@ -454,9 +454,9 @@ namespace Stnc.CMS.DataAccess.Migrations
 
             modelBuilder.Entity("Stnc.CMS.Entities.Concrete.Posts", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
+                        .HasColumnType("int")
                         .HasAnnotation("SqlServer:IdentityIncrement", 1)
                         .HasAnnotation("SqlServer:IdentitySeed", 1)
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);

@@ -43,9 +43,16 @@ namespace Stnc.CMS.Business.Concrete
             _bildirimDal.Kaydet(tablo);
         }
 
+        public Bildirim KaydetReturn(Bildirim tablo)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public void Sil(Bildirim tablo)
         {
             _bildirimDal.Sil(tablo);
         }
+
+ 
     }
 }

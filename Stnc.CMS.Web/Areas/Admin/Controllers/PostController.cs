@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Stnc.CMS.Business.Interfaces;
+using Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts;
 using Stnc.CMS.DTO.DTOs.PostDtos;
 using Stnc.CMS.Entities.Concrete;
 using Stnc.CMS.Web.BaseControllers;
@@ -51,6 +52,15 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
         }
 
 
+        public async Task<IActionResult> UploadFile(IFormFile aUploadedFile)
+        {
+            //todo: burada json return donmesi gerekli 
+            string name=await Uploader(aUploadedFile, "file");
+           string  vReturnImagePath = "/file/" + name;
+            return Ok(vReturnImagePath);
+        }
+
+
 
         [HttpPost]
         public async Task<IActionResult> AddPost(PostAddDto model, IFormFile picture)
@@ -62,38 +72,83 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
 
                 if (picture != null)
                 {
-                    string FileExtension = Path.GetExtension(picture.FileName);
-                    string pictureName = Guid.NewGuid() + FileExtension;
-                    string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/img/" + pictureName);
-                    using (var stream = new FileStream(path, FileMode.Create))
-                    {
-                        await picture.CopyToAsync(stream);
-                    }
-
+                    string pictureName = await Uploader(picture,"img");
                     pictureDb  = pictureName;
                 }
 
-               // model.Picture = pictureDb;
-
-                _postService.Kaydet(new Posts
-                {
+            var  success = _postService.KaydetReturn(new Posts {
                     PostTitle = model.PostTitle,
                     PostContent = model.PostContent,
                     PostExcerpt = model.PostExcerpt,
                     Picture = pictureDb,
                     AppUserId = user.Id,
-                    //AciliyetId = model.AciliyetId,
+                });
 
-                }); ;
+                //TODO: many to many yapılacak 
+                string category = HttpContext.Request.Form["category"];
+                using (var context = new StncCMSContext())
+                {
+                    var categoryBlog = new CategoryBlog {
+                        PostID = success.Id,
+                        CategoryID = int.Parse(category)
+                    };
+                    context.CategoryBlogs.Add(categoryBlog);
+                    context.SaveChanges();
+                }
 
                 return RedirectToAction("Index");
             }
             ViewBag.Categories = new SelectList(_categoryService.GetirHepsi(), "Id", "Name");
             return View(model);
         }
+
         
+        public IActionResult UpdatePost(int id)
+        {
+            TempData["Active"] = TempdataInfo.Post;
+            var post = _postService.GetirIdile(id);
+            var catID = _categoryService.GetirIdile(id);
+            ViewBag.Categories = new SelectList(_categoryService.GetirHepsi(), "Id", "Tanim", post.AciliyetId);
 
 
+            return View(_mapper.Map<PostUpdateDto>(post));
+
+
+
+            //TempData["Active"] = TempdataInfo.Gorev;
+            //var gorev = _gorevService.GetirIdile(id);
+            //ViewBag.Aciliyetler = new SelectList(_aciliyetService.GetirHepsi(), "Id", "Tanim", gorev.AciliyetId);
+            //return View(_mapper.Map<GorevUpdateDto>(gorev));
+
+
+        }
+        /*
+        [HttpPost]
+        public IActionResult GuncelleGorev(GorevUpdateDto model)
+        {
+            if (ModelState.IsValid)
+            {
+                _gorevService.Guncelle(new Gorev()
+                {
+                    Id = model.Id,
+                    Aciklama = model.Aciklama,
+                    AciliyetId = model.AciliyetId,
+                    Ad = model.Ad
+
+                });
+
+                return RedirectToAction("Index");
+            }
+            ViewBag.Aciliyetler = new SelectList(_aciliyetService.GetirHepsi(), "Id", "Tanim", model.AciliyetId);
+            return View(model);
+        }
+
+        public IActionResult SilGorev(int id)
+        {
+            _gorevService.Sil(new Gorev { Id = id });
+            return Json(null);
+        }
+        */
 
     }
 }

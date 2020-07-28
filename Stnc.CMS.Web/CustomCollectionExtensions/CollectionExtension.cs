@@ -41,10 +41,13 @@ namespace Stnc.CMS.Web.CustomCollectionExtensions
         {
             services.AddTransient<IValidator<AciliyetAddDto>, AciliyetAddValidator>();
             services.AddTransient<IValidator<AciliyetUpdateDto>, AciliyetUpdateValidator>();
+
             services.AddTransient<IValidator<AppUserAddDto>, AppUserAddValidator>();
             services.AddTransient<IValidator<AppUserSignInDto>, AppUserSignInValidator>();
+
             services.AddTransient<IValidator<GorevAddDto>, GorevAddValidator>();
             services.AddTransient<IValidator<GorevUpdateDto>, GorevUpdateValidator>();
+
             services.AddTransient<IValidator<RaporAddDto>, RaporAddValidator>();
             services.AddTransient<IValidator<RaporUpdateDto>, RaporUpdateValidator>();
 
