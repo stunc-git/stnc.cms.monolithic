@@ -16,7 +16,7 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Repositories
         {
                using var context = new StncCMSContext();
                return context.CategoryBlogs.Where(I => I.PostID == PostID)
-                .TagWith("Get post counts for blogs")
+                .TagWith("Get category post id list ")
                 .ToList();
         }
     }

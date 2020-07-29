@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Stnc.CMS.Business.Interfaces;
 using Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts;
+using Stnc.CMS.DTO.DTOs.CategoryBlogsDtos;
 using Stnc.CMS.DTO.DTOs.PostDtos;
 using Stnc.CMS.Entities.Concrete;
 using Stnc.CMS.Web.BaseControllers;
@@ -111,7 +112,12 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
             TempData["Active"] = TempdataInfo.Post;
             var post = _postService.GetirIdile(id);
             var catList = _categoryBlogService.GetCategoryPostIDList(id);
-         //   ViewBag.Categories = new SelectList(_categoryService.GetirHepsi(), "Id", "Tanim", post.AciliyetId);
+            var CategoryID = catList[0].CategoryID;
+
+
+            // var  Categories = new SelectList(catList, "Id");
+
+            //   ViewBag.Categories = new SelectList(_categoryService.GetirHepsi(), "Id", "Tanim", post.AciliyetId);
 
 
             return View(_mapper.Map<PostUpdateDto>(post));
