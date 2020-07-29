@@ -4,8 +4,8 @@ using System.Collections.Generic;
 
 namespace Stnc.CMS.DataAccess.Interfaces
 {
-    public interface ICategoryBlogsDal : IGenericDal<CategoryBlog>
+    public interface ICategoryBlogsDal : IGenericDal<CategoryBlogs>
     {
-        List<CategoryBlog> GetCategoryPostIDList(int PostID);
+        List<CategoryBlogs> GetCategoryPostIDList(int PostID);
     }
 }

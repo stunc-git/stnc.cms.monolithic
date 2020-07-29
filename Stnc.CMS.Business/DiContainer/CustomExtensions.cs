@@ -31,8 +31,8 @@ namespace Stnc.CMS.Business.DiContainer
             services.AddScoped<ICategoryDal, EfCategoryRepository>();
 
 
-            services.AddScoped<ICategoryBlogsService, CategoryBlogsManager>();
-            services.AddScoped<ICategoryDal, EfCategoryRepository>();
+            services.AddScoped<ICategoryBlogService, CategoryBlogsManager>();
+            services.AddScoped<ICategoryBlogsDal, EfCategoryBlogsRepository>();
 
 
             services.AddScoped<IGorevDal, EfGorevRepository>();

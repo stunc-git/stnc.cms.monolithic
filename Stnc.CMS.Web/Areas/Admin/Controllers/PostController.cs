@@ -26,12 +26,11 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
         private readonly IPostService _postService;
 
         private readonly ICategoryService _categoryService;
-        private readonly ICategoryBlogsService _categoryBlogService;
+        private readonly ICategoryBlogService _categoryBlogService;
         private readonly IMapper _mapper;
-        public PostController(IPostService postService, ICategoryService categoryService, ICategoryBlogsService categoryBlogService, UserManager<AppUser> userManager, IMapper mapper) : base(userManager)
+        public PostController(IPostService postService, ICategoryService categoryService, ICategoryBlogService categoryBlogService, UserManager<AppUser> userManager, IMapper mapper) : base(userManager)
         {
             _mapper = mapper;
-   
             _postService = postService;
             _categoryService = categoryService;
             _categoryBlogService = categoryBlogService;
@@ -41,9 +40,6 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
         {
             TempData["Active"] = TempdataInfo.Post;
             return View(_mapper.Map<List<PostListAllDto>>(_postService.PostList()));
-
-
-
         }
 
         public IActionResult AddPost()
@@ -58,7 +54,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
         {
             //todo: burada json return donmesi gerekli 
             string name=await Uploader(aUploadedFile, "file");
-           string  vReturnImagePath = "/file/" + name;
+           string  vReturnImagePath = "/upload/file/" + name;
             return Ok(vReturnImagePath);
         }
 
@@ -67,7 +63,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> AddPost(PostAddDto model, IFormFile picture)
         {
-            var user = await GetirGirisYapanKullanici();
+            var user = await GetUserLoginInfo();
             string pictureDb=null;
             if (ModelState.IsValid)
             {
@@ -78,7 +74,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
                     pictureDb  = pictureName;
                 }
 
-            var  success = _postService.KaydetReturn(new Posts {
+            var  success = _postService.SaveReturn(new Posts {
                     PostTitle = model.PostTitle,
                     PostContent = model.PostContent,
                     PostExcerpt = model.PostExcerpt,
@@ -88,15 +84,20 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
 
                 //TODO: many to many yapılacak 
                 string category = HttpContext.Request.Form["category"];
-                using (var context = new StncCMSContext())
+                if (category != "-1")
                 {
-                    var categoryBlog = new CategoryBlog {
-                        PostID = success.Id,
-                        CategoryID = int.Parse(category)
-                    };
-                    context.CategoryBlog.Add(categoryBlog);
-                    context.SaveChanges();
+                    using (var context = new StncCMSContext())
+                    {
+                        var categoryBlogs = new CategoryBlogs
+                        {
+                            PostID = success.Id,
+                            CategoryID = int.Parse(category)
+                        };
+                        context.CategoryBlogs.Add(categoryBlogs);
+                        context.SaveChanges();
+                    }
                 }
+
 
                 return RedirectToAction("Index");
             }

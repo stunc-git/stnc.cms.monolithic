@@ -12,7 +12,7 @@ namespace Stnc.CMS.DataAccess.Interfaces
         void Guncelle(Tablo tablo);
         Tablo GetirIdile(int id);
 
-        Tablo KaydetReturn(Tablo tablo);
+        Tablo SaveReturn(Tablo tablo);
 
         List<Tablo> GetirHepsi();
        

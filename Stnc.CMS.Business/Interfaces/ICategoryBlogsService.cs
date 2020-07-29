@@ -6,9 +6,9 @@ using Stnc.CMS.Entities.Concrete;
 
 namespace Stnc.CMS.Business.Interfaces
 {
-    public interface ICategoryBlogsService : IGenericService<CategoryBlog>
+    public interface ICategoryBlogService : IGenericService<CategoryBlogs>
     {
 
-        List<CategoryBlog> GetCategoryPostIDList(int PostID);
+        List<CategoryBlogs> GetCategoryPostIDList(int PostID);
     }
 }

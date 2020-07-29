@@ -33,7 +33,7 @@ namespace Stnc.CMS.Business.Concrete
             _aciliyetDal.Kaydet(tablo);
         }
 
-        public Aciliyet KaydetReturn(Aciliyet tablo)
+        public Aciliyet SaveReturn(Aciliyet tablo)
         {
             throw new System.NotImplementedException();
         }

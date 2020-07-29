@@ -8,6 +8,7 @@ namespace Stnc.CMS.Business.Concrete
     public class CategoryManager : ICategoryService
     {
         private readonly ICategoryDal _categoryDal;
+
         public CategoryManager(ICategoryDal categoryDal)
         {
             _categoryDal = categoryDal;
@@ -33,9 +34,9 @@ namespace Stnc.CMS.Business.Concrete
             _categoryDal.Kaydet(tablo);
         }
 
-        public Category KaydetReturn(Category tablo)
+        public Category SaveReturn(Category tablo)
         {
-          return  _categoryDal.KaydetReturn(tablo);
+          return  _categoryDal.SaveReturn(tablo);
         }
 
         public void Sil(Category tablo)

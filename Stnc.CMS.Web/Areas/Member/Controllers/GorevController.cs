@@ -30,7 +30,7 @@ namespace Stnc.CMS.Web.Areas.Member.Controllers
         public async Task<IActionResult> Index(int aktifSayfa = 1)
         {
             TempData["Active"] = TempdataInfo.Gorev;
-            var user = await GetirGirisYapanKullanici();
+            var user = await GetUserLoginInfo();
 
 
             var gorevler = _mapper.Map<List<GorevListAllDto>>(_gorevService.GetirTumTablolarlaTamamlanmayan(out int toplamSayfa, user.Id, aktifSayfa));

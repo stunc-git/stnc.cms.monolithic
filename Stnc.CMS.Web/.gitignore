@@ -27,7 +27,7 @@ bld/
 msbuild.log
 msbuild.err
 msbuild.wrn
-wwwroot/img/
+wwwroot/upload/*
 wwwroot/documents/
 # Visual Studio 2015
 .vs/

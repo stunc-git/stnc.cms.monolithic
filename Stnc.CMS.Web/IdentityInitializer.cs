@@ -23,7 +23,7 @@ namespace Stnc.CMS.Web
                 await roleManager.CreateAsync(new AppRole { Name = "Member" });
             }
 
-            var adminUser = await userManager.FindByNameAsync("yavuz");
+            var adminUser = await userManager.FindByNameAsync("selman");
             if (adminUser==null)
             {
                 AppUser user = new AppUser

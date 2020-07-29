@@ -92,7 +92,7 @@ namespace Stnc.CMS.Business.Concrete
             _gorevDal.Kaydet(tablo);
         }
 
-        public Gorev KaydetReturn(Gorev tablo)
+        public Gorev SaveReturn(Gorev tablo)
         {
             throw new NotImplementedException();
         }

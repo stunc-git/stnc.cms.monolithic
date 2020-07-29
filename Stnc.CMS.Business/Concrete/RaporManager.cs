@@ -52,7 +52,7 @@ namespace Stnc.CMS.Business.Concrete
             _raporDal.Kaydet(tablo);
         }
 
-        public Rapor KaydetReturn(Rapor tablo)
+        public Rapor SaveReturn(Rapor tablo)
         {
             throw new NotImplementedException();
         }

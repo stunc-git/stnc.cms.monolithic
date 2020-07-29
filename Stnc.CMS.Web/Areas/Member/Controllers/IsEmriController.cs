@@ -35,7 +35,7 @@ namespace Stnc.CMS.Web.Areas.Member.Controllers
         {
             TempData["Active"] = TempdataInfo.IsEmri;
 
-            var user = await GetirGirisYapanKullanici();
+            var user = await GetUserLoginInfo();
 
             return View(_mapper.Map<List<GorevListAllDto>>(_gorevService.GetirTumTablolarla(I => I.AppUserId == user.Id && !I.Durum)));
         }
@@ -70,7 +70,7 @@ namespace Stnc.CMS.Web.Areas.Member.Controllers
 
                 var adminUserList = await _userManager.GetUsersInRoleAsync("Admin");
 
-                var aktifKullanici = await GetirGirisYapanKullanici();
+                var aktifKullanici = await GetUserLoginInfo();
 
                 foreach (var admin in adminUserList)
                 {
@@ -128,7 +128,7 @@ namespace Stnc.CMS.Web.Areas.Member.Controllers
 
             var adminUserList = await _userManager.GetUsersInRoleAsync("Admin");
 
-            var aktifKullanici = await GetirGirisYapanKullanici();
+            var aktifKullanici = await GetUserLoginInfo();
 
             foreach (var admin in adminUserList)
             {

@@ -29,12 +29,14 @@ namespace Stnc.CMS.Web.ViewComponents
             var bildirimler = _bildirimService.GetirOkunmayanlar(model.Id).Count;
 
             ViewBag.BildirimSayisi = bildirimler;
+
             var roles = _userManager.GetRolesAsync(identityUser).Result;
 
             if (roles.Contains("Admin"))
             {
                 return View(model);
             }
+
             return View("Member", model);
            
         }

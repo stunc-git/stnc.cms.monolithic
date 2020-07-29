@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Mapping;
 using Stnc.CMS.Entities.Concrete;
 
@@ -7,13 +8,25 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts
 {
     public class StncCMSContext : IdentityDbContext<AppUser,AppRole,int>
     {
+
+
+        private static ILoggerFactory dbLoggerCategory = LoggerFactory.Create(builder =>
+        {
+            builder.AddFilter((category, level) => category == DbLoggerCategory.Database.Command.Name && level == LogLevel.Information);
+        });
+
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             //  optionsBuilder.UseSqlServer("server=(localdb)\\mssqllocaldb; database=bloggg; user id=sa; password=1;");
             optionsBuilder.UseSqlServer("server=.; database=cmsCore1; integrated security=True;");
+            optionsBuilder.UseLoggerFactory(dbLoggerCategory);
 
             base.OnConfiguring(optionsBuilder);
+
         }
+
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -41,7 +54,7 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts
 
         public DbSet<Posts> Posts { get; set; }
         public DbSet<Category> Categories { get; set; }
-        public DbSet<CategoryBlog> CategoryBlog { get; set; }
+        public DbSet<CategoryBlogs> CategoryBlogs { get; set; }
         public DbSet<Comments> Comments { get; set; }
     }
 }

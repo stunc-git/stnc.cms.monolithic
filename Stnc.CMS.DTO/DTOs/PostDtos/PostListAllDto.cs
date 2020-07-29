@@ -18,6 +18,6 @@ namespace Stnc.CMS.DTO.DTOs.PostDtos
         public DateTime? DeletedAt { get; set; } = DateTime.Now;
        // public int AppUserId { get; set; }
         public AppUser AppUser { get; set; }
-        public List<CategoryBlog> CategoryBlogs { get; set; }
+        public List<CategoryBlogs> CategoryBlogs { get; set; }
     }
 }

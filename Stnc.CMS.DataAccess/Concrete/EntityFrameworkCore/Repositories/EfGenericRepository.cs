@@ -38,7 +38,7 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Repositories
             context.SaveChanges();
         }
 
-        public Tablo KaydetReturn(Tablo tablo)
+        public Tablo SaveReturn(Tablo tablo)
         {
             using var context = new StncCMSContext();
             context.Set<Tablo>().Add(tablo);

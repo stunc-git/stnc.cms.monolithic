@@ -27,7 +27,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
         public async Task<IActionResult> Index()
         {
             TempData["Active"] = TempdataInfo.Profil;
-            var map = await GetirGirisYapanKullanici();
+            var map = await GetUserLoginInfo();
 
             return View(_mapper.Map<AppUserListDto>(map));
         }

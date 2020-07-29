@@ -38,7 +38,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
         public async Task<IActionResult> Index()
         {
 
-            var user = await GetirGirisYapanKullanici();
+            var user = await GetUserLoginInfo();
             TempData["Active"] = TempdataInfo.Anasayfa;
             ViewBag.AtanmayiBekleyenGorevSayisi = _gorevService.GetirGorevSayisiAtanmayiBekleyen();
 

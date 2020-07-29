@@ -1,11 +1,8 @@
 ﻿using Stnc.CMS.Entities.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Stnc.CMS.Entities.Concrete
 {
-  public class CategoryBlog : ITablo
+    public class CategoryBlogs : ITablo
     {
         public int Id { get; set; }
         public int PostID { get; set; }

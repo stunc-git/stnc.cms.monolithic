@@ -30,7 +30,7 @@ namespace Stnc.CMS.Web.Areas.Member.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var user = await GetirGirisYapanKullanici();
+            var user = await GetUserLoginInfo();
             TempData["Active"] = TempdataInfo.Anasayfa;
             ViewBag.RaporSayisi = _raporService.GetirRaporSayisiileAppUserId(user.Id);
             ViewBag.TamamlananGorevSayisi = _gorevService.GetirGorevSayisiTamamlananileAppUserId(user.Id);

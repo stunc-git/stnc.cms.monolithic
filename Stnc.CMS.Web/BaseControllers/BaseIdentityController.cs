@@ -21,7 +21,7 @@ namespace Stnc.CMS.Web.BaseControllers
             _userManager = userManager;
         }
 
-        protected async Task<AppUser> GetirGirisYapanKullanici()
+        protected async Task<AppUser> GetUserLoginInfo()
         {
           return  await _userManager.FindByNameAsync(User.Identity.Name);
         }
@@ -31,7 +31,7 @@ namespace Stnc.CMS.Web.BaseControllers
         {
             string FileExtension = Path.GetExtension(file.FileName);
             string fileName = Guid.NewGuid() + FileExtension;
-            string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/"+ pathName+"/" + fileName);
+            string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/file/"+ pathName+"/" + fileName);
             using (var stream = new FileStream(path, FileMode.Create))
             {
                 await file.CopyToAsync(stream);

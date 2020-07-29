@@ -5,48 +5,47 @@ using System.Collections.Generic;
 
 namespace Stnc.CMS.Business.Concrete
 {
-    public class CategoryBlogsManager : ICategoryBlogsService
+    public class CategoryBlogsManager : ICategoryBlogService
     {
 
         private readonly ICategoryBlogsDal _categoryBlogsDal;
+
         public CategoryBlogsManager(ICategoryBlogsDal categoryBlogsDal)
         {
             _categoryBlogsDal = categoryBlogsDal;
         }
 
-        public List<CategoryBlog> GetCategoryPostIDList(int PostID)
+        public List<CategoryBlogs> GetCategoryPostIDList(int PostID)
         {
-            throw new System.NotImplementedException();
+            return _categoryBlogsDal.GetCategoryPostIDList(PostID);
         }
 
-
-        public List<CategoryBlog> GetirHepsi()
+        public List<CategoryBlogs> GetirHepsi()
         {
             return _categoryBlogsDal.GetirHepsi();
         }
 
-        public CategoryBlog GetirIdile(int id)
+        public CategoryBlogs GetirIdile(int id)
         {
             return _categoryBlogsDal.GetirIdile(id);
         }
 
-        public void Guncelle(CategoryBlog tablo)
+        public void Guncelle(CategoryBlogs tablo)
         {
             _categoryBlogsDal.Guncelle(tablo);
         }
 
-        public void Kaydet(CategoryBlog tablo)
+        public void Kaydet(CategoryBlogs tablo)
         {
             _categoryBlogsDal.Kaydet(tablo);
         }
 
-        public CategoryBlog KaydetReturn(CategoryBlog tablo)
+        public CategoryBlogs SaveReturn(CategoryBlogs tablo)
         {
             throw new System.NotImplementedException();
         }
 
-
-        public void Sil(CategoryBlog tablo)
+        public void Sil(CategoryBlogs tablo)
         {
             _categoryBlogsDal.Sil(tablo);
         }
