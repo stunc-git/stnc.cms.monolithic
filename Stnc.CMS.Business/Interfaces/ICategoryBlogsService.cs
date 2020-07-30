@@ -10,5 +10,6 @@ namespace Stnc.CMS.Business.Interfaces
     {
 
         List<CategoryBlogs> GetCategoryPostIDList(int PostID);
+        int GetCategoryPostIDListSingle(int PostID);
     }
 }

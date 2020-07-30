@@ -18,6 +18,15 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Repositories
                return context.CategoryBlogs.Where(I => I.PostID == PostID)
                 .TagWith("Get category post id list ")
                 .ToList();
+            //  var CategoryID = catList[0].CategoryID;
+        }
+
+
+        public int GetCategoryPostIDListSingle(int PostID)
+        {
+            using var context = new StncCMSContext();
+            var returnData = context.CategoryBlogs.Single(I => I.PostID == PostID);
+            return returnData.CategoryID;
         }
     }
 }

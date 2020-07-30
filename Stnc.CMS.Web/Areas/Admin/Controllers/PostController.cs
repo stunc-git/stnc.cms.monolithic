@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -35,6 +36,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
             _postService = postService;
             _categoryService = categoryService;
             _categoryBlogService = categoryBlogService;
+          
         }
 
         public IActionResult Index()
@@ -60,45 +62,53 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
         }
 
 
+        private void UpdatePost(PostAddDto model, string picture, int user)
+        {
+       
+            var success = _postService.SaveReturn(new Posts
+            {
+                PostTitle = model.PostTitle,
+                PostContent = model.PostContent,
+                PostExcerpt = model.PostExcerpt,
+                Picture = picture,
+                AppUserId = user,
+            });
+
+            //TODO: many to many yapılacak 
+            string category = HttpContext.Request.Form["category"];
+            if (category != "-1")
+            {
+                using (var context = new StncCMSContext())
+                {
+                    var categoryBlogs = new CategoryBlogs
+                    {
+                        PostID = success.Id,
+                        CategoryID = int.Parse(category)
+                    };
+                    context.CategoryBlogs.Add(categoryBlogs);
+                    context.SaveChanges();
+                }
+            }
+        }
+
+
 
         [HttpPost]
         public async Task<IActionResult> AddPost(PostAddDto model, IFormFile picture)
         {
             var user = await GetUserLoginInfo();
-            string pictureDb=null;
+              var userID = user.Id;
             if (ModelState.IsValid)
             {
 
+                string pictureDb = null;
                 if (picture != null)
                 {
-                    string pictureName = await Uploader(picture,"img");
-                    pictureDb  = pictureName;
+                    string pictureName = await Uploader(picture, "img");
+                    pictureDb = pictureName;
                 }
 
-            var  success = _postService.SaveReturn(new Posts {
-                    PostTitle = model.PostTitle,
-                    PostContent = model.PostContent,
-                    PostExcerpt = model.PostExcerpt,
-                    Picture = pictureDb,
-                    AppUserId = user.Id,
-                });
-
-                //TODO: many to many yapılacak 
-                string category = HttpContext.Request.Form["category"];
-                if (category != "-1")
-                {
-                    using (var context = new StncCMSContext())
-                    {
-                        var categoryBlogs = new CategoryBlogs
-                        {
-                            PostID = success.Id,
-                            CategoryID = int.Parse(category)
-                        };
-                        context.CategoryBlogs.Add(categoryBlogs);
-                        context.SaveChanges();
-                    }
-                }
-
+                UpdatePost( model, pictureDb, userID);
 
                 return RedirectToAction("Index");
             }
@@ -111,53 +121,44 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
         {
             TempData["Active"] = TempdataInfo.Post;
             var post = _postService.GetirIdile(id);
-            var catList = _categoryBlogService.GetCategoryPostIDList(id);
-            var CategoryID = catList[0].CategoryID;
-
-
-            // var  Categories = new SelectList(catList, "Id");
-
-            //   ViewBag.Categories = new SelectList(_categoryService.GetirHepsi(), "Id", "Tanim", post.AciliyetId);
-
-
+            var catID = _categoryBlogService.GetCategoryPostIDListSingle(id);
+            ViewBag.Categories = new SelectList(_categoryService.GetirHepsi(), "Id", "Name", catID);
             return View(_mapper.Map<PostUpdateDto>(post));
-
-
-
-            //TempData["Active"] = TempdataInfo.Gorev;
-            //var gorev = _gorevService.GetirIdile(id);
-            //ViewBag.Aciliyetler = new SelectList(_aciliyetService.GetirHepsi(), "Id", "Tanim", gorev.AciliyetId);
-            //return View(_mapper.Map<GorevUpdateDto>(gorev));
-
-
         }
-        /*
+        
+
+
         [HttpPost]
-        public IActionResult GuncelleGorev(GorevUpdateDto model)
+        public async Task<IActionResult> UpdatePost(PostAddDto model, IFormFile picture)
         {
+            var user = await GetUserLoginInfo();
+            var userID = user.Id;
+            string pictureDb = null;
+            
+            string category = HttpContext.Request.Form["category"];
+
             if (ModelState.IsValid)
             {
-                _gorevService.Guncelle(new Gorev()
+                if (picture != null)
                 {
-                    Id = model.Id,
-                    Aciklama = model.Aciklama,
-                    AciliyetId = model.AciliyetId,
-                    Ad = model.Ad
+                    string pictureName = await Uploader(picture, "img");
+                    pictureDb = pictureName;
+                }
 
-                });
+                UpdatePost(model, pictureDb, userID);
 
                 return RedirectToAction("Index");
             }
-            ViewBag.Aciliyetler = new SelectList(_aciliyetService.GetirHepsi(), "Id", "Tanim", model.AciliyetId);
+
+            ViewBag.Categories = new SelectList(_postService.GetirHepsi(), "Id", "Name", int.Parse(category));
             return View(model);
         }
 
-        public IActionResult SilGorev(int id)
+        public IActionResult DeletePost(int id)
         {
-            _gorevService.Sil(new Gorev { Id = id });
+
+            _postService.Sil(new Posts { Id = id });
             return Json(null);
         }
-        */
-
     }
 }

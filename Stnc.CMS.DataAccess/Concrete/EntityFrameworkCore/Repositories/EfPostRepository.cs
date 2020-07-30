@@ -28,5 +28,6 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Repositories
         }
 
 
+
     }
 }

@@ -7,5 +7,6 @@ namespace Stnc.CMS.DataAccess.Interfaces
     public interface ICategoryBlogsDal : IGenericDal<CategoryBlogs>
     {
         List<CategoryBlogs> GetCategoryPostIDList(int PostID);
+        int GetCategoryPostIDListSingle(int PostID);
     }
 }

@@ -28,7 +28,7 @@
                 <td>@item.Aciliyet.Tanim</td>
                 <td>
                     <a asp-action="GuncelleGorev" asp-route-id="@item.Id" class="btn btn-warning btn-sm"><i class="far fa-edit mr-2"></i>Düzenle </a>
-                    <a href="" data-toggle="modal" data-target="#silmeEkrani" data-yavuz="@item.Id" class="btn btn-danger btn-sm">
+                    <a href="" data-toggle="modal" data-target="#silmeEkrani" data-ValueDel="@item.Id" class="btn btn-danger btn-sm">
 
                         <i class="fas fa-times-circle mr-2"></i> Sil
                     </a>
@@ -75,12 +75,12 @@ else
         $(document).ready(function () {
             $("#silmeEkrani").on("show.bs.modal", function (event) {
                 let tetikleyenElement = $(event.relatedTarget);
-                let id = tetikleyenElement.data("yavuz");
+                let id = tetikleyenElement.data("ValueDel");
 
                 $("#btnSil").click(function () {
                     $.ajax({
                         type: "Get",
-                        url: "./Gorev/SilGorev",
+                        url: "./Gorev/DeletePost",
                         data: { id: id },
                         dataType: "json",
                         contentType: "application/json; charset=utf-8;",

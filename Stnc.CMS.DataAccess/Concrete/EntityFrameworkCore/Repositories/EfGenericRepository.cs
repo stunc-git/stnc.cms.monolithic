@@ -52,6 +52,16 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Repositories
             using var context = new StncCMSContext();
             context.Set<Tablo>().Remove(tablo);
             context.SaveChanges();
+
+            /*
+                         using var context = new StncCMSContext();
+            var post= new Posts { Id = id };
+            context.Posts.Attach(post);
+            context.Posts.Remove(post);
+            context.SaveChanges();
+             */
+
+
         }
     }
 }

@@ -20,6 +20,11 @@ namespace Stnc.CMS.Business.Concrete
             return _categoryBlogsDal.GetCategoryPostIDList(PostID);
         }
 
+        public int GetCategoryPostIDListSingle(int PostID)
+        {
+            return _categoryBlogsDal.GetCategoryPostIDListSingle(PostID);
+        }
+
         public List<CategoryBlogs> GetirHepsi()
         {
             return _categoryBlogsDal.GetirHepsi();
