@@ -35,8 +35,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
             _mapper = mapper;
             _postService = postService;
             _categoryService = categoryService;
-            _categoryBlogService = categoryBlogService;
-          
+            _categoryBlogService = categoryBlogService;  
         }
 
         public IActionResult Index()
@@ -51,7 +50,6 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
             ViewBag.Categories = new SelectList(_categoryService.GetAll(), "Id", "Name");
             return View(new PostAddDto());
         }
-
 
         public async Task<IActionResult> UploadFile(IFormFile aUploadedFile)
         {
@@ -156,7 +154,6 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
 
         public IActionResult DeletePost(int id)
         {
-
             _postService.Sil(new Posts { Id = id });
             return Json(null);
         }

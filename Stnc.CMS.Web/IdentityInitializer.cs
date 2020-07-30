@@ -36,6 +36,21 @@ namespace Stnc.CMS.Web
                 await userManager.CreateAsync(user,"1");
                 await userManager.AddToRoleAsync(user, "Admin");
             }
+/*
+            var memberUser = await userManager.FindByNameAsync("member");
+            if (memberUser == null)
+            {
+                AppUser member = new AppUser
+                {
+                    Name = "selman2",
+                    Surname = "tunç",
+                    UserName = "member",
+                    Email = "selmantunc@yahoo.com"
+                };
+                await userManager.CreateAsync(member, "1");
+                await userManager.AddToRoleAsync(member, "Member");
+            }
+*/
         }
     }
 }
