@@ -47,9 +47,9 @@ namespace Stnc.CMS.Business.Concrete
             return _gorevDal.GetirGorevTamamlanmis();
         }
 
-        public List<Gorev> GetirHepsi()
+        public List<Gorev> GetAll()
         {
-            return _gorevDal.GetirHepsi();
+            return _gorevDal.GetAll();
         }
 
         public Gorev GetirIdile(int id)

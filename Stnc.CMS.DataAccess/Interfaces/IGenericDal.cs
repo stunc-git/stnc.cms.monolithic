@@ -14,7 +14,7 @@ namespace Stnc.CMS.DataAccess.Interfaces
 
         Tablo SaveReturn(Tablo tablo);
 
-        List<Tablo> GetirHepsi();
+        List<Tablo> GetAll();
        
     }
 }

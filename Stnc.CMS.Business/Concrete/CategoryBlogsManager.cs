@@ -25,9 +25,9 @@ namespace Stnc.CMS.Business.Concrete
             return _categoryBlogsDal.GetCategoryPostIDListSingle(PostID);
         }
 
-        public List<CategoryBlogs> GetirHepsi()
+        public List<CategoryBlogs> GetAll()
         {
-            return _categoryBlogsDal.GetirHepsi();
+            return _categoryBlogsDal.GetAll();
         }
 
         public CategoryBlogs GetirIdile(int id)

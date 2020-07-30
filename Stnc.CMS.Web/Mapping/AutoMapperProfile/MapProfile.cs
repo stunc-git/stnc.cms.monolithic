@@ -59,19 +59,18 @@ namespace Stnc.CMS.Web.Mapping.AutoMapperProfile
             #endregion
 
             #region Post-PostDto
-            CreateMap<PostListAllDto, Posts>();
             CreateMap<Posts, PostListAllDto>();
+            CreateMap<PostListAllDto, Posts>();
             CreateMap<PostAddDto, Posts>();
             CreateMap<Posts, PostAddDto> ();
             CreateMap<PostUpdateDto, Posts>();
             CreateMap<Posts, PostUpdateDto> ();
-        
             #endregion
 
 
             #region Category-CategoryDto
-            CreateMap<CategoryListDto, Category>();
             CreateMap<Category, CategoryListDto>();
+            CreateMap<CategoryListDto, Category>();
 
             CreateMap<CategoryAddDto, Category>();
             CreateMap<Category, CategoryAddDto>();

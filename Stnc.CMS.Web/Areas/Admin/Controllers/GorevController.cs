@@ -37,7 +37,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
         {
             TempData["Active"] = TempdataInfo.Gorev;
 
-            ViewBag.Aciliyetler = new SelectList(_aciliyetService.GetirHepsi(), "Id", "Tanim");
+            ViewBag.Aciliyetler = new SelectList(_aciliyetService.GetAll(), "Id", "Tanim");
             return View(new GorevAddDto());
         }
 
@@ -56,7 +56,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
 
                 return RedirectToAction("Index");
             }
-            ViewBag.Aciliyetler = new SelectList(_aciliyetService.GetirHepsi(), "Id", "Tanim");
+            ViewBag.Aciliyetler = new SelectList(_aciliyetService.GetAll(), "Id", "Tanim");
             return View(model);
         }
 
@@ -64,7 +64,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
         {
             TempData["Active"] = TempdataInfo.Gorev;
             var gorev = _gorevService.GetirIdile(id);
-            ViewBag.Aciliyetler = new SelectList(_aciliyetService.GetirHepsi(), "Id", "Tanim", gorev.AciliyetId);
+            ViewBag.Aciliyetler = new SelectList(_aciliyetService.GetAll(), "Id", "Tanim", gorev.AciliyetId);
             return View(_mapper.Map<GorevUpdateDto>(gorev));
            
         }
@@ -85,7 +85,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
              
                 return RedirectToAction("Index");
             }
-            ViewBag.Aciliyetler = new SelectList(_aciliyetService.GetirHepsi(), "Id", "Tanim", model.AciliyetId);
+            ViewBag.Aciliyetler = new SelectList(_aciliyetService.GetAll(), "Id", "Tanim", model.AciliyetId);
             return View(model);
         }
 

@@ -48,9 +48,9 @@ namespace Stnc.CMS.Business.Concrete
 
         }
 
-        public List<Posts> GetirHepsi()
+        public List<Posts> GetAll()
         {
-            return _postDal.GetirHepsi();
+            return _postDal.GetAll();
 
         }
 

@@ -13,9 +13,9 @@ namespace Stnc.CMS.Business.Concrete
             _aciliyetDal = aciliyetDal;
         }
 
-        public List<Aciliyet> GetirHepsi()
+        public List<Aciliyet> GetAll()
         {
-            return _aciliyetDal.GetirHepsi();
+            return _aciliyetDal.GetAll();
         }
 
         public Aciliyet GetirIdile(int id)

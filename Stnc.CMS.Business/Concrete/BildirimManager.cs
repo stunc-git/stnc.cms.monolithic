@@ -13,9 +13,9 @@ namespace Stnc.CMS.Business.Concrete
             _bildirimDal = bildirimDal;
         }
 
-        public List<Bildirim> GetirHepsi()
+        public List<Bildirim> GetAll()
         {
-            return _bildirimDal.GetirHepsi();
+            return _bildirimDal.GetAll();
         }
 
         public Bildirim GetirIdile(int id)

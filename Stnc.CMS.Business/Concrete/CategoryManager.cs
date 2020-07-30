@@ -14,9 +14,9 @@ namespace Stnc.CMS.Business.Concrete
             _categoryDal = categoryDal;
         }
 
-        public List<Category> GetirHepsi()
+        public List<Category> GetAll()
         {
-            return _categoryDal.GetirHepsi();
+            return _categoryDal.GetAll();
         }
 
         public Category GetirIdile(int id)

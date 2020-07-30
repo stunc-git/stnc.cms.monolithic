@@ -22,9 +22,9 @@ namespace Stnc.CMS.Business.Concrete
             return _raporDal.GetirGorevileId(id);
         }
 
-        public List<Rapor> GetirHepsi()
+        public List<Rapor> GetAll()
         {
-            return _raporDal.GetirHepsi();
+            return _raporDal.GetAll();
         }
 
         public Rapor GetirIdile(int id)

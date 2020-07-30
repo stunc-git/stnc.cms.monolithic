@@ -25,7 +25,11 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
         public IActionResult Index()
         {
             TempData["Active"] = TempdataInfo.Category;          
-            return View(_mapper.Map<List<CategoryListDto>>(_categoryservice.GetirHepsi()));
+            return View(_mapper.Map<List<CategoryListDto>>(_categoryservice.GetAll()));
+
+     
+
+
         }
 
         public IActionResult AddCategory()

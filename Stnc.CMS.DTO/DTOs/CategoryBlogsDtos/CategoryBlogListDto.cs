@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Stnc.CMS.DTO.DTOs.CategoryBlogsDtos
+﻿namespace Stnc.CMS.DTO.DTOs.CategoryBlogsDtos
 {
     public class CategoryBlogListDto
     {

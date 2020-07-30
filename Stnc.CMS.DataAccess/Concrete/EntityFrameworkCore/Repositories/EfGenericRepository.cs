@@ -11,7 +11,7 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Repositories
     public class EfGenericRepository<Tablo> : IGenericDal<Tablo>
         where Tablo : class, ITablo, new()
     {
-        public List<Tablo> GetirHepsi()
+        public List<Tablo> GetAll()
         {
           
             using var context = new StncCMSContext();

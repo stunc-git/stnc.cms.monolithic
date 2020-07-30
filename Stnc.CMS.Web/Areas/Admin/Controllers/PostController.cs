@@ -48,7 +48,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
         public IActionResult AddPost()
         {
             TempData["Active"] = TempdataInfo.Post;
-            ViewBag.Categories = new SelectList(_categoryService.GetirHepsi(), "Id", "Name");
+            ViewBag.Categories = new SelectList(_categoryService.GetAll(), "Id", "Name");
             return View(new PostAddDto());
         }
 
@@ -112,7 +112,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
 
                 return RedirectToAction("Index");
             }
-            ViewBag.Categories = new SelectList(_categoryService.GetirHepsi(), "Id", "Name");
+            ViewBag.Categories = new SelectList(_categoryService.GetAll(), "Id", "Name");
             return View(model);
         }
 
@@ -122,7 +122,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
             TempData["Active"] = TempdataInfo.Post;
             var post = _postService.GetirIdile(id);
             var catID = _categoryBlogService.GetCategoryPostIDListSingle(id);
-            ViewBag.Categories = new SelectList(_categoryService.GetirHepsi(), "Id", "Name", catID);
+            ViewBag.Categories = new SelectList(_categoryService.GetAll(), "Id", "Name", catID);
             return View(_mapper.Map<PostUpdateDto>(post));
         }
         
@@ -150,7 +150,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.Categories = new SelectList(_postService.GetirHepsi(), "Id", "Name", int.Parse(category));
+            ViewBag.Categories = new SelectList(_postService.GetAll(), "Id", "Name", int.Parse(category));
             return View(model);
         }
 
