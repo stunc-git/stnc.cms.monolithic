@@ -50,13 +50,12 @@ namespace Stnc.CMS.Web
                 app.UseExceptionHandler("/Home/Error");
             }
             app.UseStatusCodePagesWithReExecute("/Home/StatusCode", "?code={0}");
-           
 
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
             IdentityInitializer.SeedData(userManager, roleManager).Wait();
-            app.UseStaticFiles();            
+            app.UseStaticFiles();
 
             app.UseEndpoints(endpoints =>
             {
@@ -69,6 +68,8 @@ namespace Stnc.CMS.Web
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}"
                     );
+
+
             });
         }
     }

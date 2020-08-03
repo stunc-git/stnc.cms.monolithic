@@ -36,3 +36,7 @@ https://colorlib.com/preview/theme/university/
 
 
 txt efeckt https://codepen.io/rgg/pen/ozLzbz/
+
+haberler için bu harika 
+https://colorlib.com/preview/theme/learnit/single-blog.html
+bu da güzel https://colorlib.com/preview/theme/wiser/single-blog.html  uygun olablir 

@@ -16,10 +16,8 @@
             <th>Ad</th>
             <th>Yazar</th>
             <th>Oluşturulma Tarih</th>
-            
             <th>İşlem</th>
         </tr>
-
         @foreach (var item in Model)
         {
             <tr>
@@ -28,7 +26,6 @@
                 <td>Admin</td>
                 @*<td> @Html.Raw(item.PostContent)</td>*@
                 <td>@item.CreatedAt.Value.ToString("dd MMM yyyy")</td>
-            
                 <td>
                     <a asp-action="UpdatePost" asp-route-id="@item.Id" class="btn btn-warning btn-sm"><i class="far fa-edit mr-2"></i>Düzenle </a>
                     <a href=""  data-toggle="modal"  data-value="@item.Id" class="btn btn-danger DeleteEvent btn-sm">
@@ -47,11 +44,9 @@ else
             Herhangi bir içerik bulunamadı
         </p>
         <a asp-action="AddPost" class="btn btn-info btn-sm">Yeni İçerik Oluştur</a>
-
     </div>
 
 }
-
 <!-- Modal -->
 <div class="modal fade" id="silmeEkrani" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -73,7 +68,7 @@ else
     </div>
 </div>
 
-@section JavaScript{ 
+@section JavaScript{
     <script type="text/javascript">
         $(document).ready(function () {
             var myID = null;
@@ -85,7 +80,7 @@ else
             });
 
 
-    
+
 
                 $("#btnSil").click(function () {
                     $.ajax({
@@ -104,7 +99,7 @@ else
                     })
                 });
             })
-       
+
     </script>
 
 }

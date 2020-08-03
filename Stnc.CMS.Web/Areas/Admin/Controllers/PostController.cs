@@ -35,7 +35,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
             _mapper = mapper;
             _postService = postService;
             _categoryService = categoryService;
-            _categoryBlogService = categoryBlogService;  
+            _categoryBlogService = categoryBlogService;
         }
 
         public IActionResult Index()
@@ -53,7 +53,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
 
         public async Task<IActionResult> UploadFile(IFormFile aUploadedFile)
         {
-            //todo: burada json return donmesi gerekli 
+            //todo: burada json return donmesi gerekli
             string name=await Uploader(aUploadedFile, "file");
            string  vReturnImagePath = "/upload/file/" + name;
             return Ok(vReturnImagePath);
@@ -62,7 +62,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
 
         private void UpdatePost(PostAddDto model, string picture, int user)
         {
-       
+
             var success = _postService.SaveReturn(new Posts
             {
                 PostTitle = model.PostTitle,
@@ -72,7 +72,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
                 AppUserId = user,
             });
 
-            //TODO: many to many yapılacak 
+            //TODO: many to many yapılacak
             string category = HttpContext.Request.Form["category"];
             if (category != "-1")
             {
@@ -114,7 +114,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
             return View(model);
         }
 
-        
+
         public IActionResult UpdatePost(int id)
         {
             TempData["Active"] = TempdataInfo.Post;
@@ -123,7 +123,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
             ViewBag.Categories = new SelectList(_categoryService.GetAll(), "Id", "Name", catID);
             return View(_mapper.Map<PostUpdateDto>(post));
         }
-        
+
 
 
         [HttpPost]
@@ -132,7 +132,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
             var user = await GetUserLoginInfo();
             var userID = user.Id;
             string pictureDb = null;
-            
+
             string category = HttpContext.Request.Form["category"];
 
             if (ModelState.IsValid)

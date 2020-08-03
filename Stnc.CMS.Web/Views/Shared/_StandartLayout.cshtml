@@ -4,16 +4,189 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
-    <link href="~/lib/bootswatch/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Muli:300,400,700,900" rel="stylesheet">
+    <link rel="stylesheet" href="fonts/icomoon/style.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/jquery-ui.css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="css/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
+    <link rel="stylesheet" href="css/aos.css">
+    <link href="css/jquery.mb.YTPlayer.min.css" media="all" rel="stylesheet" type="text/css">
+
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <div class="container">
+    <div class="site-wrap">
+
+        @Html.Partial("_Header")
+        @Html.Partial("_Slider")
+
         @RenderBody()
+
+
+        <div class="news-updates">
+            <div class="container">
+
+                <div class="row">
+                    <div class="col-lg-9">
+                        <div class="section-heading">
+                            <h2 class="text-black">News &amp; Updates</h2>
+                            <a href="#">Read All News</a>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="post-entry-big">
+                                    <a href="news-single.html" class="img-link"><img src="images/blog_large_1.jpg" alt="Image" class="img-fluid"></a>
+                                    <div class="post-content">
+                                        <div class="post-meta">
+                                            <a href="#">June 6, 2019</a>
+                                            <span class="mx-1">/</span>
+                                            <a href="#">Admission</a>, <a href="#">Updates</a>
+                                        </div>
+                                        <h3 class="post-heading"><a href="news-single.html">Campus Camping and Learning Session</a></h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="post-entry-big horizontal d-flex mb-4">
+                                    <a href="news-single.html" class="img-link mr-4"><img src="images/blog_1.jpg" alt="Image" class="img-fluid"></a>
+                                    <div class="post-content">
+                                        <div class="post-meta">
+                                            <a href="#">June 6, 2019</a>
+                                            <span class="mx-1">/</span>
+                                            <a href="#">Admission</a>, <a href="#">Updates</a>
+                                        </div>
+                                        <h3 class="post-heading"><a href="news-single.html">Campus Camping and Learning Session</a></h3>
+                                    </div>
+                                </div>
+
+                                <div class="post-entry-big horizontal d-flex mb-4">
+                                    <a href="news-single.html" class="img-link mr-4"><img src="images/blog_2.jpg" alt="Image" class="img-fluid"></a>
+                                    <div class="post-content">
+                                        <div class="post-meta">
+                                            <a href="#">June 6, 2019</a>
+                                            <span class="mx-1">/</span>
+                                            <a href="#">Admission</a>, <a href="#">Updates</a>
+                                        </div>
+                                        <h3 class="post-heading"><a href="news-single.html">Campus Camping and Learning Session</a></h3>
+                                    </div>
+                                </div>
+
+                                <div class="post-entry-big horizontal d-flex mb-4">
+                                    <a href="news-single.html" class="img-link mr-4"><img src="images/blog_1.jpg" alt="Image" class="img-fluid"></a>
+                                    <div class="post-content">
+                                        <div class="post-meta">
+                                            <a href="#">June 6, 2019</a>
+                                            <span class="mx-1">/</span>
+                                            <a href="#">Admission</a>, <a href="#">Updates</a>
+                                        </div>
+                                        <h3 class="post-heading"><a href="news-single.html">Campus Camping and Learning Session</a></h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="section-heading">
+                            <h2 class="text-black">Campus Videos</h2>
+                            <a href="#">View All Videos</a>
+                        </div>
+                        <a href="https://vimeo.com/45830194" class="video-1 mb-4" data-fancybox="" data-ratio="2">
+                            <span class="play">
+                                <span class="icon-play"></span>
+                            </span>
+                            <img src="images/course_5.jpg" alt="Image" class="img-fluid">
+                        </a>
+                        <a href="https://vimeo.com/45830194" class="video-1 mb-4" data-fancybox="" data-ratio="2">
+                            <span class="play">
+                                <span class="icon-play"></span>
+                            </span>
+                            <img src="images/course_5.jpg" alt="Image" class="img-fluid">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+        <div class="section-bg style-1" style="background-image: url('images/hero_1.jpg');">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 mb-5 mb-lg-0">
+                        <span class="icon flaticon-mortarboard"></span>
+                        <h3>Our Philosphy</h3>
+                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis recusandae, iure repellat quis delectus ea? Dolore, amet reprehenderit.</p>
+                    </div>
+                    <div class="col-lg-4 col-md-6 mb-5 mb-lg-0">
+                        <span class="icon flaticon-school-material"></span>
+                        <h3>Academics Principle</h3>
+                        <p>
+                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis recusandae, iure repellat quis delectus ea?
+                            Dolore, amet reprehenderit.
+                        </p>
+                    </div>
+                    <div class="col-lg-4 col-md-6 mb-5 mb-lg-0">
+                        <span class="icon flaticon-library"></span>
+                        <h3>Key of Success</h3>
+                        <p>
+                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis recusandae, iure repellat quis delectus ea?
+                            Dolore, amet reprehenderit.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <!-- Categories Widget -->
+        @* @await Component.InvokeAsync("CategoryList")*@
+
+        <!-- Side Widget -->
+        @* @await Component.InvokeAsync("LastFiveBlog")*@
+
+        @Html.Partial("_Footer")
     </div>
+    <!-- .site-wrap -->
+    <!-- loader -->
+    @*<div id="loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" /><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#51be78" /></svg></div>*@
+
     <script src="~/lib/jquery/jquery.min.js"></script>
     <script src="~/lib/twitter-bootstrap/js/bootstrap.min.js"></script>
     <script src="~/lib/jqueryValidate/jquery.validate.min.js"></script>
     <script src="~/lib/jqueryUnob/jquery.validate.unobtrusive.min.js"></script>
 
+
+    <script src="js/jquery-migrate-3.0.1.min.js"></script>
+    <script src="js/jquery-ui.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/jquery.stellar.min.js"></script>
+    <script src="js/jquery.countdown.min.js"></script>
+    <script src="js/bootstrap-datepicker.min.js"></script>
+    <script src="js/jquery.easing.1.3.js"></script>
+    <script src="js/aos.js"></script>
+    <script src="js/jquery.fancybox.min.js"></script>
+    <script src="js/jquery.sticky.js"></script>
+    <script src="js/jquery.mb.YTPlayer.min.js"></script>
+
+
+
+
+    <script src="js/main.js"></script>
+
+
+    @RenderSection("JavaScript", false)
 </body>
 </html>

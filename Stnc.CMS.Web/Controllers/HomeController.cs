@@ -1,13 +1,12 @@
-﻿using System;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Diagnostics;
+﻿using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Stnc.CMS.Business.Interfaces;
 using Stnc.CMS.DTO.DTOs.AppUserDtos;
 using Stnc.CMS.Entities.Concrete;
 using Stnc.CMS.Web.BaseControllers;
+using System;
+using System.Threading.Tasks;
 
 namespace Stnc.CMS.Web.Controllers
 {
@@ -16,11 +15,12 @@ namespace Stnc.CMS.Web.Controllers
 
         private readonly SignInManager<AppUser> _signInManager;
         private readonly ICustomLogger _customLogger;
+
+
         public HomeController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, ICustomLogger customLogger) : base(userManager)
         {
-            _customLogger = customLogger;                
+            _customLogger = customLogger;
             _signInManager = signInManager;
-
         }
 
         public IActionResult Index()

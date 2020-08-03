@@ -67,7 +67,6 @@ namespace Stnc.CMS.Web.Mapping.AutoMapperProfile
             CreateMap<Posts, PostUpdateDto> ();
             #endregion
 
-
             #region Category-CategoryDto
             CreateMap<Category, CategoryListDto>();
             CreateMap<CategoryListDto, Category>();
@@ -77,7 +76,7 @@ namespace Stnc.CMS.Web.Mapping.AutoMapperProfile
 
             CreateMap<Category, CategoryUpdateDto>();
             CreateMap<CategoryUpdateDto, Category>();
-           
+
             #endregion
         }
     }

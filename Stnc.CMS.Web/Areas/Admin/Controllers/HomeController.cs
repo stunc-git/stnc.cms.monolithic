@@ -29,23 +29,19 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
             _gorevService = gorevService;
         }
 
-        /* 
-         - Atanmayı Bekleyen Gorev Sayısı
-         - Tamamlanmış Görev Sayısı
-         - Okunmamış Bildirim Sayısı
-         - Toplam Yazılmış Rapor Sayısı
-         */
+        /*
+            - Atanmayı Bekleyen Gorev Sayısı
+            - Tamamlanmış Görev Sayısı
+            - Okunmamış Bildirim Sayısı
+            - Toplam Yazılmış Rapor Sayısı
+        */
         public async Task<IActionResult> Index()
         {
-
             var user = await GetUserLoginInfo();
             TempData["Active"] = TempdataInfo.Anasayfa;
             ViewBag.AtanmayiBekleyenGorevSayisi = _gorevService.GetirGorevSayisiAtanmayiBekleyen();
-
             ViewBag.TamamlanmisGorevSayisi = _gorevService.GetirGorevTamamlanmis();
-
             ViewBag.OkunmamisBildirimSayisi = _bildirimService.GetirOkunmayanSayisiileAppUserId(user.Id);
-
            // ViewBag.ToplamRaporSayisi = _raporService.GetirRaporSayisi();
            ViewBag.ToplamRaporSayisi = _postService.GetTotalPost();
             return View();
