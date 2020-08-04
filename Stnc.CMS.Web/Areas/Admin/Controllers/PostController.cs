@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Slugify;
 using Stnc.CMS.Business.Interfaces;
 using Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts;
 using Stnc.CMS.DTO.DTOs.PostDtos;
@@ -20,9 +21,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
     [Area(AreaInfo.Admin)]
     public class PostController : BaseIdentityController
     {
-
         private readonly IPostService _postService;
-
         private readonly ICategoryService _categoryService;
         private readonly ICategoryBlogService _categoryBlogService;
         private readonly IMapper _mapper;
@@ -50,35 +49,33 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
         public async Task<IActionResult> UploadFile(IFormFile aUploadedFile)
         {
             //todo: burada json return donmesi gerekli
-            string name=await Uploader(aUploadedFile, "file");
+            string name=await Uploader(aUploadedFile, "file").ConfigureAwait(false);
            string  vReturnImagePath = "/upload/file/" + name;
             return Ok(vReturnImagePath);
         }
 
-     
-
-
         [HttpPost]
         public async Task<IActionResult> AddPost(PostAddDto model, IFormFile picture)
         {
-            var user = await GetUserLoginInfo();
-            
+            var user = await GetUserLoginInfo().ConfigureAwait(false);
+            SlugHelper.Config config = new SlugHelper.Config();
+          //  config.StringReplacements.Add(" ", "-");
+            SlugHelper helper = new SlugHelper(config);
             if (ModelState.IsValid)
             {
-
                 string pictureDb = null;
                 if (picture != null)
                 {
-                    string pictureName = await Uploader(picture, "img");
+                    string pictureName = await Uploader(picture, "img").ConfigureAwait(false);
                     pictureDb = pictureName;
                 }
-
 
                 var success = _postService.SaveReturn(new Posts
                 {
                     PostTitle = model.PostTitle,
                     PostContent = model.PostContent,
                     PostExcerpt = model.PostExcerpt,
+                    PostSlug = helper.GenerateSlug(model.PostTitle),
                     Picture = pictureDb,
                     AppUserId = user.Id,
                 });
@@ -93,21 +90,17 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
                         PostID = success.Id,
                         CategoryID = int.Parse(category)
                     };
-                   
+
                   context.CategoryBlogs.Add(categoryBlogs);
-              
 
                     context.SaveChanges();
                 }
-
-
 
                 return RedirectToAction("Index");
             }
             ViewBag.Categories = new SelectList(_categoryService.GetAll(), "Id", "Name");
             return View(model);
         }
-
 
         public IActionResult UpdatePost(int id)
         {
@@ -118,13 +111,13 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
             return View(_mapper.Map<PostUpdateDto>(post));
         }
 
-
-
         [HttpPost]
         public async Task<IActionResult> UpdatePost(PostUpdateDto model, IFormFile picture)
         {
-            var user = await GetUserLoginInfo();
-   
+            var user = await GetUserLoginInfo().ConfigureAwait(false);
+            SlugHelper.Config config = new SlugHelper.Config();
+            config.StringReplacements.Add(" ", "-");
+            SlugHelper helper = new SlugHelper(config);
             string pictureDb = null;
 
             string category = HttpContext.Request.Form["category"];
@@ -135,10 +128,9 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
             {
                 if (picture != null)
                 {
-                    string pictureName = await Uploader(picture, "img");
+                    string pictureName = await Uploader(picture, "img").ConfigureAwait(false);
                     pictureDb = pictureName;
                 }
-
 
                _postService.Guncelle(new Posts
                 {
@@ -146,12 +138,13 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
                     PostTitle = model.PostTitle,
                     PostContent = model.PostContent,
                     PostExcerpt = model.PostExcerpt,
-                    Picture = pictureDb,
+                    PostSlug = helper.GenerateSlug(model.PostTitle),
+                   Picture = pictureDb,
                     AppUserId = user.Id,
                 });
 
                 //TODO: many to many yapılacak
-               
+
                 if (category != "-1")
                 {
                     var entity = context.CategoryBlogs.FirstOrDefault(item => item.PostID == model.Id);
@@ -163,13 +156,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
 
                         context.SaveChanges();
                     }
-
-
-
-
                 }
-
-
                 return RedirectToAction("Index");
             }
 
@@ -182,39 +169,5 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
             _postService.Sil(new Posts { Id = id });
             return Json(null);
         }
-
-
-        //Deprecated
-        private void AddUpdatePost(PostAddDto model, string picture, int user, string method)
-        {
-
-            var success = _postService.SaveReturn(new Posts
-            {
-                PostTitle = model.PostTitle,
-                PostContent = model.PostContent,
-                PostExcerpt = model.PostExcerpt,
-                Picture = picture,
-                AppUserId = user,
-            });
-
-            //TODO: many to many yapılacak
-            string category = HttpContext.Request.Form["category"];
-            if (category != "-1")
-            {
-                using var context = new StncCMSContext();
-                var categoryBlogs = new CategoryBlogs
-                {
-                    PostID = success.Id,
-                    CategoryID = int.Parse(category)
-                };
-                if (method == "add")
-                    context.CategoryBlogs.Add(categoryBlogs);
-                else
-                    context.CategoryBlogs.Update(categoryBlogs);
-
-                context.SaveChanges();
-            }
-        }
-
     }
 }

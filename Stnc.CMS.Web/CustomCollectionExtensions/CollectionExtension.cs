@@ -33,7 +33,7 @@ namespace Stnc.CMS.Web.CustomCollectionExtensions
                 opt.Cookie.HttpOnly = true;
                 opt.ExpireTimeSpan = TimeSpan.FromDays(20);
                 opt.Cookie.SecurePolicy = Microsoft.AspNetCore.Http.CookieSecurePolicy.SameAsRequest;
-                opt.LoginPath = "/Home/Index";
+                opt.LoginPath = "/adminpanel";
             });
         }
 
@@ -53,7 +53,6 @@ namespace Stnc.CMS.Web.CustomCollectionExtensions
 
             services.AddTransient<IValidator<PostUpdateDto>, PostUpdateValidator>();
             services.AddTransient<IValidator<PostAddDto>, PostAddValidator>();
-
         }
     }
 }

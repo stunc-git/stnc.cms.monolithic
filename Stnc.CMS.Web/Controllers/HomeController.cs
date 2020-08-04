@@ -12,10 +12,8 @@ namespace Stnc.CMS.Web.Controllers
 {
     public class HomeController : BaseIdentityController
     {
-
         private readonly SignInManager<AppUser> _signInManager;
         private readonly ICustomLogger _customLogger;
-
 
         public HomeController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, ICustomLogger customLogger) : base(userManager)
         {
@@ -28,18 +26,35 @@ namespace Stnc.CMS.Web.Controllers
             return View();
         }
 
-        [HttpPost]
+        [Route("adminpanel")]
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+        //https://colorlib.com/preview/theme/wiser/single-blog.html
+        [Route("haber/{UsersName}/{UserId}")]
+        public IActionResult GetUserDetails(string UsersName, string UserId)
+        {
+            ViewBag.UsersName = UsersName;
+
+            ViewBag.UserId = UserId;
+
+            return View("~/Views/Post/GetUserDetails.cshtml");
+        }
+
+    [HttpPost]
         public async Task<IActionResult> GirisYap(AppUserSignInDto model)
         {
             if (ModelState.IsValid)
             {
-                var user = await _userManager.FindByNameAsync(model.UserName);
+                var user = await _userManager.FindByNameAsync(model.UserName).ConfigureAwait(false);
                 if (user != null)
                 {
-                    var identityResult = await _signInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, false);
+                    var identityResult = await _signInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, false).ConfigureAwait(false);
                     if (identityResult.Succeeded)
                     {
-                        var roller = await _userManager.GetRolesAsync(user);
+                        var roller = await _userManager.GetRolesAsync(user).ConfigureAwait(false);
 
                         if (roller.Contains("Admin"))
                         {
@@ -66,7 +81,6 @@ namespace Stnc.CMS.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-
                 AppUser user = new AppUser()
                 {
                     UserName = model.UserName,
@@ -74,32 +88,27 @@ namespace Stnc.CMS.Web.Controllers
                     Name = model.Name,
                     Surname = model.Surname
                 };
-                var result = await _userManager.CreateAsync(user, model.Password);
+                var result = await _userManager.CreateAsync(user, model.Password).ConfigureAwait(false);
 
                 if (result.Succeeded)
                 {
-                    var addRoleResult = await _userManager.AddToRoleAsync(user, "Member");
+                    var addRoleResult = await _userManager.AddToRoleAsync(user, "Member").ConfigureAwait(false);
                     if (addRoleResult.Succeeded)
                     {
                         return RedirectToAction("Index");
                     }
                     HataEkle(addRoleResult.Errors);
-
-
                 }
                 HataEkle(result.Errors);
-
-
             }
             return View(model);
         }
 
         public async Task<IActionResult> CikisYap()
         {
-            await _signInManager.SignOutAsync();
+            await _signInManager.SignOutAsync().ConfigureAwait(false);
             return RedirectToAction("Index");
         }
-
 
         public IActionResult StatusCode(int? code)
         {
@@ -111,7 +120,6 @@ namespace Stnc.CMS.Web.Controllers
 
             return View();
         }
-
 
         public IActionResult Error()
         {
@@ -129,7 +137,5 @@ namespace Stnc.CMS.Web.Controllers
         {
             throw new Exception("Bu bir hata");
         }
-
-
     }
 }

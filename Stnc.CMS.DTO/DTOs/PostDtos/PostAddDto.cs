@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Stnc.CMS.DTO.DTOs.PostDtos
 {
     public class PostAddDto
     {
-
         public string PostTitle { get; set; }
         public string PostContent { get; set; }
         public string PostExcerpt { get; set; }
@@ -16,6 +13,5 @@ namespace Stnc.CMS.DTO.DTOs.PostDtos
         public DateTime? CreatedAt { get; set; } = DateTime.Now;
         public DateTime? UpdatedAt { get; set; } = DateTime.Now;
         public DateTime? DeletedAt { get; set; }
-
     }
 }

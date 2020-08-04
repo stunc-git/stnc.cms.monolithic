@@ -10,8 +10,6 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Repositories
     public class EfCategoryBlogsRepository : EfGenericRepository<CategoryBlogs>, ICategoryBlogsDal
 
     {
-
-
       public List<CategoryBlogs> GetCategoryPostIDList(int PostID)
         {
                using var context = new StncCMSContext();
@@ -20,7 +18,6 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Repositories
                 .ToList();
             //  var CategoryID = catList[0].CategoryID;
         }
-
 
         public int GetCategoryPostIDListSingle(int PostID)
         {

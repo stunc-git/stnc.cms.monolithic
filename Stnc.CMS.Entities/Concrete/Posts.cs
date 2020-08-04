@@ -17,21 +17,12 @@ namespace Stnc.CMS.Entities.Concrete
         public int MenuOrder { get; set; } = 1;
         public long CommentCount { get; set; }
         public string Picture { get; set; } = "default.jpg";
-
-
         public DateTime? CreatedAt { get; set; } = DateTime.Now;
         public DateTime? UpdatedAt { get; set; } = DateTime.Now;
-        public DateTime? DeletedAt { get; set; } 
-
-
+        public DateTime? DeletedAt { get; set; }
         public int? AppUserId { get; set; }
         public AppUser AppUser { get; set; }
-
         public List<CategoryBlogs> CategoryBlogs { get; set; }
-
       //  public List<Comments> Comments { get; set; }
-
-
-
     }
 }
