@@ -1,23 +1,12 @@
 using AutoMapper;
-using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using Stnc.CMS.Business.Concrete;
 using Stnc.CMS.Business.DiContainer;
-using Stnc.CMS.Business.Interfaces;
-using Stnc.CMS.Business.ValidationRules.FluentValidation;
 using Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts;
-using Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Repositories;
-using Stnc.CMS.DataAccess.Interfaces;
-using Stnc.CMS.DTO.DTOs.AciliyetDtos;
-using Stnc.CMS.DTO.DTOs.AppUserDtos;
-using Stnc.CMS.DTO.DTOs.GorevDtos;
-using Stnc.CMS.DTO.DTOs.RaporDtos;
 using Stnc.CMS.Entities.Concrete;
 using Stnc.CMS.Web.CustomCollectionExtensions;
 
@@ -30,6 +19,9 @@ namespace Stnc.CMS.Web
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddHttpContextAccessor();
+            services.AddSession();
+
             services.AddContainerWithDependencies();
             services.AddDbContext<StncCMSContext>();
             services.AddCustomIdentity();

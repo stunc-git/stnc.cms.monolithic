@@ -29,6 +29,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
 
         public IActionResult Index()
         {
+            //return Ok("sds");
             TempData["Active"] = TempdataInfo.Gorev;
             return View(_mapper.Map<List<GorevListDto>>(_gorevService.GetirAciliyetIleTamamlanmayan()));
         }

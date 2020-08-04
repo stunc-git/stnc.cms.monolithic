@@ -4,7 +4,7 @@ namespace Stnc.CMS.DTO.DTOs.PostDtos
 {
     public class PostUpdateDto
     {
-        public long Id { get; set; }
+        public int Id { get; set; }
         public string PostTitle { get; set; }
         public string PostContent { get; set; }
         public string PostExcerpt { get; set; }

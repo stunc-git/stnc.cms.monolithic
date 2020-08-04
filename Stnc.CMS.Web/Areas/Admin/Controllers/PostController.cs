@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -12,11 +6,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Stnc.CMS.Business.Interfaces;
 using Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts;
-using Stnc.CMS.DTO.DTOs.CategoryBlogsDtos;
 using Stnc.CMS.DTO.DTOs.PostDtos;
 using Stnc.CMS.Entities.Concrete;
 using Stnc.CMS.Web.BaseControllers;
 using Stnc.CMS.Web.StringInfo;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Stnc.CMS.Web.Areas.Admin.Controllers
 {
@@ -59,43 +55,14 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
             return Ok(vReturnImagePath);
         }
 
-
-        private void UpdatePost(PostAddDto model, string picture, int user)
-        {
-
-            var success = _postService.SaveReturn(new Posts
-            {
-                PostTitle = model.PostTitle,
-                PostContent = model.PostContent,
-                PostExcerpt = model.PostExcerpt,
-                Picture = picture,
-                AppUserId = user,
-            });
-
-            //TODO: many to many yapılacak
-            string category = HttpContext.Request.Form["category"];
-            if (category != "-1")
-            {
-                using (var context = new StncCMSContext())
-                {
-                    var categoryBlogs = new CategoryBlogs
-                    {
-                        PostID = success.Id,
-                        CategoryID = int.Parse(category)
-                    };
-                    context.CategoryBlogs.Add(categoryBlogs);
-                    context.SaveChanges();
-                }
-            }
-        }
-
+     
 
 
         [HttpPost]
         public async Task<IActionResult> AddPost(PostAddDto model, IFormFile picture)
         {
             var user = await GetUserLoginInfo();
-              var userID = user.Id;
+            
             if (ModelState.IsValid)
             {
 
@@ -106,7 +73,34 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
                     pictureDb = pictureName;
                 }
 
-                UpdatePost( model, pictureDb, userID);
+
+                var success = _postService.SaveReturn(new Posts
+                {
+                    PostTitle = model.PostTitle,
+                    PostContent = model.PostContent,
+                    PostExcerpt = model.PostExcerpt,
+                    Picture = pictureDb,
+                    AppUserId = user.Id,
+                });
+
+                //TODO: many to many yapılacak
+                string category = HttpContext.Request.Form["category"];
+                if (category != "-1")
+                {
+                    using var context = new StncCMSContext();
+                    var categoryBlogs = new CategoryBlogs
+                    {
+                        PostID = success.Id,
+                        CategoryID = int.Parse(category)
+                    };
+                   
+                  context.CategoryBlogs.Add(categoryBlogs);
+              
+
+                    context.SaveChanges();
+                }
+
+
 
                 return RedirectToAction("Index");
             }
@@ -127,13 +121,15 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> UpdatePost(PostAddDto model, IFormFile picture)
+        public async Task<IActionResult> UpdatePost(PostUpdateDto model, IFormFile picture)
         {
             var user = await GetUserLoginInfo();
-            var userID = user.Id;
+   
             string pictureDb = null;
 
             string category = HttpContext.Request.Form["category"];
+
+            using var context = new StncCMSContext();
 
             if (ModelState.IsValid)
             {
@@ -143,7 +139,36 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
                     pictureDb = pictureName;
                 }
 
-                UpdatePost(model, pictureDb, userID);
+
+               _postService.Guncelle(new Posts
+                {
+                    Id = model.Id,
+                    PostTitle = model.PostTitle,
+                    PostContent = model.PostContent,
+                    PostExcerpt = model.PostExcerpt,
+                    Picture = pictureDb,
+                    AppUserId = user.Id,
+                });
+
+                //TODO: many to many yapılacak
+               
+                if (category != "-1")
+                {
+                    var entity = context.CategoryBlogs.FirstOrDefault(item => item.PostID == model.Id);
+                    if (entity != null)
+                    {
+                        entity.CategoryID = int.Parse(category);
+
+                        context.CategoryBlogs.Update(entity);
+
+                        context.SaveChanges();
+                    }
+
+
+
+
+                }
+
 
                 return RedirectToAction("Index");
             }
@@ -157,5 +182,39 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
             _postService.Sil(new Posts { Id = id });
             return Json(null);
         }
+
+
+        //Deprecated
+        private void AddUpdatePost(PostAddDto model, string picture, int user, string method)
+        {
+
+            var success = _postService.SaveReturn(new Posts
+            {
+                PostTitle = model.PostTitle,
+                PostContent = model.PostContent,
+                PostExcerpt = model.PostExcerpt,
+                Picture = picture,
+                AppUserId = user,
+            });
+
+            //TODO: many to many yapılacak
+            string category = HttpContext.Request.Form["category"];
+            if (category != "-1")
+            {
+                using var context = new StncCMSContext();
+                var categoryBlogs = new CategoryBlogs
+                {
+                    PostID = success.Id,
+                    CategoryID = int.Parse(category)
+                };
+                if (method == "add")
+                    context.CategoryBlogs.Add(categoryBlogs);
+                else
+                    context.CategoryBlogs.Update(categoryBlogs);
+
+                context.SaveChanges();
+            }
+        }
+
     }
 }
