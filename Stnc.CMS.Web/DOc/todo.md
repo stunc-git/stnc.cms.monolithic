@@ -20,6 +20,6 @@ https://connekthq.com/plugins/easy-query/examples/owl-carousel/
 slider 
 menu
 galeri
-
+css map yapılması lazım 
 
 cateblogs yapısı many to many değil sorunlu 

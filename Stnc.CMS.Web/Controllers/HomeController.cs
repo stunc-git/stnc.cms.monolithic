@@ -29,18 +29,17 @@ namespace Stnc.CMS.Web.Controllers
         [Route("icerik/{slug}")]
         public IActionResult GetPostDetails(string Slug)
         {
-            ViewBag.Slug = Slug;
-
             var post = _postService.GetSlugPost(Slug);
-            if (post != null)
+            if (post == null)
             {
-                return View("~/Views/Post/GetPostDetails.cshtml", _mapper.Map<PostUpdateDto>(post));
+                Response.StatusCode = 404;
+                return View("PageNotFound");
             }
             else
             {
-                return RedirectToAction("Index");
+                return View("~/Views/Post/GetPostDetails.cshtml", _mapper.Map<PostUpdateDto>(post));
+                //return RedirectToAction("Index");
             }
-
         }
 
 

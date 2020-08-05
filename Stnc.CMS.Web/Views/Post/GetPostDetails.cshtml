@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewData["Title"] = "Error";
+    ViewData["Title"] = Model.PostTitle;
     Layout = "~/Views/Shared/_StandartLayout.cshtml";
 }
 
@@ -10,8 +10,8 @@
     <div class="container">
         <div class="row align-items-end">
             <div class="col-lg-7">
-                <h2 class="mb-0">How To Create Mobile Apps Using Ionic</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing.</p>
+                <h2 class="mb-0">  @Html.Raw(Model.PostTitle)</h2>
+
             </div>
         </div>
     </div>
@@ -19,11 +19,11 @@
 
 <div class="custom-breadcrumns border-bottom">
     <div class="container">
-        <a href="index.html">Home</a>
+        <a href="/">Anasayfa</a>
         <span class="mx-3 icon-keyboard_arrow_right"></span>
-        <a href="courses.html">Courses</a>
+        <a href="#">İçerikler</a>
         <span class="mx-3 icon-keyboard_arrow_right"></span>
-        <span class="current">Courses</span>
+        <span class="current">@Html.Raw(Model.PostTitle)</span>
     </div>
 </div>
 
@@ -37,18 +37,13 @@
                     </div>
                     <div class="blog_details">
                         <h2>
-                            Second divided from form fish beast made every of seas
-                            all gathered us saying he our
+                            @Html.Raw(Model.PostTitle)
                         </h2>
                         <ul class="blog-info-link mt-3 mb-4">
-                            <li><a href="#"><i class="fa fa-user"></i> Travel, Lifestyle</a></li>
-                            <li><a href="#"><i class="fa fa-comments"></i> 03 Comments</a></li>
+                            <li><a href="#"><i class="fa fa-user"></i> İçerik</a></li>
+                            <li><a href="#"><i class="fa fa-clock"></i> @Model.CreatedAt.ToString("dd-MM-yyyy")</a></li>
                         </ul>
-                        <p class="excert">
-                            MCSE boot camps have its supporters and its detractors. Some people do not understand why you
-                            should have to spend money on boot camp when you can get the MCSE study materials yourself at a
-                            fraction of the camp price. However, who has the willpower
-                        </p>
+
                         <p>
                             @Html.Raw(Model.PostContent)
                         </p>
@@ -57,8 +52,7 @@
                 <div class="navigation-top">
                     <div class="d-sm-flex justify-content-between text-center">
                         <p class="like-info">
-                            <span class="align-middle"><i class="fa fa-heart"></i></span> Lily and 4
-                            people like this
+                            <span class="align-middle"><i class="fa fa-clock"></i></span>  @Model.CreatedAt.ToString("dd-MM-yyyy")
                         </p>
                         <div class="col-sm-4 text-center my-2 my-sm-0">
 
@@ -75,7 +69,7 @@
                             <div class="col-lg-6 col-md-6 col-12 nav-left flex-row d-flex justify-content-start align-items-center">
                                 <div class="thumb">
                                     <a href="#">
-                                        <img class="img-fluid" src="img/post/preview.png" alt="">
+                                        <img class="img-fluid" src="/images/preview.webp" alt="">
                                     </a>
                                 </div>
                                 <div class="arrow">
@@ -84,17 +78,17 @@
                                     </a>
                                 </div>
                                 <div class="detials">
-                                    <p>Prev Post</p>
+                                    <p>Önceki İçerik</p>
                                     <a href="#">
-                                        <h4>Space The Final Frontier</h4>
+                                        <h4>vekil ataması </h4>
                                     </a>
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6 col-12 nav-right flex-row d-flex justify-content-end align-items-center">
                                 <div class="detials">
-                                    <p>Next Post</p>
+                                    <p>Sonraki İçerik</p>
                                     <a href="#">
-                                        <h4>Telescopes 101</h4>
+                                        <h4>Fare Satışı</h4>
                                     </a>
                                 </div>
                                 <div class="arrow">
@@ -104,7 +98,7 @@
                                 </div>
                                 <div class="thumb">
                                     <a href="#">
-                                        <img class="img-fluid" src="img/post/next.png" alt="">
+                                        <img class="img-fluid" src="/images/next.webp" alt="">
                                     </a>
                                 </div>
                             </div>
@@ -122,17 +116,17 @@
                         <form action="#">
                             <div class="form-group">
                                 <div class="input-group mb-3">
-                                    <input type="text" class="form-control" placeholder="Search Keyword" onfocus="if (!window.__cfRLUnblockHandlers) return false; this.placeholder = ''" onblur="if (!window.__cfRLUnblockHandlers) return false; this.placeholder = 'Search Keyword'">
+                                    <input type="text" class="form-control" placeholder="Ara" onfocus="if (!window.__cfRLUnblockHandlers) return false; this.placeholder = ''" onblur="if (!window.__cfRLUnblockHandlers) return false; this.placeholder = 'Ara'">
                                     <div class="input-group-append">
                                         <button class="btn" type="button"><i class="ti-search"></i></button>
                                     </div>
                                 </div>
                             </div>
-                            <button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn" type="submit">Search</button>
+                            <button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn" type="submit">Ara</button>
                         </form>
                     </aside>
                     <aside class="single_sidebar_widget post_category_widget">
-                        <h4 class="widget_title">Category</h4>
+                        <h4 class="widget_title">Kategoriler</h4>
                         <ul class="list cat-list">
                             <li>
                                 <a href="#" class="d-flex">
@@ -172,118 +166,47 @@
                             </li>
                         </ul>
                     </aside>
+
                     <aside class="single_sidebar_widget popular_post_widget">
-                        <h3 class="widget_title">Recent Post</h3>
+                        <h3 class="widget_title">Benzer Haberler</h3>
                         <div class="media post_item">
-                            <img src="img/post/post_1.png" alt="post">
+                            <img src="/images/next.webp" alt="post">
                             <div class="media-body">
                                 <a href="single-blog.html">
-                                    <h3>From life was you fish...</h3>
+                                    <h3>Hayvan Siparişleri</h3>
                                 </a>
-                                <p>January 12, 2019</p>
+                                <p>12 ocak 2020</p>
                             </div>
                         </div>
                         <div class="media post_item">
-                            <img src="img/post/post_2.png" alt="post">
+                            <img src="/images/preview.webp" alt="post">
                             <div class="media-body">
                                 <a href="single-blog.html">
-                                    <h3>The Amazing Hubble</h3>
+                                    <h3>Misyonumuz</h3>
                                 </a>
-                                <p>02 Hours ago</p>
+                                <p>5 saat önce</p>
                             </div>
                         </div>
                         <div class="media post_item">
-                            <img src="img/post/post_3.png" alt="post">
+                            <img src="/images/next.webp" alt="post">
                             <div class="media-body">
                                 <a href="single-blog.html">
-                                    <h3>Astronomy Or Astrology</h3>
+                                    <h3>Üyelik ve sipariş sistemi yapıldı</h3>
                                 </a>
-                                <p>03 Hours ago</p>
+                                <p>3 saat önce</p>
                             </div>
                         </div>
                         <div class="media post_item">
-                            <img src="img/post/post_4.png" alt="post">
+                            <img src="/images/preview.webp" alt="post">
                             <div class="media-body">
                                 <a href="single-blog.html">
-                                    <h3>Asteroids telescope</h3>
+                                    <h3> Formlar </h3>
                                 </a>
-                                <p>01 Hours ago</p>
+                                <p>15 Haziran 2020</p>
                             </div>
                         </div>
                     </aside>
-                    <aside class="single_sidebar_widget tag_cloud_widget">
-                        <h4 class="widget_title">Tag Clouds</h4>
-                        <ul class="list">
-                            <li>
-                                <a href="#">project</a>
-                            </li>
-                            <li>
-                                <a href="#">love</a>
-                            </li>
-                            <li>
-                                <a href="#">technology</a>
-                            </li>
-                            <li>
-                                <a href="#">travel</a>
-                            </li>
-                            <li>
-                                <a href="#">restaurant</a>
-                            </li>
-                            <li>
-                                <a href="#">life style</a>
-                            </li>
-                            <li>
-                                <a href="#">design</a>
-                            </li>
-                            <li>
-                                <a href="#">illustration</a>
-                            </li>
-                        </ul>
-                    </aside>
-                    <aside class="single_sidebar_widget instagram_feeds">
-                        <h4 class="widget_title">Instagram Feeds</h4>
-                        <ul class="instagram_row flex-wrap">
-                            <li>
-                                <a href="#">
-                                    <img class="img-fluid" src="img/post/post_5.png" alt="">
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <img class="img-fluid" src="img/post/post_6.png" alt="">
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <img class="img-fluid" src="img/post/post_7.png" alt="">
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <img class="img-fluid" src="img/post/post_8.png" alt="">
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <img class="img-fluid" src="img/post/post_9.png" alt="">
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <img class="img-fluid" src="img/post/post_10.png" alt="">
-                                </a>
-                            </li>
-                        </ul>
-                    </aside>
-                    <aside class="single_sidebar_widget newsletter_widget">
-                        <h4 class="widget_title">Newsletter</h4>
-                        <form action="#">
-                            <div class="form-group">
-                                <input type="email" class="form-control" onfocus="if (!window.__cfRLUnblockHandlers) return false; this.placeholder = ''" onblur="if (!window.__cfRLUnblockHandlers) return false; this.placeholder = 'Enter email'" placeholder="Enter email" required="">
-                            </div>
-                            <button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn" type="submit">Subscribe</button>
-                        </form>
-                    </aside>
+
                 </div>
             </div>
         </div>

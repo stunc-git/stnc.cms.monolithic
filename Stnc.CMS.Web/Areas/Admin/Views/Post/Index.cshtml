@@ -16,6 +16,7 @@
             <th>Ad</th>
             <th>Yazar</th>
             <th>Oluşturulma Tarih</th>
+            <th>Göster</th>
             <th>İşlem</th>
         </tr>
         @foreach (var item in Model)
@@ -25,7 +26,8 @@
                 <td>@item.PostTitle</td>
                 <td>Admin</td>
                 @*<td> @Html.Raw(item.PostContent)</td>*@
-                <td>@item.CreatedAt.Value.ToString("dd MMM yyyy")</td>
+                <td>@item.CreatedAt.Value.ToString("dd MMM yyyy") </td>
+                <td><a href="/icerik/@item.PostSlug">Göster</a></td>
                 <td>
                     <a asp-action="UpdatePost" asp-route-id="@item.Id" class="btn btn-warning btn-sm"><i class="far fa-edit mr-2"></i>Düzenle </a>
                     <a href=""  data-toggle="modal"  data-value="@item.Id" class="btn btn-danger DeleteEvent btn-sm">
