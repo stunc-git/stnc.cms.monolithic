@@ -27,6 +27,7 @@ namespace Stnc.CMS.Web
             services.AddAutoMapper(typeof(Startup));
             services.AddCustomValidator();
             services.AddControllersWithViews().AddFluentValidation();
+            services.AddFlashes().AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

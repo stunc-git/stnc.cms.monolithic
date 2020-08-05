@@ -12,6 +12,7 @@ namespace Stnc.CMS.Business.Interfaces
         void Sil(Tablo tablo);
         void Guncelle(Tablo tablo);
         Tablo GetirIdile(int id);
+
         List<Tablo> GetAll();
     }
 }

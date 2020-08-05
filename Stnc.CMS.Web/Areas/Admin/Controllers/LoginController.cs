@@ -35,10 +35,10 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = await _userManager.FindByNameAsync(model.UserName);
+                var user = await _userManager.FindByNameAsync(model.UserName).ConfigureAwait(false);
                 if (user != null)
                 {
-                    var identityResult = await _signInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, false);
+                    var identityResult = await _signInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, false).ConfigureAwait(false);
                     if (identityResult.Succeeded)
                     {
                         var roller = await _userManager.GetRolesAsync(user);

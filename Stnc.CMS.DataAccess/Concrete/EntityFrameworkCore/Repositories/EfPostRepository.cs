@@ -11,7 +11,6 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Repositories
 {
     public class EfPostRepository : EfGenericRepository<Posts>, IPostDal
     {
-       
 
         public int GetTotalPost()
         {
@@ -27,7 +26,11 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Repositories
            return context.Posts.Where(I => I.PostStatus).OrderByDescending(I => I.Id).ToList();
         }
 
-
+        public Posts GetSlugPost(string Slug)
+        {
+            using var context = new StncCMSContext();
+            return context.Posts.Where(I => I.PostSlug == Slug).OrderByDescending(I => I.Id).FirstOrDefault();
+        }
 
     }
 }

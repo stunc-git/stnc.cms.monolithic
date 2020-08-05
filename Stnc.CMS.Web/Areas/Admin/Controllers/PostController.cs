@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Core.Flash;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -25,8 +26,11 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
         private readonly ICategoryService _categoryService;
         private readonly ICategoryBlogService _categoryBlogService;
         private readonly IMapper _mapper;
-        public PostController(IPostService postService, ICategoryService categoryService, ICategoryBlogService categoryBlogService, UserManager<AppUser> userManager, IMapper mapper) : base(userManager)
+        private readonly IFlasher f;
+
+        public PostController(IFlasher f, IPostService postService, ICategoryService categoryService, ICategoryBlogService categoryBlogService, UserManager<AppUser> userManager, IMapper mapper) : base(userManager)
         {
+            this.f = f;
             _mapper = mapper;
             _postService = postService;
             _categoryService = categoryService;
@@ -59,7 +63,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
         {
             var user = await GetUserLoginInfo().ConfigureAwait(false);
             SlugHelper.Config config = new SlugHelper.Config();
-          //  config.StringReplacements.Add(" ", "-");
+            config.StringReplacements.Add("ı", "i");
             SlugHelper helper = new SlugHelper(config);
             if (ModelState.IsValid)
             {
@@ -106,9 +110,17 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
         {
             TempData["Active"] = TempdataInfo.Post;
             var post = _postService.GetirIdile(id);
-            var catID = _categoryBlogService.GetCategoryPostIDListSingle(id);
-            ViewBag.Categories = new SelectList(_categoryService.GetAll(), "Id", "Name", catID);
-            return View(_mapper.Map<PostUpdateDto>(post));
+            if (post != null)
+            {
+                var catID = _categoryBlogService.GetCategoryPostIDListSingle(id);
+                ViewBag.Categories = new SelectList(_categoryService.GetAll(), "Id", "Name", 5);
+                return View(_mapper.Map<PostUpdateDto>(post));
+            }
+             else
+            {
+                f.Flash(Types.Danger, "Böyle bir veri bulunamadı", dismissable: true);
+                return RedirectToAction("Index");
+            }
         }
 
         [HttpPost]
@@ -116,7 +128,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
         {
             var user = await GetUserLoginInfo().ConfigureAwait(false);
             SlugHelper.Config config = new SlugHelper.Config();
-            config.StringReplacements.Add(" ", "-");
+            config.StringReplacements.Add("ı", "i");
             SlugHelper helper = new SlugHelper(config);
             string pictureDb = null;
 

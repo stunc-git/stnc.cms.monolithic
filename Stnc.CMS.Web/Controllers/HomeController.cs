@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Diagnostics;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Stnc.CMS.Business.Interfaces;
 using Stnc.CMS.DTO.DTOs.AppUserDtos;
+using Stnc.CMS.DTO.DTOs.PostDtos;
 using Stnc.CMS.Entities.Concrete;
 using Stnc.CMS.Web.BaseControllers;
 using System;
@@ -14,12 +16,34 @@ namespace Stnc.CMS.Web.Controllers
     {
         private readonly SignInManager<AppUser> _signInManager;
         private readonly ICustomLogger _customLogger;
-
-        public HomeController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, ICustomLogger customLogger) : base(userManager)
+        private readonly IPostService _postService;
+        private readonly IMapper _mapper;
+        public HomeController(IPostService postService,  UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, ICustomLogger customLogger, IMapper mapper) : base(userManager)
         {
+            _mapper = mapper;
             _customLogger = customLogger;
             _signInManager = signInManager;
+            _postService = postService;
         }
+
+        [Route("icerik/{slug}")]
+        public IActionResult GetPostDetails(string Slug)
+        {
+            ViewBag.Slug = Slug;
+
+            var post = _postService.GetSlugPost(Slug);
+            if (post != null)
+            {
+                return View("~/Views/Post/GetPostDetails.cshtml", _mapper.Map<PostUpdateDto>(post));
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
+
+        }
+
+
 
         public IActionResult Index()
         {
@@ -32,18 +56,39 @@ namespace Stnc.CMS.Web.Controllers
             return View();
         }
 
+
+        [Route("icerik/yonetim")]
+        public IActionResult Yonetim()
+        {
+            return View("~/Views/Staff/Yonetim.cshtml");
+        }
+
+        [Route("icerik/komisyon-uyeleri")]
+        public IActionResult KomisyonUyeleri()
+        {
+            return View("~/Views/Staff/KomisyonUyeleri.cshtml");
+        }
+
+
+        [Route("icerik/personel")]
+        public IActionResult Personel()
+        {
+            return View("~/Views/Staff/Personel.cshtml");
+        }
+
         //https://colorlib.com/preview/theme/wiser/single-blog.html
-        [Route("haber/{UsersName}/{UserId}")]
-        public IActionResult GetUserDetails(string UsersName, string UserId)
+        [Route("demo-template/{UsersName}")]
+        public IActionResult DemoTemplate(string UsersName)
         {
             ViewBag.UsersName = UsersName;
 
-            ViewBag.UserId = UserId;
-
-            return View("~/Views/Post/GetUserDetails.cshtml");
+            return View("~/Views/Post/DemoTemplate.cshtml");
         }
 
-    [HttpPost]
+
+
+
+        [HttpPost]
         public async Task<IActionResult> GirisYap(AppUserSignInDto model)
         {
             if (ModelState.IsValid)

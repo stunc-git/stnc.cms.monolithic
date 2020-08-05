@@ -8,12 +8,10 @@ using Stnc.CMS.Entities.Interfaces;
 
 namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Repositories
 {
-    public class EfGenericRepository<Tablo> : IGenericDal<Tablo>
-        where Tablo : class, ITablo, new()
+    public class EfGenericRepository<Tablo> : IGenericDal<Tablo> where Tablo : class, ITablo, new()
     {
         public List<Tablo> GetAll()
         {
-          
             using var context = new StncCMSContext();
             return context.Set<Tablo>().ToList();
         }
@@ -27,7 +25,7 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Repositories
         public void Guncelle(Tablo tablo)
         {
             using var context = new StncCMSContext();
-            context.Set<Tablo>().Update(tablo); 
+            context.Set<Tablo>().Update(tablo);
             context.SaveChanges();
         }
 

@@ -7,21 +7,19 @@
 
 <form asp-action="UpdatePost" method="post" class="w-75 mx-auto p-3" enctype="multipart/form-data">
     <input type="hidden" asp-for="@Model.Id" />
+
     <div class="form-group">
         <label>Ad :</label>
         <span asp-validation-for="PostTitle" class="text-danger"></span>
         <input type="text" asp-for="PostTitle" class="form-control" />
     </div>
+
     <div class="form-group">
         <label> Açıklama :</label>
         <span asp-validation-for="@Model.PostContent" class="text-danger"></span>
         <textarea asp-for="PostContent" class="form-control"></textarea>
     </div>
 
-    <div class="form-group">
-
-        <p> @Html.Raw(Model.PostContent) </p>
-    </div>
 
     <div class="form-group">
         <label> Kısa Metin (tanıtım yazısı ) :</label>
@@ -93,7 +91,7 @@
 
 
         $('#PostContent').summernote({
-       // height: 300,                 // set editor height
+        height: 500,                 // set editor height
         minHeight: null,             // set minimum height of editor
         maxHeight: null,             // set maximum height of editor
         focus: true,                  // set focus to editable area after initializing summernote
@@ -203,7 +201,11 @@
         }
     }
 
-
+/**
+ * DEPRECATED
+ *
+ *
+ */
     function UploadImage(file) {
         var url = '@Url.Action("UploadFile", "Post")';
         alert("s");

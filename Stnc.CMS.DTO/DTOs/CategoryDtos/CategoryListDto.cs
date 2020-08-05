@@ -14,7 +14,5 @@ namespace Stnc.CMS.DTO.DTOs.CategoryDtos
         //public DateTime? UpdatedAt { get; set; }
         //public DateTime? DeletedAt { get; set; }
         //public List<CategoryBlogs> CategoryBlogs { get; set; }
-
-
     }
 }

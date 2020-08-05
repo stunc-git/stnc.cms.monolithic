@@ -12,7 +12,6 @@ namespace Stnc.CMS.Business.Concrete
         public PostManager(IPostDal postDal)
         {
             _postDal = postDal;
-            
         }
 
         public int GetTotalPost()
@@ -57,6 +56,11 @@ namespace Stnc.CMS.Business.Concrete
         public Posts SaveReturn(Posts tablo)
         {
             return _postDal.SaveReturn(tablo);
+        }
+
+        public Posts GetSlugPost(string slug)
+        {
+            return _postDal.GetSlugPost(slug);
         }
     }
 }

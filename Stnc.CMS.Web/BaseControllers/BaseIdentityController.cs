@@ -13,7 +13,6 @@ namespace Stnc.CMS.Web.BaseControllers
 {
     public class BaseIdentityController : Controller
     {
-       
         protected readonly UserManager<AppUser> _userManager;
         public BaseIdentityController(UserManager<AppUser> userManager)
         {
@@ -31,7 +30,7 @@ namespace Stnc.CMS.Web.BaseControllers
         {
             string FileExtension = Path.GetExtension(file.FileName);
             string fileName = Guid.NewGuid() + FileExtension;
-            string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/file/"+ pathName+"/" + fileName);
+            string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/upload/" + pathName+"/" + fileName);
             using (var stream = new FileStream(path, FileMode.Create))
             {
                 await file.CopyToAsync(stream);

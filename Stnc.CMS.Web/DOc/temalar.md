@@ -39,4 +39,5 @@ txt efeckt https://codepen.io/rgg/pen/ozLzbz/
 
 haberler için bu harika 
 https://colorlib.com/preview/theme/learnit/single-blog.html
+https://colorlib.com/preview/theme/wiser/blog.html 
 bu da güzel https://colorlib.com/preview/theme/wiser/single-blog.html  uygun olablir 

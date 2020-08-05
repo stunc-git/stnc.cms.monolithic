@@ -8,9 +8,7 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts
 {
     public class StncCMSContext : IdentityDbContext<AppUser,AppRole,int>
     {
-
-
-        private static ILoggerFactory dbLoggerCategory = LoggerFactory.Create(builder =>
+        private static readonly ILoggerFactory dbLoggerCategory = LoggerFactory.Create(builder =>
         {
             builder.AddFilter((category, level) => category == DbLoggerCategory.Database.Command.Name && level == LogLevel.Information);
         });
@@ -30,7 +28,6 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-           
             modelBuilder.ApplyConfiguration(new GorevMap());
             modelBuilder.ApplyConfiguration(new AciliyetMap());
             modelBuilder.ApplyConfiguration(new RaporMap());
@@ -39,18 +36,13 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts
             modelBuilder.ApplyConfiguration(new CategoryMap());
             modelBuilder.ApplyConfiguration(new CategoryPostsMap());
             modelBuilder.ApplyConfiguration(new CommentMap());
-
-
             base.OnModelCreating(modelBuilder);
         }
 
-      
         public DbSet<Gorev> Gorevler { get; set; }
-   
         public DbSet<Aciliyet> Aciliyetler { get; set; }
         public DbSet<Rapor> Raporlar { get; set; }
         public DbSet<Bildirim> Bildirimler { get; set; }
-
 
         public DbSet<Posts> Posts { get; set; }
         public DbSet<Category> Categories { get; set; }

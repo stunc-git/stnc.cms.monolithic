@@ -24,12 +24,8 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
 
         public IActionResult Index()
         {
-            TempData["Active"] = TempdataInfo.Category;          
+            TempData["Active"] = TempdataInfo.Category;
             return View(_mapper.Map<List<CategoryListDto>>(_categoryservice.GetAll()));
-
-     
-
-
         }
 
         public IActionResult AddCategory()
@@ -52,7 +48,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
             }
             return View(model);
         }
-    
+
         public IActionResult UpdateCategory(int id)
         {
             TempData["Active"] = TempdataInfo.Category;
@@ -73,7 +69,6 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
                 return RedirectToAction("Index");
             }
             return View(model);
-           
         }
     }
 }
