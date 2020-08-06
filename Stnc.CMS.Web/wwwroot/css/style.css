@@ -29,7 +29,7 @@ li {
 }
 
 ul {
-padding-left:5px!important;
+padding-left:5px;
 }
 
 .border-2 {
@@ -955,7 +955,7 @@ padding-left:5px!important;
     text-decoration: underline; }
   .footer .copyright {
     color: #fff;
-    padding-top: 7rem;
+/*    padding-top: 7rem;*/
     text-align: center; }
 
 .ftco-subscribe-1 {
@@ -2378,4 +2378,21 @@ padding-left:5px!important;
     color: #7d84ab;
     margin-bottom: 13px;
     font-family: "Poppins", sans-serif;
+}
+
+.block-15 .heading {
+    max-width: 400px;
+    margin-bottom: 20px;
+}
+
+
+.block-15 .heading h2 {
+    font-size: 45px;
+    margin: 0;
+    padding: 0;
+    color: #11cbd7;
+}
+
+.block-15 .text {
+    max-width: 450px;
 }

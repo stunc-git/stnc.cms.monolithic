@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Slugify;
 using Stnc.CMS.Entities.Concrete;
 
 namespace Stnc.CMS.Web.BaseControllers
@@ -26,10 +27,22 @@ namespace Stnc.CMS.Web.BaseControllers
         }
 
 
+        protected string SlugHelper(string value)
+        {
+            SlugHelper.Config config = new SlugHelper.Config();
+            config.StringReplacements.Add("ı", "i");
+            SlugHelper helper = new SlugHelper(config);
+            return helper.GenerateSlug(value);
+        }
+
+
+
         protected async  Task<string> Uploader(IFormFile file,string pathName)
         {
+
             string FileExtension = Path.GetExtension(file.FileName);
-            string fileName = Guid.NewGuid() + FileExtension;
+            string FileRealName = Path.GetFileNameWithoutExtension(file.FileName);
+            string fileName = SlugHelper(FileRealName) + FileExtension;
             string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/upload/" + pathName+"/" + fileName);
             using (var stream = new FileStream(path, FileMode.Create))
             {

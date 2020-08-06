@@ -55,6 +55,13 @@ namespace Stnc.CMS.Web.Controllers
             return View();
         }
 
+        [Route("iletism")]
+        public IActionResult İletisim()
+        {
+            return View();
+        }
+
+
 
         [Route("icerik/yonetim")]
         public IActionResult Yonetim()
@@ -112,7 +119,7 @@ namespace Stnc.CMS.Web.Controllers
                 }
                 ModelState.AddModelError("", "Kullanıcı adı veya şifre hatalı");
             }
-            return View("Index", model);
+            return View("Login", model);
         }
 
         public IActionResult KayitOl()

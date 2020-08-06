@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Slugify;
 using Stnc.CMS.Business.Interfaces;
 using Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts;
 using Stnc.CMS.DTO.DTOs.PostDtos;
@@ -62,9 +61,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
         public async Task<IActionResult> AddPost(PostAddDto model, IFormFile picture)
         {
             var user = await GetUserLoginInfo().ConfigureAwait(false);
-            SlugHelper.Config config = new SlugHelper.Config();
-            config.StringReplacements.Add("ı", "i");
-            SlugHelper helper = new SlugHelper(config);
+
             if (ModelState.IsValid)
             {
                 string pictureDb = null;
@@ -79,7 +76,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
                     PostTitle = model.PostTitle,
                     PostContent = model.PostContent,
                     PostExcerpt = model.PostExcerpt,
-                    PostSlug = helper.GenerateSlug(model.PostTitle),
+                    PostSlug = SlugHelper(model.PostTitle),
                     Picture = pictureDb,
                     AppUserId = user.Id,
                 });
@@ -127,9 +124,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
         public async Task<IActionResult> UpdatePost(PostUpdateDto model, IFormFile picture)
         {
             var user = await GetUserLoginInfo().ConfigureAwait(false);
-            SlugHelper.Config config = new SlugHelper.Config();
-            config.StringReplacements.Add("ı", "i");
-            SlugHelper helper = new SlugHelper(config);
+
             string pictureDb = null;
 
             string category = HttpContext.Request.Form["category"];
@@ -150,8 +145,8 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
                     PostTitle = model.PostTitle,
                     PostContent = model.PostContent,
                     PostExcerpt = model.PostExcerpt,
-                    PostSlug = helper.GenerateSlug(model.PostTitle),
-                   Picture = pictureDb,
+                    PostSlug = SlugHelper(model.PostSlug),
+                    Picture = pictureDb,
                     AppUserId = user.Id,
                 });
 
