@@ -1,8 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Stnc.CMS.Entities.Concrete;
 
 namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Mapping
@@ -11,7 +8,6 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Mapping
     {
         public void Configure(EntityTypeBuilder<Posts> builder)
         {
-
             builder.HasKey(I => I.Id);
             builder.Property(I => I.Id).UseIdentityColumn();
 
@@ -24,12 +20,11 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Mapping
             builder.Property(I => I.MenuOrder).HasMaxLength(255).HasDefaultValue(1);
             builder.Property(I => I.CommentCount).HasDefaultValue(1);
 
-            builder.Property(I => I.Picture).HasColumnType("ntext"); 
+            builder.Property(I => I.Picture).HasColumnType("ntext");
 
             //builder.HasMany(I => I.Comments).WithOne(I => I.Posts).HasForeignKey(I => I.PostID);
 
             builder.HasMany(I => I.CategoryBlogs).WithOne(I => I.Posts).HasForeignKey(I => I.PostID);
-
         }
     }
 }

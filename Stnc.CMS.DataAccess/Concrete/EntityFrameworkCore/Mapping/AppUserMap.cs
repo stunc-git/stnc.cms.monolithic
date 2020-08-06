@@ -13,7 +13,6 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Mapping
 
             builder.HasMany(I => I.Gorevler).WithOne(I => I.AppUser).HasForeignKey(I => I.AppUserId).OnDelete(DeleteBehavior.SetNull);
             builder.HasMany(I => I.Posts).WithOne(I => I.AppUser).HasForeignKey(I => I.AppUserId);
-
         }
     }
 }

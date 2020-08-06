@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Stnc.CMS.Business.Interfaces;
 using Stnc.CMS.Entities.Concrete;
 using Stnc.CMS.Web.BaseControllers;
 using Stnc.CMS.Web.StringInfo;
+using System.Threading.Tasks;
 
 namespace Stnc.CMS.Web.Areas.Admin.Controllers
 {
@@ -35,17 +32,17 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
             - Okunmamış Bildirim Sayısı
             - Toplam Yazılmış Rapor Sayısı
         */
+
         public async Task<IActionResult> Index()
         {
-            var user = await GetUserLoginInfo();
+            var user = await GetUserLoginInfo().ConfigureAwait(false);
             TempData["Active"] = TempdataInfo.Anasayfa;
             ViewBag.AtanmayiBekleyenGorevSayisi = _gorevService.GetirGorevSayisiAtanmayiBekleyen();
             ViewBag.TamamlanmisGorevSayisi = _gorevService.GetirGorevTamamlanmis();
             ViewBag.OkunmamisBildirimSayisi = _bildirimService.GetirOkunmayanSayisiileAppUserId(user.Id);
-           // ViewBag.ToplamRaporSayisi = _raporService.GetirRaporSayisi();
-           ViewBag.ToplamRaporSayisi = _postService.GetTotalPost();//test yaptığım yer 
+            // ViewBag.ToplamRaporSayisi = _raporService.GetirRaporSayisi();
+            ViewBag.ToplamRaporSayisi = _postService.GetTotalPost();//test yaptığım yer
             return View();
         }
-
     }
 }

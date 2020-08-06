@@ -7,7 +7,6 @@ namespace Stnc.CMS.Business.Concrete
 {
     public class CategoryBlogsManager : ICategoryBlogService
     {
-
         private readonly ICategoryBlogsDal _categoryBlogsDal;
 
         public CategoryBlogsManager(ICategoryBlogsDal categoryBlogsDal)
@@ -54,6 +53,5 @@ namespace Stnc.CMS.Business.Concrete
         {
             _categoryBlogsDal.Sil(tablo);
         }
-
     }
 }

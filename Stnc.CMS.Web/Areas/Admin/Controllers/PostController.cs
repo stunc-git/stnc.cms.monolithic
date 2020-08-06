@@ -110,7 +110,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
             if (post != null)
             {
                 var catID = _categoryBlogService.GetCategoryPostIDListSingle(id);
-                ViewBag.Categories = new SelectList(_categoryService.GetAll(), "Id", "Name", 5);
+                ViewBag.Categories = new SelectList(_categoryService.GetAll(), "Id", "Name", catID);
                 return View(_mapper.Map<PostUpdateDto>(post));
             }
              else

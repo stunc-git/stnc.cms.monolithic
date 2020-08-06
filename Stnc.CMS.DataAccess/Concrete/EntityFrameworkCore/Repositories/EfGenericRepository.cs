@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts;
+﻿using Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts;
 using Stnc.CMS.DataAccess.Interfaces;
 using Stnc.CMS.Entities.Interfaces;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Repositories
 {
@@ -41,9 +39,8 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Repositories
             using var context = new StncCMSContext();
             context.Set<Tablo>().Add(tablo);
             context.SaveChanges();
-           return tablo;
+            return tablo;
         }
-
 
         public void Sil(Tablo tablo)
         {
@@ -58,8 +55,6 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Repositories
             context.Posts.Remove(post);
             context.SaveChanges();
              */
-
-
         }
     }
 }

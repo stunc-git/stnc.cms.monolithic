@@ -8,7 +8,6 @@ namespace Stnc.CMS.Business.Interfaces
 {
     public interface ICategoryBlogService : IGenericService<CategoryBlogs>
     {
-
         List<CategoryBlogs> GetCategoryPostIDList(int PostID);
         int GetCategoryPostIDListSingle(int PostID);
     }

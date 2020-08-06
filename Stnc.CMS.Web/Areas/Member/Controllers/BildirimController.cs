@@ -31,7 +31,7 @@ namespace Stnc.CMS.Web.Areas.Member.Controllers
         public async Task<IActionResult> Index()
         {
             TempData["Active"] = TempdataInfo.Bildirim;
-            var user = await GetUserLoginInfo();
+            var user = await GetUserLoginInfo().ConfigureAwait(false);
 
             return View(_mapper.Map<List<BildirimListDto>>(_bildirimService.GetirOkunmayanlar(user.Id)));
         }

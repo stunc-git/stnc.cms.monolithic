@@ -2,12 +2,11 @@
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 using OfficeOpenXml;
+using Stnc.CMS.Business.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
-using System.Text;
-using Stnc.CMS.Business.Interfaces;
 
 namespace Stnc.CMS.Business.Concrete
 {
@@ -25,17 +24,14 @@ namespace Stnc.CMS.Business.Concrete
 
         public string AktarPdf<T>(List<T> list) where T : class, new()
         {
-       
             DataTable dataTable = new DataTable();
             dataTable.Load(ObjectReader.Create(list));
-
 
             var fileName = Guid.NewGuid() + ".pdf";
             var returnPath = "/documents/" + fileName;
             var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/documents/" + fileName);
 
             var stream = new FileStream(path, FileMode.Create);
-
 
             string arialTtf = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Fonts), "arial.ttf");
 
@@ -51,14 +47,14 @@ namespace Stnc.CMS.Business.Concrete
 
             for (int i = 0; i < dataTable.Columns.Count; i++)
             {
-                pdfPTable.AddCell(new Phrase(dataTable.Columns[i].ColumnName,font));
+                pdfPTable.AddCell(new Phrase(dataTable.Columns[i].ColumnName, font));
             }
 
             for (int i = 0; i < dataTable.Rows.Count; i++)
             {
                 for (int j = 0; j < dataTable.Columns.Count; j++)
                 {
-                    pdfPTable.AddCell(new Phrase(dataTable.Rows[i][j].ToString(),font));
+                    pdfPTable.AddCell(new Phrase(dataTable.Rows[i][j].ToString(), font));
                 }
             }
 

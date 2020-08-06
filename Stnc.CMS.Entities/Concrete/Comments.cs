@@ -1,11 +1,10 @@
 ﻿using Stnc.CMS.Entities.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Stnc.CMS.Entities.Concrete
 {
-   public  class Comments :  ITablo
+    public class Comments : ITablo
     {
         public long Id { get; set; }
         public long PostID { get; set; }
@@ -19,7 +18,7 @@ namespace Stnc.CMS.Entities.Concrete
         public string CommentAuthorIP { get; set; }
         public DateTime CommentDate { get; set; } = DateTime.Now;
         public DateTime? CommentDateGmt { get; set; } = DateTime.Now;
-     
+
         public string CommentApproved { get; set; }
         public string CommentAgent { get; set; }
         public string CommentType { get; set; }
@@ -29,14 +28,8 @@ namespace Stnc.CMS.Entities.Concrete
         public DateTime? UpdatedAt { get; set; } = DateTime.Now;
         public DateTime? DeletedAt { get; set; } = DateTime.Now;
 
-
-   
-
-
         public Comments ParentComment { get; set; }
         public List<Comments> SubComments { get; set; }
         public Posts Posts { get; set; }
-
-
     }
 }

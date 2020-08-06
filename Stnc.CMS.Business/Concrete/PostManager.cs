@@ -19,8 +19,6 @@ namespace Stnc.CMS.Business.Concrete
             return _postDal.GetTotalPost();
         }
 
-
-
         public List<Posts> PostList()
         {
             return _postDal.PostList();
@@ -44,13 +42,11 @@ namespace Stnc.CMS.Business.Concrete
         public Posts GetirIdile(int id)
         {
             return _postDal.GetirIdile(id);
-
         }
 
         public List<Posts> GetAll()
         {
             return _postDal.GetAll();
-
         }
 
         public Posts SaveReturn(Posts tablo)

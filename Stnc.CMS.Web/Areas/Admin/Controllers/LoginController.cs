@@ -10,13 +10,10 @@ using System.Threading.Tasks;
 
 namespace Stnc.CMS.Web.Areas.Admin.Controllers
 {
-
     public class LoginController : BaseIdentityController
     {
-
         private readonly SignInManager<AppUser> _signInManager;
         private readonly ICustomLogger _customLogger;
-
 
         public LoginController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, ICustomLogger customLogger) : base(userManager)
         {
@@ -27,7 +24,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
         public IActionResult Index()
         {
             return View();
-        //    return Ok("Login");
+            //    return Ok("Login");
         }
 
         [HttpPost]
@@ -41,7 +38,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
                     var identityResult = await _signInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, false).ConfigureAwait(false);
                     if (identityResult.Succeeded)
                     {
-                        var roller = await _userManager.GetRolesAsync(user);
+                        var roller = await _userManager.GetRolesAsync(user).ConfigureAwait(false);
 
                         if (roller.Contains("Admin"))
                         {
@@ -68,7 +65,6 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-
                 AppUser user = new AppUser()
                 {
                     UserName = model.UserName,
@@ -76,32 +72,27 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
                     Name = model.Name,
                     Surname = model.Surname
                 };
-                var result = await _userManager.CreateAsync(user, model.Password);
+                var result = await _userManager.CreateAsync(user, model.Password).ConfigureAwait(false);
 
                 if (result.Succeeded)
                 {
-                    var addRoleResult = await _userManager.AddToRoleAsync(user, "Member");
+                    var addRoleResult = await _userManager.AddToRoleAsync(user, "Member").ConfigureAwait(false);
                     if (addRoleResult.Succeeded)
                     {
                         return RedirectToAction("Index");
                     }
                     HataEkle(addRoleResult.Errors);
-
-
                 }
                 HataEkle(result.Errors);
-
-
             }
             return View(model);
         }
 
         public async Task<IActionResult> CikisYap()
         {
-            await _signInManager.SignOutAsync();
+            await _signInManager.SignOutAsync().ConfigureAwait(false);
             return RedirectToAction("Index");
         }
-
 
         public IActionResult StatusCode(int? code)
         {
@@ -113,7 +104,6 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
 
             return View();
         }
-
 
         public IActionResult Error()
         {
@@ -131,9 +121,5 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
         {
             throw new Exception("Bu bir hata");
         }
-
-
     }
-
-
 }

@@ -9,10 +9,10 @@ namespace Stnc.CMS.Web.ViewComponents
 {
     public class Wrapper : ViewComponent
     {
-
         private readonly UserManager<AppUser> _userManager;
         private readonly IBildirimService _bildirimService;
         private readonly IMapper _mapper;
+
         public Wrapper(UserManager<AppUser> userManager, IBildirimService bildirimService, IMapper mapper)
         {
             _mapper = mapper;
@@ -23,8 +23,7 @@ namespace Stnc.CMS.Web.ViewComponents
         public IViewComponentResult Invoke()
         {
             var identityUser = _userManager.FindByNameAsync(User.Identity.Name).Result;
-           var model= _mapper.Map<AppUserListDto>(identityUser);
-   
+            var model = _mapper.Map<AppUserListDto>(identityUser);
 
             var bildirimler = _bildirimService.GetirOkunmayanlar(model.Id).Count;
 
@@ -38,7 +37,6 @@ namespace Stnc.CMS.Web.ViewComponents
             }
 
             return View("Member", model);
-           
         }
     }
 }

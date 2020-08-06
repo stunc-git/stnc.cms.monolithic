@@ -1,11 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts;
 using Stnc.CMS.DataAccess.Interfaces;
 using Stnc.CMS.Entities.Concrete;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Repositories
 {
@@ -14,10 +13,10 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Repositories
         public List<AppUser> GetirAdminOlmayanlar()
         {
             /*
-             
-select * from AspNetUsers inner join AspNetUserRoles 
+
+select * from AspNetUsers inner join AspNetUserRoles
 on AspNetUsers.Id=AspNetUserRoles.UserId
-inner join AspNetRoles 
+inner join AspNetRoles
 on AspNetUserRoles.RoleId = AspNetRoles.Id where AspNetRoles.Name='Member'
 
             */
@@ -40,14 +39,11 @@ on AspNetUserRoles.RoleId = AspNetRoles.Id where AspNetRoles.Name='Member'
                 Picture = I.user.Picture,
                 Email = I.user.Email,
                 UserName = I.user.UserName
-
             }).ToList();
         }
 
-
         public List<AppUser> GetirAdminOlmayanlar(out int toplamSayfa, string aranacakKelime, int aktifSayfa = 1)
         {
-
             using var context = new StncCMSContext();
 
             var result = context.Users.Join(context.UserRoles, user => user.Id, userRole => userRole.UserId, (resultUser, resultUserRole) => new
@@ -67,7 +63,6 @@ on AspNetUserRoles.RoleId = AspNetRoles.Id where AspNetRoles.Name='Member'
                 Picture = I.user.Picture,
                 Email = I.user.Email,
                 UserName = I.user.UserName
-
             });
 
             toplamSayfa = (int)Math.Ceiling((double)result.Count() / 3);
@@ -76,10 +71,7 @@ on AspNetUserRoles.RoleId = AspNetRoles.Id where AspNetRoles.Name='Member'
             {
                 result = result.Where(I => I.Name.ToLower().Contains(aranacakKelime.ToLower()) || I.Surname.ToLower().Contains(aranacakKelime.ToLower()));
                 toplamSayfa = (int)Math.Ceiling((double)result.Count() / 3);
-
             }
-
-
 
             result = result.Skip((aktifSayfa - 1) * 3).Take(3);
 
@@ -98,22 +90,18 @@ where Gorevler.Durum=1 group by AspNetUsers.UserName  */
                 Isim = I.Key,
                 GorevSayisi = I.Count()
             }).ToList();
-
         }
 
         public List<DualHelper> GetirEnCokGorevdeCalisanPersoneller()
         {
             using var context = new StncCMSContext();
-           return context.Gorevler.Include(I => I.AppUser).Where(I => !I.Durum && I.AppUserId != null).GroupBy(I => I.AppUser.UserName).OrderByDescending(I => I.Count()).Take(5).Select(I => new DualHelper
+            return context.Gorevler.Include(I => I.AppUser).Where(I => !I.Durum && I.AppUserId != null).GroupBy(I => I.AppUser.UserName).OrderByDescending(I => I.Count()).Take(5).Select(I => new DualHelper
             {
                 Isim = I.Key,
                 GorevSayisi = I.Count()
             }).ToList();
-
         }
-
     }
-
 
     //class ThreeModel
     //{

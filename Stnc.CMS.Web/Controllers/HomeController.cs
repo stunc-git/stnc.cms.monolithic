@@ -18,7 +18,8 @@ namespace Stnc.CMS.Web.Controllers
         private readonly ICustomLogger _customLogger;
         private readonly IPostService _postService;
         private readonly IMapper _mapper;
-        public HomeController(IPostService postService,  UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, ICustomLogger customLogger, IMapper mapper) : base(userManager)
+
+        public HomeController(IPostService postService, UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, ICustomLogger customLogger, IMapper mapper) : base(userManager)
         {
             _mapper = mapper;
             _customLogger = customLogger;
@@ -42,8 +43,6 @@ namespace Stnc.CMS.Web.Controllers
             }
         }
 
-
-
         public IActionResult Index()
         {
             return View();
@@ -61,8 +60,6 @@ namespace Stnc.CMS.Web.Controllers
             return View();
         }
 
-
-
         [Route("icerik/yonetim")]
         public IActionResult Yonetim()
         {
@@ -74,7 +71,6 @@ namespace Stnc.CMS.Web.Controllers
         {
             return View("~/Views/Staff/KomisyonUyeleri.cshtml");
         }
-
 
         [Route("icerik/personel")]
         public IActionResult Personel()
@@ -90,9 +86,6 @@ namespace Stnc.CMS.Web.Controllers
 
             return View("~/Views/Post/DemoTemplate.cshtml");
         }
-
-
-
 
         [HttpPost]
         public async Task<IActionResult> GirisYap(AppUserSignInDto model)
@@ -178,7 +171,7 @@ namespace Stnc.CMS.Web.Controllers
 
             _customLogger.LogError($"Hatanın oluştuğu yer :{exceptionHandler.Path}\nHatanın mesajı :{exceptionHandler.Error.Message}\nStack Trace :{exceptionHandler.Error.StackTrace}");
 
-            ViewBag.Path= exceptionHandler.Path;
+            ViewBag.Path = exceptionHandler.Path;
             ViewBag.Message = exceptionHandler.Error.Message;
 
             return View();

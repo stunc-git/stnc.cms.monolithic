@@ -1,11 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts;
+using Stnc.CMS.DataAccess.Interfaces;
+using Stnc.CMS.Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts;
-using Stnc.CMS.DataAccess.Interfaces;
-using Stnc.CMS.Entities.Concrete;
 
 namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Repositories
 {
@@ -79,8 +79,7 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Repositories
         public int GetirGorevTamamlanmis()
         {
             using var context = new StncCMSContext();
-            return context.Gorevler.Count(I=>I.Durum);
+            return context.Gorevler.Count(I => I.Durum);
         }
-
     }
 }

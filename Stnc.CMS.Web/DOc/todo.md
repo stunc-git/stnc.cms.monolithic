@@ -16,10 +16,35 @@ https://www.youtube.com/watch?v=YMwjdv7NwN0
 owl ornek 
 https://connekthq.com/plugins/easy-query/examples/owl-carousel/
 
+
+yeni admin panele geçiş yapılacak 
+
+# elden geçmesi gerekenler 
+
+en önemlisi --> homecontroller yapısı daha düzegün olacak
+admin panel
+many to many yapısı (kategori için )
+haber yapısı 
+duyuru yapısı 
+personel modulu 
+galeri - slider - medya yapısı 
+ayarlar (logo / site title vs vs)
+
+
 çoklu dil
 slider 
 menu
 galeri
 css map yapılması lazım 
+duyuru
+haber
+etkinlik
+media 
+yukleme de boyutlandırma sistemi
+
 
 cateblogs yapısı many to many değil sorunlu 
+
+# öğrenilecekler 
+generic servis kullanımı 
+Ipost service ve IpostDal farkkı neden kullanıyoruz ???

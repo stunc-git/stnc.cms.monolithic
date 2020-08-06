@@ -1,7 +1,4 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Stnc.CMS.Business.Concrete;
 using Stnc.CMS.Business.CustomLogger;
 using Stnc.CMS.Business.Interfaces;
@@ -25,15 +22,12 @@ namespace Stnc.CMS.Business.DiContainer
             services.AddScoped<IPostService, PostManager>();
             services.AddScoped<IPostDal, EfPostRepository>();
 
-
-            //category 
+            //category
             services.AddScoped<ICategoryService, CategoryManager>();
             services.AddScoped<ICategoryDal, EfCategoryRepository>();
 
-
             services.AddScoped<ICategoryBlogService, CategoryBlogsManager>();
             services.AddScoped<ICategoryBlogsDal, EfCategoryBlogsRepository>();
-
 
             services.AddScoped<IGorevDal, EfGorevRepository>();
             services.AddScoped<IAciliyetDal, EfAciliyetRepository>();

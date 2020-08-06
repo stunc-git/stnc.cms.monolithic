@@ -6,13 +6,12 @@ using Stnc.CMS.Entities.Concrete;
 
 namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts
 {
-    public class StncCMSContext : IdentityDbContext<AppUser,AppRole,int>
+    public class StncCMSContext : IdentityDbContext<AppUser, AppRole, int>
     {
         private static readonly ILoggerFactory dbLoggerCategory = LoggerFactory.Create(builder =>
         {
             builder.AddFilter((category, level) => category == DbLoggerCategory.Database.Command.Name && level == LogLevel.Information);
         });
-
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -21,10 +20,7 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts
             optionsBuilder.UseLoggerFactory(dbLoggerCategory);
 
             base.OnConfiguring(optionsBuilder);
-
         }
-
-
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

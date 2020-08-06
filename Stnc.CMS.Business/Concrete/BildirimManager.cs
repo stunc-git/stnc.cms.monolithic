@@ -1,13 +1,14 @@
-﻿using System.Collections.Generic;
-using Stnc.CMS.Business.Interfaces;
+﻿using Stnc.CMS.Business.Interfaces;
 using Stnc.CMS.DataAccess.Interfaces;
 using Stnc.CMS.Entities.Concrete;
+using System.Collections.Generic;
 
 namespace Stnc.CMS.Business.Concrete
 {
     public class BildirimManager : IBildirimService
     {
         private readonly IBildirimDal _bildirimDal;
+
         public BildirimManager(IBildirimDal bildirimDal)
         {
             _bildirimDal = bildirimDal;
@@ -52,7 +53,5 @@ namespace Stnc.CMS.Business.Concrete
         {
             _bildirimDal.Sil(tablo);
         }
-
- 
     }
 }

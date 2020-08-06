@@ -14,7 +14,6 @@ namespace Stnc.CMS.Business.Concrete
         public GorevManager(IGorevDal gorevDal)
         {
             _gorevDal = gorevDal;
-            
         }
 
         public Gorev GetirAciliyetileId(int id)
@@ -101,6 +100,5 @@ namespace Stnc.CMS.Business.Concrete
         {
             _gorevDal.Sil(tablo);
         }
-
     }
 }
