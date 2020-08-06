@@ -41,3 +41,6 @@ haberler için bu harika
 https://colorlib.com/preview/theme/learnit/single-blog.html
 https://colorlib.com/preview/theme/wiser/blog.html 
 bu da güzel https://colorlib.com/preview/theme/wiser/single-blog.html  uygun olablir 
+
+listeli blog için bunu kullan 
+https://colorlib.com/preview/theme/university/blog.html

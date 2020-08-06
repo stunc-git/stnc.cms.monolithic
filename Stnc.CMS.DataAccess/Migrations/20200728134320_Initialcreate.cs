@@ -15,10 +15,7 @@ namespace Stnc.CMS.DataAccess.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Tanim = table.Column<string>(maxLength: 100, nullable: true)
                 },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Aciliyetler", x => x.Id);
-                });
+                constraints: table => table.PrimaryKey("PK_Aciliyetler", x => x.Id));
 
             migrationBuilder.CreateTable(
                 name: "AspNetRoles",
@@ -30,10 +27,7 @@ namespace Stnc.CMS.DataAccess.Migrations
                     NormalizedName = table.Column<string>(maxLength: 256, nullable: true),
                     ConcurrencyStamp = table.Column<string>(nullable: true)
                 },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AspNetRoles", x => x.Id);
-                });
+                constraints: table => table.PrimaryKey("PK_AspNetRoles", x => x.Id));
 
             migrationBuilder.CreateTable(
                 name: "AspNetUsers",

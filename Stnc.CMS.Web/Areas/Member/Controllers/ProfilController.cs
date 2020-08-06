@@ -45,7 +45,7 @@ namespace Stnc.CMS.Web.Areas.Member.Controllers
                     string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/img/" + resimAd);
                     using (var stream = new FileStream(path, FileMode.Create))
                     {
-                        await resim.CopyToAsync(stream);
+                        await resim.CopyToAsync(stream).ConfigureAwait(false);
                     }
 
                     guncellencekKullanici.Picture = resimAd;
@@ -55,7 +55,7 @@ namespace Stnc.CMS.Web.Areas.Member.Controllers
                 guncellencekKullanici.Surname = model.SurName;
                 guncellencekKullanici.Email = model.Email;
 
-                var result = await _userManager.UpdateAsync(guncellencekKullanici);
+                var result = await _userManager.UpdateAsync(guncellencekKullanici).ConfigureAwait(false);
                 if (result.Succeeded)
                 {
                     TempData["message"] = "Güncelleme işleminiz başarı ile gerçekleşti";

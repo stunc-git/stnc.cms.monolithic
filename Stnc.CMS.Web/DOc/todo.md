@@ -1,5 +1,8 @@
 ﻿category de bulunan interface DAL olacak ve görevleri interface içierisinde olacak 
 
+many to many ve çoklu içerik konusunda bir örnek 
+
+
 modular asp.net mvc 
 http://rion.io/2015/02/09/simple-modularity-through-areas-in-asp-net-mvc/
 
@@ -41,6 +44,8 @@ haber
 etkinlik
 media 
 yukleme de boyutlandırma sistemi
+haber duyurunun toplu olarak gösterilmesi 
+
 
 
 cateblogs yapısı many to many değil sorunlu 

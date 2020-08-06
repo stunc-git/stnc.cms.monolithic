@@ -17,6 +17,3 @@ https://ikum.erciyes.edu.tr/
 menu için düþündüklerim 
 
 https://www.jqueryscript.net/menu/Drag-Drop-Menu-Builder-For-Bootstrap.html
-
-
-
