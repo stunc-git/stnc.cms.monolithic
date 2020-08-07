@@ -4,81 +4,104 @@
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
+<form asp-action="UpdatePost" method="post" style="margin: 0; padding: 0; width: 100%;" enctype="multipart/form-data">
+    <input type="hidden" asp-for="@Model.Id" />
+    <div class="col-md-9 float-left">
 
-    <form asp-action="UpdatePost" method="post" class="w-75 mx-auto p-3" enctype="multipart/form-data">
-        <input type="hidden" asp-for="@Model.Id" />
+        <div class="card card-primary">
+            <div class="card-header">
+                <h3 class="card-title">İçerik Düzenleme [Genel Bilgiler]</h3>
+            </div>
+            <!-- /.card-header -->
+            <!-- form start -->
+            <div class="card-body">
 
-        <div class="form-group">
-            <label>Ad :</label>
-            <span asp-validation-for="PostTitle" class="text-danger"></span>
-            <input type="text" asp-for="PostTitle" class="form-control" />
-        </div>
-
-        <div class="form-group">
-            <label>Seo Url Adresi :</label>
-            <span asp-validation-for="PostSlug" class="text-danger"></span>
-            <input type="text" asp-for="PostSlug" class="form-control" />
-        </div>
-
-
-        <div class="form-group">
-            <label> Açıklama :</label>
-            <span asp-validation-for="@Model.PostContent" class="text-danger"></span>
-            <textarea asp-for="PostContent" class="form-control"></textarea>
-        </div>
-
-
-        <div class="form-group">
-            <label> Kısa Metin (tanıtım yazısı ) :</label>
-            <span asp-validation-for="@Model.PostExcerpt" class="text-danger"></span>
-            <textarea asp-for="PostExcerpt" class="form-control"></textarea>
-        </div>
-
-
-        <div class="form-group">
-            <label>Kategori Seçiniz:</label>
-            <span class="text-danger"></span>
-            <select class="form-control" name="category" asp-items=" ViewBag.Categories">
-                <option hidden value="-1">Seçiniz</option>
-
-            </select>
-        </div>
-
-
-        <div class="form-group">
-            <div class="row">
-                <div class="col-md-2">
-
+                <div class="form-group">
+                    <label>Ad :</label>
+                    <span asp-validation-for="PostTitle" class="text-danger"></span>
+                    <input type="text" asp-for="PostTitle" class="form-control" />
                 </div>
-                <div class="col-md-4">
-                    <div>
-                        <h5 class="text-center">Şu an ki resminiz:</h5>
-                        <img src="~/upload/img/@Model.Picture" class="w-100" style="height:10rem!important;" alt="@Model.PostTitle" />
+
+                <div class="form-group">
+                    <label>Seo URL  :</label>
+                    <span asp-validation-for="PostSlug" class="text-danger"></span>
+                    <input type="text" asp-for="PostSlug" class="form-control" />
+                </div>
+
+                <div class="form-group">
+                    <label> Açıklama :</label>
+                    <span asp-validation-for="@Model.PostContent" class="text-danger"></span>
+                    <textarea asp-for="PostContent" class="form-control"></textarea>
+                </div>
+            </div>
+            <!-- /.card-body -->
+        </div>
+    </div>
+    <div class="col-md-3 float-left">
+        <div class="card card-primary">
+            <div class="card-header">
+                <h3 class="card-title">İçerik Düzenleme [Genel Bilgiler]</h3>
+            </div>
+            <!-- /.card-header -->
+            <!-- form start -->
+            <div class="card-body">
+
+                <div class="form-group">
+                    <label> Kısa Metin (tanıtım yazısı ) :</label>
+                    <span asp-validation-for="@Model.PostExcerpt" class="text-danger"></span>
+                    <textarea asp-for="PostExcerpt" class="form-control"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Kategori Seçiniz:</label>
+                    <span class="text-danger"></span>
+                    <select class="form-control" name="category" asp-items=" ViewBag.Categories">
+                        <option hidden value="-1">Seçiniz</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-2">
+                        </div>
+
+                        <div class="col-md-4">
+                            <div>
+                                <h5 class="text-center">Şu an ki resminiz:</h5>
+                                <img src="~/upload/img/@Model.Picture" class="w-100" style="height:10rem!important;" alt="@Model.PostTitle" />
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div id="alanOnizleme" style="display:none!important;">
+                                <h5 class="text-center">Seçtiğiniz resim:</h5>
+                                <img id="resimOnizleme" src="" class="w-100" style="height:10rem!important;" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputFile">File input</label>
+                            <div class="input-group">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" name="picture" id="Picture">
+                                    <label class="custom-file-label" for="Picture"></label>
+                                </div>
+                                <div class="input-group-append">
+                                    <span class="input-group-text" id="">Resim Seç</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+                    <!-- /.card-body -->
 
-                </div>
-
-                <div class="col-md-4">
-                    <div id="alanOnizleme" style="display:none!important;">
-                        <h5 class="text-center">Seçtiğiniz resim:</h5>
-                        <img id="resimOnizleme" src="" class="w-100" style="height:10rem!important;" />
+                    <div class="card-footer">
+                        <button type="submit" class="btn btn-primary"><i class="fas fa-check mr-2"></i>Kaydet</button>
                     </div>
-
-                </div>
-                <div class="col-md-2">
-
-                </div>
-
-                <div class="col-md-12">
-                    <label> Resim Seç:</label>
-                    <input type="file" class="form-control-file" name="picture" id="Picture" />
                 </div>
             </div>
         </div>
-
-        <button type="submit" class="btn btn-info btn-sm"><i class="fas fa-check mr-2"></i>Kaydet</button>
-    </form>
-
+    </div>
+</form>
 @section JavaScript{
     <script src="~/lib/jqueryValidate/jquery.validate.min.js"></script>
     <script src="~/lib/jqueryUnob/jquery.validate.unobtrusive.min.js"></script>
@@ -90,12 +113,10 @@
         $(document).ready(function () {
             $("#Picture").change(function (e) {
 
-
                 $("#alanOnizleme").show();
                 $("#resimOnizleme").attr('src', URL.createObjectURL(e.target.files[0]));
             });
         });
-
 
         $('#PostContent').summernote({
         height: 500,                 // set editor height
@@ -135,7 +156,6 @@
            // ['help', ['help']]
         ],
     });
-
 
     function myOwnCallBack(file) {
            var url = '@Url.Action("UploadFile", "Post")';
@@ -239,18 +259,11 @@
         });
     }
 
-
         $('.note-codable').on('blur', function () {
             if ($('#PostContent').summernote('codeview.isActivated')) {
                 $('#PostContent').summernote('codeview.deactivate');
             }
         });
-
     </script>
 
 }
-
-
-
-
-

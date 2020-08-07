@@ -45,7 +45,7 @@ etkinlik
 media 
 yukleme de boyutlandırma sistemi
 haber duyurunun toplu olarak gösterilmesi 
-
+iletişime yazılanların düşeceği alan 
 
 
 cateblogs yapısı many to many değil sorunlu 
