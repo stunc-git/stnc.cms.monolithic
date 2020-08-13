@@ -28,10 +28,11 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts
             modelBuilder.ApplyConfiguration(new AciliyetMap());
             modelBuilder.ApplyConfiguration(new RaporMap());
             modelBuilder.ApplyConfiguration(new AppUserMap());
-            modelBuilder.ApplyConfiguration(new PostsMap());
+            modelBuilder.ApplyConfiguration(new PostMap());
             modelBuilder.ApplyConfiguration(new CategoryMap());
             modelBuilder.ApplyConfiguration(new CategoryPostsMap());
             modelBuilder.ApplyConfiguration(new CommentMap());
+            modelBuilder.ApplyConfiguration(new SliderMap());
             base.OnModelCreating(modelBuilder);
         }
 
@@ -41,6 +42,7 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts
         public DbSet<Bildirim> Bildirimler { get; set; }
 
         public DbSet<Posts> Posts { get; set; }
+        public DbSet<Slider> Slider { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<CategoryBlogs> CategoryBlogs { get; set; }
         public DbSet<Comments> Comments { get; set; }

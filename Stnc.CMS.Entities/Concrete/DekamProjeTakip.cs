@@ -16,7 +16,13 @@ namespace Stnc.CMS.Entities.Concrete
         public DateTime? BitisTarihi { get; set; }
         public int DeneyHayvaniTur { get; set; }
         public int DeneyHayvaniIrk { get; set; }
-        public int DeneyHayvaniCinsiyet { get; set; }
+
+        public enum DeneyHayvaniCinsiyet
+        {
+            Erkek = 1,
+            Dişi = 2
+        }
+
         public int DeneyHayvaniSayisi { get; set; }
         public int DeneyHayvaniYasi { get; set; }
         public int DeneyHayvaniAgirligi { get; set; }

@@ -4,7 +4,7 @@ using Stnc.CMS.Entities.Concrete;
 
 namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Mapping
 {
-    public class PostsMap : IEntityTypeConfiguration<Posts>
+    public class PostMap : IEntityTypeConfiguration<Posts>
     {
         public void Configure(EntityTypeBuilder<Posts> builder)
         {

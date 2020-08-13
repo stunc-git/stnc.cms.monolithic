@@ -3,6 +3,9 @@
 
 # core  için 
 
+--data access katmanında yapılır yani context in olduğu katmanda 
+context file içinde tanımlamalarını yapmayı unutma 
+
 add-migration initalCreate
 
 update-database
