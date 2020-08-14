@@ -10,8 +10,8 @@ using Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts;
 namespace Stnc.CMS.DataAccess.Migrations
 {
     [DbContext(typeof(StncCMSContext))]
-    [Migration("20200728200837_InitalCreate")]
-    partial class InitalCreate
+    [Migration("20200814140323_SeedInitialDataTest")]
+    partial class SeedInitialDataTest
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -301,9 +301,16 @@ namespace Stnc.CMS.DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 40,
+                            Name = "John Doe"
+                        });
                 });
 
-            modelBuilder.Entity("Stnc.CMS.Entities.Concrete.CategoryBlog", b =>
+            modelBuilder.Entity("Stnc.CMS.Entities.Concrete.CategoryBlogs", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -511,6 +518,11 @@ namespace Stnc.CMS.DataAccess.Migrations
                         .HasColumnType("nvarchar(250)")
                         .HasMaxLength(250);
 
+                    b.Property<short?>("PostType")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("smallint")
+                        .HasDefaultValue((short)1);
+
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2");
 
@@ -546,6 +558,60 @@ namespace Stnc.CMS.DataAccess.Migrations
                     b.HasIndex("GorevId");
 
                     b.ToTable("Raporlar");
+                });
+
+            modelBuilder.Entity("Stnc.CMS.Entities.Concrete.Slider", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:IdentityIncrement", 1)
+                        .HasAnnotation("SqlServer:IdentitySeed", 1)
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("AppUserId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Caption")
+                        .HasColumnType("nvarchar(250)")
+                        .HasMaxLength(250);
+
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Excerpt")
+                        .HasColumnType("ntext");
+
+                    b.Property<int>("MenuOrder")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasMaxLength(255)
+                        .HasDefaultValue(1);
+
+                    b.Property<string>("Picture")
+                        .IsRequired()
+                        .HasColumnType("ntext");
+
+                    b.Property<bool>("Status")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UrlAddress")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<short>("UrlType")
+                        .HasColumnType("smallint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AppUserId");
+
+                    b.ToTable("Slider");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
@@ -608,7 +674,7 @@ namespace Stnc.CMS.DataAccess.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Stnc.CMS.Entities.Concrete.CategoryBlog", b =>
+            modelBuilder.Entity("Stnc.CMS.Entities.Concrete.CategoryBlogs", b =>
                 {
                     b.HasOne("Stnc.CMS.Entities.Concrete.Category", "Category")
                         .WithMany("CategoryBlogs")
@@ -662,6 +728,13 @@ namespace Stnc.CMS.DataAccess.Migrations
                         .HasForeignKey("GorevId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Stnc.CMS.Entities.Concrete.Slider", b =>
+                {
+                    b.HasOne("Stnc.CMS.Entities.Concrete.AppUser", "AppUser")
+                        .WithMany()
+                        .HasForeignKey("AppUserId");
                 });
 #pragma warning restore 612, 618
         }

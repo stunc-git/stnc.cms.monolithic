@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts;
 
 namespace Stnc.CMS.DataAccess.Migrations
 {
     [DbContext(typeof(StncCMSContext))]
-    partial class StncCMSContextModelSnapshot : ModelSnapshot
+    [Migration("20200814140822_SeedInitialDataTest2")]
+    partial class SeedInitialDataTest2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -303,38 +305,8 @@ namespace Stnc.CMS.DataAccess.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 1,
-                            Name = "Genel"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "Kurumsal"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "Yönetim"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Name = "Belge Bilgi"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Name = "Galeri"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Name = "İletişim"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            Name = "Duyurular"
+                            Id = 40,
+                            Name = "John Doe"
                         });
                 });
 
@@ -640,21 +612,6 @@ namespace Stnc.CMS.DataAccess.Migrations
                     b.HasIndex("AppUserId");
 
                     b.ToTable("Slider");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 404801026,
-                            Caption = "Lorem ipsum laramde loremde ipsumda inmpala",
-                            CreatedAt = new DateTime(2020, 8, 14, 17, 28, 45, 563, DateTimeKind.Local).AddTicks(6360),
-                            Excerpt = "exceprt data loremmmmmm ipsummmmm",
-                            MenuOrder = 1,
-                            Picture = "default.jpg",
-                            Status = true,
-                            UpdatedAt = new DateTime(2020, 8, 14, 17, 28, 46, 862, DateTimeKind.Local).AddTicks(6608),
-                            UrlAddress = "",
-                            UrlType = (short)0
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
