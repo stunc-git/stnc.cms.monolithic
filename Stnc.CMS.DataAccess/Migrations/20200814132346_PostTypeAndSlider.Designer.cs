@@ -10,8 +10,8 @@ using Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts;
 namespace Stnc.CMS.DataAccess.Migrations
 {
     [DbContext(typeof(StncCMSContext))]
-    [Migration("20200813134408_slider2")]
-    partial class slider2
+    [Migration("20200814132346_PostTypeAndSlider")]
+    partial class PostTypeAndSlider
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -511,6 +511,11 @@ namespace Stnc.CMS.DataAccess.Migrations
                         .HasColumnType("nvarchar(250)")
                         .HasMaxLength(250);
 
+                    b.Property<short?>("PostType")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("smallint")
+                        .HasDefaultValue((short)1);
+
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2");
 
@@ -561,7 +566,6 @@ namespace Stnc.CMS.DataAccess.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Caption")
-                        .IsRequired()
                         .HasColumnType("nvarchar(250)")
                         .HasMaxLength(250);
 
@@ -581,6 +585,7 @@ namespace Stnc.CMS.DataAccess.Migrations
                         .HasDefaultValue(1);
 
                     b.Property<string>("Picture")
+                        .IsRequired()
                         .HasColumnType("ntext");
 
                     b.Property<bool>("Status")

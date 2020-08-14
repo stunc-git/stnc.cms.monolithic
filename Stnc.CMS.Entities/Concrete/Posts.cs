@@ -15,6 +15,7 @@ namespace Stnc.CMS.Entities.Concrete
         public string PostPassword { get; set; }
         public string PostSlug { get; set; }
         public int MenuOrder { get; set; } = 1;
+        public int ?PostType { get; set; }
         public long CommentCount { get; set; }
         public string Picture { get; set; } = "default.jpg";
         public DateTime? CreatedAt { get; set; } = DateTime.Now;
