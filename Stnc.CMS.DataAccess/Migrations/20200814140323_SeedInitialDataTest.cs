@@ -8,17 +8,12 @@ namespace Stnc.CMS.DataAccess.Migrations
         {
 
 
-            migrationBuilder.AddColumn<short>(
-                name: "PostType",
-                table: "Posts",
-                type: "smallint",
-                nullable: true,
-                defaultValue: (short)1);
+
 
             migrationBuilder.InsertData(
                 table: "Categories",
                 columns: new[] { "Id", "CreatedAt", "DeletedAt", "Description", "Name", "Slug", "UpdatedAt" },
-                values: new object[] { 40, null, null, null, "John Doe", null, null });
+                values: new object[] { 40, null, null, null, "Test", null, null });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -28,9 +23,7 @@ namespace Stnc.CMS.DataAccess.Migrations
                 keyColumn: "Id",
                 keyValue: 40);
 
-            migrationBuilder.DropColumn(
-                name: "PostType",
-                table: "Posts");
+
 
 
     }

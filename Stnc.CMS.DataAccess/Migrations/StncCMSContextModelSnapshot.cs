@@ -546,10 +546,7 @@ namespace Stnc.CMS.DataAccess.Migrations
                         .HasColumnType("nvarchar(250)")
                         .HasMaxLength(250);
 
-                    b.Property<short?>("PostType")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("smallint")
-                        .HasDefaultValue((short)1);
+
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2");
