@@ -1,9 +1,8 @@
-﻿using Stnc.CMS.Entities.Interfaces;
+﻿using Stnc.CMS.Entities.Concrete;
 using System;
-
-namespace Stnc.CMS.Entities.Concrete
+namespace Stnc.CMS.DTO.DTOs.SliderDtos
 {
-    public class Slider : ITablo
+    public class SliderListAllDto
     {
         public int Id { get; set; }
         public string Caption { get; set; }
@@ -19,6 +18,4 @@ namespace Stnc.CMS.Entities.Concrete
         public int? AppUserId { get; set; }
         public AppUser AppUser { get; set; }
     }
-
-
 }

@@ -16,7 +16,7 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Mapping
             builder.Property(I => I.MenuOrder).HasMaxLength(255).HasDefaultValue(1);
             builder.Property(I => I.Picture).HasColumnType("ntext").IsRequired();
             builder.Property(I => I.UrlType).HasColumnType("smallint");
-
+/*
             Guid guid = Guid.NewGuid();
             Random random = new Random();
             int i = random.Next();
@@ -29,6 +29,9 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Mapping
               UrlAddress = "",
               Status = true,
           });
+*/
         }
+
     }
 }
+

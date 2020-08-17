@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Mapping;
 using Stnc.CMS.Entities.Concrete;
+using System.IO;
 
 namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts
 {
@@ -16,7 +18,15 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             //  optionsBuilder.UseSqlServer("server=(localdb)\\mssqllocaldb; database=bloggg; user id=sa; password=1;");
-            optionsBuilder.UseSqlServer("server=.; database=cmsCore1; integrated security=True;");
+            // optionsBuilder.UseSqlServer("server=.; database=cmsCore1; integrated security=True;");
+            //kaynak https://www.gencayyildiz.com/blog/asp-net-core-3-0-cok-katmanli-mimaride-migration-islemleri/
+            //https://docs.microsoft.com/en-us/aspnet/core/fundamentals/configuration/?view=aspnetcore-3.1
+            IConfiguration config = new ConfigurationBuilder()
+                .SetBasePath(Path.Combine(Directory.GetCurrentDirectory(), "../Stnc.CMS.Web"))
+                .AddJsonFile("appsettings.json")
+                .Build();
+
+            optionsBuilder.UseSqlServer(config.GetConnectionString("SQLProvider"));
             optionsBuilder.UseLoggerFactory(dbLoggerCategory);
 
             base.OnConfiguring(optionsBuilder);

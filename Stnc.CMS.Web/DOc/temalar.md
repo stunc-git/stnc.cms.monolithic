@@ -44,3 +44,5 @@ bu da güzel https://colorlib.com/preview/theme/wiser/single-blog.html  uygun ol
 
 listeli blog için bunu kullan 
 https://colorlib.com/preview/theme/university/blog.html
+
+

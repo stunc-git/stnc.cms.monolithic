@@ -1,5 +1,4 @@
-﻿using Stnc.CMS.DTO.DTOs.PostDtos;
-using Stnc.CMS.Entities.Concrete;
+﻿using Stnc.CMS.Entities.Concrete;
 using System.Collections.Generic;
 
 namespace Stnc.CMS.Business.Interfaces

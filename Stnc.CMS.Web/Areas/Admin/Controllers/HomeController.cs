@@ -40,8 +40,8 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
             ViewBag.AtanmayiBekleyenGorevSayisi = _gorevService.GetirGorevSayisiAtanmayiBekleyen();
             ViewBag.TamamlanmisGorevSayisi = _gorevService.GetirGorevTamamlanmis();
             ViewBag.OkunmamisBildirimSayisi = _bildirimService.GetirOkunmayanSayisiileAppUserId(user.Id);
-            // ViewBag.ToplamRaporSayisi = _raporService.GetirRaporSayisi();
-            ViewBag.ToplamRaporSayisi = _postService.GetTotalPost();//test yaptığım yer
+            ViewBag.ToplamRaporSayisi = _raporService.GetirRaporSayisi();
+            ViewBag.ToplamPostSayisi = _postService.GetTotalPost();//test yaptığım yer
             return View();
         }
     }

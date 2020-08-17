@@ -27,5 +27,6 @@ namespace Stnc.CMS.Web.StringInfo
         public const string Profil = "profil";
         public const string Post = "içerikler";
         public const string Category = "kategoriler";
+        public const string Slider = "slider";
     }
 }
