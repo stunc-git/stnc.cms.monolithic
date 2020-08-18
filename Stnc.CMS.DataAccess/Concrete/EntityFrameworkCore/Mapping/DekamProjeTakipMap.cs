@@ -29,9 +29,8 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Mapping
 
             builder.HasOne(I => I.Aciliyet).WithMany(I => I.Gorevler).HasForeignKey(I => I.AciliyetId);
             //https://www.learnentityframeworkcore.com/configuration/one-to-one-relationship-configuration
-
-            puplic DekamProjeTeknikDestekTalepTur DekamProjeTeknikDestekTalepTur { GetHashCode;DbSet; }
-            builder .HasOne(a => a.Biography)   .WithOne(b => b.Author).HasForeignKey<AuthorBiography>(b => b.AuthorRef);
+            //burada kaldım
+           // builder .HasOne(a => a.Biography)   .WithOne(b => b.Author).HasForeignKey<AuthorBiography>(b => b.AuthorRef);
         }
     }
 }
