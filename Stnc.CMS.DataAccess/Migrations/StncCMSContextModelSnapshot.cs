@@ -15,7 +15,7 @@ namespace Stnc.CMS.DataAccess.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.6")
+                .HasAnnotation("ProductVersion", "3.1.7")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -299,43 +299,6 @@ namespace Stnc.CMS.DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Genel"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "Kurumsal"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "Yönetim"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Name = "Belge Bilgi"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Name = "Galeri"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Name = "İletişim"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            Name = "Duyurular"
-                        });
                 });
 
             modelBuilder.Entity("Stnc.CMS.Entities.Concrete.CategoryBlogs", b =>
@@ -451,6 +414,7 @@ namespace Stnc.CMS.DataAccess.Migrations
                     b.ToTable("Comments");
                 });
 
+
             modelBuilder.Entity("Stnc.CMS.Entities.Concrete.Gorev", b =>
                 {
                     b.Property<int>("Id")
@@ -546,7 +510,10 @@ namespace Stnc.CMS.DataAccess.Migrations
                         .HasColumnType("nvarchar(250)")
                         .HasMaxLength(250);
 
-
+                    b.Property<short?>("PostType")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("smallint")
+                        .HasDefaultValue((short)1);
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2");
@@ -641,14 +608,14 @@ namespace Stnc.CMS.DataAccess.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 404801026,
+                            Id = 466291747,
                             Caption = "Lorem ipsum laramde loremde ipsumda inmpala",
-                            CreatedAt = new DateTime(2020, 8, 14, 17, 28, 45, 563, DateTimeKind.Local).AddTicks(6360),
+                            CreatedAt = new DateTime(2020, 8, 18, 17, 7, 11, 540, DateTimeKind.Local).AddTicks(4502),
                             Excerpt = "exceprt data loremmmmmm ipsummmmm",
                             MenuOrder = 1,
                             Picture = "default.jpg",
                             Status = true,
-                            UpdatedAt = new DateTime(2020, 8, 14, 17, 28, 46, 862, DateTimeKind.Local).AddTicks(6608),
+                            UpdatedAt = new DateTime(2020, 8, 18, 17, 7, 11, 541, DateTimeKind.Local).AddTicks(3293),
                             UrlAddress = "",
                             UrlType = (short)0
                         });
@@ -739,6 +706,8 @@ namespace Stnc.CMS.DataAccess.Migrations
                         .WithMany()
                         .HasForeignKey("PostsId");
                 });
+
+
 
             modelBuilder.Entity("Stnc.CMS.Entities.Concrete.Gorev", b =>
                 {

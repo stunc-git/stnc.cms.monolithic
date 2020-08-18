@@ -42,6 +42,26 @@ namespace Stnc.CMS.Web.BaseControllers
                 await file.CopyToAsync(stream).ConfigureAwait(false);
             }
             return fileName;
+
+            /*
+
+            using System.Numerics;
+using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.PixelFormats;
+using SixLabors.ImageSharp.Processing;
+
+                    System.IO.Directory.CreateDirectory("output");
+
+            using (Image image = Image.Load("fb.jpg"))
+            {
+                image.Mutate(x => x
+                     .Resize(200, 200));
+
+                image.Save("output/fb.jpg"); // Automatic encoder selected based on extension.
+            }
+            */
+
+
         }
 
         protected void HataEkle(IEnumerable<IdentityError> errors)

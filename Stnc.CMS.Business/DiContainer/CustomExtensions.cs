@@ -22,6 +22,12 @@ namespace Stnc.CMS.Business.DiContainer
             services.AddScoped<IPostService, PostManager>();
             services.AddScoped<IPostDal, EfPostRepository>();
 
+
+            //Slider
+            services.AddScoped<ISliderService, SliderManager>();
+            services.AddScoped<ISliderDal, EfSliderRepository>();
+
+
             //category
             services.AddScoped<ICategoryService, CategoryManager>();
             services.AddScoped<ICategoryDal, EfCategoryRepository>();
@@ -29,9 +35,6 @@ namespace Stnc.CMS.Business.DiContainer
             //categoryBlogs many many to many olacak ---
             services.AddScoped<ICategoryBlogService, CategoryBlogsManager>();
             services.AddScoped<ICategoryBlogsDal, EfCategoryBlogsRepository>();
-
-
-
 
             services.AddScoped<IGorevDal, EfGorevRepository>();
             services.AddScoped<IAciliyetDal, EfAciliyetRepository>();

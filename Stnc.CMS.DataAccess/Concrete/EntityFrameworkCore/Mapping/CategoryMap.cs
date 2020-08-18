@@ -14,7 +14,7 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Mapping
             builder.Property(I => I.Slug).HasMaxLength(100);
             builder.Property(I => I.Description).HasColumnType("ntext");
             builder.HasMany(I => I.CategoryBlogs).WithOne(I => I.Category).HasForeignKey(I => I.CategoryID);
-
+            /*
             builder.HasData(
                   new Category
                   {
@@ -46,7 +46,7 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Mapping
                       Id = 7,
                       Name = "Duyurular",
                   }
-          );
+          );*/
         }
     }
 }

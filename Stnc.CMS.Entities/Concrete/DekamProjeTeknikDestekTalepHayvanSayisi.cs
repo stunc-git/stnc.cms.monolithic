@@ -3,7 +3,7 @@ using System;
 
 namespace Stnc.CMS.Entities.Concrete
 {
-    public class DekamDeneyHayvaniIrk : ITablo
+    public class DekamProjeDeneyHayvanSayisi : ITablo
     {
         public int Id { get; set; }
         public string Name { get; set; }

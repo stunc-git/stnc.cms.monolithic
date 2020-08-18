@@ -43,6 +43,7 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts
             modelBuilder.ApplyConfiguration(new CategoryPostsMap());
             modelBuilder.ApplyConfiguration(new CommentMap());
             modelBuilder.ApplyConfiguration(new SliderMap());
+            modelBuilder.ApplyConfiguration(new DekamProjeTakipMap());
             base.OnModelCreating(modelBuilder);
         }
 
@@ -56,5 +57,14 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts
         public DbSet<Category> Categories { get; set; }
         public DbSet<CategoryBlogs> CategoryBlogs { get; set; }
         public DbSet<Comments> Comments { get; set; }
+
+        /// DEKAM Kurum içi proje takip
+        public DbSet<DekamProjeTakip> DekamProjeTakip { get; set; }
+        public DbSet<DekamProjeLaboratuvarlar> DekamProjeLaboratuvarlar { get; set; }
+        public DbSet<DekamProjeDestekTur> DekamProjeDestekTur { get; set; }
+        public DbSet<DekamProjeDestekSure> DekamProjeDestekSure { get; set; }
+        public DbSet<DekamProjeDeneyHayvanSayisi> DekamProjeDeneyHayvanSayisi { get; set; }
+        public DbSet<DekamProjeDeneyHayvaniTur> DekamProjeDeneyHayvaniTur { get; set; }
+        public DbSet<DekamProjeDeneyHayvaniIrk> DekamProjeDeneyHayvaniIrk { get; set; }
     }
 }

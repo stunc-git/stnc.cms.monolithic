@@ -23,7 +23,6 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Mapping
             builder.Property(I => I.Picture).HasColumnType("ntext");
             //builder.HasMany(I => I.Comments).WithOne(I => I.Posts).HasForeignKey(I => I.PostID);
             builder.HasMany(I => I.CategoryBlogs).WithOne(I => I.Posts).HasForeignKey(I => I.PostID);
-
         }
     }
 }

@@ -7,6 +7,7 @@ using Stnc.CMS.DTO.DTOs.AppUserDtos;
 using Stnc.CMS.DTO.DTOs.GorevDtos;
 using Stnc.CMS.DTO.DTOs.PostDtos;
 using Stnc.CMS.DTO.DTOs.RaporDtos;
+using Stnc.CMS.DTO.DTOs.SliderDtos;
 using Stnc.CMS.Entities.Concrete;
 using System;
 
@@ -53,6 +54,11 @@ namespace Stnc.CMS.Web.CustomCollectionExtensions
 
             services.AddTransient<IValidator<PostUpdateDto>, PostUpdateValidator>();
             services.AddTransient<IValidator<PostAddDto>, PostAddValidator>();
+
+            services.AddTransient<IValidator<SliderAddDto>, SliderAddValidator>();
+            services.AddTransient<IValidator<SliderUpdateDto>, SliderUpdateValidator>();
+
+
         }
     }
 }

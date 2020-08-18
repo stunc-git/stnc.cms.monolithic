@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Stnc.CMS.Business.Interfaces;
 using Stnc.CMS.DTO.DTOs.AppUserDtos;
-using Stnc.CMS.DTO.DTOs.PostDtos;
+using Stnc.CMS.DTO.DTOs.SliderDtos;
 using Stnc.CMS.Entities.Concrete;
 using Stnc.CMS.Web.BaseControllers;
 using System;
@@ -38,7 +38,7 @@ namespace Stnc.CMS.Web.Controllers
             }
             else
             {
-                return View("~/Views/Post/GetPostDetails.cshtml", _mapper.Map<PostUpdateDto>(post));
+                return View("~/Views/Post/GetPostDetails.cshtml", _mapper.Map<SliderUpdateDto>(post));
                 //return RedirectToAction("Index");
             }
         }

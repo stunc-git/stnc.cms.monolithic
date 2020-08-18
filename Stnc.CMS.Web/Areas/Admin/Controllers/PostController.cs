@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Stnc.CMS.Business.Interfaces;
 using Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts;
 using Stnc.CMS.DTO.DTOs.PostDtos;
+using Stnc.CMS.DTO.DTOs.SliderDtos;
 using Stnc.CMS.Entities.Concrete;
 using Stnc.CMS.Web.BaseControllers;
 using Stnc.CMS.Web.StringInfo;
