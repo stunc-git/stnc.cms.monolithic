@@ -3,7 +3,7 @@ using System;
 
 namespace Stnc.CMS.Entities.Concrete
 {
-    public class DekamProjeDestekSure : ITablo
+    public class DekamProjeTeknikDestekTalepSure : ITablo
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -12,5 +12,7 @@ namespace Stnc.CMS.Entities.Concrete
         public DateTime? DeletedAt { get; set; }
         public int? AppUserId { get; set; }
         public AppUser AppUser { get; set; }
+        //        public DekamProjeTakip DekamProjeTakip { get; set; }
+
     }
 }

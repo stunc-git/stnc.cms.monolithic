@@ -16,21 +16,30 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Mapping
             builder.Property(I => I.SorumluArastirmaci).HasMaxLength(500).IsRequired();
             builder.Property(I => I.SorumluArastirmaciTelefon).HasMaxLength(500).IsRequired();
             builder.Property(I => I.EtikKurulOnayNumarasi).HasMaxLength(500).IsRequired();
-            builder.Property(I => I.DeneyHayvaniTurID).HasColumnType("smallint");
-            builder.Property(I => I.DeneyHayvaniIrkID).HasColumnType("smallint");
+
             builder.Property(I => I.DeneyHayvaniCinsiyet).HasColumnType("smallint");
             builder.Property(I => I.DeneyHayvaniSayisi).HasColumnType("smallint");
             builder.Property(I => I.DeneyHayvaniYasi).HasColumnType("smallint");
             builder.Property(I => I.DeneyHayvaniAgirligi).HasColumnType("smallint");
-            builder.Property(I => I.TeknikDestekSuresiID).HasColumnType("smallint");
-            builder.Property(I => I.TeknikDestekTuruID).HasColumnType("smallint");
-            builder.Property(I => I.TeknikHayvanSayisiID).HasColumnType("smallint");
-            builder.Property(I => I.LaboratuvarID).HasColumnType("smallint");
+            /*    builder.Property(I => I.TeknikDestekSuresiID).HasColumnType("smallint");
+                builder.Property(I => I.TeknikDestekTuruID).HasColumnType("smallint");
+                builder.Property(I => I.TeknikHayvanSayisiID).HasColumnType("smallint");
+                builder.Property(I => I.LaboratuvarID).HasColumnType("smallint");
+                builder.Property(I => I.DeneyHayvaniTurID).HasColumnType("smallint");
+                builder.Property(I => I.DeneyHayvaniIrkID).HasColumnType("smallint");*/
+            //builder
+            //    .HasOne(I => I.DeneyHayvaniTurID)
+            //    .WithOne(I => I.DekamProjeTeknikDestekTalepTur)
+            //    .HasForeignKey(I => I.AciliyetId);
 
-            builder.HasOne(I => I.Aciliyet).WithMany(I => I.Gorevler).HasForeignKey(I => I.AciliyetId);
+
             //https://www.learnentityframeworkcore.com/configuration/one-to-one-relationship-configuration
             //burada kaldım
-           // builder .HasOne(a => a.Biography)   .WithOne(b => b.Author).HasForeignKey<AuthorBiography>(b => b.AuthorRef);
+            //     builder.HasOne(I => I.Aciliyet).WithMany(I => I.Gorevler).HasForeignKey(I => I.AciliyetId);
+
+            builder.HasOne(I => I.DekamProjeDeneyHayvaniTur).WithMany(I => I.DekamProjeTakip).HasForeignKey(I => I.DeneyHayvaniTurID);
+
+
         }
     }
 }
