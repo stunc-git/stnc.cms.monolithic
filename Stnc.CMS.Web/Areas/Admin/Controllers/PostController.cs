@@ -83,19 +83,19 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
                 });
 
                 //TODO: many to many yapılacak
-                string category = HttpContext.Request.Form["category"];
-                if (category != "-1")
+                string CategoryID = HttpContext.Request.Form["CategoryID"];
+                if (CategoryID != "-1")
                 {
                     using var context = new StncCMSContext();
                     var categoryBlogs = new CategoryBlogs
                     {
                         PostID = success.Id,
-                        CategoryID = int.Parse(category)
+                        CategoryID = int.Parse(CategoryID)
                     };
 
                   context.CategoryBlogs.Add(categoryBlogs);
 
-                    context.SaveChanges();
+                  context.SaveChanges();
                 }
 
                 return RedirectToAction("Index");
@@ -128,7 +128,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
 
             string pictureDb = null;
 
-            string category = HttpContext.Request.Form["category"];
+            string CategoryID = HttpContext.Request.Form["CategoryID"];
 
             using var context = new StncCMSContext();
 
@@ -153,12 +153,12 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
 
                 //TODO: many to many yapılacak
 
-                if (category != "-1")
+                if (CategoryID != "-1")
                 {
                     var entity = context.CategoryBlogs.FirstOrDefault(item => item.PostID == model.Id);
                     if (entity != null)
                     {
-                        entity.CategoryID = int.Parse(category);
+                        entity.CategoryID = int.Parse(CategoryID);
 
                         context.CategoryBlogs.Update(entity);
 
@@ -168,7 +168,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.Categories = new SelectList(_postService.GetAll(), "Id", "Name", int.Parse(category));
+            ViewBag.Categories = new SelectList(_postService.GetAll(), "Id", "Name", int.Parse(CategoryID));
             return View(model);
         }
 

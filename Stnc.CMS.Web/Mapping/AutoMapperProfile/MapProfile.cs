@@ -58,25 +58,21 @@ namespace Stnc.CMS.Web.Mapping.AutoMapperProfile
             #endregion Gorev-GorevDto
 
             #region Rapor-RaporDto
-
             CreateMap<RaporAddDto, Rapor>();
             CreateMap<Rapor, RaporAddDto>();
             CreateMap<RaporUpdateDto, Rapor>();
             CreateMap<Rapor, RaporUpdateDto>();
             CreateMap<RaporDosyaDto, Rapor>();
             CreateMap<Rapor, RaporDosyaDto>();
-
             #endregion Rapor-RaporDto
 
             #region Post-PostDto
-
             CreateMap<Posts, PostListAllDto>();
             CreateMap<PostListAllDto, Posts>();
-            CreateMap<SliderAddDto, Posts>();
-            CreateMap<Posts, SliderAddDto>();
-            CreateMap<SliderUpdateDto, Posts>();
-            CreateMap<Posts, SliderUpdateDto>();
-
+            CreateMap<PostAddDto, Posts>();
+            CreateMap<Posts, PostAddDto>();
+            CreateMap<PostUpdateDto, Posts>();
+            CreateMap<Posts, PostUpdateDto>();
             #endregion Post-PostDto
 
             #region Category-CategoryDto

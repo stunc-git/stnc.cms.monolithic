@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts;
 
 namespace Stnc.CMS.DataAccess.Migrations
 {
     [DbContext(typeof(StncCMSContext))]
-    partial class StncCMSContextModelSnapshot : ModelSnapshot
+    [Migration("20200819110436_Initialprj")]
+    partial class Initialprj
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -419,8 +421,6 @@ namespace Stnc.CMS.DataAccess.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:IdentityIncrement", 1)
-                        .HasAnnotation("SqlServer:IdentitySeed", 1)
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int?>("AppUserId")
@@ -433,9 +433,7 @@ namespace Stnc.CMS.DataAccess.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(500)")
-                        .HasMaxLength(500);
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2");
@@ -452,8 +450,6 @@ namespace Stnc.CMS.DataAccess.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:IdentityIncrement", 1)
-                        .HasAnnotation("SqlServer:IdentitySeed", 1)
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int?>("AppUserId")
@@ -466,9 +462,7 @@ namespace Stnc.CMS.DataAccess.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(500)")
-                        .HasMaxLength(500);
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2");
@@ -518,8 +512,6 @@ namespace Stnc.CMS.DataAccess.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:IdentityIncrement", 1)
-                        .HasAnnotation("SqlServer:IdentitySeed", 1)
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int?>("AppUserId")
@@ -532,9 +524,7 @@ namespace Stnc.CMS.DataAccess.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(500)")
-                        .HasMaxLength(500);
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2");
@@ -576,14 +566,14 @@ namespace Stnc.CMS.DataAccess.Migrations
                     b.Property<short>("DeneyHayvaniCinsiyet")
                         .HasColumnType("smallint");
 
-                    b.Property<short>("DeneyHayvaniIrkID")
-                        .HasColumnType("smallint");
+                    b.Property<int>("DeneyHayvaniIrkID")
+                        .HasColumnType("int");
 
                     b.Property<short>("DeneyHayvaniSayisi")
                         .HasColumnType("smallint");
 
-                    b.Property<short?>("DeneyHayvaniTurID")
-                        .HasColumnType("smallint");
+                    b.Property<int?>("DeneyHayvaniTurID")
+                        .HasColumnType("int");
 
                     b.Property<short>("DeneyHayvaniYasi")
                         .HasColumnType("smallint");
@@ -596,8 +586,8 @@ namespace Stnc.CMS.DataAccess.Migrations
                     b.Property<DateTime?>("EtikKurulOnayTarihi")
                         .HasColumnType("datetime2");
 
-                    b.Property<short>("LaboratuvarID")
-                        .HasColumnType("smallint");
+                    b.Property<int>("LaboratuvarID")
+                        .HasColumnType("int");
 
                     b.Property<string>("ProjeYurutuTelefon")
                         .IsRequired()
@@ -624,14 +614,14 @@ namespace Stnc.CMS.DataAccess.Migrations
                         .HasColumnType("nvarchar(500)")
                         .HasMaxLength(500);
 
-                    b.Property<short>("TeknikDestekSuresiID")
-                        .HasColumnType("smallint");
+                    b.Property<int>("TeknikDestekSuresiID")
+                        .HasColumnType("int");
 
-                    b.Property<short>("TeknikDestekTuruID")
-                        .HasColumnType("smallint");
+                    b.Property<int>("TeknikDestekTuruID")
+                        .HasColumnType("int");
 
-                    b.Property<short>("TeknikHayvanSayisiID")
-                        .HasColumnType("smallint");
+                    b.Property<int>("TeknikHayvanSayisiID")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2");
@@ -650,8 +640,6 @@ namespace Stnc.CMS.DataAccess.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:IdentityIncrement", 1)
-                        .HasAnnotation("SqlServer:IdentitySeed", 1)
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int?>("AppUserId")
@@ -664,9 +652,7 @@ namespace Stnc.CMS.DataAccess.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(500)")
-                        .HasMaxLength(500);
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2");
@@ -675,7 +661,7 @@ namespace Stnc.CMS.DataAccess.Migrations
 
                     b.HasIndex("AppUserId");
 
-                    b.ToTable("DekamProjeTeknikDestekTalepSure");
+                    b.ToTable("DekamProjeDestekSure");
                 });
 
             modelBuilder.Entity("Stnc.CMS.Entities.Concrete.DekamProjeTeknikDestekTalepTur", b =>
@@ -704,7 +690,7 @@ namespace Stnc.CMS.DataAccess.Migrations
 
                     b.HasIndex("AppUserId");
 
-                    b.ToTable("DekamProjeTeknikDestekTalepTur");
+                    b.ToTable("DekamProjeDestekTur");
                 });
 
             modelBuilder.Entity("Stnc.CMS.Entities.Concrete.Gorev", b =>
@@ -900,14 +886,14 @@ namespace Stnc.CMS.DataAccess.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 1416000309,
+                            Id = 342316601,
                             Caption = "Lorem ipsum laramde loremde ipsumda inmpala",
-                            CreatedAt = new DateTime(2020, 8, 19, 15, 22, 19, 925, DateTimeKind.Local).AddTicks(639),
+                            CreatedAt = new DateTime(2020, 8, 19, 14, 4, 36, 451, DateTimeKind.Local).AddTicks(186),
                             Excerpt = "exceprt data loremmmmmm ipsummmmm",
                             MenuOrder = 1,
                             Picture = "default.jpg",
                             Status = true,
-                            UpdatedAt = new DateTime(2020, 8, 19, 15, 22, 19, 925, DateTimeKind.Local).AddTicks(9696),
+                            UpdatedAt = new DateTime(2020, 8, 19, 14, 4, 36, 451, DateTimeKind.Local).AddTicks(9615),
                             UrlAddress = "",
                             UrlType = (short)0
                         });

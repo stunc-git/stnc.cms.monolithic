@@ -21,6 +21,8 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Repositories
         public int GetCategoryPostIDListSingle(int PostID)
         {
             using var context = new StncCMSContext();
+            //            var returnData = context.CategoryBlogs.Select( I => new { I.Posts.PostTitle, I.CategoryID }).SingleOrDefault();
+
             var returnData = context.CategoryBlogs.SingleOrDefault(I => I.PostID == PostID);
             if (returnData == null)
                 return 1;

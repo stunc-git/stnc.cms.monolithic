@@ -10,10 +10,7 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts
 {
     public class StncCMSContext : IdentityDbContext<AppUser, AppRole, int>
     {
-        private static readonly ILoggerFactory dbLoggerCategory = LoggerFactory.Create(builder =>
-        {
-            builder.AddFilter((category, level) => category == DbLoggerCategory.Database.Command.Name && level == LogLevel.Information);
-        });
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -27,7 +24,6 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts
                 .Build();
 
             optionsBuilder.UseSqlServer(config.GetConnectionString("SQLProvider"));
-            optionsBuilder.UseLoggerFactory(dbLoggerCategory);
 
             base.OnConfiguring(optionsBuilder);
         }
@@ -45,6 +41,10 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts
             modelBuilder.ApplyConfiguration(new SliderMap());
             modelBuilder.ApplyConfiguration(new DekamProjeTakipMap());
             modelBuilder.ApplyConfiguration(new DekamProjeDeneyHayvaniTurMap());
+            modelBuilder.ApplyConfiguration(new DekamProjeDeneyHayvaniIrkMap());
+            modelBuilder.ApplyConfiguration(new DekamProjeLaboratuvarlarMap());
+            modelBuilder.ApplyConfiguration(new DekamProjeTeknikDestekTalepSureMap());
+            modelBuilder.ApplyConfiguration(new DekamProjeDeneyHayvanSayisiMap());
             base.OnModelCreating(modelBuilder);
         }
 
@@ -59,11 +59,11 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts
         public DbSet<CategoryBlogs> CategoryBlogs { get; set; }
         public DbSet<Comments> Comments { get; set; }
 
-        /// DEKAM Kurum içi proje takip
+        // DEKAM Kurum içi proje takip
         public DbSet<DekamProjeTakip> DekamProjeTakip { get; set; }
         public DbSet<DekamProjeLaboratuvarlar> DekamProjeLaboratuvarlar { get; set; }
-        public DbSet<DekamProjeTeknikDestekTalepTur> DekamProjeDestekTur { get; set; }
-        public DbSet<DekamProjeTeknikDestekTalepSure> DekamProjeDestekSure { get; set; }
+        public DbSet<DekamProjeTeknikDestekTalepTur> DekamProjeTeknikDestekTalepTur { get; set; }
+        public DbSet<DekamProjeTeknikDestekTalepSure> DekamProjeTeknikDestekTalepSure { get; set; }
         public DbSet<DekamProjeDeneyHayvanSayisi> DekamProjeDeneyHayvanSayisi { get; set; }
         public DbSet<DekamProjeDeneyHayvaniTur> DekamProjeDeneyHayvaniTur { get; set; }
         public DbSet<DekamProjeDeneyHayvaniIrk> DekamProjeDeneyHayvaniIrk { get; set; }
