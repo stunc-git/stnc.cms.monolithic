@@ -13,7 +13,9 @@ namespace Stnc.CMS.Entities.Concrete
         public DateTime? CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }
         public DateTime? DeletedAt { get; set; }
-        public List<CategoryBlogs> CategoryBlogs { get; set; }
+        // public List<CategoryBlogs> CategoryBlogs { get; set; }
+        public List<Posts> Posts { get; set; }
+
     }
 }
 

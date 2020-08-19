@@ -10,8 +10,8 @@ using Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts;
 namespace Stnc.CMS.DataAccess.Migrations
 {
     [DbContext(typeof(StncCMSContext))]
-    [Migration("20200819110436_Initialprj")]
-    partial class Initialprj
+    [Migration("20200819135625_InitialDekamProje1")]
+    partial class InitialDekamProje1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -318,9 +318,14 @@ namespace Stnc.CMS.DataAccess.Migrations
                     b.Property<int>("PostID")
                         .HasColumnType("int");
 
+                    b.Property<int?>("PostsId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryID");
+
+                    b.HasIndex("PostsId");
 
                     b.HasIndex("PostID", "CategoryID")
                         .IsUnique();
@@ -421,6 +426,8 @@ namespace Stnc.CMS.DataAccess.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
+                        .HasAnnotation("SqlServer:IdentityIncrement", 1)
+                        .HasAnnotation("SqlServer:IdentitySeed", 1)
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int?>("AppUserId")
@@ -433,7 +440,9 @@ namespace Stnc.CMS.DataAccess.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(500)")
+                        .HasMaxLength(500);
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2");
@@ -450,6 +459,8 @@ namespace Stnc.CMS.DataAccess.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
+                        .HasAnnotation("SqlServer:IdentityIncrement", 1)
+                        .HasAnnotation("SqlServer:IdentitySeed", 1)
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int?>("AppUserId")
@@ -462,7 +473,9 @@ namespace Stnc.CMS.DataAccess.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(500)")
+                        .HasMaxLength(500);
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2");
@@ -512,6 +525,8 @@ namespace Stnc.CMS.DataAccess.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
+                        .HasAnnotation("SqlServer:IdentityIncrement", 1)
+                        .HasAnnotation("SqlServer:IdentitySeed", 1)
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int?>("AppUserId")
@@ -524,7 +539,9 @@ namespace Stnc.CMS.DataAccess.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(500)")
+                        .HasMaxLength(500);
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2");
@@ -640,6 +657,8 @@ namespace Stnc.CMS.DataAccess.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
+                        .HasAnnotation("SqlServer:IdentityIncrement", 1)
+                        .HasAnnotation("SqlServer:IdentitySeed", 1)
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int?>("AppUserId")
@@ -652,7 +671,9 @@ namespace Stnc.CMS.DataAccess.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(500)")
+                        .HasMaxLength(500);
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2");
@@ -661,7 +682,7 @@ namespace Stnc.CMS.DataAccess.Migrations
 
                     b.HasIndex("AppUserId");
 
-                    b.ToTable("DekamProjeDestekSure");
+                    b.ToTable("DekamProjeTeknikDestekTalepSure");
                 });
 
             modelBuilder.Entity("Stnc.CMS.Entities.Concrete.DekamProjeTeknikDestekTalepTur", b =>
@@ -690,7 +711,7 @@ namespace Stnc.CMS.DataAccess.Migrations
 
                     b.HasIndex("AppUserId");
 
-                    b.ToTable("DekamProjeDestekTur");
+                    b.ToTable("DekamProjeTeknikDestekTalepTur");
                 });
 
             modelBuilder.Entity("Stnc.CMS.Entities.Concrete.Gorev", b =>
@@ -741,6 +762,9 @@ namespace Stnc.CMS.DataAccess.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int?>("AppUserId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("CategoryId")
                         .HasColumnType("int");
 
                     b.Property<long>("CommentCount")
@@ -799,6 +823,8 @@ namespace Stnc.CMS.DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("AppUserId");
+
+                    b.HasIndex("CategoryId");
 
                     b.ToTable("Posts");
                 });
@@ -886,14 +912,14 @@ namespace Stnc.CMS.DataAccess.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 342316601,
+                            Id = 473636549,
                             Caption = "Lorem ipsum laramde loremde ipsumda inmpala",
-                            CreatedAt = new DateTime(2020, 8, 19, 14, 4, 36, 451, DateTimeKind.Local).AddTicks(186),
+                            CreatedAt = new DateTime(2020, 8, 19, 16, 56, 25, 36, DateTimeKind.Local).AddTicks(5761),
                             Excerpt = "exceprt data loremmmmmm ipsummmmm",
                             MenuOrder = 1,
                             Picture = "default.jpg",
                             Status = true,
-                            UpdatedAt = new DateTime(2020, 8, 19, 14, 4, 36, 451, DateTimeKind.Local).AddTicks(9615),
+                            UpdatedAt = new DateTime(2020, 8, 19, 16, 56, 25, 37, DateTimeKind.Local).AddTicks(4954),
                             UrlAddress = "",
                             UrlType = (short)0
                         });
@@ -962,16 +988,14 @@ namespace Stnc.CMS.DataAccess.Migrations
             modelBuilder.Entity("Stnc.CMS.Entities.Concrete.CategoryBlogs", b =>
                 {
                     b.HasOne("Stnc.CMS.Entities.Concrete.Category", "Category")
-                        .WithMany("CategoryBlogs")
+                        .WithMany()
                         .HasForeignKey("CategoryID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Stnc.CMS.Entities.Concrete.Posts", "Posts")
-                        .WithMany("CategoryBlogs")
-                        .HasForeignKey("PostID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .WithMany()
+                        .HasForeignKey("PostsId");
                 });
 
             modelBuilder.Entity("Stnc.CMS.Entities.Concrete.Comments", b =>
@@ -1059,6 +1083,10 @@ namespace Stnc.CMS.DataAccess.Migrations
                         .WithMany("Posts")
                         .HasForeignKey("AppUserId")
                         .OnDelete(DeleteBehavior.SetNull);
+
+                    b.HasOne("Stnc.CMS.Entities.Concrete.Category", "Category")
+                        .WithMany("Posts")
+                        .HasForeignKey("CategoryId");
                 });
 
             modelBuilder.Entity("Stnc.CMS.Entities.Concrete.Rapor", b =>

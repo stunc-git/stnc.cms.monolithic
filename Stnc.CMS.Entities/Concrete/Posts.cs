@@ -23,7 +23,10 @@ namespace Stnc.CMS.Entities.Concrete
         public DateTime? DeletedAt { get; set; }
         public int? AppUserId { get; set; }
         public AppUser AppUser { get; set; }
-        public List<CategoryBlogs> CategoryBlogs { get; set; }
-      //  public List<Comments> Comments { get; set; }
+
+        public int? CategoryId { get; set; }
+        public Category Category { get; set; }
+        //public List<CategoryBlogs> CategoryBlogs { get; set; }
+        //  public List<Comments> Comments { get; set; }
     }
 }

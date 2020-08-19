@@ -8,12 +8,10 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Stnc.CMS.Business.Interfaces;
 using Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts;
 using Stnc.CMS.DTO.DTOs.PostDtos;
-using Stnc.CMS.DTO.DTOs.SliderDtos;
 using Stnc.CMS.Entities.Concrete;
 using Stnc.CMS.Web.BaseControllers;
 using Stnc.CMS.Web.StringInfo;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Stnc.CMS.Web.Areas.Admin.Controllers
@@ -53,8 +51,8 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
         public async Task<IActionResult> UploadFile(IFormFile aUploadedFile)
         {
             //todo: burada json return donmesi gerekli
-            string name=await Uploader(aUploadedFile, "file").ConfigureAwait(false);
-           string  vReturnImagePath = "/upload/file/" + name;
+            string name = await Uploader(aUploadedFile, "file").ConfigureAwait(false);
+            string vReturnImagePath = "/upload/file/" + name;
             return Ok(vReturnImagePath);
         }
 
@@ -80,23 +78,23 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
                     PostSlug = SlugHelper(model.PostTitle),
                     Picture = pictureDb,
                     AppUserId = user.Id,
+                    CategoryId=model.CategoryId
                 });
 
-                //TODO: many to many yapılacak
-                string CategoryID = HttpContext.Request.Form["CategoryID"];
-                if (CategoryID != "-1")
-                {
-                    using var context = new StncCMSContext();
-                    var categoryBlogs = new CategoryBlogs
-                    {
-                        PostID = success.Id,
-                        CategoryID = int.Parse(CategoryID)
-                    };
+                //string CategoryID = HttpContext.Request.Form["CategoryID"];
+                //if (CategoryID != "-1")
+                //{
+                //    using var context = new StncCMSContext();
+                //    var categoryBlogs = new CategoryBlogs
+                //    {
+                //        PostID = success.Id,
+                //        CategoryID = int.Parse(CategoryID)
+                //    };
 
-                  context.CategoryBlogs.Add(categoryBlogs);
+                //  context.CategoryBlogs.Add(categoryBlogs);
 
-                  context.SaveChanges();
-                }
+                //  context.SaveChanges();
+                //}
 
                 return RedirectToAction("Index");
             }
@@ -114,7 +112,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
                 ViewBag.Categories = new SelectList(_categoryService.GetAll(), "Id", "Name", catID);
                 return View(_mapper.Map<PostUpdateDto>(post));
             }
-             else
+            else
             {
                 f.Flash(Types.Danger, "Böyle bir veri bulunamadı", dismissable: true);
                 return RedirectToAction("Index");
@@ -128,7 +126,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
 
             string pictureDb = null;
 
-            string CategoryID = HttpContext.Request.Form["CategoryID"];
+          //  string CategoryID = HttpContext.Request.Form["CategoryID"];
 
             using var context = new StncCMSContext();
 
@@ -140,7 +138,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
                     pictureDb = pictureName;
                 }
 
-               _postService.Guncelle(new Posts
+                _postService.Guncelle(new Posts
                 {
                     Id = model.Id,
                     PostTitle = model.PostTitle,
@@ -149,26 +147,25 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
                     PostSlug = SlugHelper(model.PostSlug),
                     Picture = pictureDb,
                     AppUserId = user.Id,
+                    CategoryId=model.CategoryId
                 });
 
-                //TODO: many to many yapılacak
+                //if (CategoryID != "-1")
+                //{
+                //    var entity = context.CategoryBlogs.FirstOrDefault(item => item.PostID == model.Id);
+                //    if (entity != null)
+                //    {
+                //        entity.CategoryID = int.Parse(CategoryID);
 
-                if (CategoryID != "-1")
-                {
-                    var entity = context.CategoryBlogs.FirstOrDefault(item => item.PostID == model.Id);
-                    if (entity != null)
-                    {
-                        entity.CategoryID = int.Parse(CategoryID);
+                //        context.CategoryBlogs.Update(entity);
 
-                        context.CategoryBlogs.Update(entity);
-
-                        context.SaveChanges();
-                    }
-                }
+                //        context.SaveChanges();
+                //    }
+                //}
                 return RedirectToAction("Index");
             }
 
-            ViewBag.Categories = new SelectList(_postService.GetAll(), "Id", "Name", int.Parse(CategoryID));
+            ViewBag.Categories = new SelectList(_postService.GetAll(), "Id", "Name", model.CategoryId);
             return View(model);
         }
 

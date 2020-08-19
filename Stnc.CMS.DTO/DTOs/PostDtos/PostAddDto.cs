@@ -10,11 +10,10 @@ namespace Stnc.CMS.DTO.DTOs.PostDtos
         public string PostExcerpt { get; set; }
         public string PostSlug { get; set; }
         public string Picture { get; set; }
+        public int CategoryId { get; set; }
         public int MenuOrder { get; set; } = 1;
         public DateTime? CreatedAt { get; set; } = DateTime.Now;
         public DateTime? UpdatedAt { get; set; } = DateTime.Now;
         public DateTime? DeletedAt { get; set; }
-        public CategoryBlogs CategoryBlogs { get; set; }
-
     }
 }
