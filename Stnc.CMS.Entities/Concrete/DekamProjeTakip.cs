@@ -35,8 +35,6 @@ namespace Stnc.CMS.Entities.Concrete
         public int? AppUserId { get; set; }
         public AppUser AppUser { get; set; }
         public DekamProjeDeneyHayvaniTur DekamProjeDeneyHayvaniTur { get; set; }
-
-
         // public DekamProjeDeneyHayvaniTur DekamProjeDeneyHayvaniTur { get ; set; }
 
         /*

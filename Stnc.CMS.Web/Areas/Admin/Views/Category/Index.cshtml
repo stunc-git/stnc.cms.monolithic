@@ -5,42 +5,130 @@
 }
 
 
+<div class="col-md-12 float-left">
+    @if (Model.Count != 0)
+    {
+        <a asp-action="AddCategory" asp-controller="Category" class="btn btn-outline-dark btn-sm my-2">
+            <i class="fas fa-plus-circle mr-2"></i>
+            Yeni Kategori Ekle
+        </a>
 
-@if (Model.Count != 0)
-{
-    <a asp-action="AddCategory" asp-controller="Category" class="btn btn-sm btn-outline-dark my-2"> <i class="fas fa-plus-circle mr-2"></i> Yeni Kategori Ekle</a>
 
-    <table class="table table-sm table-hover">
-        <thead>
-            <tr>
-                <th>Kategorİ adı</th>
-                <th>İşlem</th>
-            </tr>
-        </thead>
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Blog Kategoriler</h3>
 
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>@item.Name</td>
-                    <td>
-                        <a asp-action="UpdateCategory" asp-controller="Category" asp-route-id="@item.Id" class="btn btn-warning btn-sm"><i class="far fa-edit mr-2"></i>Düzenle</a>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
-}
-else
-{
-    <div class="text-center mt-4">
-        <p class="lead">
-            Sistemde kayıtlı kategori durumu bulanamadı.
-        </p>
-        <a asp-action="AddCategory" asp-controller="Category" class="btn btn-sm btn-info my-2">Yeni Categori Ekle</a>
+                <div class="card-tools">
+                    <div class="input-group input-group-sm" style="width: 150px;">
+                        <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
 
+                        <div class="input-group-append">
+                            <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.card-header -->
+            <div class=" card-body table-responsive p-0">
+                <table class=" table  text-nowrap  table-striped table-hover">
+                    <tr>
+                        <th> <input type="checkbox" id="vehicle1" name="vehicle1"></th>
+                        <th>İsim</th>
+                        <th>Kısa İsim</th>
+                        <th>Açıklama</th>
+                        <th class="float-right">İşlem</th>
+                    </tr>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td> <input type="checkbox" id="vehicle1" name="vehicle1"></td>
+                            <td>@item.Name</td>
+                            <td>@item.Slug</td>
+                            <td> @Html.Raw(item.Description)</td>
+
+                            <td class="float-right">
+                                <a asp-action="UpdateCategory" asp-controller="Category" asp-route-id="@item.Id" class="btn btn-warning btn-sm"><i class="far fa-edit mr-2"></i>Düzenle</a>
+                                <a href="" data-toggle="modal" data-value="@item.Id" class="btn btn-danger DeleteEvent btn-sm">
+                                    <i class="fas fa-times-circle mr-2"></i> Sil
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </table>
+
+
+            </div>
+            <!-- /.card-body -->
+        </div>
+    }
+    else
+    {
+        <div class="text-center mt-4">
+            <p class="lead">
+                Sistemde kayıtlı veri bulanamadı.
+            </p>
+            <a asp-action="AddCategory" asp-controller="Category" class="btn btn-sm btn-info my-2">Yeni Categori Ekle</a>
+
+        </div>
+
+    }
+
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="silmeEkrani" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">UYARI</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Silmek istediğinizden emin misiniz?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Hayır Vazgeç</button>
+                    <button id="btnSil" type="button" class="btn btn-primary">Evet Sil</button>
+                </div>
+            </div>
+        </div>
     </div>
 
-}
+    @section JavaScript{
+        <script type="text/javascript">
+            $(document).ready(function () {
+                var myID = null;
+
+                $(document).on("click touchstart", "a.DeleteEvent", function (event) {
+                    myID = $(this).data('value');
+                    console.log(myID);
+                    jQuery('#silmeEkrani').modal('show');
+                });
 
 
+
+
+                $("#btnSil").click(function () {
+                    $.ajax({
+                        type: "Get",
+                        url: "./Category/DeleteCategory",
+                        data: { id: myID },
+                        dataType: "json",
+                        contentType: "application/json; charset=utf-8;",
+                        success: function () {
+                            //alert("işlem tamam");
+                            window.location.reload();
+                        },
+                        error: function (error) {
+                            alert(error.statusText);
+                        }
+                    })
+                });
+            })
+
+        </script>
+
+    }
+</div>

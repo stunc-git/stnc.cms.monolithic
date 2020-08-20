@@ -13,8 +13,6 @@ namespace Stnc.CMS.Entities.Concrete
         public DateTime? DeletedAt { get; set; }
         public int? AppUserId { get; set; }
         public AppUser AppUser { get; set; }
-
         public List<DekamProjeTakip> DekamProjeTakip { get; set; }
-
     }
 }

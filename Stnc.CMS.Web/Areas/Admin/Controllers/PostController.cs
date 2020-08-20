@@ -70,7 +70,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
                     pictureDb = pictureName;
                 }
 
-                var success = _postService.SaveReturn(new Posts
+                 _postService.SaveReturn(new Posts
                 {
                     PostTitle = model.PostTitle,
                     PostContent = model.PostContent,
@@ -78,8 +78,8 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
                     PostSlug = SlugHelper(model.PostTitle),
                     Picture = pictureDb,
                     AppUserId = user.Id,
-                    CategoryId=model.CategoryId
-                });
+                     CategoryId = model.CategoryId
+                 });
 
                 //string CategoryID = HttpContext.Request.Form["CategoryID"];
                 //if (CategoryID != "-1")
@@ -108,8 +108,8 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
             var post = _postService.GetirIdile(id);
             if (post != null)
             {
-                var catID = _categoryBlogService.GetCategoryPostIDListSingle(id);
-                ViewBag.Categories = new SelectList(_categoryService.GetAll(), "Id", "Name", catID);
+               // var catID = _categoryBlogService.GetCategoryPostIDListSingle(id);
+                ViewBag.Categories = new SelectList(_categoryService.GetAll(), "Id", "Name", post.CategoryId);
                 return View(_mapper.Map<PostUpdateDto>(post));
             }
             else
@@ -147,7 +147,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
                     PostSlug = SlugHelper(model.PostSlug),
                     Picture = pictureDb,
                     AppUserId = user.Id,
-                    CategoryId=model.CategoryId
+                    CategoryId = model.CategoryId
                 });
 
                 //if (CategoryID != "-1")

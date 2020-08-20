@@ -32,14 +32,11 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Mapping
             //    .WithOne(I => I.DekamProjeTeknikDestekTalepTur)
             //    .HasForeignKey(I => I.AciliyetId);
 
-
             //https://www.learnentityframeworkcore.com/configuration/one-to-one-relationship-configuration
             //burada kaldım
             //     builder.HasOne(I => I.Aciliyet).WithMany(I => I.Gorevler).HasForeignKey(I => I.AciliyetId);
 
             builder.HasOne(I => I.DekamProjeDeneyHayvaniTur).WithMany(I => I.DekamProjeTakip).HasForeignKey(I => I.DeneyHayvaniTurID);
-
-
         }
     }
 }

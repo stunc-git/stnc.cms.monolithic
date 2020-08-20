@@ -1,22 +1,25 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Stnc.CMS.Business.Interfaces;
 
 using Stnc.CMS.DTO.DTOs.CategoryDtos;
 using Stnc.CMS.Entities.Concrete;
+using Stnc.CMS.Web.BaseControllers;
 using Stnc.CMS.Web.StringInfo;
+using System;
 using System.Collections.Generic;
 
 namespace Stnc.CMS.Web.Areas.Admin.Controllers
 {
     [Authorize(Roles = RoleInfo.Admin)]
     [Area(AreaInfo.Admin)]
-    public class CategoryController : Controller
+    public class CategoryController : BaseIdentityController
     {
         private readonly ICategoryService _categoryservice;
         private readonly IMapper _mapper;
-        public CategoryController(ICategoryService categoryservice, IMapper mapper)
+        public CategoryController(ICategoryService categoryservice, IMapper mapper, UserManager<AppUser> userManager) : base(userManager)
         {
             _mapper = mapper;
             _categoryservice = categoryservice;
@@ -41,7 +44,8 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
             {
                 _categoryservice.Kaydet(new Category()
                 {
-                    Name = model.Name
+                    Name = model.Name,
+                    Slug = SlugHelper(model.Name),
                 });
 
                 return RedirectToAction("Index");
@@ -63,12 +67,19 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
                 _categoryservice.Guncelle(new Category
                 {
                     Id = model.Id,
-                    Name = model.Name
+                    Name = model.Name,
+                    Slug = SlugHelper(model.Name),
                 });
 
                 return RedirectToAction("Index");
             }
             return View(model);
+        }
+
+        public IActionResult DeleteCategory(int id)
+        {
+            _categoryservice.Sil(new Category { Id = id });
+            return Json(null);
         }
     }
 }

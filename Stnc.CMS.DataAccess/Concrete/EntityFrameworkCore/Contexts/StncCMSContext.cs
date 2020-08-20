@@ -10,8 +10,6 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts
 {
     public class StncCMSContext : IdentityDbContext<AppUser, AppRole, int>
     {
-
-
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             //  optionsBuilder.UseSqlServer("server=(localdb)\\mssqllocaldb; database=bloggg; user id=sa; password=1;");

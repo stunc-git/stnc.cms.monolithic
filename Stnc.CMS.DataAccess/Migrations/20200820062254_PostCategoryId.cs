@@ -3,10 +3,20 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Stnc.CMS.DataAccess.Migrations
 {
-    public partial class InitialDekamProje1 : Migration
+    public partial class PostCategoryId : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DeleteData(
+                table: "Slider",
+                keyColumn: "Id",
+                keyValue: 287515987);
+
+            migrationBuilder.AddColumn<int>(
+                name: "CategoryId",
+                table: "Posts",
+                nullable: true);
+
             migrationBuilder.CreateTable(
                 name: "DekamProjeDeneyHayvaniIrk",
                 columns: table => new
@@ -195,7 +205,12 @@ namespace Stnc.CMS.DataAccess.Migrations
             migrationBuilder.InsertData(
                 table: "Slider",
                 columns: new[] { "Id", "AppUserId", "Caption", "CreatedAt", "DeletedAt", "Excerpt", "MenuOrder", "Picture", "Status", "UpdatedAt", "UrlAddress", "UrlType" },
-                values: new object[] { 473636549, null, "Lorem ipsum laramde loremde ipsumda inmpala", new DateTime(2020, 8, 19, 16, 56, 25, 36, DateTimeKind.Local).AddTicks(5761), null, "exceprt data loremmmmmm ipsummmmm", 1, "default.jpg", true, new DateTime(2020, 8, 19, 16, 56, 25, 37, DateTimeKind.Local).AddTicks(4954), "", (short)0 });
+                values: new object[] { 391232456, null, "Lorem ipsum laramde loremde ipsumda inmpala", new DateTime(2020, 8, 20, 9, 22, 53, 549, DateTimeKind.Local).AddTicks(1932), null, "exceprt data loremmmmmm ipsummmmm", 1, "default.jpg", true, new DateTime(2020, 8, 20, 9, 22, 53, 550, DateTimeKind.Local).AddTicks(599), "", (short)0 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Posts_CategoryId",
+                table: "Posts",
+                column: "CategoryId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_DekamProjeDeneyHayvaniIrk_AppUserId",
@@ -236,10 +251,22 @@ namespace Stnc.CMS.DataAccess.Migrations
                 name: "IX_DekamProjeTeknikDestekTalepTur_AppUserId",
                 table: "DekamProjeTeknikDestekTalepTur",
                 column: "AppUserId");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_Posts_Categories_CategoryId",
+                table: "Posts",
+                column: "CategoryId",
+                principalTable: "Categories",
+                principalColumn: "Id",
+                onDelete: ReferentialAction.Restrict);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropForeignKey(
+                name: "FK_Posts_Categories_CategoryId",
+                table: "Posts");
+
             migrationBuilder.DropTable(
                 name: "DekamProjeDeneyHayvaniIrk");
 
@@ -260,6 +287,24 @@ namespace Stnc.CMS.DataAccess.Migrations
 
             migrationBuilder.DropTable(
                 name: "DekamProjeDeneyHayvaniTur");
+
+            migrationBuilder.DropIndex(
+                name: "IX_Posts_CategoryId",
+                table: "Posts");
+
+            migrationBuilder.DeleteData(
+                table: "Slider",
+                keyColumn: "Id",
+                keyValue: 391232456);
+
+            migrationBuilder.DropColumn(
+                name: "CategoryId",
+                table: "Posts");
+
+            migrationBuilder.InsertData(
+                table: "Slider",
+                columns: new[] { "Id", "AppUserId", "Caption", "CreatedAt", "DeletedAt", "Excerpt", "MenuOrder", "Picture", "Status", "UpdatedAt", "UrlAddress", "UrlType" },
+                values: new object[] { 287515987, null, "Lorem ipsum laramde loremde ipsumda inmpala", new DateTime(2020, 8, 20, 9, 17, 1, 982, DateTimeKind.Local).AddTicks(6189), null, "exceprt data loremmmmmm ipsummmmm", 1, "default.jpg", true, new DateTime(2020, 8, 20, 9, 17, 1, 983, DateTimeKind.Local).AddTicks(5069), "", (short)0 });
         }
     }
 }

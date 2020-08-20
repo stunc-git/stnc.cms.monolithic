@@ -60,8 +60,6 @@ using SixLabors.ImageSharp.Processing;
                 image.Save("output/fb.jpg"); // Automatic encoder selected based on extension.
             }
             */
-
-
         }
 
         protected void HataEkle(IEnumerable<IdentityError> errors)
