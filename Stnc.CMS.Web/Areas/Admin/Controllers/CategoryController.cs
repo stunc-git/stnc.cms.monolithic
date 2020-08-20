@@ -45,6 +45,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
                 _categoryservice.Kaydet(new Category()
                 {
                     Name = model.Name,
+                    Description = model.Description,
                     Slug = SlugHelper(model.Name),
                 });
 
@@ -68,7 +69,8 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
                 {
                     Id = model.Id,
                     Name = model.Name,
-                    Slug = SlugHelper(model.Name),
+                    Description = model.Description,
+                    Slug = SlugHelper(model.Slug),
                 });
 
                 return RedirectToAction("Index");

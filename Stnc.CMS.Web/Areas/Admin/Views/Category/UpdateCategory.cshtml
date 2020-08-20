@@ -17,9 +17,28 @@
             <div class="card-body">
                 <div class="form-group">
                     <label asp-for="Name">Tanım :</label>
-                    <span asp-validation-for="Name" class="text-danger"></span>
                     <input asp-for="Name" type="text" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+
                 </div>
+
+
+                <div class="form-group">
+                    <label asp-for="Slug">Kısa isim :</label>
+                    <input asp-for="Slug" type="text" class="form-control" />
+                    <span asp-validation-for="Slug" class="text-danger"></span>
+
+                    <p> “slug” yazı isminin URL versiyonudur. Genellikle tümü küçük harflerden oluşur, sadece harf, rakam ve tire içerir.  </p>
+                </div>
+
+                <div class="form-group">
+                    <label> Açıklama :</label>
+                    <textarea asp-for="Description" class="form-control"></textarea>
+                    <span asp-validation-for="@Model.Description" class="text-danger"></span>
+                    <p> Tanım bölümü varsayılan olarak ön planda değildir, belli durumlarda kullanım içindir</p>
+
+                </div>
+
             </div>
             <!-- /.card-body -->
 
@@ -34,5 +53,7 @@
 @section JavaScript{
     <script src="~/lib/jqueryValidate/jquery.validate.min.js"></script>
     <script src="~/lib/jqueryUnob/jquery.validate.unobtrusive.min.js"></script>
+    <partial name="_ValidationScriptsPartial" />
+
 }
 

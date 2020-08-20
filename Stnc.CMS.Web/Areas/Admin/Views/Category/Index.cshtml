@@ -36,17 +36,17 @@
                         <th>İsim</th>
                         <th>Kısa İsim</th>
                         <th>Açıklama</th>
-                        <th class="float-right">İşlem</th>
+                        <th>İşlem</th>
                     </tr>
                     @foreach (var item in Model)
                     {
-                        <tr>
+                        <tr class="tableTR-@item.Id">
                             <td> <input type="checkbox" id="vehicle1" name="vehicle1"></td>
                             <td>@item.Name</td>
                             <td>@item.Slug</td>
                             <td> @Html.Raw(item.Description)</td>
 
-                            <td class="float-right">
+                            <td>
                                 <a asp-action="UpdateCategory" asp-controller="Category" asp-route-id="@item.Id" class="btn btn-warning btn-sm"><i class="far fa-edit mr-2"></i>Düzenle</a>
                                 <a href="" data-toggle="modal" data-value="@item.Id" class="btn btn-danger DeleteEvent btn-sm">
                                     <i class="fas fa-times-circle mr-2"></i> Sil
@@ -98,37 +98,8 @@
 
     @section JavaScript{
         <script type="text/javascript">
-            $(document).ready(function () {
-                var myID = null;
-
-                $(document).on("click touchstart", "a.DeleteEvent", function (event) {
-                    myID = $(this).data('value');
-                    console.log(myID);
-                    jQuery('#silmeEkrani').modal('show');
-                });
-
-
-
-
-                $("#btnSil").click(function () {
-                    $.ajax({
-                        type: "Get",
-                        url: "./Category/DeleteCategory",
-                        data: { id: myID },
-                        dataType: "json",
-                        contentType: "application/json; charset=utf-8;",
-                        success: function () {
-                            //alert("işlem tamam");
-                            window.location.reload();
-                        },
-                        error: function (error) {
-                            alert(error.statusText);
-                        }
-                    })
-                });
-            })
-
+            var listDeleteUrl = "./Category/DeleteCategory";
         </script>
-
+        <partial name="_ListEvents" />
     }
 </div>

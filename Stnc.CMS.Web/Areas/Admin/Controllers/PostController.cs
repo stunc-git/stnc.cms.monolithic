@@ -22,17 +22,15 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
     {
         private readonly IPostService _postService;
         private readonly ICategoryService _categoryService;
-        private readonly ICategoryBlogService _categoryBlogService;
         private readonly IMapper _mapper;
         private readonly IFlasher f;
 
-        public PostController(IFlasher f, IPostService postService, ICategoryService categoryService, ICategoryBlogService categoryBlogService, UserManager<AppUser> userManager, IMapper mapper) : base(userManager)
+        public PostController(IFlasher f, IPostService postService, ICategoryService categoryService,  UserManager<AppUser> userManager, IMapper mapper) : base(userManager)
         {
             this.f = f;
             _mapper = mapper;
             _postService = postService;
             _categoryService = categoryService;
-            _categoryBlogService = categoryBlogService;
         }
 
         public IActionResult Index()

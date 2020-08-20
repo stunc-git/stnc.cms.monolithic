@@ -12,7 +12,6 @@
             Yeni İçerik Ekle
         </a>
 
-
         <div class="card">
             <div class="card-header">
                 <h3 class="card-title">İçerikler</h3>
@@ -40,7 +39,7 @@
                     </tr>
                     @foreach (var item in Model)
                     {
-                        <tr>
+                        <tr class="tableTR-@item.Id">
                             <td> <input type="checkbox" id="vehicle1" name="vehicle1"></td>
                             <td>@item.PostTitle</td>
                             <td>Admin</td>
@@ -69,12 +68,8 @@
                 Sistemde kayıtlı veri bulanamadı.
             </p>
             <a asp-action="AddPost" asp-controller="Post" class="btn btn-sm btn-info my-2">Yeni İçerik Ekle</a>
-
         </div>
-
     }
-
-
 
     <!-- Modal -->
     <div class="modal fade" id="silmeEkrani" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -97,39 +92,11 @@
         </div>
     </div>
 
-    @section JavaScript{
-        <script type="text/javascript">
-            $(document).ready(function () {
-                var myID = null;
-
-                $(document).on("click touchstart", "a.DeleteEvent", function (event) {
-                    myID = $(this).data('value');
-                    console.log(myID);
-                    jQuery('#silmeEkrani').modal('show');
-                });
-
-
-
-
-                $("#btnSil").click(function () {
-                    $.ajax({
-                        type: "Get",
-                        url: "./Post/DeletePost",
-                        data: { id: myID },
-                        dataType: "json",
-                        contentType: "application/json; charset=utf-8;",
-                        success: function () {
-                            //alert("işlem tamam");
-                            window.location.reload();
-                        },
-                        error: function (error) {
-                            alert(error.statusText);
-                        }
-                    })
-                });
-            })
-
-        </script>
-
-    }
 </div>
+
+@section JavaScript{
+    <script type="text/javascript">
+        var listDeleteUrl = "./Post/DeletePost";
+    </script>
+    <partial name="_ListEvents" />
+}

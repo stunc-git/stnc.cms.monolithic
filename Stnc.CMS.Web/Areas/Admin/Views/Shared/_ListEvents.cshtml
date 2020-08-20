@@ -1,0 +1,38 @@
+﻿<script>
+
+    $(document).ready(function () {
+        var myID = null;
+
+        $(document).on("click touchstart", "a.DeleteEvent", function (event) {
+            myID = $(this).data('value');
+            //console.log(myID);
+            jQuery('#silmeEkrani').modal('show');
+            $(".tableTR-" + myID).animate({ 'backgroundColor': '#fb6c6c' }, 300);
+        });
+
+        $("#btnSil").click(function () {
+            $.ajax({
+                type: "Get",
+                url: listDeleteUrl,
+                data: { id: myID },
+                dataType: "json",
+                contentType: "application/json; charset=utf-8;",
+                beforeSend: function () {
+                    $(".tableTR-" + myID).animate({ 'backgroundColor': '#fb6c6c' }, 300);
+                },
+                success: function () {
+
+                    //window.location.reload();
+                    $(".tableTR-" + myID).slideUp(300, function () {
+                        $(".tableTR-" + myID).remove();
+                    });
+                    jQuery('#silmeEkrani').modal('hide');
+                },
+                error: function (error) {
+                    alert(error.statusText);
+                }
+            })
+        });
+    })
+
+</script>

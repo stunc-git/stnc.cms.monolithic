@@ -54,7 +54,7 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts
         public DbSet<Posts> Posts { get; set; }
         public DbSet<Slider> Slider { get; set; }
         public DbSet<Category> Categories { get; set; }
-        public DbSet<CategoryBlogs> CategoryBlogs { get; set; }
+      //  public DbSet<CategoryBlogs> CategoryBlogs { get; set; }
         public DbSet<Comments> Comments { get; set; }
 
         // DEKAM Kurum içi proje takip
