@@ -52,8 +52,8 @@
                     <label>Kategori Seçiniz:</label>
                     <span class="text-danger"></span>
 
-                    <select class="form-control" name="CategoryId" asp-items=" ViewBag.Categories">
-                        <option hidden value="-1">Seçiniz</option>
+                    <select class="form-control" asp-for="CategoryId" asp-items=" ViewBag.Categories">
+                        <option value="">Seçiniz</option>
                     </select>
                     <span asp-validation-for="@Model.CategoryId" class="text-danger"></span>
 

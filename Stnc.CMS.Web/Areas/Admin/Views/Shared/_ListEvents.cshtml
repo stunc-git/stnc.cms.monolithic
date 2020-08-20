@@ -6,11 +6,18 @@
         $(document).on("click touchstart", "a.DeleteEvent", function (event) {
             myID = $(this).data('value');
             //console.log(myID);
-            jQuery('#silmeEkrani').modal('show');
+            jQuery('#deleteModalScreen').modal('show');
             $(".tableTR-" + myID).animate({ 'backgroundColor': '#fb6c6c' }, 300);
         });
 
-        $("#btnSil").click(function () {
+        $(document).on("click touchstart", "#btnCancel", function (event) {
+            $(".tableTR-" + myID).animate({ 'backgroundColor': 'inherit' }, 300);
+        });
+
+
+
+
+        $("#btnDelete").click(function () {
             $.ajax({
                 type: "Get",
                 url: listDeleteUrl,
@@ -26,7 +33,7 @@
                     $(".tableTR-" + myID).slideUp(300, function () {
                         $(".tableTR-" + myID).remove();
                     });
-                    jQuery('#silmeEkrani').modal('hide');
+                    jQuery('#deleteModalScreen').modal('hide');
                 },
                 error: function (error) {
                     alert(error.statusText);

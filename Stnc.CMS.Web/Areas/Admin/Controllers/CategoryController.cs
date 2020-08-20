@@ -40,6 +40,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult AddCategory(CategoryAddDto model)
         {
+
             if (ModelState.IsValid)
             {
                 _categoryservice.Kaydet(new Category()

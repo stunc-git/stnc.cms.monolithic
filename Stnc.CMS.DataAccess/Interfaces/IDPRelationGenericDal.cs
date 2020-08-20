@@ -5,7 +5,7 @@ using Stnc.CMS.Entities.Concrete;
 
 namespace Stnc.CMS.DataAccess.Interfaces
 {
-    public interface IDPRelationGenericDal : IGenericDal<DPRelationGenericsEntity>
+    public interface ICategoryDal : IGenericDal<Category>
     {
     }
 }
