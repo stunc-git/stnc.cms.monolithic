@@ -13,6 +13,7 @@ using Stnc.CMS.Entities.Concrete;
 using Stnc.CMS.Web.BaseControllers;
 using Stnc.CMS.Web.StringInfo;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Stnc.CMS.Web.Areas.Admin.Controllers
@@ -35,13 +36,17 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
         public IActionResult Index()
         {
             TempData["Active"] = TempdataInfo.Post;
+
+
             return View(_mapper.Map<List<DekamProjeTakipListDto>>(_dekamProjeTakipService.DekamProjeTakipServiceList()));
         }
 
         public IActionResult Create()
         {
             TempData["Active"] = TempdataInfo.Post;
-       //     ViewBag.Categories = new SelectList(_categoryService.GetAll(), "Id", "Name");
+            using var context = new StncCMSContext();
+            var deneyHayvanlar = context.Set<DekamProjeDeneyHayvaniIrk>().OrderByDescending(I => I.Id).ToList();
+            ViewBag.Categories = new SelectList(deneyHayvanlar, "Id", "Name");
             return View(new DekamProjeTakipCreateDto());
         }
         /*

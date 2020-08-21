@@ -6,353 +6,339 @@
 <form asp-action="Add" method="post" style="margin: 0; padding: 0; width: 100%;" enctype="multipart/form-data">
 
     <div class="row">
-        <div class="col-md-4 float-left">
+        <div class="col-md-10 ">
 
-            <div class="card card-primary">
-                <div class="card-header">
-                    <h3 class="card-title">Proje Yöneticisi</h3>
+            <div class="col-md-4 float-left">
+
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Proje Yöneticisi</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <div class="card-body">
+
+                        <div class="form-group">
+                            <label asp-for="ProjeYurutucusu">Proje Yürütücüsü: * </label>
+                            <input asp-for="ProjeYurutucusu" type="text" class="form-control" />
+                            <span asp-validation-for="ProjeYurutucusu" class="text-danger"></span>
+                            <p>Proje yürütücüsünün adı soyadı bilgisi</p>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="ProjeYurutukurumu">Proje Yürütücüsünün Kurumu: * </label>
+                            <input asp-for="ProjeYurutukurumu" type="text" class="form-control" />
+                            <span asp-validation-for="ProjeYurutukurumu" class="text-danger"></span>
+                            <p>Proje yürütücüsünün bağlı olduğu kurum bilgisi</p>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="ProjeYurutuTelefon">Proje Yürütücüsü Telefon No: * </label>
+                            <input asp-for="ProjeYurutuTelefon" type="text" class="form-control" />
+                            <span asp-validation-for="ProjeYurutuTelefon" class="text-danger"></span>
+                            <p>Proje yürütücüsünün telefon numarası </p>
+                        </div>
+                    </div>
+                    <!-- /.card-body -->
                 </div>
-                <!-- /.card-header -->
-                <!-- form start -->
-                <div class="card-body">
+            </div>
 
-                    <div class="form-group">
-                        <label asp-for="ProjeYurutucusu">Proje Yürütücüsü: * </label>
-                        <input asp-for="ProjeYurutucusu" type="text" class="form-control" />
-                        <span asp-validation-for="ProjeYurutucusu" class="text-danger"></span>
-                        <p>Proje Yürütücüsünün adı soyadı bilgisi</p>
+            <div class="col-md-4 float-left">
+
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Sorumlu Araştırmacı</h3>
                     </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <div class="card-body">
 
-                    <div class="form-group">
-                        <label asp-for="ProjeYurutukurumu">Proje Yürütücüsünün Kurumu: * </label>
-                        <input asp-for="ProjeYurutukurumu" type="text" class="form-control" />
-                        <span asp-validation-for="ProjeYurutukurumu" class="text-danger"></span>
-                        <p>Proje Yürütücüsünün bağlı olduğu kurum bilgisi</p>
+                        <div class="form-group">
+                            <label asp-for="SorumluArastirmaci">Sorumlu Araştırmacı: * </label>
+                            <input asp-for="SorumluArastirmaci" type="text" class="form-control" />
+                            <span asp-validation-for="SorumluArastirmaci" class="text-danger"></span>
+                            <p>Proje ile sorumlu olacak kişi bilgisi </p>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="SorumluArastirmaciTelefon">Sorumlu Araştırmacı Telefon No: * </label>
+                            <input asp-for="SorumluArastirmaciTelefon" type="text" class="form-control" />
+                            <span asp-validation-for="SorumluArastirmaciTelefon" class="text-danger"></span>
+                            <p>Proje ile sorumlu olacak kişi telefon numarası </p>
+                        </div>
                     </div>
-
-
-                    <div class="form-group">
-                        <label asp-for="ProjeYurutuTelefon">Proje Yürütücüsü Telefon No: * </label>
-                        <input asp-for="ProjeYurutuTelefon" type="text" class="form-control" />
-                        <span asp-validation-for="ProjeYurutuTelefon" class="text-danger"></span>
-                        <p>Proje Yürütücüsünün telefon numarası </p>
-                    </div>
-
+                    <!-- /.card-body -->
                 </div>
-                <!-- /.card-body -->
+            </div>
+
+            <div class="col-md-4 float-left">
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Etik Kurul </h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <div class="card-body">
+
+                        <div class="form-group">
+                            <label asp-for="EtikKurulOnayNumarasi">Etik Kurul Onay Numarası: * </label>
+                            <input asp-for="EtikKurulOnayNumarasi" type="text" class="form-control" />
+                            <span asp-validation-for="EtikKurulOnayNumarasi" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="EtikKurulOnayTarihi">Etik Kurul Onay Tarihi: * </label>
+
+                            <div class="input-group date" id="EtikKurulOnayTarihiDate" data-target-input="nearest">
+                                <input type="text" asp-for="EtikKurulOnayTarihi" class="form-control datetimepicker-input"
+                                       data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask data-target="#EtikKurulOnayTarihiDate">
+                                <div class="input-group-append" data-target="#EtikKurulOnayTarihiDate" data-toggle="datetimepicker">
+                                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                </div>
+                            </div>
+                            <span asp-validation-for="EtikKurulOnayTarihi" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+            </div>
+
+            <div class="col-md-4 float-left">
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Proje Tarihleri </h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label asp-for="ProjeBaslangicTarihi">Proje Başlangıç  Tarihi: * </label>
+
+                            <div class="input-group date" id="ProjeBaslangicTarihiDate" data-target-input="nearest">
+                                <input type="text" asp-for="ProjeBaslangicTarihi" class="form-control datetimepicker-input"
+                                       data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask data-target="#ProjeBaslangicTarihiDate">
+                                <div class="input-group-append" data-target="#ProjeBaslangicTarihiDate" data-toggle="datetimepicker">
+                                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                </div>
+                            </div>
+                            <span asp-validation-for="ProjeBaslangicTarihi" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="ProjeBitisTarihi">Proje Bitiş  Tarihi: * </label>
+                            <div class="input-group date" id="ProjeBitisTarihiDate" data-target-input="nearest">
+                                <input type="text" asp-for="ProjeBitisTarihi" class="form-control datetimepicker-input"
+                                       data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask data-target="#ProjeBitisTarihiDate">
+                                <div class="input-group-append" data-target="#ProjeBitisTarihiDate" data-toggle="datetimepicker">
+                                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                </div>
+                            </div>
+                            <span asp-validation-for="ProjeBitisTarihi" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+            </div>
+
+            <div class="col-md-4 float-left">
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Kullanılacak Deney Hayvanı:</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <div class="card-body">
+
+                        <div class="form-group">
+                            <label>Hayvan Türü Seçiniz:</label>
+                            <select class="form-control" asp-for="DeneyHayvaniTurID" asp-items="ViewBag.Categories">
+                                <option value="">Seçiniz</option>
+                            </select>
+                            <span asp-validation-for="@Model.DeneyHayvaniTurID" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Hayvan Irkını Seçiniz:</label>
+                            <select class="form-control" asp-for="DeneyHayvaniIrkID" asp-items="ViewBag.Categories">
+                                <option value="">Seçiniz</option>
+                            </select>
+                            <span asp-validation-for="@Model.DeneyHayvaniIrkID" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Hayvan Cinsiyetini Seçiniz:</label>
+                            <select class="form-control" asp-for="DeneyHayvaniIrkID" asp-items="ViewBag.Categories">
+                                <option value="">Seçiniz</option>
+                            </select>
+                            <span asp-validation-for="@Model.DeneyHayvaniIrkID" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="DeneyHayvaniSayisi">Deney hayvanı Sayısı: * </label>
+                            <input asp-for="DeneyHayvaniSayisi" type="text" class="form-control" />
+                            <span asp-validation-for="DeneyHayvaniSayisi" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+
+                            <label asp-for="DeneyHayvaniYasi">Deney hayvanı Yaşı: * </label>
+                            <input asp-for="DeneyHayvaniYasi" type="text" class="form-control" />
+                            <span asp-validation-for="DeneyHayvaniYasi" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="DeneyHayvaniAgirligi">Deney Hayvanı Ağırlığı: * </label>
+                            <input asp-for="DeneyHayvaniAgirligi" type="text" class="form-control" />
+                            <span asp-validation-for="DeneyHayvaniAgirligi" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+            </div>
+
+            <div class="col-md-4 float-left">
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Teknik Destek Talebi:</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <div class="card-body">
+
+                        <div class="form-group">
+                            <label>Destek Süresi:</label>
+                            <select class="form-control" asp-for="TeknikDestekSuresiID" asp-items="ViewBag.Categories">
+                                <option value="">Seçiniz</option>
+                            </select>
+                            <span asp-validation-for="@Model.TeknikDestekSuresiID" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Teknik Destek Türü:</label>
+                            <select class="form-control" asp-for="TeknikDestekTuruID" asp-items="ViewBag.Categories">
+                                <option value="">Seçiniz</option>
+                            </select>
+                            <span asp-validation-for="@Model.TeknikDestekTuruID" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Destek Hayvan Sayısı:</label>
+                            <select class="form-control" asp-for="TeknikHayvanSayisiID" asp-items="ViewBag.Categories">
+                                <option value="">Seçiniz</option>
+                            </select>
+                            <span asp-validation-for="@Model.TeknikHayvanSayisiID" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+            </div>
+
+            <div class="col-md-4 float-left">
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Kullanılacak Laboratuvar ve Tarihleri: </h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <div class="card-body">
+
+                        <div class="form-group">
+                            <label>Kullanılacak Labaratuvar:</label>
+                            <select class="form-control" asp-for="LaboratuvarID" asp-items="ViewBag.Categories">
+                                <option value="">Seçiniz</option>
+                            </select>
+                            <span asp-validation-for="@Model.LaboratuvarID" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="LaboratuvarBaslangicTarihi">Kullanılacak Laboratuvar Başlangıç Tarihi: * </label>
+
+                            <div class="input-group date" id="LaboratuvarBaslangicTarihiDate" data-target-input="nearest">
+                                <input type="text" asp-for="LaboratuvarBaslangicTarihi" class="form-control datetimepicker-input"
+                                       data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask data-target="#LaboratuvarBaslangicTarihiDate">
+                                <div class="input-group-append" data-target="#LaboratuvarBaslangicTarihiDate" data-toggle="datetimepicker">
+                                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                </div>
+                            </div>
+                            <span asp-validation-for="LaboratuvarBaslangicTarihi" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="LaboratuvarBitisTarihi">Kullanılacak Laboratuvar Bitiş Tarihi: * </label>
+
+                            <div class="input-group date" id="LaboratuvarBitisTarihiDate" data-target-input="nearest">
+                                <input type="text" asp-for="LaboratuvarBitisTarihi" class="form-control datetimepicker-input"
+                                       data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask data-target="#LaboratuvarBitisTarihiDate">
+                                <div class="input-group-append" data-target="#LaboratuvarBitisTarihiDate" data-toggle="datetimepicker">
+                                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                </div>
+                            </div>
+                            <span asp-validation-for="LaboratuvarBitisTarihi" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
             </div>
         </div>
 
-        <div class="col-md-4 float-left">
+        <div class="col-md-2 ">
 
-            <div class="card card-primary">
-                <div class="card-header">
-                    <h3 class="card-title">Sorumlu araştırmacı</h3>
-                </div>
-                <!-- /.card-header -->
-                <!-- form start -->
-                <div class="card-body">
-
-                    <div class="form-group">
-                        <label asp-for="SorumluArastirmaci">Sorumlu Araştırmacı: * </label>
-                        <input asp-for="SorumluArastirmaci" type="text" class="form-control" />
-                        <span asp-validation-for="SorumluArastirmaci" class="text-danger"></span>
-                        <p>Proje ile sorumlu olacak kişi bilgisi </p>
-                    </div>
+                    <div class="card card-primary">
+                        <!-- /.card-header -->
+                        <div class="card-header">
+                            <h3 class="card-title">Diğer İşlemler: </h3>
+                        </div>
 
 
+                        <div class="card-body">
+                            Proforma Talebi
+                        </div>
+                        <div class="card-body">
 
-                    <div class="form-group">
-                        <label asp-for="SorumluArastirmaciTelefon">Sorumlu Araştırmacı Telefon No: * </label>
-                        <input asp-for="SorumluArastirmaciTelefon" type="text" class="form-control" />
-                        <span asp-validation-for="SorumluArastirmaciTelefon" class="text-danger"></span>
-                        <p>Proje ile sorumlu olacak kişi telefon numarası </p>
-                    </div>
-
-                </div>
-                <!-- /.card-body -->
-            </div>
-        </div>
-
-        <div class="col-md-4 float-left">
-            <div class="card card-primary">
-                <div class="card-header">
-                    <h3 class="card-title">Etik Kurul </h3>
-                </div>
-                <!-- /.card-header -->
-                <!-- form start -->
-                <div class="card-body">
-
-                    <div class="form-group">
-                        <label asp-for="EtikKurulOnayNumarasi">Etik Kurul Onay Numarası: * </label>
-                        <input asp-for="EtikKurulOnayNumarasi" type="text" class="form-control" />
-                        <span asp-validation-for="EtikKurulOnayNumarasi" class="text-danger"></span>
-                    </div>
-
-                    <div class="form-group">
-                        <label asp-for="EtikKurulOnayTarihi">Etik Kurul Onay Tarihi: * </label>
-
-                        <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                            <input type="text" asp-for="EtikKurulOnayTarihi" class="form-control datetimepicker-input"
-                                   data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask data-target="#reservationdate">
-                            <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
-                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                            <div class="card-footer ">
+                                <button type="submit" class="btn btn-primary"><i class="fas fa-check mr-2"></i>Proforma Talep Et</button>
+                            </div>
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-success"><i class="fas fa-check mr-2"></i>Kaydet</button>
                             </div>
                         </div>
-                        <span asp-validation-for="EtikKurulOnayTarihi" class="text-danger"></span>
+                        <!-- /.card-body -->
                     </div>
                 </div>
-                <!-- /.card-body -->
-            </div>
-        </div>
+
 
     </div>
 
-    <div class="row">
 
-        <div class="col-md-4 float-left">
-            <div class="card card-primary">
-                <div class="card-header">
-                    <h3 class="card-title">Proje Tarihleri </h3>
-                </div>
-                <!-- /.card-header -->
-                <!-- form start -->
-                <div class="card-body">
-                    <div class="form-group">
-                        <label asp-for="ProjeBaslangicTarihi">Proje Başlangıç  Tarihi: * </label>
-
-                        <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                            <input type="text" asp-for="ProjeBaslangicTarihi" class="form-control datetimepicker-input"
-                                   data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask data-target="#reservationdate">
-                            <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
-                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                            </div>
-                        </div>
-                        <span asp-validation-for="ProjeBaslangicTarihi" class="text-danger"></span>
-                    </div>
-
-
-                    <div class="form-group">
-                        <label asp-for="ProjeBitisTarihi">Proje Bitiş  Tarihi: * </label>
-                        <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                            <input type="text" asp-for="ProjeBitisTarihi" class="form-control datetimepicker-input"
-                                   data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask data-target="#reservationdate">
-                            <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
-                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                            </div>
-                        </div>
-                        <span asp-validation-for="ProjeBitisTarihi" class="text-danger"></span>
-                    </div>
-
-
-                </div>
-                <!-- /.card-body -->
-            </div>
-        </div>
-
-
-
-
-    </div>
-
-    <div class="row">
-        <div class="col-md-4 float-left">
-            <div class="card card-primary">
-                <div class="card-header">
-                    <h3 class="card-title">Kullanılacak Deney Hayvanı:</h3>
-                </div>
-                <!-- /.card-header -->
-                <!-- form start -->
-                <div class="card-body">
-
-                    <div class="form-group">
-                        <label>Hayvan Türü Seçiniz:</label>
-                        <select class="form-control" asp-for="DeneyHayvaniTurID" asp-items="ViewBag.Categories">
-                            <option value="">Seçiniz</option>
-                        </select>
-                        <span asp-validation-for="@Model.DeneyHayvaniTurID" class="text-danger"></span>
-                    </div>
-
-
-                    <div class="form-group">
-                        <label>Hayvan Irkını Seçiniz:</label>
-                        <select class="form-control" asp-for="DeneyHayvaniIrkID" asp-items="ViewBag.Categories">
-                            <option value="">Seçiniz</option>
-                        </select>
-                        <span asp-validation-for="@Model.DeneyHayvaniIrkID" class="text-danger"></span>
-                    </div>
-
-
-                    <div class="form-group">
-                        <label>Hayvan Cinsiyetini Seçiniz:</label>
-                        <select class="form-control" asp-for="DeneyHayvaniIrkID" asp-items="ViewBag.Categories">
-                            <option value="">Seçiniz</option>
-                        </select>
-                        <span asp-validation-for="@Model.DeneyHayvaniIrkID" class="text-danger"></span>
-                    </div>
-
-
-                    <div class="form-group">
-                        <label asp-for="DeneyHayvaniSayisi">Deney hayvanı Sayısı: * </label>
-                        <input asp-for="DeneyHayvaniSayisi" type="text" class="form-control" />
-                        <span asp-validation-for="DeneyHayvaniSayisi" class="text-danger"></span>
-                    </div>
-
-
-                    <div class="form-group">
-
-                        <label asp-for="DeneyHayvaniYasi">Deney hayvanı Yaşı: * </label>
-                        <input asp-for="DeneyHayvaniYasi" type="text" class="form-control" />
-                        <span asp-validation-for="DeneyHayvaniYasi" class="text-danger"></span>
-                    </div>
-
-
-                    <div class="form-group">
-                        <label asp-for="DeneyHayvaniAgirligi">Deney Hayvanı Ağırlığı: * </label>
-                        <input asp-for="DeneyHayvaniAgirligi" type="text" class="form-control" />
-                        <span asp-validation-for="DeneyHayvaniAgirligi" class="text-danger"></span>
-                    </div>
-                </div>
-                <!-- /.card-body -->
-            </div>
-        </div>
-
-        <div class="col-md-4 float-left">
-            <div class="card card-primary">
-                <div class="card-header">
-                    <h3 class="card-title">Teknik Destek Talebi:</h3>
-                </div>
-                <!-- /.card-header -->
-                <!-- form start -->
-                <div class="card-body">
-
-                    <div class="form-group">
-                        <label>Destek Süresi:</label>
-                        <select class="form-control" asp-for="TeknikDestekSuresiID" asp-items="ViewBag.Categories">
-                            <option value="">Seçiniz</option>
-                        </select>
-                        <span asp-validation-for="@Model.TeknikDestekSuresiID" class="text-danger"></span>
-                    </div>
-
-
-                    <div class="form-group">
-                        <label>Teknik Destek Türü:</label>
-                        <select class="form-control" asp-for="TeknikDestekTuruID" asp-items="ViewBag.Categories">
-                            <option value="">Seçiniz</option>
-                        </select>
-                        <span asp-validation-for="@Model.TeknikDestekTuruID" class="text-danger"></span>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Destek Hayvan Sayısı:</label>
-                        <select class="form-control" asp-for="TeknikHayvanSayisiID" asp-items="ViewBag.Categories">
-                            <option value="">Seçiniz</option>
-                        </select>
-                        <span asp-validation-for="@Model.TeknikHayvanSayisiID" class="text-danger"></span>
-                    </div>
-
-                </div>
-                <!-- /.card-body -->
-            </div>
-        </div>
-
-        <div class="col-md-4 float-left">
-            <div class="card card-primary">
-                <div class="card-header">
-                    <h3 class="card-title">Kullanılacak Laboratuvar ve Tarihleri: </h3>
-                </div>
-                <!-- /.card-header -->
-                <!-- form start -->
-                <div class="card-body">
-
-
-                    <div class="form-group">
-                        <label>Destek Hayvan Sayısı:</label>
-                        <select class="form-control" asp-for="LaboratuvarID" asp-items="ViewBag.Categories">
-                            <option value="">Seçiniz</option>
-                        </select>
-                        <span asp-validation-for="@Model.LaboratuvarID" class="text-danger"></span>
-                    </div>
-
-                    <div class="form-group">
-                        <label asp-for="LaboratuvarBaslangicTarihi">Kullanılacak Laboratuvar Başlangıç Tarihi: * </label>
-
-                        <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                            <input type="text" asp-for="LaboratuvarBaslangicTarihi" class="form-control datetimepicker-input"
-                                   data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask data-target="#reservationdate">
-                            <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
-                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                            </div>
-                        </div>
-                        <span asp-validation-for="LaboratuvarBaslangicTarihi" class="text-danger"></span>
-                    </div>
-
-                    <div class="form-group">
-                        <label asp-for="LaboratuvarBitisTarihi">Kullanılacak Laboratuvar Bitiş Tarihi: * </label>
-
-                        <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                            <input type="text" asp-for="LaboratuvarBitisTarihi" class="form-control datetimepicker-input"
-                                   data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask data-target="#reservationdate">
-                            <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
-                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                            </div>
-                        </div>
-                        <span asp-validation-for="LaboratuvarBitisTarihi" class="text-danger"></span>
-                    </div>
-
-
-                </div>
-                <!-- /.card-body -->
-            </div>
-        </div>
-    </div>
-
-
-
-
-    <div class="col-md-12 ">
-        <div class="card card-primary">
-
-            <!-- /.card-header -->
-            <!-- form start -->
-            <div class="card-body">
-
-                <div class="card-footer float-right">
-                    <button type="submit" class="btn btn-success"><i class="fas fa-check mr-2"></i>Kaydet</button>
-                </div>
-            </div>
-            <!-- /.card-body -->
-        </div>
-    </div>
 
 
 </form>
 
+@section JavaScript{
+    <script src="~/lib/jqueryValidate/jquery.validate.min.js"></script>
+    <script src="~/lib/jqueryUnob/jquery.validate.unobtrusive.min.js"></script>
+
+    <script src="~/plugins/moment/moment.min.js"></script>
+    <script src="~/plugins/inputmask/min/jquery.inputmask.bundle.min.js"></script>
+    <script src="~/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+    <!-- date-range-picker -->
+    <!-- bootstrap color picker -->
+
+    <script>
+        $('#EtikKurulOnayTarihiDate,#ProjeBaslangicTarihiDate,#ProjeBitisTarihiDate,#LaboratuvarBaslangicTarihiDate,#LaboratuvarBitisTarihiDate').datetimepicker({
+            format: 'R',
+            locale: 'tr',
+            format: 'DD-MM-YYYY'
+        });
 
 
-    @section JavaScript{
-        <script src="~/lib/jqueryValidate/jquery.validate.min.js"></script>
-        <script src="~/lib/jqueryUnob/jquery.validate.unobtrusive.min.js"></script>
+        $('.datetimepicker-input').inputmask('dd-mm-yyyy', { 'placeholder': 'dd-mm-yyyy' })
+                            //$('#EtikKurulOnayTarihi').inputmask("m/d/y", { clearIncomplete: false, clearMaskOnLostFocus: false, showMaskOnFocus: false, showMaskOnHover: false });
+    </script>
 
-        <script src="~/plugins/moment/moment.min.js"></script>
-        <script src="~/plugins/inputmask/min/jquery.inputmask.bundle.min.js"></script>
-        <script src="~/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
-        <!-- date-range-picker -->
-        <!-- bootstrap color picker -->
+    <partial name="_ValidationScriptsPartial" />
+}
 
-        <script>
-            $('.datetimepicker-input').datetimepicker({
-                format: 'R',
-                locale: 'tr',
-                format: 'DD-MM-YYYY'
-            });
-            $('.datetimepicker-input').inputmask('dd-mm-yyyy', { 'placeholder': 'dd-mm-yyyy' })
-                        //$('#EtikKurulOnayTarihi').inputmask("m/d/y", { clearIncomplete: false, clearMaskOnLostFocus: false, showMaskOnFocus: false, showMaskOnHover: false });
-        </script>
-
-        <partial name="_ValidationScriptsPartial" />
-    }
-
-    @section Style{
-        <link href="~/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
-    }
+@section Style{
+    <link href="~/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+}
