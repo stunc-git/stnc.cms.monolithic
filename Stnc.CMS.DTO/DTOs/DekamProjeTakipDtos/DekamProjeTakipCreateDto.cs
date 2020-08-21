@@ -1,12 +1,10 @@
-﻿using Stnc.CMS.Entities.Interfaces;
+﻿using Stnc.CMS.Entities.Concrete;
 using System;
-using System.Collections.Generic;
 
-namespace Stnc.CMS.Entities.Concrete
+namespace Stnc.CMS.DTO.DTOs.DekamProjeTakipDtos
 {
-    public class DekamProjeTakip : ITablo
+    public class DekamProjeTakipCreateDto
     {
-        public int Id { get; set; }
         public string ProjeYurutucusu { get; set; }
         public string ProjeYurutukurumu { get; set; }
         public string ProjeYurutuTelefon { get; set; }
@@ -30,21 +28,7 @@ namespace Stnc.CMS.Entities.Concrete
         public DateTime? LaboratuvarBitisTarihi { get; set; }
         public int DeneyHayvaniIrkID { get; set; }
         public int? DeneyHayvaniTurID { get; set; }
-
-        public DateTime? CreatedAt { get; set; } = DateTime.Now;
-        public DateTime? UpdatedAt { get; set; } = DateTime.Now;
-        public DateTime? DeletedAt { get; set; }
         public int? AppUserId { get; set; }
         public AppUser AppUser { get; set; }
-        public DekamProjeDeneyHayvaniTur DekamProjeDeneyHayvaniTur { get; set; }
-        // public DekamProjeDeneyHayvaniTur DekamProjeDeneyHayvaniTur { get ; set; }
-
-        /*
-               public enum DeneyHayvaniCinsiyet
-        {
-            Erkek = 1,
-            Dişi = 2
-        }
-        */
     }
 }

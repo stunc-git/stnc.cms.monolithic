@@ -25,7 +25,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
         {
             TempData["Active"] = TempdataInfo.Category;
             using var context = new StncCMSContext();
-            return View(context.Set<DekamProjeDeneyHayvaniIrk>().ToList());
+            return View(context.Set<DekamProjeDeneyHayvaniIrk>().OrderByDescending(I => I.Id).ToList());
         }
 
         public IActionResult Create()
@@ -69,14 +69,10 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
             var user = await GetUserLoginInfo().ConfigureAwait(false);
             if (ModelState.IsValid)
             {
-
-
                 using var context = new StncCMSContext();
-                context.Set<DekamProjeDeneyHayvaniIrk>().Update(new DekamProjeDeneyHayvaniIrk()
-                {
-                    Name = model.Name,
-                    AppUserId = user.Id,
-                });
+                var std = context.DekamProjeDeneyHayvaniIrk.First<DekamProjeDeneyHayvaniIrk>();
+                std.Name = model.Name;
+                std.AppUserId = user.Id;
                 context.SaveChanges();
 
                 return RedirectToAction("Index");

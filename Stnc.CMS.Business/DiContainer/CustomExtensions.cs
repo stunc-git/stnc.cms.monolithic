@@ -30,17 +30,15 @@ namespace Stnc.CMS.Business.DiContainer
             services.AddScoped<ICategoryService, CategoryManager>();
             services.AddScoped<ICategoryDal, EfCategoryRepository>();
 
-
-            //category
-            //services.AddScoped<IDPRelationGenericService<Tablo>, DPRelationGenericManager>();
-            //services.AddScoped<IDPRelationGenericDal, EfGenericRepository>();
-
-
             services.AddScoped<IGorevDal, EfGorevRepository>();
             services.AddScoped<IAciliyetDal, EfAciliyetRepository>();
             services.AddScoped<IRaporDal, EfRaporRepository>();
             services.AddScoped<IAppUserDal, EfAppUserRepository>();
             services.AddScoped<IBildirimDal, EfBildirimRepository>();
+
+            //DekamProjeTakip
+            services.AddScoped<IDekamProjeTakipService, DekamProjeTakipManager>();
+            services.AddScoped<IDekamProjeTakipDal, EfDekamProjeTakipRepository>();
 
             services.AddTransient<ICustomLogger, NLogLogger>();
         }

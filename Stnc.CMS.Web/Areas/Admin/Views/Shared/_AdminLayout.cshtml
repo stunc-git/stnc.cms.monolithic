@@ -21,6 +21,7 @@
 
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    @RenderSection("Style", false)
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
@@ -168,11 +169,9 @@
                     </div>
                 </div>
 
+                <!-- Sidebar Menu -->
                 @await Component.InvokeAsync("Wrapper")
 
-
-                <!-- Sidebar Menu -->
-           
                 <!-- /.sidebar-menu -->
             </div>
             <!-- /.sidebar -->
@@ -229,25 +228,24 @@
     </div>
     <!-- ./wrapper -->
     <!-- jQuery -->
-    <script src="/plugins/jquery/jquery.min.js"></script>
+    <script src="~/plugins/jquery/jquery.min.js"></script>
     <!-- jQuery UI 1.11.4 -->
-    <script src="/plugins/jquery-ui/jquery-ui.min.js"></script>
+    <script src="~/plugins/jquery-ui/jquery-ui.min.js"></script>
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
     <script>
         $.widget.bridge('uibutton', $.ui.button)
     </script>
     <!-- Bootstrap 4 -->
-    <script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- overlayScrollbars -->
-    <script src="/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+    <script src="~/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
     <!-- AdminLTE App -->
-    <script src="/assets/admin/js/adminlte.js"></script>
+    <script src="~/assets/admin/js/adminlte.js"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-    <script src="/assets/admin/js/pages/dashboard.js"></script>
+    <script src="~/assets/admin/js/pages/dashboard.js"></script>
     <!-- AdminLTE for demo purposes -->
     @RenderSection("JavaScript", false)
-    <script src="assets/admin/js/demo.js"></script>
 
 </body>
 </html>
