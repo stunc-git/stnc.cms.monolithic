@@ -6,7 +6,7 @@ namespace Stnc.CMS.Entities.Concrete
     {
         public int Id { get; set; }
         public int PostID { get; set; }
-        public Posts Posts { get; set; }
+        public DekamProjeTakip Posts { get; set; }
         public int CategoryID { get; set; }
         public Category Category { get; set; }
     }

@@ -36,6 +36,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
         public IActionResult Index()
         {
             TempData["Active"] = TempdataInfo.Post;
+            ViewBag.GeneralTitle = "Sayfalar";
             return View(_mapper.Map<List<PostListAllDto>>(_postService.PostList()));
         }
 
@@ -58,7 +59,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
         public async Task<IActionResult> AddPost(PostAddDto model, IFormFile picture)
         {
             var user = await GetUserLoginInfo().ConfigureAwait(false);
-
+            ViewBag.GeneralTitle = "Sayfa Ekleme";
             if (ModelState.IsValid)
             {
                 string pictureDb = null;
@@ -103,6 +104,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
         public IActionResult UpdatePost(int id)
         {
             TempData["Active"] = TempdataInfo.Post;
+            ViewBag.GeneralTitle = "Sayfa Ekleme";
             var post = _postService.GetirIdile(id);
             if (post != null)
             {
@@ -121,7 +123,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
         public async Task<IActionResult> UpdatePost(PostUpdateDto model, IFormFile picture)
         {
             var user = await GetUserLoginInfo().ConfigureAwait(false);
-
+            ViewBag.GeneralTitle = "Sayfa Düzenleme";
             string pictureDb = null;
 
           //  string CategoryID = HttpContext.Request.Form["CategoryID"];

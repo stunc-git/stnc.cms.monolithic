@@ -5,6 +5,7 @@ using Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts;
 using Stnc.CMS.DTO.DTOs.AciliyetDtos;
 using Stnc.CMS.DTO.DTOs.AppUserDtos;
 using Stnc.CMS.DTO.DTOs.CategoryDtos;
+using Stnc.CMS.DTO.DTOs.DekamProjeTakipDtos;
 using Stnc.CMS.DTO.DTOs.GorevDtos;
 using Stnc.CMS.DTO.DTOs.PostDtos;
 using Stnc.CMS.DTO.DTOs.RaporDtos;
@@ -61,6 +62,9 @@ namespace Stnc.CMS.Web.CustomCollectionExtensions
 
             services.AddTransient<IValidator<SliderAddDto>, SliderAddValidator>();
             services.AddTransient<IValidator<SliderUpdateDto>, SliderUpdateValidator>();
+
+            services.AddTransient<IValidator<DekamProjeTakipCreateDto>, DekamProjeTakipCreateValidator>();
+            services.AddTransient<IValidator<DekamProjeTakipUpdateDto>, DekamProjeTakipUpdateValidator>();
         }
     }
 }

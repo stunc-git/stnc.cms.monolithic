@@ -1,20 +1,17 @@
-﻿using AutoMapper;
-using Core.Flash;
+﻿
+using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Stnc.CMS.Business.Interfaces;
-using Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts;
+
+using Stnc.CMS.DTO.DTOs.CategoryDtos;
 using Stnc.CMS.DTO.DTOs.DekamProjeTakipDtos;
-using Stnc.CMS.DTO.DTOs.PostDtos;
 using Stnc.CMS.Entities.Concrete;
 using Stnc.CMS.Web.BaseControllers;
 using Stnc.CMS.Web.StringInfo;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Stnc.CMS.Web.Areas.Admin.Controllers
 {
@@ -24,117 +21,69 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
     {
         private readonly IDekamProjeTakipService _dekamProjeTakipService;
         private readonly IMapper _mapper;
-        private readonly IFlasher f;
-
-        public DekamProjeTakipController(IFlasher f, IDekamProjeTakipService dekamProjeTakipService,   UserManager<AppUser> userManager, IMapper mapper) : base(userManager)
+        public DekamProjeTakipController(IDekamProjeTakipService dekamProjeTakipService, IMapper mapper, UserManager<AppUser> userManager) : base(userManager)
         {
-            this.f = f;
             _mapper = mapper;
             _dekamProjeTakipService = dekamProjeTakipService;
         }
 
         public IActionResult Index()
         {
-            TempData["Active"] = TempdataInfo.Post;
-
-
-            return View(_mapper.Map<List<DekamProjeTakipListDto>>(_dekamProjeTakipService.DekamProjeTakipServiceList()));
+            TempData["Active"] = TempdataInfo.Category;
+            return View(_mapper.Map<List<DekamProjeTakipListDto>>(_dekamProjeTakipService.GetAll()));
         }
 
         public IActionResult Create()
         {
-            TempData["Active"] = TempdataInfo.Post;
-            using var context = new StncCMSContext();
-            var deneyHayvanlar = context.Set<DekamProjeDeneyHayvaniIrk>().OrderByDescending(I => I.Id).ToList();
-            ViewBag.Categories = new SelectList(deneyHayvanlar, "Id", "Name");
-            return View(new DekamProjeTakipCreateDto());
-        }
-        /*
-        [HttpPost]
-        public async Task<IActionResult> Create(PostAddDto model, IFormFile picture)
-        {
-            var user = await GetUserLoginInfo().ConfigureAwait(false);
-
-            if (ModelState.IsValid)
-            {
-
-
-                 _postService.SaveReturn(new Posts
-                {
-                    PostTitle = model.PostTitle,
-                    PostContent = model.PostContent,
-                    PostExcerpt = model.PostExcerpt,
-                    PostSlug = SlugHelper(model.PostTitle),
-                    AppUserId = user.Id,
-                     CategoryId = model.CategoryId
-                 });
-
-                return RedirectToAction("Index");
-            }
-            ViewBag.Categories = new SelectList(_categoryService.GetAll(), "Id", "Name");
-            return View(model);
+            TempData["Active"] = TempdataInfo.Category;
+            return View(new CategoryAddDto());
         }
 
-        public IActionResult Update(int id)
-        {
-            TempData["Active"] = TempdataInfo.Post;
-            var post = _postService.GetirIdile(id);
-            if (post != null)
-            {
-               // var catID = _categoryBlogService.GetCategoryPostIDListSingle(id);
-                ViewBag.Categories = new SelectList(_categoryService.GetAll(), "Id", "Name", post.CategoryId);
-                return View(_mapper.Map<PostUpdateDto>(post));
-            }
-            else
-            {
-                f.Flash(Types.Danger, "Böyle bir veri bulunamadı", dismissable: true);
-                return RedirectToAction("Index");
-            }
-        }
+        //[HttpPost]
+        //public IActionResult AddCategory(CategoryAddDto model)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        _categoryservice.Kaydet(new Category()
+        //        {
+        //            Name = model.Name,
+        //            Description = model.Description,
+        //            Slug = SlugHelper(model.Name),
+        //        });
 
-        [HttpPost]
-        public async Task<IActionResult> Update(PostUpdateDto model, IFormFile picture)
-        {
-            var user = await GetUserLoginInfo().ConfigureAwait(false);
+        //        return RedirectToAction("Index");
+        //    }
+        //    return View(model);
+        //}
 
-            string pictureDb = null;
+        //public IActionResult UpdateCategory(int id)
+        //{
+        //    TempData["Active"] = TempdataInfo.Category;
+        //    return View(_mapper.Map<CategoryUpdateDto>(_categoryservice.GetirIdile(id)));
+        //}
 
-          //  string CategoryID = HttpContext.Request.Form["CategoryID"];
+        //[HttpPost]
+        //public IActionResult UpdateCategory(CategoryUpdateDto model)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        _categoryservice.Guncelle(new Category
+        //        {
+        //            Id = model.Id,
+        //            Name = model.Name,
+        //            Description = model.Description,
+        //            Slug = SlugHelper(model.Slug),
+        //        });
 
-            using var context = new StncCMSContext();
+        //        return RedirectToAction("Index");
+        //    }
+        //    return View(model);
+        //}
 
-            if (ModelState.IsValid)
-            {
-                if (picture != null)
-                {
-                    string pictureName = await Uploader(picture, "img").ConfigureAwait(false);
-                    pictureDb = pictureName;
-                }
-
-                _postService.Guncelle(new Posts
-                {
-                    Id = model.Id,
-                    PostTitle = model.PostTitle,
-                    PostContent = model.PostContent,
-                    PostExcerpt = model.PostExcerpt,
-                    PostSlug = SlugHelper(model.PostSlug),
-                    Picture = pictureDb,
-                    AppUserId = user.Id,
-                    CategoryId = model.CategoryId
-                });
-
-                return RedirectToAction("Index");
-            }
-
-            ViewBag.Categories = new SelectList(_postService.GetAll(), "Id", "Name", model.CategoryId);
-            return View(model);
-        }
-
-        public IActionResult DeletePost(int id)
-        {
-            _postService.Sil(new Posts { Id = id });
-            return Json(null);
-        }
-        */
+        //public IActionResult DeleteCategory(int id)
+        //{
+        //    _categoryservice.Sil(new Category { Id = id });
+        //    return Json(null);
+        //}
     }
 }

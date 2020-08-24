@@ -28,5 +28,6 @@ namespace Stnc.CMS.Web.StringInfo
         public const string Post = "içerikler";
         public const string Category = "kategoriler";
         public const string Slider = "slider";
+        public const string DekamProjeTakip = "Dekam Proje Takip";
     }
 }

@@ -1,5 +1,5 @@
 ﻿@using Stnc.CMS.Entities.Concrete
-@model DekamProjeDeneyHayvaniIrk
+@model DekamProjeTeknikDestekTalepSure
 @{
     ViewData["Title"] = @ViewBag.GeneralTitle;
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
@@ -13,15 +13,17 @@
         </div>
         <!-- /.card-header -->
         <!-- form start -->
-        <form class="w-75 mx-auto p-3" asp-action="Update" method="post">
-            <input type="hidden" asp-for="Id" />
+        <form class="w-75 mx-auto p-3" asp-action="Create" method="post">
             <div class="card-body">
+
                 <div class="form-group">
-                    <label asp-for="Name">Tanım :</label>
+                    <label asp-for="Name">Adı * :</label>
                     <input asp-for="Name" type="text" class="form-control" />
                     <span asp-validation-for="Name" class="text-danger"></span>
 
                 </div>
+
+
             </div>
             <!-- /.card-body -->
 
@@ -37,6 +39,4 @@
     <script src="~/lib/jqueryValidate/jquery.validate.min.js"></script>
     <script src="~/lib/jqueryUnob/jquery.validate.unobtrusive.min.js"></script>
     <partial name="_ValidationScriptsPartial" />
-
 }
-

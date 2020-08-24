@@ -1,22 +1,22 @@
 ﻿@using Stnc.CMS.Entities.Concrete
 @model List<DekamProjeDeneyHayvaniIrk>
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = @ViewBag.GeneralTitle;
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
-
+@{string ControllerName = "DpDeneyHayvaniIrk";}
 
 <div class="col-md-12 float-left">
     @if (Model.Count != 0)
     {
-        <a asp-action="Create" asp-controller="DpDeneyHayvaniIrk" class="btn btn-outline-dark btn-sm my-2">
+        <a asp-action="Create" asp-controller="@ControllerName" class="btn btn-outline-dark btn-sm my-2">
             <i class="fas fa-plus-circle mr-2"></i>
             Yeni  Ekle
         </a>
 
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Blog Kategoriler</h3>
+                <h3 class="card-title">@ViewBag.GeneralTitle</h3>
 
                 <div class="card-tools">
                     <div class="input-group input-group-sm" style="width: 150px;">
@@ -45,7 +45,7 @@
 
 
                             <td>
-                                <a asp-action="Update" asp-controller="DpDeneyHayvaniIrk" asp-route-id="@item.Id" class="btn btn-warning btn-sm"><i class="far fa-edit mr-2"></i>Düzenle</a>
+                                <a asp-action="Update" asp-controller="@ControllerName" asp-route-id="@item.Id" class="btn btn-warning btn-sm"><i class="far fa-edit mr-2"></i>Düzenle</a>
                                 <a href="" data-toggle="modal" data-value="@item.Id" class="btn btn-danger DeleteEvent btn-sm">
                                     <i class="fas fa-times-circle mr-2"></i> Sil
                                 </a>
@@ -65,7 +65,7 @@
             <p class="lead">
                 Sistemde kayıtlı veri bulanamadı.
             </p>
-            <a asp-action="AddCategory" asp-controller="Category" class="btn btn-sm btn-info my-2">Yeni Categori Ekle</a>
+            <a asp-action="Create" asp-controller="@ControllerName" class="btn btn-sm btn-info my-2">Yeni Ekle</a>
 
         </div>
 
@@ -96,7 +96,7 @@
 
     @section JavaScript{
         <script type="text/javascript">
-            var listDeleteUrl = "./DpDeneyHayvaniIrk/Delete";
+            var listDeleteUrl = "./@ControllerName/Delete";
         </script>
         <partial name="_ListEvents" />
     }

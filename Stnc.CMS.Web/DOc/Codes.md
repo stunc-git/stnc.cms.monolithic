@@ -21,3 +21,9 @@ https://abp.io/#section-2
 Enable-Migrations
 
 update-database 
+
+
+---------------------------
+Validation = Stnc.CMS.Web\CustomCollectionExtensions\
+DICONTAİNER= Stnc.CMS.Business\DiContainer\CustomExtensions.cs
+View İçine Hızlı Veri =Stnc.CMS.Web\Areas\Admin\Views\_ViewImports.cshtml 

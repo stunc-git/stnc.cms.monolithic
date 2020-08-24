@@ -5,8 +5,8 @@ namespace Stnc.CMS.Business.Interfaces
 {
     public interface IDekamProjeTakipService : IGenericService<DekamProjeTakip>
     {
-        int GetTotalProjeTakip();
-        List<DekamProjeTakip> DekamProjeTakipServiceList();
-        //Posts GetSlugPost(string slug);
+        int GetTotalProject();
+        List<DekamProjeTakip> ProjectList();
+      //  Posts GetSlugPost(string slug);
     }
 }

@@ -51,7 +51,7 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts
         public DbSet<Rapor> Raporlar { get; set; }
         public DbSet<Bildirim> Bildirimler { get; set; }
 
-        public DbSet<Posts> Posts { get; set; }
+        public DbSet<DekamProjeTakip> Posts { get; set; }
         public DbSet<Slider> Slider { get; set; }
         public DbSet<Category> Categories { get; set; }
       //  public DbSet<CategoryBlogs> CategoryBlogs { get; set; }
@@ -62,7 +62,7 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts
         public DbSet<DekamProjeLaboratuvarlar> DekamProjeLaboratuvarlar { get; set; }
         public DbSet<DekamProjeTeknikDestekTalepTur> DekamProjeTeknikDestekTalepTur { get; set; }
         public DbSet<DekamProjeTeknikDestekTalepSure> DekamProjeTeknikDestekTalepSure { get; set; }
-        public DbSet<DekamProjeDeneyHayvanSayisi> DekamProjeDeneyHayvanSayisi { get; set; }
+        public DbSet<DekamProjeTeknikDestekTalepHayvanSayisi> DekamProjeDeneyHayvanSayisi { get; set; }
         public DbSet<DekamProjeDeneyHayvaniTur> DekamProjeDeneyHayvaniTur { get; set; }
         public DbSet<DekamProjeDeneyHayvaniIrk> DekamProjeDeneyHayvaniIrk { get; set; }
     }

@@ -4,9 +4,9 @@ using Stnc.CMS.Entities.Concrete;
 
 namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Mapping
 {
-    public class DekamProjeDeneyHayvanSayisiMap : IEntityTypeConfiguration<DekamProjeDeneyHayvanSayisi>
+    public class DekamProjeDeneyHayvanSayisiMap : IEntityTypeConfiguration<DekamProjeTeknikDestekTalepHayvanSayisi>
     {
-        public void Configure(EntityTypeBuilder<DekamProjeDeneyHayvanSayisi> builder)
+        public void Configure(EntityTypeBuilder<DekamProjeTeknikDestekTalepHayvanSayisi> builder)
         {
             builder.HasKey(I => I.Id);
             builder.Property(I => I.Id).UseIdentityColumn();

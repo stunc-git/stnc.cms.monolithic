@@ -1,38 +1,34 @@
-﻿using Core.Flash;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Repositories;
+using Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts;
+using Stnc.CMS.DTO.DTOs.CategoryDtos;
 using Stnc.CMS.Entities.Concrete;
 using Stnc.CMS.Web.BaseControllers;
 using Stnc.CMS.Web.StringInfo;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Stnc.CMS.Web.Areas.Admin.Controllers
 {
     [Authorize(Roles = RoleInfo.Admin)]
     [Area(AreaInfo.Admin)]
-    public class DpDeneyHayvaniIrkController : BaseIdentityController
+    public class ListeExampleController : BaseIdentityController
     {
-        private readonly EfGenericRepository<DekamProjeDeneyHayvaniIrk> Myrepo;
-        private readonly IFlasher f;
-        public DpDeneyHayvaniIrkController(IFlasher f, UserManager<AppUser> userManager) : base(userManager)
+        public ListeExampleController(UserManager<AppUser> userManager) : base(userManager)
         {
-            this.f = f;
-            Myrepo = new EfGenericRepository<DekamProjeDeneyHayvaniIrk>();
+
         }
 
         public IActionResult Index()
         {
-            ViewBag.GeneralTitle = "Deney Hayvanı Irkları";
             TempData["Active"] = TempdataInfo.Category;
-            var all = Myrepo.GetAll();
-            return View(all);
+            using var context = new StncCMSContext();
+            return View(context.Set<DekamProjeDeneyHayvaniIrk>().OrderByDescending(I => I.Id).ToList());
         }
 
         public IActionResult Create()
         {
-            ViewBag.GeneralTitle = "Deney Hayvanı Irkı Ekleme";
             TempData["Active"] = TempdataInfo.Category;
             return View(new DekamProjeDeneyHayvaniIrk());
         }
@@ -40,17 +36,17 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(DekamProjeDeneyHayvaniIrk model)
         {
-            ViewBag.GeneralTitle = "Deney Hayvanı Irkı Ekleme";
             var user = await GetUserLoginInfo().ConfigureAwait(false);
 
             if (ModelState.IsValid)
             {
-                Myrepo.Kaydet(new DekamProjeDeneyHayvaniIrk
+                using var context = new StncCMSContext();
+                context.Set<DekamProjeDeneyHayvaniIrk>().Add(new DekamProjeDeneyHayvaniIrk()
                 {
                     Name = model.Name,
                     AppUserId = user.Id,
                 });
-
+                context.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(model);
@@ -58,35 +54,22 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
 
         public IActionResult Update(int id)
         {
-            ViewBag.GeneralTitle = "Deney Hayvanı Irkı Düzenleme";
-
             TempData["Active"] = TempdataInfo.Category;
-            var data = this.Myrepo.GetirIdile(id);
-            if (data != null)
-            {
-                return View(data);
-            }
-            else
-            {
-                f.Flash(Types.Danger, "Böyle bir veri bulunamadı", dismissable: true);
-                return RedirectToAction("Index");
-            }
+            using var context = new StncCMSContext();
+            return View(context.Set<DekamProjeDeneyHayvaniIrk>().Find(id));
         }
 
         [HttpPost]
         public async Task<IActionResult> Update(DekamProjeDeneyHayvaniIrk model)
         {
-            ViewBag.GeneralTitle = "Deney Hayvanı Irkı Düzenleme";
-
             var user = await GetUserLoginInfo().ConfigureAwait(false);
             if (ModelState.IsValid)
             {
-                Myrepo.Guncelle(new DekamProjeDeneyHayvaniIrk
-                {
-                    Id = model.Id,
-                    Name = model.Name,
-                    AppUserId = user.Id,
-                });
+                using var context = new StncCMSContext();
+                var std = context.DekamProjeDeneyHayvaniIrk.First<DekamProjeDeneyHayvaniIrk>();
+                std.Name = model.Name;
+                std.AppUserId = user.Id;
+                context.SaveChanges();
 
                 return RedirectToAction("Index");
             }
@@ -95,7 +78,9 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
 
         public IActionResult Delete(int id)
         {
-            Myrepo.Sil(new DekamProjeDeneyHayvaniIrk { Id = id });
+            using var context = new StncCMSContext();
+            context.Set<DekamProjeDeneyHayvaniIrk>().Remove(new DekamProjeDeneyHayvaniIrk { Id = id });
+            context.SaveChanges();
             return Json(null);
         }
     }

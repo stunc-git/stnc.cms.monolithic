@@ -12,19 +12,19 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
 {
     [Authorize(Roles = RoleInfo.Admin)]
     [Area(AreaInfo.Admin)]
-    public class DpDeneyHayvaniIrkController : BaseIdentityController
+    public class DpTeknikDestekTalepSureController : BaseIdentityController
     {
-        private readonly EfGenericRepository<DekamProjeDeneyHayvaniIrk> Myrepo;
+        private readonly EfGenericRepository<DekamProjeTeknikDestekTalepSure> Myrepo;
         private readonly IFlasher f;
-        public DpDeneyHayvaniIrkController(IFlasher f, UserManager<AppUser> userManager) : base(userManager)
+        public DpTeknikDestekTalepSureController(IFlasher f, UserManager<AppUser> userManager) : base(userManager)
         {
             this.f = f;
-            Myrepo = new EfGenericRepository<DekamProjeDeneyHayvaniIrk>();
+            Myrepo = new EfGenericRepository<DekamProjeTeknikDestekTalepSure>();
         }
 
         public IActionResult Index()
         {
-            ViewBag.GeneralTitle = "Deney Hayvanı Irkları";
+            ViewBag.GeneralTitle = "Teknik Destek Talep Süresi";
             TempData["Active"] = TempdataInfo.Category;
             var all = Myrepo.GetAll();
             return View(all);
@@ -32,20 +32,20 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
 
         public IActionResult Create()
         {
-            ViewBag.GeneralTitle = "Deney Hayvanı Irkı Ekleme";
+            ViewBag.GeneralTitle = "Teknik Destek Talep Süresi Ekleme";
             TempData["Active"] = TempdataInfo.Category;
-            return View(new DekamProjeDeneyHayvaniIrk());
+            return View(new DekamProjeTeknikDestekTalepSure());
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(DekamProjeDeneyHayvaniIrk model)
+        public async Task<IActionResult> Create(DekamProjeTeknikDestekTalepSure model)
         {
-            ViewBag.GeneralTitle = "Deney Hayvanı Irkı Ekleme";
+            ViewBag.GeneralTitle = "Teknik Destek Talep Süresi Ekleme";
             var user = await GetUserLoginInfo().ConfigureAwait(false);
 
             if (ModelState.IsValid)
             {
-                Myrepo.Kaydet(new DekamProjeDeneyHayvaniIrk
+                Myrepo.Kaydet(new DekamProjeTeknikDestekTalepSure
                 {
                     Name = model.Name,
                     AppUserId = user.Id,
@@ -58,7 +58,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
 
         public IActionResult Update(int id)
         {
-            ViewBag.GeneralTitle = "Deney Hayvanı Irkı Düzenleme";
+            ViewBag.GeneralTitle = "Teknik Destek Talep Süresi Düzenleme";
 
             TempData["Active"] = TempdataInfo.Category;
             var data = this.Myrepo.GetirIdile(id);
@@ -74,14 +74,14 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Update(DekamProjeDeneyHayvaniIrk model)
+        public async Task<IActionResult> Update(DekamProjeTeknikDestekTalepSure model)
         {
-            ViewBag.GeneralTitle = "Deney Hayvanı Irkı Düzenleme";
+            ViewBag.GeneralTitle = "Teknik Destek Talep Süresi Düzenleme";
 
             var user = await GetUserLoginInfo().ConfigureAwait(false);
             if (ModelState.IsValid)
             {
-                Myrepo.Guncelle(new DekamProjeDeneyHayvaniIrk
+                Myrepo.Guncelle(new DekamProjeTeknikDestekTalepSure
                 {
                     Id = model.Id,
                     Name = model.Name,
@@ -95,7 +95,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
 
         public IActionResult Delete(int id)
         {
-            Myrepo.Sil(new DekamProjeDeneyHayvaniIrk { Id = id });
+            Myrepo.Sil(new DekamProjeTeknikDestekTalepSure { Id = id });
             return Json(null);
         }
     }

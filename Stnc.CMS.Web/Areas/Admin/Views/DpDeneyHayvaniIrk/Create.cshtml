@@ -1,7 +1,7 @@
 ﻿@using Stnc.CMS.Entities.Concrete
 @model DekamProjeDeneyHayvaniIrk
 @{
-    ViewData["Title"] = "EkleAciliyet";
+    ViewData["Title"] = @ViewBag.GeneralTitle;
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
@@ -9,7 +9,7 @@
 
     <div class="card card-primary">
         <div class="card-header">
-            <h3 class="card-title">Kategori Ekle</h3>
+            <h3 class="card-title">@ViewBag.GeneralTitle</h3>
         </div>
         <!-- /.card-header -->
         <!-- form start -->

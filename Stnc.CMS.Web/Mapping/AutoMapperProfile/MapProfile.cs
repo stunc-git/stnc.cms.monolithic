@@ -67,12 +67,12 @@ namespace Stnc.CMS.Web.Mapping.AutoMapperProfile
             #endregion Rapor-RaporDto
 
             #region Post-PostDto
-            CreateMap<Posts, PostListAllDto>();
-            CreateMap<PostListAllDto, Posts>();
-            CreateMap<PostAddDto, Posts>();
-            CreateMap<Posts, PostAddDto>();
-            CreateMap<PostUpdateDto, Posts>();
-            CreateMap<Posts, PostUpdateDto>();
+            CreateMap<DekamProjeTakip, PostListAllDto>();
+            CreateMap<PostListAllDto, DekamProjeTakip>();
+            CreateMap<PostAddDto, DekamProjeTakip>();
+            CreateMap<DekamProjeTakip, PostAddDto>();
+            CreateMap<PostUpdateDto, DekamProjeTakip>();
+            CreateMap<DekamProjeTakip, PostUpdateDto>();
             #endregion Post-PostDto
 
             #region Category-CategoryDto
