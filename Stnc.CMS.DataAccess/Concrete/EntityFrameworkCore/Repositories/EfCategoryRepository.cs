@@ -3,7 +3,7 @@ using Stnc.CMS.Entities.Concrete;
 
 namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Repositories
 {
-    public class EfIDPRelationGenericRepository : EfGenericRepository<Category>, ICategoryDal
+    public class EfCategoryRepository : EfGenericRepository<Category>, ICategoryDal
     {
     }
 }

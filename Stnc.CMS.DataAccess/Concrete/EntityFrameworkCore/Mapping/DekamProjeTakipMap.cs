@@ -27,16 +27,12 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Mapping
                 builder.Property(I => I.LaboratuvarID).HasColumnType("smallint");
                 builder.Property(I => I.DeneyHayvaniTurID).HasColumnType("smallint");
                 builder.Property(I => I.DeneyHayvaniIrkID).HasColumnType("smallint");*/
-            //builder
-            //    .HasOne(I => I.DeneyHayvaniTurID)
-            //    .WithOne(I => I.DekamProjeTeknikDestekTalepTur)
-            //    .HasForeignKey(I => I.AciliyetId);
 
             //https://www.learnentityframeworkcore.com/configuration/one-to-one-relationship-configuration
             //burada kaldım
             //     builder.HasOne(I => I.Aciliyet).WithMany(I => I.Gorevler).HasForeignKey(I => I.AciliyetId);
 
-            builder.HasOne(I => I.DekamProjeDeneyHayvaniTur).WithMany(I => I.DekamProjeTakip).HasForeignKey(I => I.DeneyHayvaniTurID);
+        //    builder.HasOne(I => I.DekamProjeDeneyHayvaniTur).WithMany(I => I.DekamProjeTakip).HasForeignKey(I => I.DeneyHayvaniTurID);
         }
     }
 }

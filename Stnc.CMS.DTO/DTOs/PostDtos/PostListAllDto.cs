@@ -1,6 +1,5 @@
 ﻿using Stnc.CMS.Entities.Concrete;
 using System;
-using System.Collections.Generic;
 
 namespace Stnc.CMS.DTO.DTOs.PostDtos
 {

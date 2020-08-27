@@ -17,7 +17,6 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
     {
         public ListeExampleController(UserManager<AppUser> userManager) : base(userManager)
         {
-
         }
 
         public IActionResult Index()

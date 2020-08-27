@@ -93,7 +93,7 @@ namespace Stnc.CMS.Business.Concrete
 
         public Gorev SaveReturn(Gorev tablo)
         {
-            throw new NotImplementedException();
+         return  _gorevDal.SaveReturn(tablo);
         }
 
         public void Sil(Gorev tablo)

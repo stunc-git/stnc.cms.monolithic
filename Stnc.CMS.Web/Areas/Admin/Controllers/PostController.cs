@@ -25,7 +25,8 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
         private readonly IMapper _mapper;
         private readonly IFlasher f;
 
-        public PostController(IFlasher f, IPostService postService, ICategoryService categoryService,  UserManager<AppUser> userManager, IMapper mapper) : base(userManager)
+        public PostController(IFlasher f, IPostService postService, ICategoryService categoryService,
+            UserManager<AppUser> userManager, IMapper mapper) : base(userManager)
         {
             this.f = f;
             _mapper = mapper;
@@ -65,8 +66,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
                 string pictureDb = null;
                 if (picture != null)
                 {
-                    string pictureName = await Uploader(picture, "img").ConfigureAwait(false);
-                    pictureDb = pictureName;
+                    pictureDb = await Uploader(picture, "img").ConfigureAwait(false);
                 }
 
                  _postService.SaveReturn(new Posts

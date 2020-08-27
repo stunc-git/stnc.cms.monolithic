@@ -1,6 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using Stnc.CMS.Entities.Interfaces;
+﻿using Stnc.CMS.Entities.Interfaces;
+using System;
 
 namespace Stnc.CMS.Entities.Concrete
 {

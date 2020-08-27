@@ -46,12 +46,12 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts
             base.OnModelCreating(modelBuilder);
         }
 
+        public DbSet<Posts> Posts { get; set; }
         public DbSet<Gorev> Gorevler { get; set; }
         public DbSet<Aciliyet> Aciliyetler { get; set; }
         public DbSet<Rapor> Raporlar { get; set; }
         public DbSet<Bildirim> Bildirimler { get; set; }
 
-        public DbSet<DekamProjeTakip> Posts { get; set; }
         public DbSet<Slider> Slider { get; set; }
         public DbSet<Category> Categories { get; set; }
       //  public DbSet<CategoryBlogs> CategoryBlogs { get; set; }

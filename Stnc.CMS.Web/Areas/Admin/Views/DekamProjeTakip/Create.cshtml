@@ -151,7 +151,7 @@
 
                         <div class="form-group">
                             <label>Hayvan Türü Seçiniz:</label>
-                            <select class="form-control" asp-for="DeneyHayvaniTurID" asp-items="ViewBag.Categories">
+                            <select class="form-control" asp-for="DeneyHayvaniTurID" asp-items="ViewBag.DeneyHayvaniTurCategories">
                                 <option value="">Seçiniz</option>
                             </select>
                             <span asp-validation-for="@Model.DeneyHayvaniTurID" class="text-danger"></span>
@@ -159,7 +159,7 @@
 
                         <div class="form-group">
                             <label>Hayvan Irkını Seçiniz:</label>
-                            <select class="form-control" asp-for="DeneyHayvaniIrkID" asp-items="ViewBag.Categories">
+                            <select class="form-control" asp-for="DeneyHayvaniIrkID" asp-items="ViewBag.DeneyHayvaniIrkCategories">
                                 <option value="">Seçiniz</option>
                             </select>
                             <span asp-validation-for="@Model.DeneyHayvaniIrkID" class="text-danger"></span>
@@ -167,8 +167,9 @@
 
                         <div class="form-group">
                             <label>Hayvan Cinsiyetini Seçiniz:</label>
-                            <select class="form-control" asp-for="DeneyHayvaniIrkID" asp-items="ViewBag.Categories">
-                                <option value="">Seçiniz</option>
+                            <select class="form-control" asp-for="DeneyHayvaniIrkID">
+                                <option value="1">Dişi</option>
+                                <option value="2">Erkek</option>
                             </select>
                             <span asp-validation-for="@Model.DeneyHayvaniIrkID" class="text-danger"></span>
                         </div>
@@ -207,7 +208,7 @@
 
                         <div class="form-group">
                             <label>Destek Süresi:</label>
-                            <select class="form-control" asp-for="TeknikDestekSuresiID" asp-items="ViewBag.Categories">
+                            <select class="form-control" asp-for="TeknikDestekSuresiID" asp-items="ViewBag.TeknikDestekTalepSureCategories">
                                 <option value="">Seçiniz</option>
                             </select>
                             <span asp-validation-for="@Model.TeknikDestekSuresiID" class="text-danger"></span>
@@ -215,7 +216,7 @@
 
                         <div class="form-group">
                             <label>Teknik Destek Türü:</label>
-                            <select class="form-control" asp-for="TeknikDestekTuruID" asp-items="ViewBag.Categories">
+                            <select class="form-control" asp-for="TeknikDestekTuruID" asp-items="ViewBag.ProjeTeknikDestekTalepTurCategories">
                                 <option value="">Seçiniz</option>
                             </select>
                             <span asp-validation-for="@Model.TeknikDestekTuruID" class="text-danger"></span>
@@ -223,7 +224,7 @@
 
                         <div class="form-group">
                             <label>Destek Hayvan Sayısı:</label>
-                            <select class="form-control" asp-for="TeknikHayvanSayisiID" asp-items="ViewBag.Categories">
+                            <select class="form-control" asp-for="TeknikHayvanSayisiID" asp-items="ViewBag.TeknikDestekTalepHayvanSayisiCategories">
                                 <option value="">Seçiniz</option>
                             </select>
                             <span asp-validation-for="@Model.TeknikHayvanSayisiID" class="text-danger"></span>
@@ -244,7 +245,7 @@
 
                         <div class="form-group">
                             <label>Kullanılacak Labaratuvar:</label>
-                            <select class="form-control" asp-for="LaboratuvarID" asp-items="ViewBag.Categories">
+                            <select class="form-control" asp-for="LaboratuvarID" asp-items="ViewBag.LaboratuvarlarCategories">
                                 <option value="">Seçiniz</option>
                             </select>
                             <span asp-validation-for="@Model.LaboratuvarID" class="text-danger"></span>

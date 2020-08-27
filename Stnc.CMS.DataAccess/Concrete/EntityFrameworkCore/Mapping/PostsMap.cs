@@ -4,9 +4,9 @@ using Stnc.CMS.Entities.Concrete;
 
 namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Mapping
 {
-    public class PostMap : IEntityTypeConfiguration<DekamProjeTakip>
+    public class PostMap : IEntityTypeConfiguration<Posts>
     {
-        public void Configure(EntityTypeBuilder<DekamProjeTakip> builder)
+        public void Configure(EntityTypeBuilder<Posts> builder)
         {
             builder.HasKey(I => I.Id);
             builder.Property(I => I.Id).UseIdentityColumn();

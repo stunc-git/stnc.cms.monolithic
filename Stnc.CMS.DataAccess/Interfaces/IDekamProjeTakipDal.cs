@@ -1,10 +1,9 @@
-﻿
-using Stnc.CMS.Entities.Concrete;
+﻿using Stnc.CMS.Entities.Concrete;
 using System.Collections.Generic;
 
-namespace Stnc.CMS.Business.Interfaces
+namespace Stnc.CMS.DataAccess.Interfaces
 {
-    public interface IDekamProjeTakipService : IGenericService<DekamProjeTakip>
+    public interface IDekamProjeTakipDal : IGenericDal<DekamProjeTakip>
     {
         int GetProjectTotal();
         List<DekamProjeTakip> ProjeList();

@@ -36,9 +36,8 @@ namespace Stnc.CMS.Business.DiContainer
             services.AddScoped<IAppUserDal, EfAppUserRepository>();
             services.AddScoped<IBildirimDal, EfBildirimRepository>();
 
-            //DekamProjeTakip
-            //services.AddScoped<IDekamProjeTakipService, DekamProjeTakipManager>();
-            //services.AddScoped<IDekamProjeTakipDal, EfDekamProjeTakipRepository>();
+            services.AddScoped<IDekamProjeTakipService, DekamProjeTakipManager>();
+            services.AddScoped<IDekamProjeTakipDal, EfDekamProjeTakipRepository>();
 
             services.AddTransient<ICustomLogger, NLogLogger>();
         }

@@ -8,13 +8,13 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Repositories
 {
     public class EfDekamProjeTakipRepository : EfGenericRepository<DekamProjeTakip>, IDekamProjeTakipDal
     {
-        public int GetTotalProjeTakip()
+        public int GetProjectTotal()
         {
             using var context = new StncCMSContext();
             return context.DekamProjeTakip.Count();
         }
 
-        public List<DekamProjeTakip> ProjeTakipList()
+        public List<DekamProjeTakip> ProjeList()
         {
             using var context = new StncCMSContext();
             return context.DekamProjeTakip.OrderByDescending(I => I.Id).ToList();

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts;
 
 namespace Stnc.CMS.DataAccess.Migrations
 {
     [DbContext(typeof(StncCMSContext))]
-    partial class StncCMSContextModelSnapshot : ModelSnapshot
+    [Migration("20200827140805_DekamPrjDatesAdd")]
+    partial class DekamPrjDatesAdd
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -533,6 +535,24 @@ namespace Stnc.CMS.DataAccess.Migrations
                     b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("datetime2");
 
+                    b.Property<int?>("DekamProjeDeneyHayvaniIrkId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("DekamProjeDeneyHayvaniTurId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("DekamProjeLaboratuvarlarId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("DekamProjeTeknikDestekTalepHayvanSayisiId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("DekamProjeTeknikDestekTalepSureId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("DekamProjeTeknikDestekTalepTurId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime?>("DeletedAt")
                         .HasColumnType("datetime2");
 
@@ -618,17 +638,17 @@ namespace Stnc.CMS.DataAccess.Migrations
 
                     b.HasIndex("AppUserId");
 
-                    b.HasIndex("DeneyHayvaniIrkID");
+                    b.HasIndex("DekamProjeDeneyHayvaniIrkId");
 
-                    b.HasIndex("DeneyHayvaniTurID");
+                    b.HasIndex("DekamProjeDeneyHayvaniTurId");
 
-                    b.HasIndex("LaboratuvarID");
+                    b.HasIndex("DekamProjeLaboratuvarlarId");
 
-                    b.HasIndex("TeknikDestekSuresiID");
+                    b.HasIndex("DekamProjeTeknikDestekTalepHayvanSayisiId");
 
-                    b.HasIndex("TeknikDestekTuruID");
+                    b.HasIndex("DekamProjeTeknikDestekTalepSureId");
 
-                    b.HasIndex("TeknikHayvanSayisiID");
+                    b.HasIndex("DekamProjeTeknikDestekTalepTurId");
 
                     b.ToTable("DekamProjeTakip");
                 });
@@ -926,14 +946,14 @@ namespace Stnc.CMS.DataAccess.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 846875515,
+                            Id = 576916282,
                             Caption = "Lorem ipsum laramde loremde ipsumda inmpala",
-                            CreatedAt = new DateTime(2020, 8, 27, 17, 12, 49, 945, DateTimeKind.Local).AddTicks(6284),
+                            CreatedAt = new DateTime(2020, 8, 27, 17, 8, 5, 111, DateTimeKind.Local).AddTicks(563),
                             Excerpt = "exceprt data loremmmmmm ipsummmmm",
                             MenuOrder = 1,
                             Picture = "default.jpg",
                             Status = true,
-                            UpdatedAt = new DateTime(2020, 8, 27, 17, 12, 49, 946, DateTimeKind.Local).AddTicks(4958),
+                            UpdatedAt = new DateTime(2020, 8, 27, 17, 8, 5, 111, DateTimeKind.Local).AddTicks(9457),
                             UrlAddress = "",
                             UrlType = (short)0
                         });
@@ -1050,41 +1070,29 @@ namespace Stnc.CMS.DataAccess.Migrations
                         .WithMany("DekamProjeTakip")
                         .HasForeignKey("AppUserId");
 
-                    b.HasOne("Stnc.CMS.Entities.Concrete.DekamProjeDeneyHayvaniIrk", "DeneyHayvaniIrk")
+                    b.HasOne("Stnc.CMS.Entities.Concrete.DekamProjeDeneyHayvaniIrk", "DekamProjeDeneyHayvaniIrk")
                         .WithMany("DekamProjeTakip")
-                        .HasForeignKey("DeneyHayvaniIrkID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("DekamProjeDeneyHayvaniIrkId");
 
-                    b.HasOne("Stnc.CMS.Entities.Concrete.DekamProjeDeneyHayvaniTur", "DeneyHayvaniTur")
+                    b.HasOne("Stnc.CMS.Entities.Concrete.DekamProjeDeneyHayvaniTur", "DekamProjeDeneyHayvaniTur")
                         .WithMany("DekamProjeTakip")
-                        .HasForeignKey("DeneyHayvaniTurID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("DekamProjeDeneyHayvaniTurId");
 
-                    b.HasOne("Stnc.CMS.Entities.Concrete.DekamProjeLaboratuvarlar", "Laboratuvar")
+                    b.HasOne("Stnc.CMS.Entities.Concrete.DekamProjeLaboratuvarlar", "DekamProjeLaboratuvarlar")
                         .WithMany("DekamProjeTakip")
-                        .HasForeignKey("LaboratuvarID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("DekamProjeLaboratuvarlarId");
 
-                    b.HasOne("Stnc.CMS.Entities.Concrete.DekamProjeTeknikDestekTalepSure", "TeknikDestekSuresi")
+                    b.HasOne("Stnc.CMS.Entities.Concrete.DekamProjeTeknikDestekTalepHayvanSayisi", "DekamProjeTeknikDestekTalepHayvanSayisi")
                         .WithMany("DekamProjeTakip")
-                        .HasForeignKey("TeknikDestekSuresiID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("DekamProjeTeknikDestekTalepHayvanSayisiId");
 
-                    b.HasOne("Stnc.CMS.Entities.Concrete.DekamProjeTeknikDestekTalepTur", "TeknikDestekTuru")
+                    b.HasOne("Stnc.CMS.Entities.Concrete.DekamProjeTeknikDestekTalepSure", "DekamProjeTeknikDestekTalepSure")
                         .WithMany("DekamProjeTakip")
-                        .HasForeignKey("TeknikDestekTuruID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("DekamProjeTeknikDestekTalepSureId");
 
-                    b.HasOne("Stnc.CMS.Entities.Concrete.DekamProjeTeknikDestekTalepHayvanSayisi", "TeknikHayvanSayisi")
+                    b.HasOne("Stnc.CMS.Entities.Concrete.DekamProjeTeknikDestekTalepTur", "DekamProjeTeknikDestekTalepTur")
                         .WithMany("DekamProjeTakip")
-                        .HasForeignKey("TeknikHayvanSayisiID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("DekamProjeTeknikDestekTalepTurId");
                 });
 
             modelBuilder.Entity("Stnc.CMS.Entities.Concrete.DekamProjeTeknikDestekTalepHayvanSayisi", b =>

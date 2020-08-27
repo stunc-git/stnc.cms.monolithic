@@ -3,6 +3,7 @@ using Stnc.CMS.DTO.DTOs.AciliyetDtos;
 using Stnc.CMS.DTO.DTOs.AppUserDtos;
 using Stnc.CMS.DTO.DTOs.BildirimDtos;
 using Stnc.CMS.DTO.DTOs.CategoryDtos;
+using Stnc.CMS.DTO.DTOs.DekamProjeTakipDtos;
 using Stnc.CMS.DTO.DTOs.GorevDtos;
 using Stnc.CMS.DTO.DTOs.PostDtos;
 using Stnc.CMS.DTO.DTOs.RaporDtos;
@@ -67,12 +68,12 @@ namespace Stnc.CMS.Web.Mapping.AutoMapperProfile
             #endregion Rapor-RaporDto
 
             #region Post-PostDto
-            CreateMap<DekamProjeTakip, PostListAllDto>();
-            CreateMap<PostListAllDto, DekamProjeTakip>();
-            CreateMap<PostAddDto, DekamProjeTakip>();
-            CreateMap<DekamProjeTakip, PostAddDto>();
-            CreateMap<PostUpdateDto, DekamProjeTakip>();
-            CreateMap<DekamProjeTakip, PostUpdateDto>();
+            CreateMap<Posts, PostListAllDto>();
+            CreateMap<PostListAllDto, Posts>();
+            CreateMap<PostAddDto, Posts>();
+            CreateMap<Posts, PostAddDto>();
+            CreateMap<PostUpdateDto, Posts>();
+            CreateMap<Posts, PostUpdateDto>();
             #endregion Post-PostDto
 
             #region Category-CategoryDto
@@ -96,10 +97,26 @@ namespace Stnc.CMS.Web.Mapping.AutoMapperProfile
             CreateMap<SliderAddDto, Slider>();
             CreateMap<Slider, SliderAddDto>();
 
-            CreateMap<SliderUpdateDto, SliderAddDto>();
+            CreateMap<SliderUpdateDto, Slider>();
             CreateMap<Slider, SliderUpdateDto>();
 
             #endregion Slider-SliderDto
+
+
+            #region DekamProjeTakip-DekamProjeTakipDtos
+
+            CreateMap<DekamProjeTakip, DekamProjeTakipListDto>();
+            CreateMap<DekamProjeTakipListDto, DekamProjeTakip>();
+
+            CreateMap<DekamProjeTakipCreateDto, DekamProjeTakip>();
+            CreateMap<DekamProjeTakip, DekamProjeTakipCreateDto>();
+
+            CreateMap<DekamProjeTakipUpdateDto, DekamProjeTakip>();
+            CreateMap<DekamProjeTakip, DekamProjeTakipUpdateDto>();
+
+            #endregion DekamProjeTakip-DekamProjeTakipDtos
+
+
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Stnc.CMS.Entities.Interfaces;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Stnc.CMS.Entities.Concrete
@@ -14,7 +15,7 @@ namespace Stnc.CMS.Entities.Concrete
         public DateTime? DeletedAt { get; set; }
         public int? AppUserId { get; set; }
         public AppUser AppUser { get; set; }
-       // public DekamProjeTakip DekamProjeTakip { get; set; }
+        public List<DekamProjeTakip> DekamProjeTakip { get; set; }
 
     }
 }

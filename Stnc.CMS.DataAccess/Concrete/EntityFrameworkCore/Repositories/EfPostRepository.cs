@@ -24,8 +24,6 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Repositories
         {
             using var context = new StncCMSContext();
             return context.Posts.Where(I => I.PostSlug == Slug).OrderByDescending(I => I.Id).FirstOrDefault();
-            //          // return context.DekamProjeTakip.Select(u => u.DekamProjeDeneyHayvaniTur.Name).ToList();
-
         }
     }
 }

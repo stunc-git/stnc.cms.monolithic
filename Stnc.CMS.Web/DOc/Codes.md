@@ -24,6 +24,9 @@ update-database
 
 
 ---------------------------
+
+Buraya context ekle  -- stnc.CMS.DataAccess\Concrete\EntityFrameworkCore\Contexts\StncCMSContext.cs
 Validation = Stnc.CMS.Web\CustomCollectionExtensions\
 DICONTAİNER= Stnc.CMS.Business\DiContainer\CustomExtensions.cs
 View İçine Hızlı Veri =Stnc.CMS.Web\Areas\Admin\Views\_ViewImports.cshtml 
+map yapmak için =Stnc.CMS.Web\Mapping\AutoMapperProfile\MapProfile.cs

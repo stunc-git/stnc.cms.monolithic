@@ -35,7 +35,7 @@ namespace Stnc.CMS.Business.Concrete
 
         public Aciliyet SaveReturn(Aciliyet tablo)
         {
-            throw new System.NotImplementedException();
+          return  _aciliyetDal.SaveReturn(tablo);
         }
 
         public void Sil(Aciliyet tablo)
