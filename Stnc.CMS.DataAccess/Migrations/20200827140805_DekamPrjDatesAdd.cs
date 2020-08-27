@@ -7,8 +7,6 @@ namespace Stnc.CMS.DataAccess.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-
-
             migrationBuilder.DropForeignKey(
                 name: "FK_Comments_Posts_PostsId",
                 table: "Comments");
@@ -127,8 +125,6 @@ namespace Stnc.CMS.DataAccess.Migrations
                 table: "DekamProjeTakip",
                 column: "DekamProjeTeknikDestekTalepTurId");
 
-
-
             migrationBuilder.AddForeignKey(
                 name: "FK_DekamProjeTakip_DekamProjeDeneyHayvaniIrk_DekamProjeDeneyHayvaniIrkId",
                 table: "DekamProjeTakip",
@@ -180,8 +176,6 @@ namespace Stnc.CMS.DataAccess.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-
-
             migrationBuilder.DropForeignKey(
                 name: "FK_Comments_DekamProjeTakip_PostsId",
                 table: "Comments");

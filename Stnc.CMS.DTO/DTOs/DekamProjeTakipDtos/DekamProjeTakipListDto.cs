@@ -12,41 +12,6 @@ namespace Stnc.CMS.DTO.DTOs.DekamProjeTakipDtos
         public string SorumluArastirmaci { get; set; }
         public string SorumluArastirmaciTelefon { get; set; }
         public string EtikKurulOnayNumarasi { get; set; }
-        //public DateTime? EtikKurulOnayTarihi { get; set; }
-        //public DateTime? ProjeBaslangicTarihi { get; set; }
-        //public DateTime? ProjeBitisTarihi { get; set; }
 
-        //public int DeneyHayvaniCinsiyet { get; set; }//erkeke dişi sadece iki adet
-        //public int DeneyHayvaniSayisi { get; set; }
-        //public int DeneyHayvaniYasi { get; set; }
-        //public int DeneyHayvaniAgirligi { get; set; }
-
-        //public DateTime? LaboratuvarBaslangicTarihi { get; set; }
-        //public DateTime? LaboratuvarBitisTarihi { get; set; }
-
-        //public DateTime? CreatedAt { get; set; } = DateTime.Now;
-        //public DateTime? UpdatedAt { get; set; } = DateTime.Now;
-        //public DateTime? DeletedAt { get; set; }
-        //public int? AppUserId { get; set; }
-        //public AppUser AppUser { get; set; }
-/*
-        public int? DeneyHayvaniIrkID { get; set; }
-        public DekamProjeDeneyHayvaniIrk DeneyHayvaniIrk { get; set; }
-
-        public int? DeneyHayvaniTurID { get; set; }
-        public DekamProjeDeneyHayvaniTur DeneyHayvaniTur { get; set; }
-
-        public int? LaboratuvarID { get; set; }
-        public DekamProjeLaboratuvarlar Laboratuvar { get; set; }
-
-        public int? TeknikHayvanSayisiID { get; set; }
-        public DekamProjeTeknikDestekTalepHayvanSayisi TeknikHayvanSayisi { get; set; }
-
-        public int? TeknikDestekSuresiID { get; set; }
-        public DekamProjeTeknikDestekTalepSure TeknikDestekSuresi { get; set; }
-
-        public int? TeknikDestekTuruID { get; set; }
-        public DekamProjeTeknikDestekTalepTur TeknikDestekTuru { get; set; }
-*/
     }
 }

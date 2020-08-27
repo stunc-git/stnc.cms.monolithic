@@ -926,14 +926,14 @@ namespace Stnc.CMS.DataAccess.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 846875515,
+                            Id = 1183605115,
                             Caption = "Lorem ipsum laramde loremde ipsumda inmpala",
-                            CreatedAt = new DateTime(2020, 8, 27, 17, 12, 49, 945, DateTimeKind.Local).AddTicks(6284),
+                            CreatedAt = new DateTime(2020, 8, 27, 17, 27, 42, 303, DateTimeKind.Local).AddTicks(2362),
                             Excerpt = "exceprt data loremmmmmm ipsummmmm",
                             MenuOrder = 1,
                             Picture = "default.jpg",
                             Status = true,
-                            UpdatedAt = new DateTime(2020, 8, 27, 17, 12, 49, 946, DateTimeKind.Local).AddTicks(4958),
+                            UpdatedAt = new DateTime(2020, 8, 27, 17, 27, 42, 304, DateTimeKind.Local).AddTicks(1153),
                             UrlAddress = "",
                             UrlType = (short)0
                         });
@@ -1026,29 +1026,33 @@ namespace Stnc.CMS.DataAccess.Migrations
             modelBuilder.Entity("Stnc.CMS.Entities.Concrete.DekamProjeDeneyHayvaniIrk", b =>
                 {
                     b.HasOne("Stnc.CMS.Entities.Concrete.AppUser", "AppUser")
-                        .WithMany()
-                        .HasForeignKey("AppUserId");
+                        .WithMany("DekamProjeDeneyHayvaniIrk")
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.SetNull);
                 });
 
             modelBuilder.Entity("Stnc.CMS.Entities.Concrete.DekamProjeDeneyHayvaniTur", b =>
                 {
                     b.HasOne("Stnc.CMS.Entities.Concrete.AppUser", "AppUser")
-                        .WithMany()
-                        .HasForeignKey("AppUserId");
+                        .WithMany("DekamProjeDeneyHayvaniTur")
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.SetNull);
                 });
 
             modelBuilder.Entity("Stnc.CMS.Entities.Concrete.DekamProjeLaboratuvarlar", b =>
                 {
                     b.HasOne("Stnc.CMS.Entities.Concrete.AppUser", "AppUser")
-                        .WithMany()
-                        .HasForeignKey("AppUserId");
+                        .WithMany("DekamProjeLaboratuvarlar")
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.SetNull);
                 });
 
             modelBuilder.Entity("Stnc.CMS.Entities.Concrete.DekamProjeTakip", b =>
                 {
                     b.HasOne("Stnc.CMS.Entities.Concrete.AppUser", "AppUser")
                         .WithMany("DekamProjeTakip")
-                        .HasForeignKey("AppUserId");
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.HasOne("Stnc.CMS.Entities.Concrete.DekamProjeDeneyHayvaniIrk", "DeneyHayvaniIrk")
                         .WithMany("DekamProjeTakip")
@@ -1090,22 +1094,25 @@ namespace Stnc.CMS.DataAccess.Migrations
             modelBuilder.Entity("Stnc.CMS.Entities.Concrete.DekamProjeTeknikDestekTalepHayvanSayisi", b =>
                 {
                     b.HasOne("Stnc.CMS.Entities.Concrete.AppUser", "AppUser")
-                        .WithMany()
-                        .HasForeignKey("AppUserId");
+                        .WithMany("DekamProjeTeknikDestekTalepHayvanSayisi")
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.SetNull);
                 });
 
             modelBuilder.Entity("Stnc.CMS.Entities.Concrete.DekamProjeTeknikDestekTalepSure", b =>
                 {
                     b.HasOne("Stnc.CMS.Entities.Concrete.AppUser", "AppUser")
-                        .WithMany()
-                        .HasForeignKey("AppUserId");
+                        .WithMany("DekamProjeTeknikDestekTalepSure")
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.SetNull);
                 });
 
             modelBuilder.Entity("Stnc.CMS.Entities.Concrete.DekamProjeTeknikDestekTalepTur", b =>
                 {
                     b.HasOne("Stnc.CMS.Entities.Concrete.AppUser", "AppUser")
-                        .WithMany()
-                        .HasForeignKey("AppUserId");
+                        .WithMany("DekamProjeTeknikDestekTalepTur")
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.SetNull);
                 });
 
             modelBuilder.Entity("Stnc.CMS.Entities.Concrete.Gorev", b =>
