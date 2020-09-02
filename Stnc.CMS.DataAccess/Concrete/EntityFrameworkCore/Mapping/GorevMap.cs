@@ -17,7 +17,7 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Mapping
             builder.Property(I => I.Ad).HasMaxLength(200).IsRequired();
             builder.Property(I => I.Aciklama).HasColumnType("ntext");
 
-            builder.HasOne(I => I.Aciliyet).WithMany(I => I.Gorevler).HasForeignKey(I => I.AciliyetId);
+         //   builder.HasOne(I => I.Aciliyet).WithMany(I => I.Gorevler).HasForeignKey(I => I.AciliyetId);
         }
     }
 }

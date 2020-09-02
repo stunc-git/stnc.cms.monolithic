@@ -30,3 +30,15 @@ Validation = Stnc.CMS.Web\CustomCollectionExtensions\
 DICONTAİNER= Stnc.CMS.Business\DiContainer\CustomExtensions.cs
 View İçine Hızlı Veri =Stnc.CMS.Web\Areas\Admin\Views\_ViewImports.cshtml 
 map yapmak için =Stnc.CMS.Web\Mapping\AutoMapperProfile\MapProfile.cs
+
+
+https://medium.com/@gktnkrdg/entity-framework-core-sorgu-etiketleri-query-tags-d912592cdad3
+https://gunnarpeipman.com/ef-core-toquerystring/
+
+
+.net core respository pattern uygulama 
+https://medium.com/net-core/repository-pattern-implementation-in-asp-net-core-21e01c6664d7
+https://www.programmingwithwolfgang.com/repository-pattern-net-core/
+
+ilişkiler hakkında 
+https://docs.microsoft.com/en-us/ef/core/querying/related-data

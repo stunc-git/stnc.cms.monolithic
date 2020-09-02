@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Stnc.CMS.DataAccess.Migrations
 {
-    public partial class Initialcreate : Migration
+    public partial class Inıt : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -15,7 +15,10 @@ namespace Stnc.CMS.DataAccess.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Tanim = table.Column<string>(maxLength: 100, nullable: true)
                 },
-                constraints: table => table.PrimaryKey("PK_Aciliyetler", x => x.Id));
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Aciliyetler", x => x.Id);
+                });
 
             migrationBuilder.CreateTable(
                 name: "AspNetRoles",
@@ -27,7 +30,10 @@ namespace Stnc.CMS.DataAccess.Migrations
                     NormalizedName = table.Column<string>(maxLength: 256, nullable: true),
                     ConcurrencyStamp = table.Column<string>(nullable: true)
                 },
-                constraints: table => table.PrimaryKey("PK_AspNetRoles", x => x.Id));
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetRoles", x => x.Id);
+                });
 
             migrationBuilder.CreateTable(
                 name: "AspNetUsers",
@@ -204,6 +210,144 @@ namespace Stnc.CMS.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "DekamProjeDeneyHayvaniIrk",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(maxLength: 500, nullable: false),
+                    CreatedAt = table.Column<DateTime>(nullable: true),
+                    UpdatedAt = table.Column<DateTime>(nullable: true),
+                    DeletedAt = table.Column<DateTime>(nullable: true),
+                    AppUserId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DekamProjeDeneyHayvaniIrk", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_DekamProjeDeneyHayvaniIrk_AspNetUsers_AppUserId",
+                        column: x => x.AppUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.SetNull);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "DekamProjeDeneyHayvaniTur",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(maxLength: 500, nullable: false),
+                    CreatedAt = table.Column<DateTime>(nullable: true),
+                    UpdatedAt = table.Column<DateTime>(nullable: true),
+                    DeletedAt = table.Column<DateTime>(nullable: true),
+                    AppUserId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DekamProjeDeneyHayvaniTur", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_DekamProjeDeneyHayvaniTur_AspNetUsers_AppUserId",
+                        column: x => x.AppUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.SetNull);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "DekamProjeDeneyHayvanSayisi",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(maxLength: 500, nullable: false),
+                    CreatedAt = table.Column<DateTime>(nullable: true),
+                    UpdatedAt = table.Column<DateTime>(nullable: true),
+                    DeletedAt = table.Column<DateTime>(nullable: true),
+                    AppUserId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DekamProjeDeneyHayvanSayisi", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_DekamProjeDeneyHayvanSayisi_AspNetUsers_AppUserId",
+                        column: x => x.AppUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.SetNull);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "DekamProjeLaboratuvarlar",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(maxLength: 500, nullable: false),
+                    CreatedAt = table.Column<DateTime>(nullable: true),
+                    UpdatedAt = table.Column<DateTime>(nullable: true),
+                    DeletedAt = table.Column<DateTime>(nullable: true),
+                    AppUserId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DekamProjeLaboratuvarlar", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_DekamProjeLaboratuvarlar_AspNetUsers_AppUserId",
+                        column: x => x.AppUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.SetNull);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "DekamProjeTeknikDestekTalepSure",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(maxLength: 500, nullable: false),
+                    CreatedAt = table.Column<DateTime>(nullable: true),
+                    UpdatedAt = table.Column<DateTime>(nullable: true),
+                    DeletedAt = table.Column<DateTime>(nullable: true),
+                    AppUserId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DekamProjeTeknikDestekTalepSure", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_DekamProjeTeknikDestekTalepSure_AspNetUsers_AppUserId",
+                        column: x => x.AppUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.SetNull);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "DekamProjeTeknikDestekTalepTur",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(nullable: true),
+                    CreatedAt = table.Column<DateTime>(nullable: true),
+                    UpdatedAt = table.Column<DateTime>(nullable: true),
+                    DeletedAt = table.Column<DateTime>(nullable: true),
+                    AppUserId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DekamProjeTeknikDestekTalepTur", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_DekamProjeTeknikDestekTalepTur_AspNetUsers_AppUserId",
+                        column: x => x.AppUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.SetNull);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Gorevler",
                 columns: table => new
                 {
@@ -234,6 +378,35 @@ namespace Stnc.CMS.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Slider",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Caption = table.Column<string>(maxLength: 250, nullable: true),
+                    UrlAddress = table.Column<string>(nullable: true),
+                    UrlType = table.Column<short>(type: "smallint", nullable: false),
+                    Excerpt = table.Column<string>(type: "ntext", nullable: true),
+                    Status = table.Column<bool>(nullable: false),
+                    MenuOrder = table.Column<int>(maxLength: 255, nullable: false, defaultValue: 1),
+                    Picture = table.Column<string>(type: "ntext", nullable: false),
+                    CreatedAt = table.Column<DateTime>(nullable: true),
+                    UpdatedAt = table.Column<DateTime>(nullable: true),
+                    DeletedAt = table.Column<DateTime>(nullable: true),
+                    AppUserId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Slider", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Slider_AspNetUsers_AppUserId",
+                        column: x => x.AppUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Posts",
                 columns: table => new
                 {
@@ -247,12 +420,14 @@ namespace Stnc.CMS.DataAccess.Migrations
                     PostPassword = table.Column<string>(maxLength: 255, nullable: true),
                     PostSlug = table.Column<string>(maxLength: 255, nullable: true),
                     MenuOrder = table.Column<int>(maxLength: 255, nullable: false, defaultValue: 1),
+                    PostType = table.Column<short>(type: "smallint", nullable: true, defaultValue: (short)1),
                     CommentCount = table.Column<long>(nullable: false, defaultValue: 1L),
                     Picture = table.Column<string>(type: "ntext", nullable: true),
                     CreatedAt = table.Column<DateTime>(nullable: true),
                     UpdatedAt = table.Column<DateTime>(nullable: true),
                     DeletedAt = table.Column<DateTime>(nullable: true),
-                    AppUserId = table.Column<int>(nullable: true)
+                    AppUserId = table.Column<int>(nullable: true),
+                    CategoryId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -262,7 +437,92 @@ namespace Stnc.CMS.DataAccess.Migrations
                         column: x => x.AppUserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
+                        onDelete: ReferentialAction.SetNull);
+                    table.ForeignKey(
+                        name: "FK_Posts_Categories_CategoryId",
+                        column: x => x.CategoryId,
+                        principalTable: "Categories",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "DekamProjeTakip",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ProjeYurutucusu = table.Column<string>(maxLength: 500, nullable: false),
+                    ProjeYurutukurumu = table.Column<string>(maxLength: 500, nullable: false),
+                    ProjeYurutuTelefon = table.Column<string>(maxLength: 500, nullable: false),
+                    SorumluArastirmaci = table.Column<string>(maxLength: 500, nullable: false),
+                    SorumluArastirmaciTelefon = table.Column<string>(maxLength: 500, nullable: false),
+                    EtikKurulOnayNumarasi = table.Column<string>(maxLength: 500, nullable: false),
+                    EtikKurulOnayTarihi = table.Column<DateTime>(nullable: true),
+                    ProjeBaslangicTarihi = table.Column<DateTime>(nullable: true),
+                    ProjeBitisTarihi = table.Column<DateTime>(nullable: true),
+                    DeneyHayvaniCinsiyet = table.Column<short>(type: "smallint", nullable: false),
+                    DeneyHayvaniSayisi = table.Column<short>(type: "smallint", nullable: false),
+                    DeneyHayvaniYasi = table.Column<short>(type: "smallint", nullable: false),
+                    DeneyHayvaniAgirligi = table.Column<short>(type: "smallint", nullable: false),
+                    LaboratuvarBaslangicTarihi = table.Column<DateTime>(nullable: true),
+                    LaboratuvarBitisTarihi = table.Column<DateTime>(nullable: true),
+                    CreatedAt = table.Column<DateTime>(nullable: true),
+                    UpdatedAt = table.Column<DateTime>(nullable: true),
+                    DeletedAt = table.Column<DateTime>(nullable: true),
+                    AppUserId = table.Column<int>(nullable: true),
+                    DeneyHayvaniIrkID = table.Column<int>(nullable: false),
+                    DeneyHayvaniTurID = table.Column<int>(nullable: false),
+                    LaboratuvarID = table.Column<int>(nullable: false),
+                    TeknikHayvanSayisiID = table.Column<int>(nullable: false),
+                    TeknikDestekSuresiID = table.Column<int>(nullable: false),
+                    TeknikDestekTuruID = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DekamProjeTakip", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_DekamProjeTakip_AspNetUsers_AppUserId",
+                        column: x => x.AppUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.SetNull);
+                    table.ForeignKey(
+                        name: "FK_DekamProjeTakip_DekamProjeDeneyHayvaniIrk_DeneyHayvaniIrkID",
+                        column: x => x.DeneyHayvaniIrkID,
+                        principalTable: "DekamProjeDeneyHayvaniIrk",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_DekamProjeTakip_DekamProjeDeneyHayvaniTur_DeneyHayvaniTurID",
+                        column: x => x.DeneyHayvaniTurID,
+                        principalTable: "DekamProjeDeneyHayvaniTur",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_DekamProjeTakip_DekamProjeLaboratuvarlar_LaboratuvarID",
+                        column: x => x.LaboratuvarID,
+                        principalTable: "DekamProjeLaboratuvarlar",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_DekamProjeTakip_DekamProjeTeknikDestekTalepSure_TeknikDestekSuresiID",
+                        column: x => x.TeknikDestekSuresiID,
+                        principalTable: "DekamProjeTeknikDestekTalepSure",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_DekamProjeTakip_DekamProjeTeknikDestekTalepTur_TeknikDestekTuruID",
+                        column: x => x.TeknikDestekTuruID,
+                        principalTable: "DekamProjeTeknikDestekTalepTur",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_DekamProjeTakip_DekamProjeDeneyHayvanSayisi_TeknikHayvanSayisiID",
+                        column: x => x.TeknikHayvanSayisiID,
+                        principalTable: "DekamProjeDeneyHayvanSayisi",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -293,6 +553,7 @@ namespace Stnc.CMS.DataAccess.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     PostID = table.Column<int>(nullable: false),
+                    PostsId = table.Column<int>(nullable: true),
                     CategoryID = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -305,11 +566,11 @@ namespace Stnc.CMS.DataAccess.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_CategoryBlogs_Posts_PostID",
-                        column: x => x.PostID,
-                        principalTable: "Posts",
+                        name: "FK_CategoryBlogs_DekamProjeTakip_PostsId",
+                        column: x => x.PostsId,
+                        principalTable: "DekamProjeTakip",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -347,12 +608,17 @@ namespace Stnc.CMS.DataAccess.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Comments_Posts_PostsId",
+                        name: "FK_Comments_DekamProjeTakip_PostsId",
                         column: x => x.PostsId,
-                        principalTable: "Posts",
+                        principalTable: "DekamProjeTakip",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
+
+            migrationBuilder.InsertData(
+                table: "Slider",
+                columns: new[] { "Id", "AppUserId", "Caption", "CreatedAt", "DeletedAt", "Excerpt", "MenuOrder", "Picture", "Status", "UpdatedAt", "UrlAddress", "UrlType" },
+                values: new object[] { 1598024890, null, "Lorem ipsum laramde loremde ipsumda inmpala", new DateTime(2020, 8, 28, 12, 23, 53, 232, DateTimeKind.Local).AddTicks(4363), null, "exceprt data loremmmmmm ipsummmmm", 1, "default.jpg", true, new DateTime(2020, 8, 28, 12, 23, 53, 233, DateTimeKind.Local).AddTicks(3215), "", (short)0 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -404,6 +670,11 @@ namespace Stnc.CMS.DataAccess.Migrations
                 column: "CategoryID");
 
             migrationBuilder.CreateIndex(
+                name: "IX_CategoryBlogs_PostsId",
+                table: "CategoryBlogs",
+                column: "PostsId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_CategoryBlogs_PostID_CategoryID",
                 table: "CategoryBlogs",
                 columns: new[] { "PostID", "CategoryID" },
@@ -418,6 +689,71 @@ namespace Stnc.CMS.DataAccess.Migrations
                 name: "IX_Comments_PostsId",
                 table: "Comments",
                 column: "PostsId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DekamProjeDeneyHayvaniIrk_AppUserId",
+                table: "DekamProjeDeneyHayvaniIrk",
+                column: "AppUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DekamProjeDeneyHayvaniTur_AppUserId",
+                table: "DekamProjeDeneyHayvaniTur",
+                column: "AppUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DekamProjeDeneyHayvanSayisi_AppUserId",
+                table: "DekamProjeDeneyHayvanSayisi",
+                column: "AppUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DekamProjeLaboratuvarlar_AppUserId",
+                table: "DekamProjeLaboratuvarlar",
+                column: "AppUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DekamProjeTakip_AppUserId",
+                table: "DekamProjeTakip",
+                column: "AppUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DekamProjeTakip_DeneyHayvaniIrkID",
+                table: "DekamProjeTakip",
+                column: "DeneyHayvaniIrkID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DekamProjeTakip_DeneyHayvaniTurID",
+                table: "DekamProjeTakip",
+                column: "DeneyHayvaniTurID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DekamProjeTakip_LaboratuvarID",
+                table: "DekamProjeTakip",
+                column: "LaboratuvarID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DekamProjeTakip_TeknikDestekSuresiID",
+                table: "DekamProjeTakip",
+                column: "TeknikDestekSuresiID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DekamProjeTakip_TeknikDestekTuruID",
+                table: "DekamProjeTakip",
+                column: "TeknikDestekTuruID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DekamProjeTakip_TeknikHayvanSayisiID",
+                table: "DekamProjeTakip",
+                column: "TeknikHayvanSayisiID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DekamProjeTeknikDestekTalepSure_AppUserId",
+                table: "DekamProjeTeknikDestekTalepSure",
+                column: "AppUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DekamProjeTeknikDestekTalepTur_AppUserId",
+                table: "DekamProjeTeknikDestekTalepTur",
+                column: "AppUserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Gorevler_AciliyetId",
@@ -435,9 +771,19 @@ namespace Stnc.CMS.DataAccess.Migrations
                 column: "AppUserId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Posts_CategoryId",
+                table: "Posts",
+                column: "CategoryId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Raporlar_GorevId",
                 table: "Raporlar",
                 column: "GorevId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Slider_AppUserId",
+                table: "Slider",
+                column: "AppUserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -467,19 +813,43 @@ namespace Stnc.CMS.DataAccess.Migrations
                 name: "Comments");
 
             migrationBuilder.DropTable(
+                name: "Posts");
+
+            migrationBuilder.DropTable(
                 name: "Raporlar");
+
+            migrationBuilder.DropTable(
+                name: "Slider");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
+                name: "DekamProjeTakip");
+
+            migrationBuilder.DropTable(
                 name: "Categories");
 
             migrationBuilder.DropTable(
-                name: "Posts");
+                name: "Gorevler");
 
             migrationBuilder.DropTable(
-                name: "Gorevler");
+                name: "DekamProjeDeneyHayvaniIrk");
+
+            migrationBuilder.DropTable(
+                name: "DekamProjeDeneyHayvaniTur");
+
+            migrationBuilder.DropTable(
+                name: "DekamProjeLaboratuvarlar");
+
+            migrationBuilder.DropTable(
+                name: "DekamProjeTeknikDestekTalepSure");
+
+            migrationBuilder.DropTable(
+                name: "DekamProjeTeknikDestekTalepTur");
+
+            migrationBuilder.DropTable(
+                name: "DekamProjeDeneyHayvanSayisi");
 
             migrationBuilder.DropTable(
                 name: "Aciliyetler");

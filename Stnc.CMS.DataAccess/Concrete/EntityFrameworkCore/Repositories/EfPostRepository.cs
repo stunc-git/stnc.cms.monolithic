@@ -1,13 +1,25 @@
-﻿using Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts;
+﻿
+//using Microsoft.EntityFrameworkCore;
+using Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts;
 using Stnc.CMS.DataAccess.Interfaces;
 using Stnc.CMS.Entities.Concrete;
 using System.Collections.Generic;
-using System.Linq;
+using System.Data.Entity;
 
+using System.Linq;
 namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Repositories
 {
     public class EfPostRepository : EfGenericRepository<Posts>, IPostDal
     {
+        private readonly StncCMSContext _context;
+
+        public EfPostRepository(StncCMSContext context)
+        {
+            _context = context;
+        }
+
+
+
         public int GetTotalPost()
         {
             using var context = new StncCMSContext();
@@ -16,8 +28,16 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Repositories
 
         public List<Posts> PostList()
         {
-            using var context = new StncCMSContext();
-            return context.Posts.Where(I => I.PostStatus).OrderByDescending(I => I.Id).ToList();
+            //  using var context = new StncCMSContext();
+              // using var context = new StncCMSContext();
+               return _context.Posts.IncludeThen(I => I.Category).ToList();
+
+           // var query = _context.Posts.Include(I => I.Category).Where(I => I.PostStatus).OrderByDescending(I => I.Id);
+
+
+           // Console.WriteLine(query.TagWith("tuyuıuyıyuıyuıyuıyuıyuıyuıyuıuyıyuıuy"));
+
+          //  return query.ToList();
         }
 
         public Posts GetSlugPost(string Slug)

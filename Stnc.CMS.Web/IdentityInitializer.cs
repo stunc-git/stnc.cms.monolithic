@@ -30,19 +30,19 @@ namespace Stnc.CMS.Web
                 {
                     Name = "selman",
                     Surname = "tunç",
-                    UserName = "stnc",
+                    UserName = "selman",
                     Email = "selmantunc@gmail.com"
                 };
                 await userManager.CreateAsync(user,"1").ConfigureAwait(false);
                 await userManager.AddToRoleAsync(user, "Admin").ConfigureAwait(false);
             }
-/*
+
             var memberUser = await userManager.FindByNameAsync("member");
             if (memberUser == null)
             {
                 AppUser member = new AppUser
                 {
-                    Name = "selman2",
+                    Name = "member",
                     Surname = "tunç",
                     UserName = "member",
                     Email = "selmantunc@yahoo.com"
@@ -50,7 +50,7 @@ namespace Stnc.CMS.Web
                 await userManager.CreateAsync(member, "1");
                 await userManager.AddToRoleAsync(member, "Member");
             }
-*/
+
         }
     }
 }

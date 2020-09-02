@@ -926,14 +926,14 @@ namespace Stnc.CMS.DataAccess.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 1183605115,
+                            Id = 1598024890,
                             Caption = "Lorem ipsum laramde loremde ipsumda inmpala",
-                            CreatedAt = new DateTime(2020, 8, 27, 17, 27, 42, 303, DateTimeKind.Local).AddTicks(2362),
+                            CreatedAt = new DateTime(2020, 8, 28, 12, 23, 53, 232, DateTimeKind.Local).AddTicks(4363),
                             Excerpt = "exceprt data loremmmmmm ipsummmmm",
                             MenuOrder = 1,
                             Picture = "default.jpg",
                             Status = true,
-                            UpdatedAt = new DateTime(2020, 8, 27, 17, 27, 42, 304, DateTimeKind.Local).AddTicks(1153),
+                            UpdatedAt = new DateTime(2020, 8, 28, 12, 23, 53, 233, DateTimeKind.Local).AddTicks(3215),
                             UrlAddress = "",
                             UrlType = (short)0
                         });

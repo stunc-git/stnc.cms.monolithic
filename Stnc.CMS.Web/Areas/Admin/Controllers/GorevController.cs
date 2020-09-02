@@ -35,7 +35,6 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
         public IActionResult EkleGorev()
         {
             TempData["Active"] = TempdataInfo.Gorev;
-
             ViewBag.Aciliyetler = new SelectList(_aciliyetService.GetAll(), "Id", "Tanim");
             return View(new GorevAddDto());
         }

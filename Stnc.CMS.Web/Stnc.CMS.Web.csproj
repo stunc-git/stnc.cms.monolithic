@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <AutoGenerateBindingRedirects>false</AutoGenerateBindingRedirects>
+    <UserSecretsId>d45e5056-66fd-49f9-9957-bb081398eb59</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>

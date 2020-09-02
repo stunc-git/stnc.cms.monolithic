@@ -23,5 +23,3 @@ namespace Stnc.CMS.Entities.Concrete
         public List<DekamProjeTakip> DekamProjeTakip { get; set; }
     }
 }
-
-

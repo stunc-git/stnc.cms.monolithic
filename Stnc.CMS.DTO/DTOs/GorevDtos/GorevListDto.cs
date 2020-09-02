@@ -16,5 +16,8 @@ namespace Stnc.CMS.DTO.DTOs.GorevDtos
 
         public int AciliyetId { get; set; }
         public Aciliyet Aciliyet { get; set; }
+
+        public int AppUserId { get; set; }
+        public AppUser AppUser { get; set; }
     }
 }

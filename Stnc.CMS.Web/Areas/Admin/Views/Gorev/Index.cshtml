@@ -26,6 +26,7 @@
                 <td>@item.Aciklama</td>
                 <td>@item.OlusturulmaTarih.ToString("D")</td>
                 <td>@item.Aciliyet.Tanim</td>
+                <td>@item.AppUser.Name</td>
                 <td>
                     <a asp-action="GuncelleGorev" asp-route-id="@item.Id" class="btn btn-warning btn-sm"><i class="far fa-edit mr-2"></i>Düzenle </a>
                     <a href="" data-toggle="modal" data-target="#silmeEkrani" data-ValueDel="@item.Id" class="btn btn-danger btn-sm">
@@ -70,7 +71,7 @@ else
     </div>
 </div>
 
-@section JavaScript{ 
+@section JavaScript{
     <script type="text/javascript">
         $(document).ready(function () {
             $("#silmeEkrani").on("show.bs.modal", function (event) {

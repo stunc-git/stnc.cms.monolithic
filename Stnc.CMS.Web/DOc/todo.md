@@ -1,4 +1,12 @@
-﻿category de bulunan interface DAL olacak ve görevleri interface içierisinde olacak 
+﻿## güvenli password  password difficulty .net core
+https://sagarjaybhay.com/customize-default-password-complexity-rules-in-asp-net-core/
+https://www.c-sharpcorner.com/blogs/how-to-check-password-strength-in-jquery
+https://www.ryadel.com/en/passwordcheck-c-sharp-password-class-calculate-password-strength-policy-aspnet/
+
+
+json dosyasının env olayına göre configure edilmesi gererkiyor 
+
+category de bulunan interface DAL olacak ve görevleri interface içierisinde olacak 
 
 many to many ve çoklu içerik konusunda bir örnek 
 

@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
 using Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Mapping;
 using Stnc.CMS.Entities.Concrete;
 using System.IO;
@@ -10,6 +9,9 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts
 {
     public class StncCMSContext : IdentityDbContext<AppUser, AppRole, int>
     {
+
+
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             //  optionsBuilder.UseSqlServer("server=(localdb)\\mssqllocaldb; database=bloggg; user id=sa; password=1;");
@@ -24,6 +26,8 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts
             optionsBuilder.UseSqlServer(config.GetConnectionString("SQLProvider"));
 
             base.OnConfiguring(optionsBuilder);
+
+
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -65,5 +69,7 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts
         public DbSet<DekamProjeTeknikDestekTalepHayvanSayisi> DekamProjeDeneyHayvanSayisi { get; set; }
         public DbSet<DekamProjeDeneyHayvaniTur> DekamProjeDeneyHayvaniTur { get; set; }
         public DbSet<DekamProjeDeneyHayvaniIrk> DekamProjeDeneyHayvaniIrk { get; set; }
+
+
     }
 }

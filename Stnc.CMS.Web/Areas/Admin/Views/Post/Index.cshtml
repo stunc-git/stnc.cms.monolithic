@@ -32,7 +32,7 @@
                     <tr>
                         <th> <input type="checkbox" id="vehicle1" name="vehicle1"></th>
                         <th>Ad</th>
-                        <th>Yazar</th>
+                        <th>Kategori</th>
                         <th>Oluşturulma Tarih</th>
                         <th>Göster</th>
                         <th class="float-right">İşlem</th>
@@ -42,7 +42,7 @@
                         <tr class="tableTR-@item.Id">
                             <td> <input type="checkbox" id="vehicle1" name="vehicle1"></td>
                             <td>@item.PostTitle</td>
-                            <td>Admin</td>
+                            <td>@item.Category.Name</td>
                             @*<td> @Html.Raw(item.PostContent)</td>*@
                             <td>@item.CreatedAt.Value.ToString("dd MMM yyyy") </td>
                             <td><a target="_blank" href="/icerik/@item.PostSlug">Göster</a></td>
