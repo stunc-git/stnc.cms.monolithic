@@ -21,37 +21,37 @@ namespace Stnc.CMS.Business.Concrete
 
         public DekamProjeTakip GetirIdile(int id)
         {
-            throw new System.NotImplementedException();
+            return _dekamProjeTakipDal.GetirIdile(id);
         }
 
         public int GetProjectTotal()
         {
-            throw new System.NotImplementedException();
+            return _dekamProjeTakipDal.GetProjectTotal();
         }
 
         public void Guncelle(DekamProjeTakip tablo)
         {
-            throw new System.NotImplementedException();
+            _dekamProjeTakipDal.Guncelle(tablo);
         }
 
         public void Kaydet(DekamProjeTakip tablo)
         {
-            throw new System.NotImplementedException();
+            _dekamProjeTakipDal.Kaydet(tablo);
         }
 
         public List<DekamProjeTakip> ProjeList()
         {
-            throw new System.NotImplementedException();
+            return _dekamProjeTakipDal.ProjeList();
         }
 
         public DekamProjeTakip SaveReturn(DekamProjeTakip tablo)
         {
-            throw new System.NotImplementedException();
+            return _dekamProjeTakipDal.SaveReturn(tablo);
         }
 
         public void Sil(DekamProjeTakip tablo)
         {
-            throw new System.NotImplementedException();
+             _dekamProjeTakipDal.Sil(tablo);
         }
     }
 }

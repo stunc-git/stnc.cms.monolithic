@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts;
 
 namespace Stnc.CMS.DataAccess.Migrations
 {
     [DbContext(typeof(StncCMSContext))]
-    partial class StncCMSContextModelSnapshot : ModelSnapshot
+    [Migration("20200902114012_initalTest")]
+    partial class initalTest
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -264,45 +266,6 @@ namespace Stnc.CMS.DataAccess.Migrations
                     b.HasIndex("AppUserId");
 
                     b.ToTable("Bildirimler");
-                });
-
-            modelBuilder.Entity("Stnc.CMS.Entities.Concrete.Blog", b =>
-                {
-                    b.Property<int>("BlogId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Url")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("BlogId");
-
-                    b.ToTable("Blogs");
-                });
-
-            modelBuilder.Entity("Stnc.CMS.Entities.Concrete.BlogImage", b =>
-                {
-                    b.Property<int>("BlogImageId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("BlogForeignKey")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Caption")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<byte[]>("Image")
-                        .HasColumnType("varbinary(max)");
-
-                    b.HasKey("BlogImageId");
-
-                    b.HasIndex("BlogForeignKey")
-                        .IsUnique();
-
-                    b.ToTable("BlogImages");
                 });
 
             modelBuilder.Entity("Stnc.CMS.Entities.Concrete.Category", b =>
@@ -1007,14 +970,14 @@ namespace Stnc.CMS.DataAccess.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 296011944,
+                            Id = 1417068750,
                             Caption = "Lorem ipsum laramde loremde ipsumda inmpala",
-                            CreatedAt = new DateTime(2020, 9, 2, 17, 14, 26, 389, DateTimeKind.Local).AddTicks(9299),
+                            CreatedAt = new DateTime(2020, 9, 2, 14, 40, 11, 958, DateTimeKind.Local).AddTicks(9162),
                             Excerpt = "exceprt data loremmmmmm ipsummmmm",
                             MenuOrder = 1,
                             Picture = "default.jpg",
                             Status = true,
-                            UpdatedAt = new DateTime(2020, 9, 2, 17, 14, 26, 390, DateTimeKind.Local).AddTicks(7999),
+                            UpdatedAt = new DateTime(2020, 9, 2, 14, 40, 11, 960, DateTimeKind.Local).AddTicks(2337),
                             UrlAddress = "",
                             UrlType = (short)0
                         });
@@ -1076,15 +1039,6 @@ namespace Stnc.CMS.DataAccess.Migrations
                     b.HasOne("Stnc.CMS.Entities.Concrete.AppUser", "AppUser")
                         .WithMany("Bildirimler")
                         .HasForeignKey("AppUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Stnc.CMS.Entities.Concrete.BlogImage", b =>
-                {
-                    b.HasOne("Stnc.CMS.Entities.Concrete.Blog", "Blog")
-                        .WithOne("BlogImage")
-                        .HasForeignKey("Stnc.CMS.Entities.Concrete.BlogImage", "BlogForeignKey")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

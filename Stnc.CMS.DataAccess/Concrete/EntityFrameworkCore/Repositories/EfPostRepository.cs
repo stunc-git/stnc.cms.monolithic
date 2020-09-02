@@ -1,12 +1,14 @@
 ﻿
 //using Microsoft.EntityFrameworkCore;
+//using Microsoft.EntityFrameworkCore;
 using Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts;
 using Stnc.CMS.DataAccess.Interfaces;
 using Stnc.CMS.Entities.Concrete;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
-
 using System.Linq;
+
 namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Repositories
 {
     public class EfPostRepository : EfGenericRepository<Posts>, IPostDal
@@ -26,18 +28,19 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Repositories
             return context.Posts.Count();
         }
 
-        public List<Posts> PostList()
+      //  public List<Posts>    PostList()
+       public List<Posts>    PostList()
         {
             //  using var context = new StncCMSContext();
-              // using var context = new StncCMSContext();
-               return _context.Posts.IncludeThen(I => I.Category).ToList();
+            // using var context = new StncCMSContext();
+            //  return _context.Posts.TagWith("InsertTweetStoreProc + LogContext").ToList();
+            //IQueryable<Posts> query
+            var query = _context.Posts.Include(I => I.AppUser).Where(I => I.PostStatus).OrderByDescending(I => I.Id);
 
-           // var query = _context.Posts.Include(I => I.Category).Where(I => I.PostStatus).OrderByDescending(I => I.Id);
 
+          // Console.WriteLine(query.TagWith("tuyuıuyıyuıyuıyuıyuıyuıyuıyuıuyıyuıuy"));
 
-           // Console.WriteLine(query.TagWith("tuyuıuyıyuıyuıyuıyuıyuıyuıyuıuyıyuıuy"));
-
-          //  return query.ToList();
+           return query.ToList();
         }
 
         public Posts GetSlugPost(string Slug)

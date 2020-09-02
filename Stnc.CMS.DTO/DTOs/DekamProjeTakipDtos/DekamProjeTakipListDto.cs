@@ -13,5 +13,11 @@ namespace Stnc.CMS.DTO.DTOs.DekamProjeTakipDtos
         public string SorumluArastirmaciTelefon { get; set; }
         public string EtikKurulOnayNumarasi { get; set; }
 
+        public int AppUserId { get; set; }
+        public AppUser AppUser { get; set; }
+
+         public int LaboratuvarID { get; set; }
+        public DekamProjeLaboratuvarlar Laboratuvar { get; set; }
+
     }
 }

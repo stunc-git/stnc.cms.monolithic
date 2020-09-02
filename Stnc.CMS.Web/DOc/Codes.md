@@ -42,3 +42,5 @@ https://www.programmingwithwolfgang.com/repository-pattern-net-core/
 
 ilişkiler hakkında 
 https://docs.microsoft.com/en-us/ef/core/querying/related-data
+
+https://dev.to/_patrickgod/one-to-one-relationship-with-entity-framework-core-3pgg   harika yazı 

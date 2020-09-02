@@ -2,6 +2,7 @@
 using Stnc.CMS.DataAccess.Interfaces;
 using Stnc.CMS.Entities.Concrete;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 
 namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Repositories
@@ -17,7 +18,7 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Repositories
         public List<DekamProjeTakip> ProjeList()
         {
             using var context = new StncCMSContext();
-            return context.DekamProjeTakip.OrderByDescending(I => I.Id).ToList();
+            return context.DekamProjeTakip.Include(I => I.Laboratuvar).OrderByDescending(I => I.Id).ToList();
         }
     }
 }

@@ -41,7 +41,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
         {
             TempData["Active"] = TempdataInfo.Category;
             ViewBag.GeneralTitle = "Proje Takip";
-            return View(_mapper.Map<List<DekamProjeTakipListDto>>(_dekamProjeTakipService.GetAll()));
+            return View(_mapper.Map<List<DekamProjeTakipListDto>>(_dekamProjeTakipService.ProjeList()));
         }
 
         public IActionResult Create()

@@ -47,9 +47,25 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts
             modelBuilder.ApplyConfiguration(new DekamProjeLaboratuvarlarMap());
             modelBuilder.ApplyConfiguration(new DekamProjeTeknikDestekTalepSureMap());
             modelBuilder.ApplyConfiguration(new DekamProjeDeneyHayvanSayisiMap());
-            base.OnModelCreating(modelBuilder);
-        }
 
+
+            //modelBuilder.Entity<City>()
+            //    .HasOne(e => e.CityInformation)
+            //    .WithOne(e => e.City)
+            //    .HasForeignKey<City>(e => e.CityInformationId)
+            //    .OnDelete(DeleteBehavior.Cascade)
+            //    .IsRequired();
+
+            modelBuilder.Entity<Blog>()
+           .HasOne(b => b.BlogImages)
+           .WithOne(i => i.Blog)
+           .HasForeignKey<BlogImage>(b => b.BlogForeignKey);
+
+            base.OnModelCreating(modelBuilder);
+
+        }
+        public DbSet<Blog> Blogs { get; set; }
+        public DbSet<BlogImage> BlogImages { get; set; }
         public DbSet<Posts> Posts { get; set; }
         public DbSet<Gorev> Gorevler { get; set; }
         public DbSet<Aciliyet> Aciliyetler { get; set; }
@@ -69,7 +85,9 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts
         public DbSet<DekamProjeTeknikDestekTalepHayvanSayisi> DekamProjeDeneyHayvanSayisi { get; set; }
         public DbSet<DekamProjeDeneyHayvaniTur> DekamProjeDeneyHayvaniTur { get; set; }
         public DbSet<DekamProjeDeneyHayvaniIrk> DekamProjeDeneyHayvaniIrk { get; set; }
+        public DbSet<City> City { get; set; }
 
+      public DbSet<CityInformation> CityInformation { get; set; }
 
     }
 }
