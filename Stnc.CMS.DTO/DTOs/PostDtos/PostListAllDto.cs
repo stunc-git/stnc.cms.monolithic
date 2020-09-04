@@ -18,7 +18,7 @@ namespace Stnc.CMS.DTO.DTOs.PostDtos
         public AppUser AppUser { get; set; }
 
         public int CategoryId { get; set; }
-        public Category Category { get; set; }
+        public virtual  Category Category { get; set; }
 
         //   public List<CategoryBlogs> CategoryBlogs { get; set; }
     }

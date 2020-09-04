@@ -13,6 +13,7 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Mapping
             builder.Property(I => I.Name).HasMaxLength(100).IsRequired();
             builder.Property(I => I.Slug).HasMaxLength(100);
             builder.Property(I => I.Description).HasColumnType("ntext");
+            builder.HasMany(I => I.Posts).WithOne(I => I.Category).HasForeignKey(I => I.CategoryId);
             //builder.HasMany(I => I.CategoryBlogs).WithOne(I => I.Category).HasForeignKey(I => I.CategoryID);
 
             /*

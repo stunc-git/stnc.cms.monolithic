@@ -10,8 +10,8 @@ using Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts;
 namespace Stnc.CMS.DataAccess.Migrations
 {
     [DbContext(typeof(StncCMSContext))]
-    [Migration("20200902141426_oneone")]
-    partial class oneone
+    [Migration("20200904105927_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -268,45 +268,6 @@ namespace Stnc.CMS.DataAccess.Migrations
                     b.ToTable("Bildirimler");
                 });
 
-            modelBuilder.Entity("Stnc.CMS.Entities.Concrete.Blog", b =>
-                {
-                    b.Property<int>("BlogId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Url")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("BlogId");
-
-                    b.ToTable("Blogs");
-                });
-
-            modelBuilder.Entity("Stnc.CMS.Entities.Concrete.BlogImage", b =>
-                {
-                    b.Property<int>("BlogImageId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("BlogForeignKey")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Caption")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<byte[]>("Image")
-                        .HasColumnType("varbinary(max)");
-
-                    b.HasKey("BlogImageId");
-
-                    b.HasIndex("BlogForeignKey")
-                        .IsUnique();
-
-                    b.ToTable("BlogImages");
-                });
-
             modelBuilder.Entity("Stnc.CMS.Entities.Concrete.Category", b =>
                 {
                     b.Property<int>("Id")
@@ -387,8 +348,7 @@ namespace Stnc.CMS.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CityInformationId")
-                        .IsUnique();
+                    b.HasIndex("CityInformationId");
 
                     b.ToTable("City");
                 });
@@ -1009,14 +969,14 @@ namespace Stnc.CMS.DataAccess.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 296011944,
+                            Id = 551810190,
                             Caption = "Lorem ipsum laramde loremde ipsumda inmpala",
-                            CreatedAt = new DateTime(2020, 9, 2, 17, 14, 26, 389, DateTimeKind.Local).AddTicks(9299),
+                            CreatedAt = new DateTime(2020, 9, 4, 13, 59, 27, 438, DateTimeKind.Local).AddTicks(6015),
                             Excerpt = "exceprt data loremmmmmm ipsummmmm",
                             MenuOrder = 1,
                             Picture = "default.jpg",
                             Status = true,
-                            UpdatedAt = new DateTime(2020, 9, 2, 17, 14, 26, 390, DateTimeKind.Local).AddTicks(7999),
+                            UpdatedAt = new DateTime(2020, 9, 4, 13, 59, 27, 439, DateTimeKind.Local).AddTicks(4877),
                             UrlAddress = "",
                             UrlType = (short)0
                         });
@@ -1082,15 +1042,6 @@ namespace Stnc.CMS.DataAccess.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Stnc.CMS.Entities.Concrete.BlogImage", b =>
-                {
-                    b.HasOne("Stnc.CMS.Entities.Concrete.Blog", "Blog")
-                        .WithOne("BlogImage")
-                        .HasForeignKey("Stnc.CMS.Entities.Concrete.BlogImage", "BlogForeignKey")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("Stnc.CMS.Entities.Concrete.CategoryBlogs", b =>
                 {
                     b.HasOne("Stnc.CMS.Entities.Concrete.Category", "Category")
@@ -1107,8 +1058,8 @@ namespace Stnc.CMS.DataAccess.Migrations
             modelBuilder.Entity("Stnc.CMS.Entities.Concrete.City", b =>
                 {
                     b.HasOne("Stnc.CMS.Entities.Concrete.CityInformation", "CityInformation")
-                        .WithOne("City")
-                        .HasForeignKey("Stnc.CMS.Entities.Concrete.City", "CityInformationId")
+                        .WithMany("City")
+                        .HasForeignKey("CityInformationId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

@@ -8,12 +8,12 @@ namespace Stnc.CMS.Entities.Concrete
     {
         public int Id { get; set; }
 
-        public int Population { get; set; } = 34324324;
+        public int Population { get; set; }
 
-        public string OtherName { get; set; } = "Frodo3";
+        public string OtherName { get; set; }
 
-        public string MayorName { get; set; } = "Frodo4";
+        public string MayorName { get; set; }
 
-        public City City { get; set; }
+        public List<City> City { get; set; }
     }
 }

@@ -21,6 +21,7 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Mapping
             builder.Property(I => I.DeneyHayvaniSayisi).HasColumnType("smallint");
             builder.Property(I => I.DeneyHayvaniYasi).HasColumnType("smallint");
             builder.Property(I => I.DeneyHayvaniAgirligi).HasColumnType("smallint");
+            builder.HasOne(I => I.DekamProjeLaboratuvarlar).WithMany(x => x.DekamProjeTakip).HasForeignKey(I => I.LaboratuvarID);
             /*    builder.Property(I => I.TeknikDestekSuresiID).HasColumnType("smallint");
                 builder.Property(I => I.TeknikDestekTuruID).HasColumnType("smallint");
                 builder.Property(I => I.TeknikHayvanSayisiID).HasColumnType("smallint");
@@ -32,7 +33,7 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Mapping
             //burada kaldım
             //     builder.HasOne(I => I.Aciliyet).WithMany(I => I.Gorevler).HasForeignKey(I => I.AciliyetId);
 
-        //    builder.HasOne(I => I.DekamProjeDeneyHayvaniTur).WithMany(I => I.DekamProjeTakip).HasForeignKey(I => I.DeneyHayvaniTurID);
+            //    builder.HasOne(I => I.DekamProjeDeneyHayvaniTur).WithMany(I => I.DekamProjeTakip).HasForeignKey(I => I.DeneyHayvaniTurID);
         }
     }
 }

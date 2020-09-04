@@ -18,7 +18,7 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Repositories
         public List<DekamProjeTakip> ProjeList()
         {
             using var context = new StncCMSContext();
-            return context.DekamProjeTakip.Include(I => I.Laboratuvar).OrderByDescending(I => I.Id).ToList();
+            return context.DekamProjeTakip.Include(I => I.DekamProjeLaboratuvarlar).OrderByDescending(I => I.Id).ToList();
         }
     }
 }

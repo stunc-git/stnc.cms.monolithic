@@ -78,6 +78,13 @@ namespace Stnc.CMS.Web.Controllers
             return View("~/Views/Staff/Personel.cshtml");
         }
 
+
+        [Route("galeri")]
+        public IActionResult Galeri()
+        {
+            return View("~/Views/Gallery/Index.cshtml");
+        }
+
         //https://colorlib.com/preview/theme/wiser/single-blog.html
         [Route("demo-template/{UsersName}")]
         public IActionResult DemoTemplate(string UsersName)

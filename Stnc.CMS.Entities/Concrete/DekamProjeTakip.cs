@@ -31,21 +31,21 @@ namespace Stnc.CMS.Entities.Concrete
         public AppUser AppUser { get; set; }
 
         public int DeneyHayvaniIrkID { get; set; }
-        public DekamProjeDeneyHayvaniIrk DeneyHayvaniIrk { get; set; }
+        public virtual DekamProjeDeneyHayvaniIrk DeneyHayvaniIrk { get; set; }
 
         public int DeneyHayvaniTurID { get; set; }
-        public DekamProjeDeneyHayvaniTur DeneyHayvaniTur { get; set; }
+        public virtual DekamProjeDeneyHayvaniTur DeneyHayvaniTur { get; set; }
 
         public int LaboratuvarID { get; set; }
-        public DekamProjeLaboratuvarlar Laboratuvar { get; set; }
+        public virtual DekamProjeLaboratuvarlar DekamProjeLaboratuvarlar { get; set; }
 
         public int TeknikHayvanSayisiID { get; set; }
-        public DekamProjeTeknikDestekTalepHayvanSayisi TeknikHayvanSayisi { get; set; }
+        public virtual DekamProjeTeknikDestekTalepHayvanSayisi TeknikHayvanSayisi { get; set; }
 
         public int TeknikDestekSuresiID { get; set; }
-        public DekamProjeTeknikDestekTalepSure TeknikDestekSuresi { get; set; }
+        public virtual DekamProjeTeknikDestekTalepSure TeknikDestekSuresi { get; set; }
 
         public int TeknikDestekTuruID { get; set; }
-        public DekamProjeTeknikDestekTalepTur TeknikDestekTuru { get; set; }
+        public virtual DekamProjeTeknikDestekTalepTur TeknikDestekTuru { get; set; }
     }
 }

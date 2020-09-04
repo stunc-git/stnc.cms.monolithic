@@ -16,8 +16,8 @@ namespace Stnc.CMS.DTO.DTOs.DekamProjeTakipDtos
         public int AppUserId { get; set; }
         public AppUser AppUser { get; set; }
 
-         public int LaboratuvarID { get; set; }
-        public DekamProjeLaboratuvarlar Laboratuvar { get; set; }
+        public int LaboratuvarID { get; set; }
+        public virtual DekamProjeLaboratuvarlar Laboratuvar { get; set; }
 
     }
 }

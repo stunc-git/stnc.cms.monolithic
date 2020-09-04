@@ -2,14 +2,10 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts;
 using Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Repositories;
 using Stnc.CMS.Entities.Concrete;
 using Stnc.CMS.Web.BaseControllers;
 using Stnc.CMS.Web.StringInfo;
-using System;
-using System.Data.Entity;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Stnc.CMS.Web.Areas.Admin.Controllers
@@ -29,22 +25,9 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
         public IActionResult Index()
         {
             ViewBag.GeneralTitle = "Teknik Destek Talep Türleri";
-            //TempData["Active"] = TempdataInfo.Category;
-            //var all = Myrepo.GetAll();
-
-            using var context = new StncCMSContext();
-           // var all = context.City.Include(I => I.CityInformation).OrderByDescending(I => I.Id).ToList();
-            var all = context.Blogs.Include(I => I.BlogImages).OrderByDescending(I => I.BlogId).ToList();
-
+            TempData["Active"] = TempdataInfo.Category;
+            var all = Myrepo.GetAll();
             return View(all);
-
-            //  return View(context.City.Where(c => c.CityInformation.Id == c.CityInformationId).ToList());
-
-
-
-
-
-
         }
 
         public IActionResult Create()
