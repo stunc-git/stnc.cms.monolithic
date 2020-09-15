@@ -42,7 +42,7 @@
                         <tr class="tableTR-@item.Id">
                             <td> <input type="checkbox" id="vehicle1" name="vehicle1"></td>
                             <td>@item.PostTitle</td>
-                            <td>@item.Category.Name</td>
+                            <td>@*@item.Category.Name*@</td>
                             @*<td> @Html.Raw(item.PostContent)</td>*@
                             <td>@item.CreatedAt.Value.ToString("dd MMM yyyy") </td>
                             <td><a target="_blank" href="/icerik/@item.PostSlug">Göster</a></td>

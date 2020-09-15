@@ -7,6 +7,7 @@ using Stnc.CMS.Entities.Concrete;
 using Stnc.CMS.Web.BaseControllers;
 using Stnc.CMS.Web.StringInfo;
 using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
@@ -146,17 +147,34 @@ namespace Stnc.CMS.Entities.Concrete
 
             //  return View(context.City.Where(c => c.CityInformation.Id == c.CityInformationId).ToList());
 
-            // AddOnePerson(context);
+           //  AddOnePerson(context);
 
-            var c = context.City.Include(x=>x.CityInfo).ToList();
+             IList<City> orderedList  = context.City.Include(x=>x.CityInformation).ToList();
+          //  List<Person> orderedList = context.Persons.Include(x=>x.Address).ToList();
+
+
+
+
+           // orderedList.ForEach(p => Console.WriteLine($"{p.Address.StreetName:C} - {p.Name} )"));
+           // orderedList.ForEach(p => Console.WriteLine($"{p.Address.StreetName:C} - {p.Name} )"));
+
+
+            //foreach (Person person in orderedList)
+            //{
+            //    Console.WriteLine($"   {person.Address.StreetName}");
+            //}
+
             //Console.WriteLine("We have " + c.Count + " people in db.");
-            //foreach (var item in c)
-            //    Console.Write(c + "  ");
+            foreach (var item in orderedList)
+                Console.WriteLine("---------------------------");
+                Console.Write(orderedList);
+
+
             //Console.WriteLine(c);
             //Console.ReadKey();
 
-          //  return Ok();
-           return View(c);
+            //return Ok();
+              return View(orderedList);
         }
 
 
@@ -193,7 +211,7 @@ namespace Stnc.CMS.Entities.Concrete
             // That's why Person.AddressId is nullable.
 
 
-            /*
+
             var john = new Person { Name = "john" };
             context.Persons.Add(john);
             context.SaveChanges();
@@ -202,7 +220,7 @@ namespace Stnc.CMS.Entities.Concrete
             john.Address = address;
             context.Addresses.Add(address);
             context.SaveChanges();
-            */
+
         }
 
 

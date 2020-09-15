@@ -136,6 +136,26 @@ namespace Stnc.CMS.DataAccess.Migrations
                     b.ToTable("Aciliyetler");
                 });
 
+            modelBuilder.Entity("Stnc.CMS.Entities.Concrete.Address", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("PersonId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("StreetName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PersonId");
+
+                    b.ToTable("Addresses");
+                });
+
             modelBuilder.Entity("Stnc.CMS.Entities.Concrete.AppRole", b =>
                 {
                     b.Property<int>("Id")
@@ -331,6 +351,44 @@ namespace Stnc.CMS.DataAccess.Migrations
                     b.ToTable("CategoryBlogs");
                 });
 
+            modelBuilder.Entity("Stnc.CMS.Entities.Concrete.Cheese", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CatID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CatID");
+
+                    b.ToTable("Cheeses");
+                });
+
+            modelBuilder.Entity("Stnc.CMS.Entities.Concrete.CheeseCategory", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("CheeseCategories");
+                });
+
             modelBuilder.Entity("Stnc.CMS.Entities.Concrete.City", b =>
                 {
                     b.Property<int>("Id")
@@ -341,12 +399,17 @@ namespace Stnc.CMS.DataAccess.Migrations
                     b.Property<int>("CityInformationId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("CityInformationId1")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("CityInformationId");
+
+                    b.HasIndex("CityInformationId1");
 
                     b.ToTable("City");
                 });
@@ -807,6 +870,26 @@ namespace Stnc.CMS.DataAccess.Migrations
                     b.ToTable("Gorevler");
                 });
 
+            modelBuilder.Entity("Stnc.CMS.Entities.Concrete.Person", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("AddressId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AddressId");
+
+                    b.ToTable("Persons");
+                });
+
             modelBuilder.Entity("Stnc.CMS.Entities.Concrete.Posts", b =>
                 {
                     b.Property<int>("Id")
@@ -967,14 +1050,14 @@ namespace Stnc.CMS.DataAccess.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 551810190,
+                            Id = 1432767370,
                             Caption = "Lorem ipsum laramde loremde ipsumda inmpala",
-                            CreatedAt = new DateTime(2020, 9, 4, 13, 59, 27, 438, DateTimeKind.Local).AddTicks(6015),
+                            CreatedAt = new DateTime(2020, 9, 7, 16, 34, 19, 255, DateTimeKind.Local).AddTicks(1575),
                             Excerpt = "exceprt data loremmmmmm ipsummmmm",
                             MenuOrder = 1,
                             Picture = "default.jpg",
                             Status = true,
-                            UpdatedAt = new DateTime(2020, 9, 4, 13, 59, 27, 439, DateTimeKind.Local).AddTicks(4877),
+                            UpdatedAt = new DateTime(2020, 9, 7, 16, 34, 19, 256, DateTimeKind.Local).AddTicks(313),
                             UrlAddress = "",
                             UrlType = (short)0
                         });
@@ -1031,6 +1114,15 @@ namespace Stnc.CMS.DataAccess.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Stnc.CMS.Entities.Concrete.Address", b =>
+                {
+                    b.HasOne("Stnc.CMS.Entities.Concrete.Person", "Person")
+                        .WithMany()
+                        .HasForeignKey("PersonId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("Stnc.CMS.Entities.Concrete.Bildirim", b =>
                 {
                     b.HasOne("Stnc.CMS.Entities.Concrete.AppUser", "AppUser")
@@ -1053,13 +1145,26 @@ namespace Stnc.CMS.DataAccess.Migrations
                         .HasForeignKey("PostsId");
                 });
 
+            modelBuilder.Entity("Stnc.CMS.Entities.Concrete.Cheese", b =>
+                {
+                    b.HasOne("Stnc.CMS.Entities.Concrete.CheeseCategory", "CheeseCategory")
+                        .WithMany("Cheese")
+                        .HasForeignKey("CatID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("Stnc.CMS.Entities.Concrete.City", b =>
                 {
                     b.HasOne("Stnc.CMS.Entities.Concrete.CityInformation", "CityInformation")
-                        .WithMany("City")
+                        .WithMany()
                         .HasForeignKey("CityInformationId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("Stnc.CMS.Entities.Concrete.CityInformation", null)
+                        .WithMany("City")
+                        .HasForeignKey("CityInformationId1");
                 });
 
             modelBuilder.Entity("Stnc.CMS.Entities.Concrete.Comments", b =>
@@ -1116,7 +1221,7 @@ namespace Stnc.CMS.DataAccess.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Stnc.CMS.Entities.Concrete.DekamProjeLaboratuvarlar", "Laboratuvar")
+                    b.HasOne("Stnc.CMS.Entities.Concrete.DekamProjeLaboratuvarlar", "DekamProjeLaboratuvarlar")
                         .WithMany("DekamProjeTakip")
                         .HasForeignKey("LaboratuvarID")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1177,6 +1282,13 @@ namespace Stnc.CMS.DataAccess.Migrations
                         .WithMany("Gorevler")
                         .HasForeignKey("AppUserId")
                         .OnDelete(DeleteBehavior.SetNull);
+                });
+
+            modelBuilder.Entity("Stnc.CMS.Entities.Concrete.Person", b =>
+                {
+                    b.HasOne("Stnc.CMS.Entities.Concrete.Address", "Address")
+                        .WithMany()
+                        .HasForeignKey("AddressId");
                 });
 
             modelBuilder.Entity("Stnc.CMS.Entities.Concrete.Posts", b =>

@@ -1,4 +1,4 @@
-﻿@model List<Stnc.CMS.Entities.Concrete.City>
+﻿@model IList<Stnc.CMS.Entities.Concrete.City>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
@@ -10,10 +10,10 @@
 {
 
         <dd>@item.Name</dd>
-        @*<dd>@item.CityInfo.MayorName</dd>*@
-        @*<dd>@item.CityInformationId</dd>
-        <dd>@item.CityInfo.Population</dd>
-        <dd>@item.CityInfo.OtherName</dd>
-        <dd>@item.CityInfo.MayorName</dd>*@
+        @*<dd>@item.CityInformation</dd>*@
+        @*<dd>@item.CityInformationId</dd>*@
+        <dd>@item.CityInformation.Population</dd>
+        <dd>@item.CityInformation.OtherName</dd>
+        <dd>@item.CityInformation.MayorName</dd>
 
         }

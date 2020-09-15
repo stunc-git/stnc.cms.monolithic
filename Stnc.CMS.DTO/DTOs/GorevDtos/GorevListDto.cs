@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Stnc.CMS.Entities.Concrete;
+﻿using Stnc.CMS.Entities.Concrete;
+using System;
 
 namespace Stnc.CMS.DTO.DTOs.GorevDtos
 {

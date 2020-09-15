@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Stnc.CMS.Entities.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Stnc.CMS.Entities.Concrete
 {
-    public class CityInformation
+    public class CityInformation : ITablo
     {
         public int Id { get; set; }
 
@@ -14,6 +15,7 @@ namespace Stnc.CMS.Entities.Concrete
 
         public string MayorName { get; set; }
 
-        public List<City> City { get; set; }
+        public IList<City> City { get; set; }
+
     }
 }

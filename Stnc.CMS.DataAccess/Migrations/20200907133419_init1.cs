@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Stnc.CMS.DataAccess.Migrations
 {
-    public partial class init : Migration
+    public partial class init1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -80,6 +80,19 @@ namespace Stnc.CMS.DataAccess.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Categories", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "CheeseCategories",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CheeseCategories", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -462,13 +475,35 @@ namespace Stnc.CMS.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Cheeses",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(nullable: true),
+                    Description = table.Column<string>(nullable: true),
+                    CatID = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Cheeses", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Cheeses_CheeseCategories_CatID",
+                        column: x => x.CatID,
+                        principalTable: "CheeseCategories",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "City",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: true),
-                    CityInformationId = table.Column<int>(nullable: false)
+                    CityInformationId = table.Column<int>(nullable: false),
+                    CityInformationId1 = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -479,6 +514,12 @@ namespace Stnc.CMS.DataAccess.Migrations
                         principalTable: "CityInformation",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_City_CityInformation_CityInformationId1",
+                        column: x => x.CityInformationId1,
+                        principalTable: "CityInformation",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -650,10 +691,49 @@ namespace Stnc.CMS.DataAccess.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Persons",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(nullable: true),
+                    AddressId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Persons", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Addresses",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    StreetName = table.Column<string>(nullable: true),
+                    PersonId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Addresses", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Addresses_Persons_PersonId",
+                        column: x => x.PersonId,
+                        principalTable: "Persons",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.InsertData(
                 table: "Slider",
                 columns: new[] { "Id", "AppUserId", "Caption", "CreatedAt", "DeletedAt", "Excerpt", "MenuOrder", "Picture", "Status", "UpdatedAt", "UrlAddress", "UrlType" },
-                values: new object[] { 551810190, null, "Lorem ipsum laramde loremde ipsumda inmpala", new DateTime(2020, 9, 4, 13, 59, 27, 438, DateTimeKind.Local).AddTicks(6015), null, "exceprt data loremmmmmm ipsummmmm", 1, "default.jpg", true, new DateTime(2020, 9, 4, 13, 59, 27, 439, DateTimeKind.Local).AddTicks(4877), "", (short)0 });
+                values: new object[] { 1432767370, null, "Lorem ipsum laramde loremde ipsumda inmpala", new DateTime(2020, 9, 7, 16, 34, 19, 255, DateTimeKind.Local).AddTicks(1575), null, "exceprt data loremmmmmm ipsummmmm", 1, "default.jpg", true, new DateTime(2020, 9, 7, 16, 34, 19, 256, DateTimeKind.Local).AddTicks(313), "", (short)0 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Addresses_PersonId",
+                table: "Addresses",
+                column: "PersonId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -716,9 +796,19 @@ namespace Stnc.CMS.DataAccess.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
+                name: "IX_Cheeses_CatID",
+                table: "Cheeses",
+                column: "CatID");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_City_CityInformationId",
                 table: "City",
                 column: "CityInformationId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_City_CityInformationId1",
+                table: "City",
+                column: "CityInformationId1");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Comments_ParentCommentId",
@@ -806,6 +896,11 @@ namespace Stnc.CMS.DataAccess.Migrations
                 column: "AppUserId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Persons_AddressId",
+                table: "Persons",
+                column: "AddressId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Posts_AppUserId",
                 table: "Posts",
                 column: "AppUserId");
@@ -824,10 +919,22 @@ namespace Stnc.CMS.DataAccess.Migrations
                 name: "IX_Slider_AppUserId",
                 table: "Slider",
                 column: "AppUserId");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_Persons_Addresses_AddressId",
+                table: "Persons",
+                column: "AddressId",
+                principalTable: "Addresses",
+                principalColumn: "Id",
+                onDelete: ReferentialAction.Restrict);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropForeignKey(
+                name: "FK_Addresses_Persons_PersonId",
+                table: "Addresses");
+
             migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
 
@@ -850,6 +957,9 @@ namespace Stnc.CMS.DataAccess.Migrations
                 name: "CategoryBlogs");
 
             migrationBuilder.DropTable(
+                name: "Cheeses");
+
+            migrationBuilder.DropTable(
                 name: "City");
 
             migrationBuilder.DropTable(
@@ -866,6 +976,9 @@ namespace Stnc.CMS.DataAccess.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
+
+            migrationBuilder.DropTable(
+                name: "CheeseCategories");
 
             migrationBuilder.DropTable(
                 name: "CityInformation");
@@ -902,6 +1015,12 @@ namespace Stnc.CMS.DataAccess.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Persons");
+
+            migrationBuilder.DropTable(
+                name: "Addresses");
         }
     }
 }

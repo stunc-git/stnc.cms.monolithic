@@ -49,7 +49,12 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts
             modelBuilder.ApplyConfiguration(new DekamProjeDeneyHayvanSayisiMap());
 
 
-            //modelBuilder.Entity<City>()
+
+            modelBuilder.Entity<ShoppingCartItem>()
+                .HasOne(sci => sci.Cart);
+
+
+            //     modelBuilder.Entity<City>()
             //    .HasOne(e => e.CityInformation)
             //    .WithMany(e => e.City)
             //    .HasForeignKey<City>(e => e.CityInformationId)
@@ -58,10 +63,31 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts
 
 
 
+            //one to many Person - Address
+            modelBuilder.Entity<Person>()
+                .HasOne(x => x.Address).WithMany()
+                .HasForeignKey(x => x.AddressId);
 
+
+            // one to many Address - Person
+            modelBuilder.Entity<Address>()
+                .HasOne(x => x.Person).WithMany()
+                .HasForeignKey(x => x.PersonId);
 
             modelBuilder.Entity<City>()
-          .HasOne(x => x.CityInfo).WithMany(I => I.City).HasForeignKey(x => x.CityInformationId);
+          .HasOne(x => x.CityInformation).WithMany().HasForeignKey(x => x.CityInformationId);
+
+         //   modelBuilder.Entity<Cheese>()
+         //.HasOne(x => x.CheeseCategory).WithMany(e => e.Cheese).HasForeignKey(x => x.CatID);
+
+
+
+
+
+//modelBuilder.Entity<Cheese>()
+//            .HasOne<CheeseCategory>(e => e.CheeseCategory)
+//            .WithMany(d => d.Cheese)
+//            .HasForeignKey(e => e.CatID).IsRequired(false);
 
 
             base.OnModelCreating(modelBuilder);
@@ -88,7 +114,20 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts
         public DbSet<DekamProjeDeneyHayvaniTur> DekamProjeDeneyHayvaniTur { get; set; }
         public DbSet<DekamProjeDeneyHayvaniIrk> DekamProjeDeneyHayvaniIrk { get; set; }
 
+        public DbSet<  ShoppingCartItem> ShoppingCartItems { get; set; }
+
+
         public DbSet<City> City { get; set; }
         public DbSet<CityInformation> CityInformation { get; set; }
+
+        public DbSet<Person> Persons { get; set; }
+        public DbSet<Address> Addresses { get; set; }
+
+
+        //public DbSet<Cheese> Cheeses { get; set; }
+        //public DbSet<CheeseCategory> CheeseCategories { get; set; }
+
+
+
     }
 }

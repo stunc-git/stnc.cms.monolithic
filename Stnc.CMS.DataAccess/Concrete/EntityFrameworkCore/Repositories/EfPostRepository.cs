@@ -35,7 +35,9 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Repositories
             // using var context = new StncCMSContext();
             //  return _context.Posts.TagWith("InsertTweetStoreProc + LogContext").ToList();
             //IQueryable<Posts> query
-            var query = _context.Posts.Include(I => I.AppUser).Where(I => I.PostStatus).OrderByDescending(I => I.Id);
+
+           // var query = _context.Posts.Include(I => I.AppUser).Where(I => I.PostStatus).OrderByDescending(I => I.Id);
+            var query = _context.Posts.Include(I => I.AppUser).OrderByDescending(I => I.Id);
 
 
           // Console.WriteLine(query.TagWith("tuyuıuyıyuıyuıyuıyuıyuıyuıyuıuyıyuıuy"));
