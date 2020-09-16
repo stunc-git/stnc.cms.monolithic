@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts;
@@ -7,19 +8,19 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Stnc.CMS.Web.Mylib
+namespace Stnc.CMS.DataAccess.ShoppingCartLib
 {
     public class ShoppingCart
     {
         private readonly StncCMSContext _context;
 
-    public ShoppingCart(StncCMSContext context)
+        public ShoppingCart(StncCMSContext context)
         {
             _context = context;
         }
 
         public string Id { get; set; }
-        public IEnumerable<ShoppingCartItem> ShoppingCartItems { get; set; }
+        public IEnumerable<StShoppingCartItem> StShoppingCartItems { get; set; }
 
         public static ShoppingCart GetCart(IServiceProvider services)
         {
@@ -31,14 +32,14 @@ namespace Stnc.CMS.Web.Mylib
             return new ShoppingCart(context) { Id = cartId };
         }
 
-        public bool AddToCart(Cart cart, int amount)
+        public bool AddToCart(StCart cart, int amount)
         {
             if (cart.InStock == 0 || amount == 0)
             {
                 return false;
             }
 
-            var shoppingCartItem = _context.ShoppingCartItems.SingleOrDefault(
+            var shoppingCartItem = _context.StShoppingCartItem.SingleOrDefault(
                 s => s.Cart.Id == cart.Id && s.ShoppingCartId == Id);
             var isValidAmount = true;
             if (shoppingCartItem == null)
@@ -47,13 +48,13 @@ namespace Stnc.CMS.Web.Mylib
                 {
                     isValidAmount = false;
                 }
-                shoppingCartItem = new ShoppingCartItem
+                shoppingCartItem = new StShoppingCartItem
                 {
                     ShoppingCartId = Id,
                     Cart = cart,
                     Amount = Math.Min(cart.InStock, amount)
                 };
-                _context.ShoppingCartItems.Add(shoppingCartItem);
+                _context.StShoppingCartItem.Add(shoppingCartItem);
             }
             else
             {
@@ -72,9 +73,9 @@ namespace Stnc.CMS.Web.Mylib
             return isValidAmount;
         }
 
-        public int RemoveFromCart(Cart cart)
+        public int RemoveFromCart(StCart cart)
         {
-            var shoppingCartItem = _context.ShoppingCartItems.SingleOrDefault(
+            var shoppingCartItem = _context.StShoppingCartItem.SingleOrDefault(
                 s => s.Cart.Id == cart.Id && s.ShoppingCartId == Id);
             int localAmount = 0;
             if (shoppingCartItem != null)
@@ -86,7 +87,7 @@ namespace Stnc.CMS.Web.Mylib
                 }
                 else
                 {
-                    _context.ShoppingCartItems.Remove(shoppingCartItem);
+                    _context.StShoppingCartItem.Remove(shoppingCartItem);
                 }
             }
 
@@ -94,25 +95,26 @@ namespace Stnc.CMS.Web.Mylib
             return localAmount;
         }
 
-        public IEnumerable<ShoppingCartItem> GetShoppingCartItems()
+        public IEnumerable<StShoppingCartItem> GetShoppingCartItems()
         {
-            return ShoppingCartItems ??
-                       (ShoppingCartItems = _context.ShoppingCartItems.Where(c => c.ShoppingCartId == Id).Include(s => s.Cart));
+            return StShoppingCartItems ??
+                   (StShoppingCartItems = _context.StShoppingCartItem.Where(c => c.ShoppingCartId == Id)
+                       .Include(s => s.Cart));
         }
 
         public void ClearCart()
         {
             var cartItems = _context
-                .ShoppingCartItems
+                .StShoppingCartItem
                 .Where(cart => cart.ShoppingCartId == Id);
 
-            _context.ShoppingCartItems.RemoveRange(cartItems);
+            _context.StShoppingCartItem.RemoveRange(cartItems);
             _context.SaveChanges();
         }
 
         public decimal GetShoppingCartTotal()
         {
-            return _context.ShoppingCartItems.Where(c => c.ShoppingCartId == Id)
+            return _context.StShoppingCartItem.Where(c => c.ShoppingCartId == Id)
                 .Select(c => c.Cart.Price * c.Amount).Sum();
         }
     }

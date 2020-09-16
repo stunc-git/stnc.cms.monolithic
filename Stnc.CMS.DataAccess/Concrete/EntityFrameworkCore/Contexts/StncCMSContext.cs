@@ -50,8 +50,8 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts
 
 
 
-            modelBuilder.Entity<ShoppingCartItem>()
-                .HasOne(sci => sci.Cart);
+            modelBuilder.Entity<StShoppingCartItem>()
+                .HasOne(sci => sci.StCart);
 
 
             //     modelBuilder.Entity<City>()
@@ -114,8 +114,8 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts
         public DbSet<DekamProjeDeneyHayvaniTur> DekamProjeDeneyHayvaniTur { get; set; }
         public DbSet<DekamProjeDeneyHayvaniIrk> DekamProjeDeneyHayvaniIrk { get; set; }
 
-        public DbSet<  ShoppingCartItem> ShoppingCartItems { get; set; }
-
+        public DbSet<StShoppingCartItem> StShoppingCartItem { get; set; }
+        public DbSet<StCart> StCart { get; set; }
 
         public DbSet<City> City { get; set; }
         public DbSet<CityInformation> CityInformation { get; set; }

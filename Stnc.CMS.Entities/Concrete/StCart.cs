@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace Stnc.CMS.Entities.Concrete
+﻿namespace Stnc.CMS.Entities.Concrete
 {
-    public class Cart
+    public class StCart
     {
 
         public int Id { get; set; }
