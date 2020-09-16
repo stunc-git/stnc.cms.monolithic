@@ -10,8 +10,8 @@ using Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts;
 namespace Stnc.CMS.DataAccess.Migrations
 {
     [DbContext(typeof(StncCMSContext))]
-    [Migration("20200907133419_init1")]
-    partial class init1
+    [Migration("20200916124015_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -136,26 +136,6 @@ namespace Stnc.CMS.DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Aciliyetler");
-                });
-
-            modelBuilder.Entity("Stnc.CMS.Entities.Concrete.Address", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("PersonId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("StreetName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PersonId");
-
-                    b.ToTable("Addresses");
                 });
 
             modelBuilder.Entity("Stnc.CMS.Entities.Concrete.AppRole", b =>
@@ -351,90 +331,6 @@ namespace Stnc.CMS.DataAccess.Migrations
                         .IsUnique();
 
                     b.ToTable("CategoryBlogs");
-                });
-
-            modelBuilder.Entity("Stnc.CMS.Entities.Concrete.Cheese", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("CatID")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CatID");
-
-                    b.ToTable("Cheeses");
-                });
-
-            modelBuilder.Entity("Stnc.CMS.Entities.Concrete.CheeseCategory", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("CheeseCategories");
-                });
-
-            modelBuilder.Entity("Stnc.CMS.Entities.Concrete.City", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("CityInformationId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("CityInformationId1")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CityInformationId");
-
-                    b.HasIndex("CityInformationId1");
-
-                    b.ToTable("City");
-                });
-
-            modelBuilder.Entity("Stnc.CMS.Entities.Concrete.CityInformation", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("MayorName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("OtherName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Population")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("CityInformation");
                 });
 
             modelBuilder.Entity("Stnc.CMS.Entities.Concrete.Comments", b =>
@@ -872,26 +768,6 @@ namespace Stnc.CMS.DataAccess.Migrations
                     b.ToTable("Gorevler");
                 });
 
-            modelBuilder.Entity("Stnc.CMS.Entities.Concrete.Person", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int?>("AddressId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AddressId");
-
-                    b.ToTable("Persons");
-                });
-
             modelBuilder.Entity("Stnc.CMS.Entities.Concrete.Posts", b =>
                 {
                     b.Property<int>("Id")
@@ -1052,17 +928,73 @@ namespace Stnc.CMS.DataAccess.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 1432767370,
+                            Id = 1968405088,
                             Caption = "Lorem ipsum laramde loremde ipsumda inmpala",
-                            CreatedAt = new DateTime(2020, 9, 7, 16, 34, 19, 255, DateTimeKind.Local).AddTicks(1575),
+                            CreatedAt = new DateTime(2020, 9, 16, 15, 40, 15, 511, DateTimeKind.Local).AddTicks(563),
                             Excerpt = "exceprt data loremmmmmm ipsummmmm",
                             MenuOrder = 1,
                             Picture = "default.jpg",
                             Status = true,
-                            UpdatedAt = new DateTime(2020, 9, 7, 16, 34, 19, 256, DateTimeKind.Local).AddTicks(313),
+                            UpdatedAt = new DateTime(2020, 9, 16, 15, 40, 15, 512, DateTimeKind.Local).AddTicks(1885),
                             UrlAddress = "",
                             UrlType = (short)0
                         });
+                });
+
+            modelBuilder.Entity("Stnc.CMS.Entities.Concrete.StCart", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ImageUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("InStock")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsPreferedFood")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("LongDescription")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("ShortDescription")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("StCart");
+                });
+
+            modelBuilder.Entity("Stnc.CMS.Entities.Concrete.StShoppingCartItem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Amount")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("CartId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ShoppingCartId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CartId");
+
+                    b.ToTable("StShoppingCartItem");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
@@ -1116,15 +1048,6 @@ namespace Stnc.CMS.DataAccess.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Stnc.CMS.Entities.Concrete.Address", b =>
-                {
-                    b.HasOne("Stnc.CMS.Entities.Concrete.Person", "Person")
-                        .WithMany()
-                        .HasForeignKey("PersonId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("Stnc.CMS.Entities.Concrete.Bildirim", b =>
                 {
                     b.HasOne("Stnc.CMS.Entities.Concrete.AppUser", "AppUser")
@@ -1145,28 +1068,6 @@ namespace Stnc.CMS.DataAccess.Migrations
                     b.HasOne("Stnc.CMS.Entities.Concrete.DekamProjeTakip", "Posts")
                         .WithMany()
                         .HasForeignKey("PostsId");
-                });
-
-            modelBuilder.Entity("Stnc.CMS.Entities.Concrete.Cheese", b =>
-                {
-                    b.HasOne("Stnc.CMS.Entities.Concrete.CheeseCategory", "CheeseCategory")
-                        .WithMany("Cheese")
-                        .HasForeignKey("CatID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Stnc.CMS.Entities.Concrete.City", b =>
-                {
-                    b.HasOne("Stnc.CMS.Entities.Concrete.CityInformation", "CityInformation")
-                        .WithMany()
-                        .HasForeignKey("CityInformationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Stnc.CMS.Entities.Concrete.CityInformation", null)
-                        .WithMany("City")
-                        .HasForeignKey("CityInformationId1");
                 });
 
             modelBuilder.Entity("Stnc.CMS.Entities.Concrete.Comments", b =>
@@ -1286,13 +1187,6 @@ namespace Stnc.CMS.DataAccess.Migrations
                         .OnDelete(DeleteBehavior.SetNull);
                 });
 
-            modelBuilder.Entity("Stnc.CMS.Entities.Concrete.Person", b =>
-                {
-                    b.HasOne("Stnc.CMS.Entities.Concrete.Address", "Address")
-                        .WithMany()
-                        .HasForeignKey("AddressId");
-                });
-
             modelBuilder.Entity("Stnc.CMS.Entities.Concrete.Posts", b =>
                 {
                     b.HasOne("Stnc.CMS.Entities.Concrete.AppUser", "AppUser")
@@ -1321,6 +1215,13 @@ namespace Stnc.CMS.DataAccess.Migrations
                     b.HasOne("Stnc.CMS.Entities.Concrete.AppUser", "AppUser")
                         .WithMany()
                         .HasForeignKey("AppUserId");
+                });
+
+            modelBuilder.Entity("Stnc.CMS.Entities.Concrete.StShoppingCartItem", b =>
+                {
+                    b.HasOne("Stnc.CMS.Entities.Concrete.StCart", "Cart")
+                        .WithMany()
+                        .HasForeignKey("CartId");
                 });
 #pragma warning restore 612, 618
         }

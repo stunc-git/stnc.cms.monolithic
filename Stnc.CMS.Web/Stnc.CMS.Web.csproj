@@ -7,10 +7,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove=".config\Mylib\**" />
+    <Content Remove=".config\Mylib\**" />
+    <EmbeddedResource Remove=".config\Mylib\**" />
+    <None Remove=".config\Mylib\**" />
+    <TypeScriptCompile Remove=".config\Mylib\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Stnc.CMS.Business\Stnc.CMS.Business.csproj" />
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include=".config\" />
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Member\Models\" />
     <Folder Include="Models\" />

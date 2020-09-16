@@ -20,8 +20,6 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Repositories
             _context = context;
         }
 
-
-
         public int GetTotalPost()
         {
             using var context = new StncCMSContext();
@@ -38,7 +36,6 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Repositories
 
            // var query = _context.Posts.Include(I => I.AppUser).Where(I => I.PostStatus).OrderByDescending(I => I.Id);
             var query = _context.Posts.Include(I => I.AppUser).OrderByDescending(I => I.Id);
-
 
           // Console.WriteLine(query.TagWith("tuyuıuyıyuıyuıyuıyuıyuıyuıyuıuyıyuıuy"));
 

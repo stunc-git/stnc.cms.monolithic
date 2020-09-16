@@ -9,9 +9,6 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts
 {
     public class StncCMSContext : IdentityDbContext<AppUser, AppRole, int>
     {
-
-
-
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             //  optionsBuilder.UseSqlServer("server=(localdb)\\mssqllocaldb; database=bloggg; user id=sa; password=1;");
@@ -51,7 +48,7 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts
 
 
             modelBuilder.Entity<StShoppingCartItem>()
-                .HasOne(sci => sci.StCart);
+                .HasOne(sci => sci.Cart);
 
 
             //     modelBuilder.Entity<City>()
@@ -63,19 +60,19 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts
 
 
 
-            //one to many Person - Address
-            modelBuilder.Entity<Person>()
-                .HasOne(x => x.Address).WithMany()
-                .HasForeignKey(x => x.AddressId);
+          //  //one to many Person - Address
+          //  modelBuilder.Entity<Person>()
+          //      .HasOne(x => x.Address).WithMany()
+          //      .HasForeignKey(x => x.AddressId);
 
 
-            // one to many Address - Person
-            modelBuilder.Entity<Address>()
-                .HasOne(x => x.Person).WithMany()
-                .HasForeignKey(x => x.PersonId);
+          //  // one to many Address - Person
+          //  modelBuilder.Entity<Address>()
+          //      .HasOne(x => x.Person).WithMany()
+          //      .HasForeignKey(x => x.PersonId);
 
-            modelBuilder.Entity<City>()
-          .HasOne(x => x.CityInformation).WithMany().HasForeignKey(x => x.CityInformationId);
+          //  modelBuilder.Entity<City>()
+          //.HasOne(x => x.CityInformation).WithMany().HasForeignKey(x => x.CityInformationId);
 
          //   modelBuilder.Entity<Cheese>()
          //.HasOne(x => x.CheeseCategory).WithMany(e => e.Cheese).HasForeignKey(x => x.CatID);
@@ -117,17 +114,15 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts
         public DbSet<StShoppingCartItem> StShoppingCartItem { get; set; }
         public DbSet<StCart> StCart { get; set; }
 
-        public DbSet<City> City { get; set; }
-        public DbSet<CityInformation> CityInformation { get; set; }
+        //public DbSet<City> City { get; set; }
+        //public DbSet<CityInformation> CityInformation { get; set; }
 
-        public DbSet<Person> Persons { get; set; }
-        public DbSet<Address> Addresses { get; set; }
+        //public DbSet<Person> Persons { get; set; }
+        //public DbSet<Address> Addresses { get; set; }
 
 
         //public DbSet<Cheese> Cheeses { get; set; }
         //public DbSet<CheeseCategory> CheeseCategories { get; set; }
-
-
 
     }
 }

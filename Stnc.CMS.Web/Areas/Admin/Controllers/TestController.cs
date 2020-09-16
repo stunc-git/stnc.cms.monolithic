@@ -149,8 +149,11 @@ namespace Stnc.CMS.Entities.Concrete
 
            //  AddOnePerson(context);
 
-             IList<City> orderedList  = context.City.Include(x=>x.CityInformation).ToList();
-          //  List<Person> orderedList = context.Persons.Include(x=>x.Address).ToList();
+            // IList<City> orderedList  = context.City.Include(x=>x.CityInformation).ToList();
+
+
+
+            //  List<Person> orderedList = context.Persons.Include(x=>x.Address).ToList();
 
 
 
@@ -165,16 +168,16 @@ namespace Stnc.CMS.Entities.Concrete
             //}
 
             //Console.WriteLine("We have " + c.Count + " people in db.");
-            foreach (var item in orderedList)
-                Console.WriteLine("---------------------------");
-                Console.Write(orderedList);
+            //foreach (var item in orderedList)
+            //    Console.WriteLine("---------------------------");
+            //    Console.Write(orderedList);
 
 
             //Console.WriteLine(c);
             //Console.ReadKey();
 
-            //return Ok();
-              return View(orderedList);
+            return Ok();
+          //    return View(orderedList);
         }
 
 
@@ -212,14 +215,14 @@ namespace Stnc.CMS.Entities.Concrete
 
 
 
-            var john = new Person { Name = "john" };
-            context.Persons.Add(john);
-            context.SaveChanges();
+            //var john = new Person { Name = "john" };
+            //context.Persons.Add(john);
+            //context.SaveChanges();
 
-            var address = new Address() { StreetName = "street", PersonId = john.Id };
-            john.Address = address;
-            context.Addresses.Add(address);
-            context.SaveChanges();
+            //var address = new Address() { StreetName = "street", PersonId = john.Id };
+            //john.Address = address;
+            //context.Addresses.Add(address);
+            //context.SaveChanges();
 
         }
 

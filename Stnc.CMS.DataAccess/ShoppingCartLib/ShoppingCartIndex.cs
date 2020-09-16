@@ -1,6 +1,6 @@
 ﻿using Stnc.CMS.DataAccess.ShoppingCartLib;
 
-namespace Stnc.CMS.ShoppingCartLib
+namespace Stnc.CMS.DataAccess.ShoppingCartLib
 {
     public class ShoppingCartIndex
     {

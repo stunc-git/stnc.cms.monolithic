@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Stnc.CMS.DataAccess.Migrations
 {
-    public partial class init1 : Migration
+    public partial class Init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -83,31 +83,22 @@ namespace Stnc.CMS.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "CheeseCategories",
+                name: "StCart",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(nullable: true)
+                    Name = table.Column<string>(nullable: true),
+                    ShortDescription = table.Column<string>(nullable: true),
+                    LongDescription = table.Column<string>(nullable: true),
+                    Price = table.Column<decimal>(nullable: false),
+                    ImageUrl = table.Column<string>(nullable: true),
+                    IsPreferedFood = table.Column<bool>(nullable: false),
+                    InStock = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CheeseCategories", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "CityInformation",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Population = table.Column<int>(nullable: false),
-                    OtherName = table.Column<string>(nullable: true),
-                    MayorName = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_CityInformation", x => x.Id);
+                    table.PrimaryKey("PK_StCart", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -475,49 +466,22 @@ namespace Stnc.CMS.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Cheeses",
+                name: "StShoppingCartItem",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(nullable: true),
-                    Description = table.Column<string>(nullable: true),
-                    CatID = table.Column<int>(nullable: false)
+                    CartId = table.Column<int>(nullable: true),
+                    Amount = table.Column<int>(nullable: false),
+                    ShoppingCartId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Cheeses", x => x.Id);
+                    table.PrimaryKey("PK_StShoppingCartItem", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Cheeses_CheeseCategories_CatID",
-                        column: x => x.CatID,
-                        principalTable: "CheeseCategories",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "City",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(nullable: true),
-                    CityInformationId = table.Column<int>(nullable: false),
-                    CityInformationId1 = table.Column<int>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_City", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_City_CityInformation_CityInformationId",
-                        column: x => x.CityInformationId,
-                        principalTable: "CityInformation",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_City_CityInformation_CityInformationId1",
-                        column: x => x.CityInformationId1,
-                        principalTable: "CityInformation",
+                        name: "FK_StShoppingCartItem_StCart_CartId",
+                        column: x => x.CartId,
+                        principalTable: "StCart",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -691,49 +655,10 @@ namespace Stnc.CMS.DataAccess.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "Persons",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(nullable: true),
-                    AddressId = table.Column<int>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Persons", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Addresses",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    StreetName = table.Column<string>(nullable: true),
-                    PersonId = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Addresses", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Addresses_Persons_PersonId",
-                        column: x => x.PersonId,
-                        principalTable: "Persons",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
             migrationBuilder.InsertData(
                 table: "Slider",
                 columns: new[] { "Id", "AppUserId", "Caption", "CreatedAt", "DeletedAt", "Excerpt", "MenuOrder", "Picture", "Status", "UpdatedAt", "UrlAddress", "UrlType" },
-                values: new object[] { 1432767370, null, "Lorem ipsum laramde loremde ipsumda inmpala", new DateTime(2020, 9, 7, 16, 34, 19, 255, DateTimeKind.Local).AddTicks(1575), null, "exceprt data loremmmmmm ipsummmmm", 1, "default.jpg", true, new DateTime(2020, 9, 7, 16, 34, 19, 256, DateTimeKind.Local).AddTicks(313), "", (short)0 });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Addresses_PersonId",
-                table: "Addresses",
-                column: "PersonId");
+                values: new object[] { 1968405088, null, "Lorem ipsum laramde loremde ipsumda inmpala", new DateTime(2020, 9, 16, 15, 40, 15, 511, DateTimeKind.Local).AddTicks(563), null, "exceprt data loremmmmmm ipsummmmm", 1, "default.jpg", true, new DateTime(2020, 9, 16, 15, 40, 15, 512, DateTimeKind.Local).AddTicks(1885), "", (short)0 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -794,21 +719,6 @@ namespace Stnc.CMS.DataAccess.Migrations
                 table: "CategoryBlogs",
                 columns: new[] { "PostID", "CategoryID" },
                 unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Cheeses_CatID",
-                table: "Cheeses",
-                column: "CatID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_City_CityInformationId",
-                table: "City",
-                column: "CityInformationId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_City_CityInformationId1",
-                table: "City",
-                column: "CityInformationId1");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Comments_ParentCommentId",
@@ -896,11 +806,6 @@ namespace Stnc.CMS.DataAccess.Migrations
                 column: "AppUserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Persons_AddressId",
-                table: "Persons",
-                column: "AddressId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Posts_AppUserId",
                 table: "Posts",
                 column: "AppUserId");
@@ -920,21 +825,14 @@ namespace Stnc.CMS.DataAccess.Migrations
                 table: "Slider",
                 column: "AppUserId");
 
-            migrationBuilder.AddForeignKey(
-                name: "FK_Persons_Addresses_AddressId",
-                table: "Persons",
-                column: "AddressId",
-                principalTable: "Addresses",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Restrict);
+            migrationBuilder.CreateIndex(
+                name: "IX_StShoppingCartItem_CartId",
+                table: "StShoppingCartItem",
+                column: "CartId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_Addresses_Persons_PersonId",
-                table: "Addresses");
-
             migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
 
@@ -957,12 +855,6 @@ namespace Stnc.CMS.DataAccess.Migrations
                 name: "CategoryBlogs");
 
             migrationBuilder.DropTable(
-                name: "Cheeses");
-
-            migrationBuilder.DropTable(
-                name: "City");
-
-            migrationBuilder.DropTable(
                 name: "Comments");
 
             migrationBuilder.DropTable(
@@ -975,13 +867,10 @@ namespace Stnc.CMS.DataAccess.Migrations
                 name: "Slider");
 
             migrationBuilder.DropTable(
+                name: "StShoppingCartItem");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
-
-            migrationBuilder.DropTable(
-                name: "CheeseCategories");
-
-            migrationBuilder.DropTable(
-                name: "CityInformation");
 
             migrationBuilder.DropTable(
                 name: "DekamProjeTakip");
@@ -991,6 +880,9 @@ namespace Stnc.CMS.DataAccess.Migrations
 
             migrationBuilder.DropTable(
                 name: "Gorevler");
+
+            migrationBuilder.DropTable(
+                name: "StCart");
 
             migrationBuilder.DropTable(
                 name: "DekamProjeDeneyHayvaniIrk");
@@ -1015,12 +907,6 @@ namespace Stnc.CMS.DataAccess.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
-
-            migrationBuilder.DropTable(
-                name: "Persons");
-
-            migrationBuilder.DropTable(
-                name: "Addresses");
         }
     }
 }

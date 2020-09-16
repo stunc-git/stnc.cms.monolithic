@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Stnc.CMS.DataAccess.Interfaces;
 using Stnc.CMS.DataAccess.ShoppingCartLib;
-using Stnc.CMS.ShoppingCartLib;
 using Stnc.CMS.Web.StringInfo;
-using Stnc.CMS.Entities.Concrete;
+
 namespace Stnc.CMS.Web.Areas.Admin.Controllers
 {
     [Authorize(Roles = RoleInfo.Admin)]
@@ -11,9 +11,11 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
     public class ShoppingCartController : Controller
     {
         private readonly ShoppingCart _shoppingCart;
+        private readonly IShopDal _shopService;
 
-        public ShoppingCartController(ShoppingCart shoppingCart)
+        public ShoppingCartController(ShoppingCart shoppingCart, IShopDal shopService)
         {
+            _shopService = shopService;
             _shoppingCart = shoppingCart;
         }
 
@@ -39,10 +41,11 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
 
 
         [HttpGet]
+       // [Route("/ShoppingCart/Add/{id}")]
         [Route("/ShoppingCart/Add/{id}/{returnUrl?}")]
         public IActionResult Add(int id, int? amount = 1, string returnUrl = null)
         {
-            var food = _foodService.GetById(id);
+            var food = _shopService.GetById(id);
             returnUrl = returnUrl.Replace("%2F", "/");
             bool isValidAmount = false;
             if (food != null)
@@ -50,12 +53,13 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
                 isValidAmount = _shoppingCart.AddToCart(food, amount.Value);
             }
 
+           // return Index(isValidAmount);
             return Index(isValidAmount, returnUrl);
         }
 
         public IActionResult Remove(int foodId)
         {
-            var food = _foodService.GetById(foodId);
+            var food = _shopService.GetById(foodId);
             if (food != null)
             {
                 _shoppingCart.RemoveFromCart(food);

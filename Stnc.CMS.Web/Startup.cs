@@ -2,11 +2,13 @@ using AutoMapper;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Stnc.CMS.Business.DiContainer;
 using Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts;
+using Stnc.CMS.DataAccess.ShoppingCartLib;
 using Stnc.CMS.Entities.Concrete;
 using Stnc.CMS.Web.CustomCollectionExtensions;
 
@@ -19,7 +21,7 @@ namespace Stnc.CMS.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddHttpContextAccessor();
-            services.AddSession();
+
 
             services.AddContainerWithDependencies();
             services.AddDbContext<StncCMSContext>();
@@ -28,6 +30,13 @@ namespace Stnc.CMS.Web
             services.AddCustomValidator();
             services.AddControllersWithViews().AddFluentValidation();
             services.AddFlashes().AddMvc();
+
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+            services.AddScoped(sp => ShoppingCart.GetCart(sp));
+            services.AddMvc();
+            services.AddMemoryCache();
+            services.AddSession();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -43,11 +52,15 @@ namespace Stnc.CMS.Web
             }
             app.UseStatusCodePagesWithReExecute("/Home/StatusCode", "?code={0}");
 
+            app.UseSession();
+
+
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
             IdentityInitializer.SeedData(userManager, roleManager).Wait();
             app.UseStaticFiles();
+
 
             app.UseEndpoints(endpoints =>
             {
