@@ -35,6 +35,7 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Repositories
             _context.Update(food);
             _context.SaveChanges();
         }
+
         public IEnumerable<StCart> GetAll()
         {
             return _context.StCart.ToList() ;

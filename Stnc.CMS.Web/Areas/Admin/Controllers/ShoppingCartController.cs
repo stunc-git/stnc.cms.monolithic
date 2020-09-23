@@ -34,27 +34,25 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
             {
                 ViewBag.InvalidAmountText = "*There were not enough items in stock to add*";
             }
-
             return View("Index", model);
-
         }
 
 
         [HttpGet]
-       // [Route("/ShoppingCart/Add/{id}")]
-        [Route("/ShoppingCart/Add/{id}/{returnUrl?}")]
+        [Route("/ShoppingCart/Add/{id}")]
+       // [Route("/ShoppingCart/Add/{id}/{returnUrl?}")]
         public IActionResult Add(int id, int? amount = 1, string returnUrl = null)
         {
-            var food = _shopService.GetById(id);
-            returnUrl = returnUrl.Replace("%2F", "/");
+            var cart = _shopService.GetById(id);
+            //returnUrl = returnUrl.Replace("%2F", "/");
             bool isValidAmount = false;
-            if (food != null)
+            if (cart != null)
             {
-                isValidAmount = _shoppingCart.AddToCart(food, amount.Value);
+                isValidAmount = _shoppingCart.AddToCart(cart, amount.Value);
             }
 
-           // return Index(isValidAmount);
-            return Index(isValidAmount, returnUrl);
+            return Index(isValidAmount);
+         //   return Index(isValidAmount, returnUrl);
         }
 
         public IActionResult Remove(int foodId)

@@ -1,4 +1,13 @@
-﻿https://bootstrapmade.com/demo/Scaffold/
+﻿wizard 
+https://colorlib.com/etc/bwiz/colorlib-wizard-15/index.html
+
+tümü 
+
+https://colorlib.com/wp/free-bootstrap-wizards/
+
+
+
+https://bootstrapmade.com/demo/Scaffold/
 
 https://wenthemes.com/theme-demos/?demo=university-hub-pro
 

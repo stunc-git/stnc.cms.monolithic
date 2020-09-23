@@ -1,5 +1,4 @@
-﻿
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts;
@@ -39,8 +38,7 @@ namespace Stnc.CMS.DataAccess.ShoppingCartLib
                 return false;
             }
 
-            var shoppingCartItem = _context.StShoppingCartItem.SingleOrDefault(
-                s => s.Cart.Id == cart.Id && s.ShoppingCartId == Id);
+            var shoppingCartItem = _context.StShoppingCartItem.SingleOrDefault(s => s.Cart.Id == cart.Id && s.ShoppingCartId == Id);
             var isValidAmount = true;
             if (shoppingCartItem == null)
             {
@@ -75,8 +73,7 @@ namespace Stnc.CMS.DataAccess.ShoppingCartLib
 
         public int RemoveFromCart(StCart cart)
         {
-            var shoppingCartItem = _context.StShoppingCartItem.SingleOrDefault(
-                s => s.Cart.Id == cart.Id && s.ShoppingCartId == Id);
+            var shoppingCartItem = _context.StShoppingCartItem.SingleOrDefault(s => s.Cart.Id == cart.Id && s.ShoppingCartId == Id);
             int localAmount = 0;
             if (shoppingCartItem != null)
             {
@@ -90,7 +87,6 @@ namespace Stnc.CMS.DataAccess.ShoppingCartLib
                     _context.StShoppingCartItem.Remove(shoppingCartItem);
                 }
             }
-
             _context.SaveChanges();
             return localAmount;
         }
@@ -114,8 +110,7 @@ namespace Stnc.CMS.DataAccess.ShoppingCartLib
 
         public decimal GetShoppingCartTotal()
         {
-            return _context.StShoppingCartItem.Where(c => c.ShoppingCartId == Id)
-                .Select(c => c.Cart.Price * c.Amount).Sum();
+            return _context.StShoppingCartItem.Where(c => c.ShoppingCartId == Id).Select(c => c.Cart.Price * c.Amount).Sum();
         }
     }
 }

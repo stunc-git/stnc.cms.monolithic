@@ -23,8 +23,6 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts
             optionsBuilder.UseSqlServer(config.GetConnectionString("SQLProvider"));
 
             base.OnConfiguring(optionsBuilder);
-
-
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -78,17 +76,11 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts
          //.HasOne(x => x.CheeseCategory).WithMany(e => e.Cheese).HasForeignKey(x => x.CatID);
 
 
-
-
-
 //modelBuilder.Entity<Cheese>()
 //            .HasOne<CheeseCategory>(e => e.CheeseCategory)
 //            .WithMany(d => d.Cheese)
 //            .HasForeignKey(e => e.CatID).IsRequired(false);
-
-
             base.OnModelCreating(modelBuilder);
-
         }
 
         public DbSet<Posts> Posts { get; set; }
