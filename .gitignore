@@ -20,6 +20,8 @@ project.lock.json
 [Rr]eleases/
 x64/
 x86/
+github/
+gitlab/
 build/
 bld/
 [Bb]in/

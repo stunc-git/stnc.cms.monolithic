@@ -19,15 +19,15 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
             _shoppingCart = shoppingCart;
         }
 
-        public IActionResult Index(bool isValidAmount = true, string returnUrl = "/")
+        public IActionResult Index()
         {
+            bool isValidAmount = true;
             _shoppingCart.GetShoppingCartItems();
 
             var model = new ShoppingCartIndex
             {
                 ShoppingCart = _shoppingCart,
                 ShoppingCartTotal = _shoppingCart.GetShoppingCartTotal(),
-                ReturnUrl = returnUrl
             };
 
             if (!isValidAmount)
@@ -41,7 +41,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
         [HttpGet]
         [Route("/ShoppingCart/Add/{id}")]
        // [Route("/ShoppingCart/Add/{id}/{returnUrl?}")]
-        public IActionResult Add(int id, int? amount = 1, string returnUrl = null)
+        public IActionResult Add(int id, int? amount = 5)
         {
             var cart = _shopService.GetById(id);
             //returnUrl = returnUrl.Replace("%2F", "/");
@@ -51,8 +51,8 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
                 isValidAmount = _shoppingCart.AddToCart(cart, amount.Value);
             }
 
-            return Index(isValidAmount);
-         //   return Index(isValidAmount, returnUrl);
+          return Index();
+        //  return Index(isValidAmount, returnUrl);
         }
 
         public IActionResult Remove(int foodId)

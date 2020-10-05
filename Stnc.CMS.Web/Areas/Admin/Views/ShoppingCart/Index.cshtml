@@ -55,7 +55,7 @@
     <p class="invalidAmount">@ViewBag.InvalidAmountText</p>
 </div>}
         <div>
-            <a class="btn btn-back" asp-action="Back" asp-route-returnUrl="@Model.ReturnUrl">Back</a>
+            <a class="btn btn-back" asp-action="Back">Back</a>
         </div>
         @if (Model.ShoppingCart.StShoppingCartItems.Count() != 0)
         {
