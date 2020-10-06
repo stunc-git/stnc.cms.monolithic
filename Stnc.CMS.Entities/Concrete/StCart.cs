@@ -11,8 +11,7 @@
         public string ImageUrl { get; set; }
         public bool IsPreferedFood { get; set; }
         public int InStock { get; set; }
-      //  public int CategoryId { get; set; }
-     //   public virtual Category Category { get; set; }
+
 
     }
 }

@@ -26,6 +26,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
         {
             ViewBag.GeneralTitle = "Deney Hayvanı Irkları";
             TempData["Active"] = TempdataInfo.Category;
+        //    ViewBag.Categories = new SelectList(_categoryService.GetAll(), "Id", "Name");
             var all = Myrepo.GetAll();
             return View(all);
         }

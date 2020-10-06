@@ -51,7 +51,7 @@ duyuru
 haber
 etkinlik
 media 
-yukleme de boyutlandırma sistemi
+yukleme de boyutlandırma sistemi ve hangi tipde dosya atacak onun belirtilmesi gerekiyor 
 haber duyurunun toplu olarak gösterilmesi 
 iletişime yazılanların düşeceği alan 
 

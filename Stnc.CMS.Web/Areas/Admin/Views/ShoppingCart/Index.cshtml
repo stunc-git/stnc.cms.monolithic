@@ -28,11 +28,11 @@
                 @foreach (var line in Model.ShoppingCart.StShoppingCartItems)
                 {
     <tr>
-        <td class="text-center">@line.Amount</td>
-        <td class="text-left"><a class="btn btn-info" asp-controller="Food" asp-action="Index" asp-route-id="@line.Cart.Id">@line.Cart.Name</a></td>
-        <td class="text-right">@line.Cart.Price.ToString("c", CultureInfo.CreateSpecificCulture("en-US"))</td>
+        <td class="text-center">@line.ToplamFiyat</td>
+        <td class="text-left"><a class="btn btn-info" asp-controller="Food" asp-action="Index" asp-route-id="@line.Cart.Id" asp-route-catID="catId">@line.Cart.Name</a></td>
+        <td class="text-right">@line.Cart.Price.ToString("c")</td>
         <td class="text-right">
-            @((line.Amount * line.Cart.Price).ToString("c",CultureInfo.CreateSpecificCulture("en-US")))
+            @((line.ToplamFiyat * line.Cart.Price).ToString("c"))
         </td>
         <td class="text-center">
             <a class="glyphicon glyphicon-remove text-danger remove" asp-controller="ShoppingCart"
@@ -44,7 +44,7 @@
                 <tr>
                     <td colspan="3" class="text-right">Total:</td>
                     <td class="text-right">
-                        @(Model.ShoppingCartTotal.ToString("c",CultureInfo.CreateSpecificCulture("en-US")))
+                        @(Model.ShoppingCartTotal.ToString("c"))
                     </td>
                 </tr>
             </tfoot>

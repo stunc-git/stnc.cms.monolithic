@@ -437,6 +437,12 @@ namespace Stnc.CMS.DataAccess.Migrations
                     b.Property<DateTime?>("DeletedAt")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("DeneyHayvaniTurID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(500)")
@@ -450,6 +456,46 @@ namespace Stnc.CMS.DataAccess.Migrations
                     b.HasIndex("AppUserId");
 
                     b.ToTable("DekamProjeDeneyHayvaniIrk");
+                });
+
+            modelBuilder.Entity("Stnc.CMS.Entities.Concrete.DekamProjeDeneyHayvaniIrkFiyat", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:IdentityIncrement", 1)
+                        .HasAnnotation("SqlServer:IdentitySeed", 1)
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("AppUserId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("DeneyHayvaniIrkID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("DeneyHayvaniZaman")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("Fiyat")
+                        .HasColumnType("decimal(6,2)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AppUserId");
+
+                    b.ToTable("DekamProjeDeneyHayvaniIrkFiyat");
                 });
 
             modelBuilder.Entity("Stnc.CMS.Entities.Concrete.DekamProjeDeneyHayvaniTur", b =>
@@ -474,6 +520,9 @@ namespace Stnc.CMS.DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(500)")
                         .HasMaxLength(500);
+
+                    b.Property<string>("Picture")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2");
@@ -532,6 +581,9 @@ namespace Stnc.CMS.DataAccess.Migrations
 
                     b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<int?>("DekamProjeDeneyHayvaniIrkFiyatId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("DeletedAt")
                         .HasColumnType("datetime2");
@@ -617,6 +669,8 @@ namespace Stnc.CMS.DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("AppUserId");
+
+                    b.HasIndex("DekamProjeDeneyHayvaniIrkFiyatId");
 
                     b.HasIndex("DeneyHayvaniIrkID");
 
@@ -718,6 +772,9 @@ namespace Stnc.CMS.DataAccess.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2");
 
@@ -764,6 +821,38 @@ namespace Stnc.CMS.DataAccess.Migrations
                     b.HasIndex("AppUserId");
 
                     b.ToTable("Gorevler");
+                });
+
+            modelBuilder.Entity("Stnc.CMS.Entities.Concrete.GunlukUcretler", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:IdentityIncrement", 1)
+                        .HasAnnotation("SqlServer:IdentitySeed", 1)
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("BakimTurID")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("DeneyHayvaniTurID")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("Fiyat")
+                        .HasColumnType("decimal(6,2)");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("GunlukUcretler");
                 });
 
             modelBuilder.Entity("Stnc.CMS.Entities.Concrete.Posts", b =>
@@ -926,14 +1015,14 @@ namespace Stnc.CMS.DataAccess.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 1968405088,
+                            Id = 1448279227,
                             Caption = "Lorem ipsum laramde loremde ipsumda inmpala",
-                            CreatedAt = new DateTime(2020, 9, 16, 15, 40, 15, 511, DateTimeKind.Local).AddTicks(563),
+                            CreatedAt = new DateTime(2020, 10, 6, 14, 50, 6, 939, DateTimeKind.Local).AddTicks(8959),
                             Excerpt = "exceprt data loremmmmmm ipsummmmm",
                             MenuOrder = 1,
                             Picture = "default.jpg",
                             Status = true,
-                            UpdatedAt = new DateTime(2020, 9, 16, 15, 40, 15, 512, DateTimeKind.Local).AddTicks(1885),
+                            UpdatedAt = new DateTime(2020, 10, 6, 14, 50, 6, 940, DateTimeKind.Local).AddTicks(9976),
                             UrlAddress = "",
                             UrlType = (short)0
                         });
@@ -977,16 +1066,27 @@ namespace Stnc.CMS.DataAccess.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
+                        .HasAnnotation("SqlServer:IdentityIncrement", 1)
+                        .HasAnnotation("SqlServer:IdentitySeed", 1)
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("Amount")
-                        .HasColumnType("int");
 
                     b.Property<int?>("CartId")
                         .HasColumnType("int");
 
+                    b.Property<int>("GunlukUcretId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("HayvaniIrkFiyatID")
+                        .HasColumnType("int");
+
                     b.Property<string>("ShoppingCartId")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("TeknikDestekId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("ToplamFiyat")
+                        .HasColumnType("decimal(6,2)");
 
                     b.HasKey("Id");
 
@@ -1087,6 +1187,13 @@ namespace Stnc.CMS.DataAccess.Migrations
                         .OnDelete(DeleteBehavior.SetNull);
                 });
 
+            modelBuilder.Entity("Stnc.CMS.Entities.Concrete.DekamProjeDeneyHayvaniIrkFiyat", b =>
+                {
+                    b.HasOne("Stnc.CMS.Entities.Concrete.AppUser", "AppUser")
+                        .WithMany()
+                        .HasForeignKey("AppUserId");
+                });
+
             modelBuilder.Entity("Stnc.CMS.Entities.Concrete.DekamProjeDeneyHayvaniTur", b =>
                 {
                     b.HasOne("Stnc.CMS.Entities.Concrete.AppUser", "AppUser")
@@ -1109,6 +1216,10 @@ namespace Stnc.CMS.DataAccess.Migrations
                         .WithMany("DekamProjeTakip")
                         .HasForeignKey("AppUserId")
                         .OnDelete(DeleteBehavior.SetNull);
+
+                    b.HasOne("Stnc.CMS.Entities.Concrete.DekamProjeDeneyHayvaniIrkFiyat", null)
+                        .WithMany("DekamProjeTakip")
+                        .HasForeignKey("DekamProjeDeneyHayvaniIrkFiyatId");
 
                     b.HasOne("Stnc.CMS.Entities.Concrete.DekamProjeDeneyHayvaniIrk", "DeneyHayvaniIrk")
                         .WithMany("DekamProjeTakip")

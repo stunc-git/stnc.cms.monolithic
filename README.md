@@ -1,14 +1,29 @@
-# stnc.cms.monolithic
+# DEKAM 
+Erciyes Üniversitesi Deneysel Araştırmalar Uygulama ve Araştırma Merkezi
 
+# Proje hakkında 
 
-temalar 
-https://wenthemes.com/theme-demos/?demo=university-hub-pro
+Yapılması istenen iş tanımı:
 
-https://wenthemes.com/themes/
+    Web sitesinin yenilenmesi
+    Deney hayvanı satışı yapıldığı için satış yapılan hayvanların siparişinin web sayfası üzerinde yapılabilmesi amacıyla alışveriş sepeti 
+	uygulaması isteniyor ve satışa göre (öncesi ve sonrası için) pdf çıktı üretilmesi ve raporlanması işleri isteniyor.
+    Web sitesi üzerinden çalışma izin belgesi oluşturulması,izin belgesi pdf çıktısı oluşturulması ve rapor sistemi
 
-https://swiperjs.com/demos/
+# TODO
 
-
-https://themefisher.com/free-bootstrap-templates/
-
-menu https://github.com/FrancescoBorzi/Nestable
+   -İçerik ekleme sistemi-
+   
+   -Üyelik Sistemi-
+	
+   Menü Yönetim sistemi 
+   
+   Slider Yönetimi
+   
+   Video ve Resim Galerisi 
+   
+   Personel Bilgisi
+   
+   Sipariş satış sistemi 
+   
+   Çalışma izin belgesi oluşturulması 

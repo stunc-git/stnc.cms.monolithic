@@ -50,19 +50,19 @@ namespace Stnc.CMS.DataAccess.ShoppingCartLib
                 {
                     ShoppingCartId = Id,
                     Cart = cart,
-                    Amount = Math.Min(cart.InStock, amount)
+                    ToplamFiyat = Math.Min(cart.InStock, amount)
                 };
                 _context.StShoppingCartItem.Add(shoppingCartItem);
             }
             else
             {
-                if (cart.InStock - shoppingCartItem.Amount - amount >= 0)
+                if (cart.InStock - shoppingCartItem.ToplamFiyat - amount >= 0)
                 {
-                    shoppingCartItem.Amount += amount;
+                    shoppingCartItem.ToplamFiyat += amount;
                 }
                 else
                 {
-                    shoppingCartItem.Amount += (cart.InStock - shoppingCartItem.Amount);
+                    shoppingCartItem.ToplamFiyat += (cart.InStock - shoppingCartItem.ToplamFiyat);
                     isValidAmount = false;
                 }
             }
@@ -71,16 +71,16 @@ namespace Stnc.CMS.DataAccess.ShoppingCartLib
             return isValidAmount;
         }
 
-        public int RemoveFromCart(StCart cart)
+        public decimal RemoveFromCart(StCart cart)
         {
             var shoppingCartItem = _context.StShoppingCartItem.SingleOrDefault(s => s.Cart.Id == cart.Id && s.ShoppingCartId == Id);
-            int localAmount = 0;
+            decimal localAmount = 0;
             if (shoppingCartItem != null)
             {
-                if (shoppingCartItem.Amount > 1)
+                if (shoppingCartItem.ToplamFiyat > 1)
                 {
-                    shoppingCartItem.Amount--;
-                    localAmount = shoppingCartItem.Amount;
+                    shoppingCartItem.ToplamFiyat--;
+                    localAmount = shoppingCartItem.ToplamFiyat;
                 }
                 else
                 {
@@ -110,7 +110,7 @@ namespace Stnc.CMS.DataAccess.ShoppingCartLib
 
         public decimal GetShoppingCartTotal()
         {
-            return _context.StShoppingCartItem.Where(c => c.ShoppingCartId == Id).Select(c => c.Cart.Price * c.Amount).Sum();
+            return _context.StShoppingCartItem.Where(c => c.ShoppingCartId == Id).Select(c => c.Cart.Price * c.ToplamFiyat).Sum();
         }
     }
 }

@@ -13,6 +13,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
         private readonly ShoppingCart _shoppingCart;
         private readonly IShopDal _shopService;
 
+
         public ShoppingCartController(ShoppingCart shoppingCart, IShopDal shopService)
         {
             _shopService = shopService;
@@ -40,19 +41,21 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
 
         [HttpGet]
         [Route("/ShoppingCart/Add/{id}")]
-       // [Route("/ShoppingCart/Add/{id}/{returnUrl?}")]
-        public IActionResult Add(int id, int? amount = 5)
+        public IActionResult Add(int id, [FromQuery] string catID)
         {
+
+            int? amount = 5;
             var cart = _shopService.GetById(id);
-            //returnUrl = returnUrl.Replace("%2F", "/");
+
             bool isValidAmount = false;
+
             if (cart != null)
             {
                 isValidAmount = _shoppingCart.AddToCart(cart, amount.Value);
             }
 
           return Index();
-        //  return Index(isValidAmount, returnUrl);
+          //return Index(isValidAmount, returnUrl);
         }
 
         public IActionResult Remove(int foodId)

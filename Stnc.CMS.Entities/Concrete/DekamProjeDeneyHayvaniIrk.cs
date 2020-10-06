@@ -10,6 +10,8 @@ namespace Stnc.CMS.Entities.Concrete
         public int Id { get; set; }
         //[Required(ErrorMessage = "Lütfen isim alanını doldurunuz")]
         public string Name { get; set; }
+        public string Description { get; set; }
+        public int DeneyHayvaniTurID { get; set; }
         public DateTime? CreatedAt { get; set; } = DateTime.Now;
         public DateTime? UpdatedAt { get; set; } = DateTime.Now;
         public DateTime? DeletedAt { get; set; }
