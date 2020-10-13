@@ -172,12 +172,14 @@
             </a>
 
             <ul class="nav nav-treeview">
+
                 <li class="nav-item">
                     <a asp-action="Index" asp-controller="Gorev" class="nav-link @(active=="gorev"?"active":"")">
                         <i class="far fa-circle nav-icon"></i>
                         <p>Görev İşlemleri</p>
                     </a>
                 </li>
+
                 <li class="nav-item">
                     <a asp-action="Index" asp-controller="Aciliyet" class="nav-link  @(active=="aciliyet"?"active":"")">
                         <i class="far fa-circle nav-icon"></i>
@@ -314,6 +316,21 @@
             <i class="fas fa-user mr-2"></i>
             Profilim
         </a>
+
+
+
+        <a asp-action="Index" asp-controller="DpDeneyHayvaniIrkFiyat" class="list-group-item list-group-item-action @(active=="profil"?"active":"")">
+            <i class="fas fa-user mr-2"></i>
+            Fiyatlar
+        </a>
+
+        <a asp-action="Create" asp-controller="DpDeneyHayvaniIrkFiyat" class="list-group-item list-group-item-action @(active=="profil"?"active":"")">
+            <i class="fas fa-user mr-2"></i>
+            Fiyat Ekle
+        </a>
+
+
+
 
         <a asp-action="Index" asp-controller="ShoppingCart" class="list-group-item list-group-item-action @(active=="profil"?"active":"")">
             <i class="fas fa-user mr-2"></i>

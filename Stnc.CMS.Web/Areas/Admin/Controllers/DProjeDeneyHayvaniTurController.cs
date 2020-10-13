@@ -16,6 +16,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
     {
         private readonly EfGenericRepository<DekamProjeDeneyHayvaniTur> Myrepo;
         private readonly IFlasher f;
+
         public DProjeDeneyHayvaniTurController(IFlasher f, UserManager<AppUser> userManager) : base(userManager)
         {
             this.f = f;
@@ -49,6 +50,8 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
                     Name = model.Name,
                     AppUserId = user.Id,
                 });
+
+                f.Flash(Types.Success, "Kaydınız başarı ile eklendi", dismissable: true);
 
                 return RedirectToAction("Index");
             }
@@ -87,6 +90,8 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
                     AppUserId = user.Id,
                 });
 
+                f.Flash(Types.Success, "Kaydınız başarı ile düzenlendi", dismissable: true);
+
                 return RedirectToAction("Index");
             }
             return View(model);
@@ -94,6 +99,8 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
 
         public IActionResult Delete(int id)
         {
+            f.Flash(Types.Success, "Kaydınız başarı ile silindi", dismissable: true);
+
             Myrepo.Sil(new DekamProjeDeneyHayvaniTur { Id = id });
             return Json(null);
         }

@@ -1,4 +1,6 @@
-﻿gallery için 
+﻿kayıt yapıldıktan sonra flash mesaage uyarısı yapsın 
+
+gallery için 
 
 https://tabler-react.com/gallery
 

@@ -49,6 +49,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
                     Name = model.Name,
                     AppUserId = user.Id,
                 });
+                f.Flash(Types.Success, "Kaydınız başarı ile eklendi", dismissable: true);
 
                 return RedirectToAction("Index");
             }
@@ -78,6 +79,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
             ViewBag.GeneralTitle = "Destek Hayvan Sayısı Düzenleme";
 
             var user = await GetUserLoginInfo().ConfigureAwait(false);
+
             if (ModelState.IsValid)
             {
                 Myrepo.Guncelle(new DekamProjeTeknikDestekTalepHayvanSayisi
@@ -87,13 +89,18 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
                     AppUserId = user.Id,
                 });
 
+                f.Flash(Types.Success, "Kaydınız başarı ile düzenlendi", dismissable: true);
+
                 return RedirectToAction("Index");
             }
+
             return View(model);
         }
 
         public IActionResult Delete(int id)
         {
+            f.Flash(Types.Success, "Kaydınız başarı ile silindi", dismissable: true);
+
             Myrepo.Sil(new DekamProjeTeknikDestekTalepHayvanSayisi { Id = id });
             return Json(null);
         }

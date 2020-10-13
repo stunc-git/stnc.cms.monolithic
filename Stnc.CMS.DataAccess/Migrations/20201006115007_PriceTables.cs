@@ -90,10 +90,7 @@ namespace Stnc.CMS.DataAccess.Migrations
                     UpdatedAt = table.Column<DateTime>(nullable: true),
                     DeletedAt = table.Column<DateTime>(nullable: true)
                 },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_GunlukUcretler", x => x.Id);
-                });
+                constraints: table => table.PrimaryKey("PK_GunlukUcretler", x => x.Id));
 
             migrationBuilder.InsertData(
                 table: "Slider",

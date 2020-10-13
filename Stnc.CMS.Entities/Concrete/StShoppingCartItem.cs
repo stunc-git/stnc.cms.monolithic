@@ -11,7 +11,7 @@
 
         //burada shop cart
         public string ShoppingCartId { get; set; }
-        public StCart Cart { get; set; }
 
+        public StCart Cart { get; set; }
     }
 }

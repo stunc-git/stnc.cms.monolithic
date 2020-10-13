@@ -4,6 +4,7 @@ using Stnc.CMS.DTO.DTOs.AppUserDtos;
 using Stnc.CMS.DTO.DTOs.BildirimDtos;
 using Stnc.CMS.DTO.DTOs.CategoryDtos;
 using Stnc.CMS.DTO.DTOs.DekamProjeTakipDtos;
+using Stnc.CMS.DTO.DTOs.DeneyHayvaniIrkFiyatDtos;
 using Stnc.CMS.DTO.DTOs.GorevDtos;
 using Stnc.CMS.DTO.DTOs.PostDtos;
 using Stnc.CMS.DTO.DTOs.RaporDtos;
@@ -59,21 +60,25 @@ namespace Stnc.CMS.Web.Mapping.AutoMapperProfile
             #endregion Gorev-GorevDto
 
             #region Rapor-RaporDto
+
             CreateMap<RaporAddDto, Rapor>();
             CreateMap<Rapor, RaporAddDto>();
             CreateMap<RaporUpdateDto, Rapor>();
             CreateMap<Rapor, RaporUpdateDto>();
             CreateMap<RaporDosyaDto, Rapor>();
             CreateMap<Rapor, RaporDosyaDto>();
+
             #endregion Rapor-RaporDto
 
             #region Post-PostDto
+
             CreateMap<Posts, PostListAllDto>();
             CreateMap<PostListAllDto, Posts>();
             CreateMap<PostAddDto, Posts>();
             CreateMap<Posts, PostAddDto>();
             CreateMap<PostUpdateDto, Posts>();
             CreateMap<Posts, PostUpdateDto>();
+
             #endregion Post-PostDto
 
             #region Category-CategoryDto
@@ -102,7 +107,6 @@ namespace Stnc.CMS.Web.Mapping.AutoMapperProfile
 
             #endregion Slider-SliderDto
 
-
             #region DekamProjeTakip-DekamProjeTakipDtos
 
             CreateMap<DekamProjeTakip, DekamProjeTakipListDto>();
@@ -117,6 +121,19 @@ namespace Stnc.CMS.Web.Mapping.AutoMapperProfile
             #endregion DekamProjeTakip-DekamProjeTakipDtos
 
 
+
+            #region DekamProjeDeneyHayvaniIrkFiyat-DeneyHayvaniIrkFiyatDtos
+
+            CreateMap<DekamProjeDeneyHayvaniIrkFiyat, DeneyHayvaniIrkFiyatListAllDto>();
+            CreateMap<DeneyHayvaniIrkFiyatListAllDto, DekamProjeDeneyHayvaniIrkFiyat>();
+
+            CreateMap<DeneyHayvaniIrkFiyatCreateDto, DekamProjeDeneyHayvaniIrkFiyat>();
+            CreateMap<DekamProjeDeneyHayvaniIrkFiyat, DeneyHayvaniIrkFiyatCreateDto>();
+
+            CreateMap<DeneyHayvaniIrkFiyatUpdateDto, DekamProjeDeneyHayvaniIrkFiyat>();
+            CreateMap<DekamProjeDeneyHayvaniIrkFiyat, DeneyHayvaniIrkFiyatUpdateDto>();
+
+            #endregion DekamProjeDeneyHayvaniIrkFiyat-DeneyHayvaniIrkFiyatDtos
         }
     }
 }

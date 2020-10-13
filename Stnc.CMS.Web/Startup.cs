@@ -21,8 +21,7 @@ namespace Stnc.CMS.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddHttpContextAccessor();
-
-
+            services.AddSession();
             services.AddContainerWithDependencies();
             services.AddDbContext<StncCMSContext>();
             services.AddCustomIdentity();
@@ -35,8 +34,7 @@ namespace Stnc.CMS.Web
 
             services.AddScoped(sp => ShoppingCart.GetCart(sp));
             services.AddMvc();
-            services.AddMemoryCache();
-            services.AddSession();
+            // services.AddMemoryCache();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -54,13 +52,11 @@ namespace Stnc.CMS.Web
 
             app.UseSession();
 
-
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
             IdentityInitializer.SeedData(userManager, roleManager).Wait();
             app.UseStaticFiles();
-
 
             app.UseEndpoints(endpoints =>
             {

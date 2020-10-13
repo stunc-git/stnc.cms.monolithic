@@ -2,7 +2,6 @@
 {
     public class StCart
     {
-
         public int Id { get; set; }
         public string Name { get; set; }
         public string ShortDescription { get; set; }
@@ -11,7 +10,5 @@
         public string ImageUrl { get; set; }
         public bool IsPreferedFood { get; set; }
         public int InStock { get; set; }
-
-
     }
 }

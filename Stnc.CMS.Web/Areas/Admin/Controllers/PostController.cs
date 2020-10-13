@@ -48,13 +48,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
             return View(new PostAddDto());
         }
 
-        public async Task<IActionResult> UploadFile(IFormFile aUploadedFile)
-        {
-            //todo: burada json return donmesi gerekli
-            string name = await Uploader(aUploadedFile, "file").ConfigureAwait(false);
-            string vReturnImagePath = "/upload/file/" + name;
-            return Ok(vReturnImagePath);
-        }
+
 
         [HttpPost]
         public async Task<IActionResult> AddPost(PostAddDto model, IFormFile picture)
@@ -94,12 +88,23 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
 
                 //  context.SaveChanges();
                 //}
+                f.Flash(Types.Success, "Kaydınız başarı ile eklendi", dismissable: true);
 
                 return RedirectToAction("Index");
             }
             ViewBag.Categories = new SelectList(_categoryService.GetAll(), "Id", "Name");
             return View(model);
         }
+
+
+        public async Task<IActionResult> UploadFile(IFormFile aUploadedFile)
+        {
+            //todo: burada json return donmesi gerekli
+            string name = await Uploader(aUploadedFile, "file").ConfigureAwait(false);
+            string vReturnImagePath = "/upload/file/" + name;
+            return Ok(vReturnImagePath);
+        }
+
 
         public IActionResult UpdatePost(int id)
         {
@@ -162,6 +167,8 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
                 //        context.SaveChanges();
                 //    }
                 //}
+                f.Flash(Types.Success, "Kaydınız başarı ile düzenlendi", dismissable: true);
+
                 return RedirectToAction("Index");
             }
 
@@ -171,6 +178,8 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
 
         public IActionResult DeletePost(int id)
         {
+            f.Flash(Types.Success, "Kaydınız başarı ile silindi", dismissable: true);
+
             _postService.Sil(new Posts { Id = id });
             return Json(null);
         }

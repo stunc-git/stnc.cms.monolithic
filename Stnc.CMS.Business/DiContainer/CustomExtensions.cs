@@ -12,7 +12,10 @@ namespace Stnc.CMS.Business.DiContainer
         public static void AddContainerWithDependencies(this IServiceCollection services)
         {
             services.AddScoped<IGorevService, GorevManager>();
+
             services.AddScoped<IAciliyetService, AciliyetManager>();
+            services.AddScoped<IAciliyetDal, EfAciliyetRepository>();
+
             services.AddScoped<IRaporService, RaporManager>();
             services.AddScoped<IAppUserService, AppUserManager>();
             services.AddScoped<IDosyaService, DosyaManager>();
@@ -31,7 +34,7 @@ namespace Stnc.CMS.Business.DiContainer
             services.AddScoped<ICategoryDal, EfCategoryRepository>();
 
             services.AddScoped<IGorevDal, EfGorevRepository>();
-            services.AddScoped<IAciliyetDal, EfAciliyetRepository>();
+
             services.AddScoped<IRaporDal, EfRaporRepository>();
 
             services.AddScoped<IShopDal, EfCartRepository>();
@@ -41,6 +44,10 @@ namespace Stnc.CMS.Business.DiContainer
 
             services.AddScoped<IDekamProjeTakipService, DekamProjeTakipManager>();
             services.AddScoped<IDekamProjeTakipDal, EfDekamProjeTakipRepository>();
+
+
+            services.AddScoped<IDeneyHayvaniIrkFiyatService, DeneyHayvaniIrkFiyatManager>();
+            services.AddScoped<IDeneyHayvaniIrkFiyatDal, EfDekamProjeDeneyHayvaniIrkFiyatRepository>();
 
             services.AddTransient<ICustomLogger, NLogLogger>();
         }

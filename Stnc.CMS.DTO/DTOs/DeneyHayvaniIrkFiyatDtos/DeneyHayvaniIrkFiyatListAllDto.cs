@@ -1,9 +1,9 @@
-﻿using Stnc.CMS.Entities.Interfaces;
+﻿using Stnc.CMS.Entities.Concrete;
 using System;
 
-namespace Stnc.CMS.Entities.Concrete
+namespace Stnc.CMS.DTO.DTOs.DeneyHayvaniIrkFiyatDtos
 {
-    public class DekamProjeDeneyHayvaniIrkFiyat : ITablo
+    public class DeneyHayvaniIrkFiyatListAllDto
     {
         public int Id { get; set; }
         public string Isım { get; set; }
@@ -15,6 +15,5 @@ namespace Stnc.CMS.Entities.Concrete
         public DateTime? DeletedAt { get; set; }
         public int? AppUserId { get; set; }
         public AppUser AppUser { get; set; }
-       // public List<DekamProjeTakip> DekamProjeTakip { get; set; }
     }
 }

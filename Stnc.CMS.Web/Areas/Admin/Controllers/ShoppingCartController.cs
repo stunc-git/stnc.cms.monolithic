@@ -13,7 +13,6 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
         private readonly ShoppingCart _shoppingCart;
         private readonly IShopDal _shopService;
 
-
         public ShoppingCartController(ShoppingCart shoppingCart, IShopDal shopService)
         {
             _shopService = shopService;
@@ -22,7 +21,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
 
         public IActionResult Index()
         {
-            bool isValidAmount = true;
+            //bool isValidAmount = true;
             _shoppingCart.GetShoppingCartItems();
 
             var model = new ShoppingCartIndex
@@ -31,19 +30,17 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
                 ShoppingCartTotal = _shoppingCart.GetShoppingCartTotal(),
             };
 
-            if (!isValidAmount)
-            {
-                ViewBag.InvalidAmountText = "*There were not enough items in stock to add*";
-            }
+            //if (!isValidAmount)
+            //{
+            //    ViewBag.InvalidAmountText = "*There were not enough items in stock to add*";
+            //}
             return View("Index", model);
         }
-
 
         [HttpGet]
         [Route("/ShoppingCart/Add/{id}")]
         public IActionResult Add(int id, [FromQuery] string catID)
         {
-
             int? amount = 5;
             var cart = _shopService.GetById(id);
 
@@ -54,8 +51,8 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
                 isValidAmount = _shoppingCart.AddToCart(cart, amount.Value);
             }
 
-          return Index();
-          //return Index(isValidAmount, returnUrl);
+            return Index();
+            //return Index(isValidAmount, returnUrl);
         }
 
         public IActionResult Remove(int foodId)
@@ -72,6 +69,5 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
         {
             return Redirect(returnUrl);
         }
-
     }
 }

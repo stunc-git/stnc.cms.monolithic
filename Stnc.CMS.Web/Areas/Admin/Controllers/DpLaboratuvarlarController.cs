@@ -50,6 +50,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
                     Name = model.Name,
                     AppUserId = user.Id,
                 });
+                f.Flash(Types.Success, "Kaydınız başarı ile eklendi", dismissable: true);
 
                 return RedirectToAction("Index");
             }
@@ -87,6 +88,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
                     Name = model.Name,
                     AppUserId = user.Id,
                 });
+                f.Flash(Types.Success, "Kaydınız başarı ile düzenlendi", dismissable: true);
 
                 return RedirectToAction("Index");
             }
@@ -95,6 +97,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
 
         public IActionResult Delete(int id)
         {
+            f.Flash(Types.Success, "Kaydınız başarı ile silindi", dismissable: true);
             Myrepo.Sil(new DekamProjeLaboratuvarlar { Id = id });
             return Json(null);
         }

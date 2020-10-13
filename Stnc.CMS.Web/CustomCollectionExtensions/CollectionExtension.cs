@@ -6,6 +6,7 @@ using Stnc.CMS.DTO.DTOs.AciliyetDtos;
 using Stnc.CMS.DTO.DTOs.AppUserDtos;
 using Stnc.CMS.DTO.DTOs.CategoryDtos;
 using Stnc.CMS.DTO.DTOs.DekamProjeTakipDtos;
+using Stnc.CMS.DTO.DTOs.DeneyHayvaniIrkFiyatDtos;
 using Stnc.CMS.DTO.DTOs.GorevDtos;
 using Stnc.CMS.DTO.DTOs.PostDtos;
 using Stnc.CMS.DTO.DTOs.RaporDtos;
@@ -26,8 +27,7 @@ namespace Stnc.CMS.Web.CustomCollectionExtensions
                 opt.Password.RequiredLength = 1;
                 opt.Password.RequireLowercase = false;
                 opt.Password.RequireNonAlphanumeric = false;
-            })
-             .AddEntityFrameworkStores<StncCMSContext>();
+            }).AddEntityFrameworkStores<StncCMSContext>();
 
             services.ConfigureApplicationCookie(opt =>
             {
@@ -65,6 +65,9 @@ namespace Stnc.CMS.Web.CustomCollectionExtensions
 
             services.AddTransient<IValidator<DekamProjeTakipCreateDto>, DekamProjeTakipCreateValidator>();
             services.AddTransient<IValidator<DekamProjeTakipUpdateDto>, DekamProjeTakipUpdateValidator>();
+
+            services.AddTransient<IValidator<DeneyHayvaniIrkFiyatCreateDto>, DeneyHayvaniIrkFiyatCreateValidator>();
+            services.AddTransient<IValidator<DeneyHayvaniIrkFiyatUpdateDto>, DeneyHayvaniIrkFiyatUpdateValidator>();
         }
     }
 }

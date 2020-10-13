@@ -1,3 +1,7 @@
+# Branch Amacı
+ 
+step step alışveriş yapma bolumu yapılacak 
+
 # DEKAM 
 Erciyes Üniversitesi Deneysel Araştırmalar Uygulama ve Araştırma Merkezi
 

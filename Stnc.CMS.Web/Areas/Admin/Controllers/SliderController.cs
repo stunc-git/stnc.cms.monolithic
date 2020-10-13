@@ -43,8 +43,6 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
             return View(new SliderAddDto());
         }
 
-
-
         [HttpPost]
         public async Task<IActionResult> AddSlider(SliderAddDto model, IFormFile picture)
         {
@@ -62,51 +60,51 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
                 _sliderService.Kaydet(new Slider
                 {
                     Caption = model.Caption,
-                    Excerpt=model.Excerpt,
+                    Excerpt = model.Excerpt,
                     UrlAddress = model.UrlAddress,
                     UrlType = 1,
                     Picture = pictureDb,
                     Status = true,
                     AppUserId = user.Id,
                 });
+                f.Flash(Types.Success, "Kaydınız başarı ile eklendi", dismissable: true);
 
                 return RedirectToAction("Index");
             }
             return View(model);
         }
 
-
-    public IActionResult UpdateSlider(int id)
-    {
-        TempData["Active"] = TempdataInfo.Slider;
-        var post = _sliderService.GetirIdile(id);
-        if (post != null)
+        public IActionResult UpdateSlider(int id)
         {
-            return View(_mapper.Map<SliderUpdateDto>(post));
-        }
-        else
-        {
-            f.Flash(Types.Danger, "Böyle bir veri bulunamadı", dismissable: true);
-            return RedirectToAction("Index");
-        }
-    }
-
-    [HttpPost]
-    public async Task<IActionResult> UpdateSlider(SliderUpdateDto model, IFormFile picture)
-    {
-        var user = await GetUserLoginInfo().ConfigureAwait(false);
-
-        string pictureDb = null;
-
-        using var context = new StncCMSContext();
-
-        if (ModelState.IsValid)
-        {
-            if (picture != null)
+            TempData["Active"] = TempdataInfo.Slider;
+            var post = _sliderService.GetirIdile(id);
+            if (post != null)
             {
-                string pictureName = await Uploader(picture, "img").ConfigureAwait(false);
-                pictureDb = pictureName;
+                return View(_mapper.Map<SliderUpdateDto>(post));
             }
+            else
+            {
+                f.Flash(Types.Danger, "Böyle bir veri bulunamadı", dismissable: true);
+                return RedirectToAction("Index");
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateSlider(SliderUpdateDto model, IFormFile picture)
+        {
+            var user = await GetUserLoginInfo().ConfigureAwait(false);
+
+            string pictureDb = null;
+
+            using var context = new StncCMSContext();
+
+            if (ModelState.IsValid)
+            {
+                if (picture != null)
+                {
+                    string pictureName = await Uploader(picture, "img").ConfigureAwait(false);
+                    pictureDb = pictureName;
+                }
                 var now = DateTime.UtcNow; // current datetime
                 _sliderService.Guncelle(new Slider
                 {
@@ -119,17 +117,19 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
                     Status = true,
                     AppUserId = user.Id,
                 });
+                f.Flash(Types.Success, "Kaydınız başarı ile düzenlendi", dismissable: true);
 
                 return RedirectToAction("Index");
+            }
+
+            return View(model);
         }
 
-        return View(model);
+        public IActionResult DeletePost(int id)
+        {
+            f.Flash(Types.Success, "Kaydınız başarı ile silindi", dismissable: true);
+            _sliderService.Sil(new Slider { Id = id });
+            return Json(null);
+        }
     }
-
-    public IActionResult DeletePost(int id)
-    {
-        _sliderService.Sil(new Slider { Id = id });
-        return Json(null);
-    }
-}
 }

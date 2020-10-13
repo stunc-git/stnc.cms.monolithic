@@ -5,7 +5,7 @@ using Stnc.CMS.Entities.Concrete;
 
 namespace Stnc.CMS.DataAccess.Interfaces
 {
-    public interface IDeneyHayvaniIrkFiyatDal : IGenericDal<DekamProjeDeneyHayvaniIrkFiyat>
+    public interface IAciliyetDal : IGenericDal<Aciliyet>
     {
     }
 }
