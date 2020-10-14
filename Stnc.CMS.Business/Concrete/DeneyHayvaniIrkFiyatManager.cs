@@ -1,5 +1,6 @@
 ﻿using Stnc.CMS.Business.Interfaces;
 using Stnc.CMS.DataAccess.Interfaces;
+using Stnc.CMS.DTO.DTOs.DeneyHayvaniIrkFiyatDtos;
 using Stnc.CMS.Entities.Concrete;
 using System.Collections.Generic;
 
@@ -11,6 +12,11 @@ namespace Stnc.CMS.Business.Concrete
         public DeneyHayvaniIrkFiyatManager(IDeneyHayvaniIrkFiyatDal deneyHayvaniIrkFiyatDal)
         {
             _deneyHayvaniIrkFiyatDal = deneyHayvaniIrkFiyatDal;
+        }
+
+        public List<DeneyHayvaniIrkFiyatListAllDto> DeneyHayvaniIrkFiyatListesi()
+        {
+            return _deneyHayvaniIrkFiyatDal.DeneyHayvaniIrkFiyatListesi();
         }
 
         public List<DekamProjeDeneyHayvaniIrkFiyat> GetAll()

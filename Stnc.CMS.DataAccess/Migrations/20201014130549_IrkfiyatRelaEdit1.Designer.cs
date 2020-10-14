@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts;
 
 namespace Stnc.CMS.DataAccess.Migrations
 {
     [DbContext(typeof(StncCMSContext))]
-    partial class StncCMSContextModelSnapshot : ModelSnapshot
+    [Migration("20201014130549_IrkfiyatRelaEdit1")]
+    partial class IrkfiyatRelaEdit1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1015,14 +1017,14 @@ namespace Stnc.CMS.DataAccess.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 1063131734,
+                            Id = 1847719039,
                             Caption = "Lorem ipsum laramde loremde ipsumda inmpala",
-                            CreatedAt = new DateTime(2020, 10, 14, 17, 14, 9, 648, DateTimeKind.Local).AddTicks(4177),
+                            CreatedAt = new DateTime(2020, 10, 14, 16, 5, 48, 956, DateTimeKind.Local).AddTicks(7031),
                             Excerpt = "exceprt data loremmmmmm ipsummmmm",
                             MenuOrder = 1,
                             Picture = "default.jpg",
                             Status = true,
-                            UpdatedAt = new DateTime(2020, 10, 14, 17, 14, 9, 649, DateTimeKind.Local).AddTicks(4997),
+                            UpdatedAt = new DateTime(2020, 10, 14, 16, 5, 48, 957, DateTimeKind.Local).AddTicks(9891),
                             UrlAddress = "",
                             UrlType = (short)0
                         });

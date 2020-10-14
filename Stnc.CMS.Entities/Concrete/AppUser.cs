@@ -20,6 +20,8 @@ namespace Stnc.CMS.Entities.Concrete
         public List<DekamProjeTeknikDestekTalepHayvanSayisi> DekamProjeTeknikDestekTalepHayvanSayisi { get; set; }
         public List<DekamProjeTeknikDestekTalepSure> DekamProjeTeknikDestekTalepSure { get; set; }
         public List<DekamProjeTeknikDestekTalepTur> DekamProjeTeknikDestekTalepTur { get; set; }
+        public List<DekamProjeDeneyHayvaniIrkFiyat> DekamProjeDeneyHayvaniIrkFiyat { get; set; }
+
         public List<DekamProjeTakip> DekamProjeTakip { get; set; }
     }
 }

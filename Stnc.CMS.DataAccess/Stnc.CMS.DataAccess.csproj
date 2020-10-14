@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Stnc.CMS.DTO\Stnc.CMS.DTO.csproj" />
     <ProjectReference Include="..\Stnc.CMS.Entities\Stnc.CMS.Entities.csproj" />
   </ItemGroup>
 

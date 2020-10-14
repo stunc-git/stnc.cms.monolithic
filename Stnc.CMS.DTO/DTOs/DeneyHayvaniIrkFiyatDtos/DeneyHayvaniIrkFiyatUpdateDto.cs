@@ -17,8 +17,5 @@ namespace Stnc.CMS.DTO.DTOs.DeneyHayvaniIrkFiyatDtos
         public int? AppUserId { get; set; }
         public AppUser AppUser { get; set; }
 
-
-        public int? AppUserId { get; set; }
-        public AppUser AppUser { get; set; }
     }
 }

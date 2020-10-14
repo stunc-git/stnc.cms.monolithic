@@ -65,7 +65,7 @@
         $(document).ready(function () {
             $("#DeneyHayvaniTurID").change(function () {
                 $.ajax({
-                    url: '/Admin/DpDeneyHayvaniIrkFiyat/IlcelerByIlId',
+                    url: '/Admin/DpDeneyHayvaniIrkFiyat/IrkSec',
                     data: { TurID: $(this).val() },
                     dataType: "JSON",
                     success: function (result) {

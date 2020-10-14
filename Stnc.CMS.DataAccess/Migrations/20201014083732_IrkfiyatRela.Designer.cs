@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts;
 
 namespace Stnc.CMS.DataAccess.Migrations
 {
     [DbContext(typeof(StncCMSContext))]
-    partial class StncCMSContextModelSnapshot : ModelSnapshot
+    [Migration("20201014083732_IrkfiyatRela")]
+    partial class IrkfiyatRela
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -473,10 +475,10 @@ namespace Stnc.CMS.DataAccess.Migrations
                     b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("DekamProjeDeneyHayvaniIrkId")
+                    b.Property<int?>("DekamProjeDeneyHayvaniIrkID")
                         .HasColumnType("int");
 
-                    b.Property<int?>("DekamProjeDeneyHayvaniTurId")
+                    b.Property<int?>("DekamProjeDeneyHayvaniTurID")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("DeletedAt")
@@ -495,9 +497,9 @@ namespace Stnc.CMS.DataAccess.Migrations
 
                     b.HasIndex("AppUserId");
 
-                    b.HasIndex("DekamProjeDeneyHayvaniIrkId");
+                    b.HasIndex("DekamProjeDeneyHayvaniIrkID");
 
-                    b.HasIndex("DekamProjeDeneyHayvaniTurId");
+                    b.HasIndex("DekamProjeDeneyHayvaniTurID");
 
                     b.ToTable("DekamProjeDeneyHayvaniIrkFiyat");
                 });
@@ -1015,14 +1017,14 @@ namespace Stnc.CMS.DataAccess.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 1063131734,
+                            Id = 448522521,
                             Caption = "Lorem ipsum laramde loremde ipsumda inmpala",
-                            CreatedAt = new DateTime(2020, 10, 14, 17, 14, 9, 648, DateTimeKind.Local).AddTicks(4177),
+                            CreatedAt = new DateTime(2020, 10, 14, 11, 37, 31, 913, DateTimeKind.Local).AddTicks(960),
                             Excerpt = "exceprt data loremmmmmm ipsummmmm",
                             MenuOrder = 1,
                             Picture = "default.jpg",
                             Status = true,
-                            UpdatedAt = new DateTime(2020, 10, 14, 17, 14, 9, 649, DateTimeKind.Local).AddTicks(4997),
+                            UpdatedAt = new DateTime(2020, 10, 14, 11, 37, 31, 914, DateTimeKind.Local).AddTicks(2236),
                             UrlAddress = "",
                             UrlType = (short)0
                         });
@@ -1190,17 +1192,16 @@ namespace Stnc.CMS.DataAccess.Migrations
             modelBuilder.Entity("Stnc.CMS.Entities.Concrete.DekamProjeDeneyHayvaniIrkFiyat", b =>
                 {
                     b.HasOne("Stnc.CMS.Entities.Concrete.AppUser", "AppUser")
-                        .WithMany("DekamProjeDeneyHayvaniIrkFiyat")
-                        .HasForeignKey("AppUserId")
-                        .OnDelete(DeleteBehavior.SetNull);
+                        .WithMany()
+                        .HasForeignKey("AppUserId");
 
                     b.HasOne("Stnc.CMS.Entities.Concrete.DekamProjeDeneyHayvaniIrk", "DekamProjeDeneyHayvaniIrk")
                         .WithMany("DekamProjeDeneyHayvaniIrkFiyat")
-                        .HasForeignKey("DekamProjeDeneyHayvaniIrkId");
+                        .HasForeignKey("DekamProjeDeneyHayvaniIrkID");
 
                     b.HasOne("Stnc.CMS.Entities.Concrete.DekamProjeDeneyHayvaniTur", "DekamProjeDeneyHayvaniTur")
                         .WithMany("DekamProjeDeneyHayvaniIrkFiyat")
-                        .HasForeignKey("DekamProjeDeneyHayvaniTurId");
+                        .HasForeignKey("DekamProjeDeneyHayvaniTurID");
                 });
 
             modelBuilder.Entity("Stnc.CMS.Entities.Concrete.DekamProjeDeneyHayvaniTur", b =>

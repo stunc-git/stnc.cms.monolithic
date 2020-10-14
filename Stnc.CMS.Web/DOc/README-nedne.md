@@ -1,4 +1,13 @@
-﻿#.net core opensource 
+﻿
+one to one one to many gibi şeyleri kullanamadım nedense çalışmadı 6 gün uğraştım mesela EfDekamProjeDeneyHayvaniIrkFiyatRepository.cs
+burada kullanmak istedim ama one to many ilişki ile userlar gelmedi proje zamanı o yuzden uzuyordu bende artık pes ettim 
+where ve join kullandım 
+
+
+
+
+ 
+#.net core opensource 
 
 #Çapraz Platform
 

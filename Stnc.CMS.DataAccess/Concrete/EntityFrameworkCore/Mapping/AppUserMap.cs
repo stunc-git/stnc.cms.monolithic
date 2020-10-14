@@ -20,6 +20,7 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Mapping
             builder.HasMany(I => I.DekamProjeTeknikDestekTalepHayvanSayisi).WithOne(I => I.AppUser).HasForeignKey(I => I.AppUserId).OnDelete(DeleteBehavior.SetNull);
             builder.HasMany(I => I.DekamProjeTeknikDestekTalepSure).WithOne(I => I.AppUser).HasForeignKey(I => I.AppUserId).OnDelete(DeleteBehavior.SetNull);
             builder.HasMany(I => I.DekamProjeTeknikDestekTalepTur).WithOne(I => I.AppUser).HasForeignKey(I => I.AppUserId).OnDelete(DeleteBehavior.SetNull);
+            builder.HasMany(I => I.DekamProjeDeneyHayvaniIrkFiyat).WithOne(I => I.AppUser).HasForeignKey(I => I.AppUserId).OnDelete(DeleteBehavior.SetNull);
         }
     }
 }

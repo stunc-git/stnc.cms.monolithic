@@ -48,7 +48,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
 
             TempData["Active"] = TempdataInfo.Category;
 
-            return View(_mapper.Map<List<DeneyHayvaniIrkFiyatListAllDto>>(_deneyHayvaniIrkFiyatService.GetAll()));
+            return View(_mapper.Map<List<DeneyHayvaniIrkFiyatListAllDto>>(_deneyHayvaniIrkFiyatService.DeneyHayvaniIrkFiyatListesi()));
         }
 
         public IActionResult Create()
@@ -59,17 +59,17 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
 
             ViewBag.HayvaniTurCategories = new SelectList(DeneyHayvaniTurRepo.GetAll(), "Id", "Name");
 
-           // ViewBag.HayvaniIrkCategories = new SelectList(DeneyHayvaniIrkRepo.GetAll(), "Id", "Name");
+            // ViewBag.HayvaniIrkCategories = new SelectList(DeneyHayvaniIrkRepo.GetAll(), "Id", "Name");
 
             return View(new DeneyHayvaniIrkFiyatCreateDto()); //burası dto dan gelcek
-          //  return View(new DekamProjeDeneyHayvaniIrkFiyat());
+                                                              //  return View(new DekamProjeDeneyHayvaniIrkFiyat());
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(DekamProjeDeneyHayvaniIrkFiyat model)
+        public async Task<IActionResult> Create(DeneyHayvaniIrkFiyatCreateDto model)
         {
             ViewBag.GeneralTitle = "Deney Hayvanı Fiyat Ekleme";
-var us = new CultureInfo("en-US");
+
             var user = await GetUserLoginInfo().ConfigureAwait(false);
 
             if (ModelState.IsValid)
@@ -79,9 +79,10 @@ var us = new CultureInfo("en-US");
                     Isım = model.Isım,
                     Fiyat = model.Fiyat,
                     AppUserId = user.Id,
-                    DeneyHayvaniTurID = model.DeneyHayvaniTurID,
-                    DeneyHayvaniIrkID = model.DeneyHayvaniIrkID,
+                    DekamProjeDeneyHayvaniIrkId = model.DeneyHayvaniIrkID,
+                    DekamProjeDeneyHayvaniTurId = model.DeneyHayvaniTurID,
                 });
+
 
                 f.Flash(Types.Success, "Kayıt başarı ile eklendi", dismissable: true);
 
@@ -99,12 +100,13 @@ var us = new CultureInfo("en-US");
             var data = _deneyHayvaniIrkFiyatService.GetirIdile(id);
             if (data != null)
             {
-                ViewBag.HayvaniTurCategories = new SelectList(DeneyHayvaniTurRepo.GetAll(), "Id", "Name", data.DeneyHayvaniTurID);
-                ViewBag.HayvaniIrkCategories = new SelectList(DeneyHayvaniIrkRepo.GetAll(), "Id", "Name", data.DeneyHayvaniIrkID);
+                ViewBag.HayvaniTurCategories = new SelectList(DeneyHayvaniTurRepo.GetAll(), "Id", "Name", data.DekamProjeDeneyHayvaniTurId);
+                ViewBag.HayvaniIrkCategories = new SelectList(DeneyHayvaniIrkRepo.GetAll(), "Id", "Name", data.DekamProjeDeneyHayvaniIrkId);
                 return View(_mapper.Map<DeneyHayvaniIrkFiyatUpdateDto>(data));
             }
             else
             {
+
                 f.Flash(Types.Danger, "Böyle bir veri bulunamadı", dismissable: true);
                 return RedirectToAction("Index");
             }
@@ -124,8 +126,8 @@ var us = new CultureInfo("en-US");
                     Isım = model.Isım,
                     Fiyat = model.Fiyat,
                     AppUserId = user.Id,
-                    DeneyHayvaniTurID = model.DeneyHayvaniTurID,
-                    DeneyHayvaniIrkID = model.DeneyHayvaniIrkID,
+                    DekamProjeDeneyHayvaniTurId = model.DeneyHayvaniTurID,
+                    DekamProjeDeneyHayvaniIrkId = model.DeneyHayvaniIrkID,
                 });
                 f.Flash(Types.Success, "Kayıt başarı ile düzenlendi", dismissable: true);
 
@@ -140,15 +142,32 @@ var us = new CultureInfo("en-US");
             _deneyHayvaniIrkFiyatService.Sil(new DekamProjeDeneyHayvaniIrkFiyat { Id = id });
             return Json(null);
         }
-        public JsonResult IlcelerByIlId(string TurID)
+
+        public JsonResult IrkSec(string TurID)
         {
+            List<SelectListItem> sonuc = new List<SelectListItem>();
             var context = new StncCMSContext();
-            var irklar = context.DekamProjeDeneyHayvaniIrk.Where(s => s.DeneyHayvaniTurID == int.Parse(TurID)).OrderBy(s => s.Name).
-                Select(s => new { id = s.Id,  Content = s.Name }).ToList();
-            return Json(irklar);
+
+            try
+            {
+                var irklar = context.DekamProjeDeneyHayvaniIrk.Where(s => s.DeneyHayvaniTurID == int.Parse(TurID)).OrderBy(s => s.Name).
+                    Select(s => new { id = s.Id, Content = s.Name }).ToList();
+                return Json(irklar);
+            }
+            catch (Exception)
+            {
+
+                sonuc = new List<SelectListItem>();
+                sonuc.Add(new SelectListItem
+                {
+                    Text = "Bir hata oluştu :(",
+                    Value = "Default"
+                });
+
+                return Json(sonuc);
+
+            }
         }
-
-
 
         //[HttpPost]
         //public JsonResult IlIlce(int? ilID, string tip)
@@ -209,8 +228,5 @@ var us = new CultureInfo("en-US");
         //    //Oluşturduğum sonucları json olarak geriye gönderiyorum
         //    return Json(new { ok = basariliMi, text = sonuc });
         //}
-
-
-
     }
 }

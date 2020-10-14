@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts;
 
 namespace Stnc.CMS.DataAccess.Migrations
 {
     [DbContext(typeof(StncCMSContext))]
-    partial class StncCMSContextModelSnapshot : ModelSnapshot
+    [Migration("20201014135210_IrkfiyatRelaEdit2")]
+    partial class IrkfiyatRelaEdit2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -490,6 +492,9 @@ namespace Stnc.CMS.DataAccess.Migrations
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("UserName")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -1015,14 +1020,14 @@ namespace Stnc.CMS.DataAccess.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 1063131734,
+                            Id = 1467227976,
                             Caption = "Lorem ipsum laramde loremde ipsumda inmpala",
-                            CreatedAt = new DateTime(2020, 10, 14, 17, 14, 9, 648, DateTimeKind.Local).AddTicks(4177),
+                            CreatedAt = new DateTime(2020, 10, 14, 16, 52, 10, 194, DateTimeKind.Local).AddTicks(3443),
                             Excerpt = "exceprt data loremmmmmm ipsummmmm",
                             MenuOrder = 1,
                             Picture = "default.jpg",
                             Status = true,
-                            UpdatedAt = new DateTime(2020, 10, 14, 17, 14, 9, 649, DateTimeKind.Local).AddTicks(4997),
+                            UpdatedAt = new DateTime(2020, 10, 14, 16, 52, 10, 195, DateTimeKind.Local).AddTicks(4222),
                             UrlAddress = "",
                             UrlType = (short)0
                         });
