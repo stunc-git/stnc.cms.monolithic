@@ -106,7 +106,6 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
             }
             else
             {
-
                 f.Flash(Types.Danger, "Böyle bir veri bulunamadı", dismissable: true);
                 return RedirectToAction("Index");
             }
@@ -126,7 +125,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
                     Isım = model.Isım,
                     Fiyat = model.Fiyat,
                     AppUserId = user.Id,
-                    DekamProjeDeneyHayvaniTurId = model.DeneyHayvaniTurID,
+                    DekamProjeDeneyHayvaniTurId = model.DekamProjeDeneyHayvaniTurId,
                     DekamProjeDeneyHayvaniIrkId = model.DeneyHayvaniIrkID,
                 });
                 f.Flash(Types.Success, "Kayıt başarı ile düzenlendi", dismissable: true);
@@ -143,6 +142,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
             return Json(null);
         }
 
+        //ajax result
         public JsonResult IrkSec(string TurID)
         {
             List<SelectListItem> sonuc = new List<SelectListItem>();
@@ -151,8 +151,8 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
             try
             {
                 var irklar = context.DekamProjeDeneyHayvaniIrk.Where(s => s.DeneyHayvaniTurID == int.Parse(TurID)).OrderBy(s => s.Name).
-                    Select(s => new { id = s.Id, Content = s.Name }).ToList();
-                return Json(irklar);
+                    Select(s => new { id = s.Id, Hayvan = s.Name }).ToList();
+                return Json(new { cartSelectItems = irklar });
             }
             catch (Exception)
             {
@@ -168,6 +168,55 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
 
             }
         }
+
+        //ajax result
+        public JsonResult FiyatSec(string TurID)
+        {
+            List<SelectListItem> sonuc = new List<SelectListItem>();
+            var context = new StncCMSContext();
+
+            try
+            {
+
+     var data = context.DekamProjeDeneyHayvaniIrkFiyat
+    .Where(s => s.DekamProjeDeneyHayvaniTur.Id == int.Parse(TurID))
+    .Where(s => s.DekamProjeDeneyHayvaniIrk.Id == s.DekamProjeDeneyHayvaniIrkId)
+    .OrderByDescending(I => I.CreatedAt)
+    .Select(I => new DeneyHayvaniAjaxListDto()
+    {
+        Id = I.Id,
+        Isim = I.Isım,
+        TurAdi = I.DekamProjeDeneyHayvaniTur.Name,
+        IrkAdi = I.DekamProjeDeneyHayvaniIrk.Name,
+        Fiyat = I.Fiyat,
+    }).ToList();
+
+
+                if (!data.Any())
+                {
+                    return Json(new { status = "empty", cartSelectItems = data });
+                }
+                else {
+                    return Json(new { status = "ok", cartSelectItems = data });
+                }
+
+
+            }
+            catch (Exception)
+            {
+
+                sonuc = new List<SelectListItem>();
+                sonuc.Add(new SelectListItem
+                {
+                    Text = "Bir hata oluştu :(",
+                    Value = "Default"
+                });
+
+                return Json(sonuc);
+
+            }
+        }
+
 
         //[HttpPost]
         //public JsonResult IlIlce(int? ilID, string tip)

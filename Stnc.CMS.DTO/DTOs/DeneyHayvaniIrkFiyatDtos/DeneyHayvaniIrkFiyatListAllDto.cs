@@ -23,5 +23,6 @@ namespace Stnc.CMS.DTO.DTOs.DeneyHayvaniIrkFiyatDtos
 
         public int? DekamProjeDeneyHayvaniIrkId { get; set; }
         public DekamProjeDeneyHayvaniIrk DekamProjeDeneyHayvaniIrk { get; set; }
+
     }
 }

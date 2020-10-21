@@ -13,6 +13,13 @@ namespace Stnc.CMS.Entities.Concrete
         [Required(ErrorMessage = "Lütfen isim alanını doldurunuz")]
         public string Name { get; set; }
         public string Picture { get; set; }
+
+        [Required(ErrorMessage = "Lütfen günlük bakım ücretini giriniz")]
+        public decimal GunlukBakimUcret { get; set; }
+
+        [Required(ErrorMessage = "Lütfen ötenazi ücretini giriniz")]
+        public decimal OtenaziUcret { get; set; }
+
         public DateTime? CreatedAt { get; set; } = DateTime.Now;
         public DateTime? UpdatedAt { get; set; } = DateTime.Now;
         public DateTime? DeletedAt { get; set; }

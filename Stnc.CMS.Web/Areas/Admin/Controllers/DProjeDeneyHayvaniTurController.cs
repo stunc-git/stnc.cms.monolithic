@@ -48,6 +48,8 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
                 Myrepo.Kaydet(new DekamProjeDeneyHayvaniTur
                 {
                     Name = model.Name,
+                    GunlukBakimUcret = model.GunlukBakimUcret,
+                    OtenaziUcret = model.OtenaziUcret,
                     AppUserId = user.Id,
                 });
 
@@ -75,6 +77,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
             }
         }
 
+
         [HttpPost]
         public async Task<IActionResult> Update(DekamProjeDeneyHayvaniTur model)
         {
@@ -87,6 +90,9 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
                 {
                     Id = model.Id,
                     Name = model.Name,
+                    OtenaziUcret = model.OtenaziUcret,
+                    GunlukBakimUcret = model.GunlukBakimUcret,
+
                     AppUserId = user.Id,
                 });
 

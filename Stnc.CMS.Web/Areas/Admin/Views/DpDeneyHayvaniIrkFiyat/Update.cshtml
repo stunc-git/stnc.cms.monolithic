@@ -27,10 +27,10 @@
 
                 <div class="form-group">
                     <label>Deney Hayvanı Türünü Seçiniz:</label>
-                    <select class="form-control" asp-for="DeneyHayvaniTurID" asp-items="ViewBag.HayvaniTurCategories">
+                    <select class="form-control" asp-for="DekamProjeDeneyHayvaniTurId" asp-items="ViewBag.HayvaniTurCategories">
                         <option value="">Seçiniz</option>
                     </select>
-                    <span asp-validation-for="@Model.DeneyHayvaniTurID" class="text-danger"></span>
+                    <span asp-validation-for="@Model.DekamProjeDeneyHayvaniTurId" class="text-danger"></span>
                 </div>
 
 
@@ -68,7 +68,40 @@
 @section JavaScript{
     <script src="~/lib/jqueryValidate/jquery.validate.min.js"></script>
     <script src="~/lib/jqueryUnob/jquery.validate.unobtrusive.min.js"></script>
-    <partial name="_ValidationScriptsPartial" />
 
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+
+            const id = $("#DekamProjeDeneyHayvaniTurId").val();
+            StncMyAjax(id);
+
+            $("#DekamProjeDeneyHayvaniTurId").change(function () {
+                const id = $(this).val();
+                StncMyAjax(id);
+            });
+
+
+            function StncMyAjax(id) {
+                $.ajax({
+                    url: '/Admin/DpDeneyHayvaniIrkFiyat/IrkSec',
+                    data: { TurID: id },
+                    dataType: "JSON",
+                    success: function (result) {
+                        var irkListesi = $("#DeneyHayvaniIrkID");
+                        irkListesi.empty();
+                        $.each(result.cartSelectItems, function (i, item) {
+                            irkListesi.append($("<option></option>").attr("value", item.id).html(item.hayvan));
+                        });
+                    }
+                });
+
+            }
+
+
+        });
+    </script>
+
+    <partial name="_ValidationScriptsPartial" />
 }
 

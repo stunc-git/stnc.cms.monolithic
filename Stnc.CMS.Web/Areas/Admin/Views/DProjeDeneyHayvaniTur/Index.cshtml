@@ -35,7 +35,8 @@
                     <tr>
                         <th> <input type="checkbox" id="vehicle1" name="vehicle1"></th>
                         <th>İsim</th>
-
+                        <th>Günlük Bakım Ücreti</th>
+                        <th>Ötenazi Ücreti</th>
                         <th>İşlem</th>
                     </tr>
                     @foreach (var item in Model)
@@ -43,7 +44,8 @@
                         <tr class="tableTR-@item.Id">
                             <td> <input type="checkbox" id="vehicle1" name="vehicle1"></td>
                             <td>@item.Name</td>
-
+                            <td>@item.GunlukBakimUcret.ToString("#,##0.00")</td>
+                            <td>@item.OtenaziUcret.ToString("#,##0.00")</td>
 
                             <td>
                                 <a asp-action="Update" asp-controller="@ControllerName" asp-route-id="@item.Id" class="btn btn-warning btn-sm"><i class="far fa-edit mr-2"></i>Düzenle</a>

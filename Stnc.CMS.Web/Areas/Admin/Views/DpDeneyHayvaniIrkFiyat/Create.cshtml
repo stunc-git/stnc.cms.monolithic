@@ -66,13 +66,13 @@
             $("#DeneyHayvaniTurID").change(function () {
                 $.ajax({
                     url: '/Admin/DpDeneyHayvaniIrkFiyat/IrkSec',
-                    data: { TurID: $(this).val() },
+                    data: { TurID:$(this).val() },
                     dataType: "JSON",
                     success: function (result) {
                         var irkListesi = $("#DeneyHayvaniIrkID");
                         irkListesi.empty();
-                        $.each(result, function (i, item) {
-                            irkListesi.append($("<option></option>").attr("value", item.id).html(item.content));
+                        $.each(result.cartSelectItems, function (i, item) {
+                            irkListesi.append($("<option></option>").attr("value", item.id).html(item.hayvan));
                         });
                     }
                 });
