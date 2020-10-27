@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts;
 
 namespace Stnc.CMS.DataAccess.Migrations
 {
     [DbContext(typeof(StncCMSContext))]
-    partial class StncCMSContextModelSnapshot : ModelSnapshot
+    [Migration("20201026083935_chopCartUpdate")]
+    partial class chopCartUpdate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -661,7 +663,13 @@ namespace Stnc.CMS.DataAccess.Migrations
                         .HasColumnType("nvarchar(500)")
                         .HasMaxLength(500);
 
+                    b.Property<int>("TeknikDestekSuresiID")
+                        .HasColumnType("int");
+
                     b.Property<int>("TeknikDestekTuruID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TeknikHayvanSayisiID")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("UpdatedAt")
@@ -677,9 +685,79 @@ namespace Stnc.CMS.DataAccess.Migrations
 
                     b.HasIndex("LaboratuvarID");
 
+                    b.HasIndex("TeknikDestekSuresiID");
+
                     b.HasIndex("TeknikDestekTuruID");
 
+                    b.HasIndex("TeknikHayvanSayisiID");
+
                     b.ToTable("DekamProjeTakip");
+                });
+
+            modelBuilder.Entity("Stnc.CMS.Entities.Concrete.DekamProjeTeknikDestekTalepHayvanSayisi", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:IdentityIncrement", 1)
+                        .HasAnnotation("SqlServer:IdentitySeed", 1)
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("AppUserId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(500)")
+                        .HasMaxLength(500);
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AppUserId");
+
+                    b.ToTable("DekamProjeDeneyHayvanSayisi");
+                });
+
+            modelBuilder.Entity("Stnc.CMS.Entities.Concrete.DekamProjeTeknikDestekTalepSure", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:IdentityIncrement", 1)
+                        .HasAnnotation("SqlServer:IdentitySeed", 1)
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("AppUserId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(500)")
+                        .HasMaxLength(500);
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AppUserId");
+
+                    b.ToTable("DekamProjeTeknikDestekTalepSure");
                 });
 
             modelBuilder.Entity("Stnc.CMS.Entities.Concrete.DekamProjeTeknikDestekTalepTur", b =>
@@ -751,6 +829,38 @@ namespace Stnc.CMS.DataAccess.Migrations
                     b.HasIndex("AppUserId");
 
                     b.ToTable("Gorevler");
+                });
+
+            modelBuilder.Entity("Stnc.CMS.Entities.Concrete.GunlukUcretler", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:IdentityIncrement", 1)
+                        .HasAnnotation("SqlServer:IdentitySeed", 1)
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("BakimTurID")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("DeneyHayvaniTurID")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("Fiyat")
+                        .HasColumnType("decimal(6,2)");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("GunlukUcretler");
                 });
 
             modelBuilder.Entity("Stnc.CMS.Entities.Concrete.Posts", b =>
@@ -913,14 +1023,14 @@ namespace Stnc.CMS.DataAccess.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 773705585,
+                            Id = 1590829858,
                             Caption = "Lorem ipsum laramde loremde ipsumda inmpala",
-                            CreatedAt = new DateTime(2020, 10, 27, 16, 55, 32, 269, DateTimeKind.Local).AddTicks(7896),
+                            CreatedAt = new DateTime(2020, 10, 26, 11, 39, 34, 789, DateTimeKind.Local).AddTicks(4763),
                             Excerpt = "exceprt data loremmmmmm ipsummmmm",
                             MenuOrder = 1,
                             Picture = "default.jpg",
                             Status = true,
-                            UpdatedAt = new DateTime(2020, 10, 27, 16, 55, 32, 270, DateTimeKind.Local).AddTicks(741),
+                            UpdatedAt = new DateTime(2020, 10, 26, 11, 39, 34, 790, DateTimeKind.Local).AddTicks(5620),
                             UrlAddress = "",
                             UrlType = (short)0
                         });
@@ -977,18 +1087,14 @@ namespace Stnc.CMS.DataAccess.Migrations
                     b.Property<int>("DestekIstenenHayvanSayisi")
                         .HasColumnType("int");
 
-                    b.Property<string>("DestekTalepTurleri")
-                        .HasColumnType("nvarchar(255)")
-                        .HasMaxLength(255);
-
                     b.Property<decimal>("GunlukBakimUcreti")
-                        .HasColumnType("decimal(6,2)");
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("HayvanAdi")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("HayvanFiyati")
-                        .HasColumnType("decimal(6,2)");
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("HayvanIrkAdi")
                         .HasColumnType("nvarchar(max)");
@@ -1006,7 +1112,7 @@ namespace Stnc.CMS.DataAccess.Migrations
                         .HasColumnType("bit");
 
                     b.Property<decimal>("OtenaziUcreti")
-                        .HasColumnType("decimal(6,2)");
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("ShoppingCartId")
                         .HasColumnType("nvarchar(max)");
@@ -1170,11 +1276,39 @@ namespace Stnc.CMS.DataAccess.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Stnc.CMS.Entities.Concrete.DekamProjeTeknikDestekTalepSure", "TeknikDestekSuresi")
+                        .WithMany("DekamProjeTakip")
+                        .HasForeignKey("TeknikDestekSuresiID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Stnc.CMS.Entities.Concrete.DekamProjeTeknikDestekTalepTur", "TeknikDestekTuru")
                         .WithMany("DekamProjeTakip")
                         .HasForeignKey("TeknikDestekTuruID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("Stnc.CMS.Entities.Concrete.DekamProjeTeknikDestekTalepHayvanSayisi", "TeknikHayvanSayisi")
+                        .WithMany("DekamProjeTakip")
+                        .HasForeignKey("TeknikHayvanSayisiID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Stnc.CMS.Entities.Concrete.DekamProjeTeknikDestekTalepHayvanSayisi", b =>
+                {
+                    b.HasOne("Stnc.CMS.Entities.Concrete.AppUser", "AppUser")
+                        .WithMany("DekamProjeTeknikDestekTalepHayvanSayisi")
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.SetNull);
+                });
+
+            modelBuilder.Entity("Stnc.CMS.Entities.Concrete.DekamProjeTeknikDestekTalepSure", b =>
+                {
+                    b.HasOne("Stnc.CMS.Entities.Concrete.AppUser", "AppUser")
+                        .WithMany("DekamProjeTeknikDestekTalepSure")
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.SetNull);
                 });
 
             modelBuilder.Entity("Stnc.CMS.Entities.Concrete.DekamProjeTeknikDestekTalepTur", b =>

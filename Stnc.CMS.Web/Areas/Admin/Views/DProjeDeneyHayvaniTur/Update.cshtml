@@ -21,29 +21,30 @@
 
 
 
-            <div class="form-group">
-                <label asp-for="Name">Tanım :</label>
-                <input asp-for="Name" type="text" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Name">Günlük Bakım Ücreti * :</label>
-                <input value='@Model.GunlukBakimUcret.ToString("#,##0.00")' name="GunlukBakimUcret"  type="text" class="form-control" />
-                <span asp-validation-for="GunlukBakimUcret" class="text-danger"></span>
-            </div>
+                <div class="form-group">
+                    <label asp-for="Name">Tanım :</label>
+                    <input asp-for="Name" type="text" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Name">Günlük Bakım Ücreti * :</label>
+                    <input value='@Model.GunlukBakimUcret.ToString("#,##0.00")' name="GunlukBakimUcret" type="text" class="form-control" />
+                    <span asp-validation-for="GunlukBakimUcret" class="text-danger"></span>
+                </div>
 
-            <div class="form-group">
-                <label asp-for="Name">Ötenazi Ücreti * :</label>
-                <input value='@Model.OtenaziUcret.ToString("#,##0.00")' name="OtenaziUcret"  type="text" class="form-control" />
-                <span asp-validation-for="OtenaziUcret" class="text-danger"></span>
-            </div>
-            </div>
+                <div class="form-group">
+                    <label asp-for="Name">Ötenazi Ücreti * :</label>
+                    <input value='@Model.OtenaziUcret.ToString("#,##0.00")' name="OtenaziUcret" type="text" class="form-control" />
+                    <span asp-validation-for="OtenaziUcret" class="text-danger"></span>
+                </div>
 
-            <!-- /.card-body -->
-            <div class="card-footer">
-                <button type="submit" class="btn btn-info btn-sm"><i class="fas fa-check mr-2"></i>Kaydet</button>
-                <a href="/Admin/DProjeDeneyHayvaniTur/" class="btn btn-danger btn-sm"><i class="fas fa-check mr-2"></i>Listeye Dön</a>
+            </div>
+                <!-- /.card-body -->
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-info btn-sm"><i class="fas fa-check mr-2"></i>Kaydet</button>
+                    <a href="/Admin/DProjeDeneyHayvaniTur/" class="btn btn-danger btn-sm"><i class="fas fa-check mr-2"></i>Listeye Dön</a>
 
+              
             </div>
         </form>
     </div>

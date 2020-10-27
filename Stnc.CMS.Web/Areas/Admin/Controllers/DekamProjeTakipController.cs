@@ -4,12 +4,16 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Stnc.CMS.Business.Interfaces;
+using Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts;
 using Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Repositories;
 using Stnc.CMS.DTO.DTOs.DekamProjeTakipDtos;
+using Stnc.CMS.DTO.DTOs.DeneyHayvaniIrkFiyatDtos;
 using Stnc.CMS.Entities.Concrete;
 using Stnc.CMS.Web.BaseControllers;
 using Stnc.CMS.Web.StringInfo;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Stnc.CMS.Web.Areas.Admin.Controllers
 {
@@ -19,21 +23,18 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
     {
         private readonly IDekamProjeTakipService _dekamProjeTakipService;
         private readonly IMapper _mapper;
-        private readonly EfGenericRepository<DekamProjeTeknikDestekTalepSure> TeknikDestekTalepSureRepo;
         private readonly EfGenericRepository<DekamProjeDeneyHayvaniIrk> DekamProjeDeneyHayvaniIrkRepo;
         private readonly EfGenericRepository<DekamProjeDeneyHayvaniTur> DekamProjeDeneyHayvaniTurRepo;
         private readonly EfGenericRepository<DekamProjeLaboratuvarlar> DekamProjeLaboratuvarlarRepo;
-        private readonly EfGenericRepository<DekamProjeTeknikDestekTalepHayvanSayisi> DekamProjeTeknikDestekTalepHayvanSayisiRepo;
         private readonly EfGenericRepository<DekamProjeTeknikDestekTalepTur> DekamProjeTeknikDestekTalepTurRepo;
+
         public DekamProjeTakipController(IDekamProjeTakipService dekamProjeTakipService, IMapper mapper, UserManager<AppUser> userManager) : base(userManager)
         {
             _mapper = mapper;
             _dekamProjeTakipService = dekamProjeTakipService;
-            TeknikDestekTalepSureRepo = new EfGenericRepository<DekamProjeTeknikDestekTalepSure>();
             DekamProjeDeneyHayvaniIrkRepo = new EfGenericRepository<DekamProjeDeneyHayvaniIrk>();
             DekamProjeDeneyHayvaniTurRepo = new EfGenericRepository<DekamProjeDeneyHayvaniTur>();
             DekamProjeLaboratuvarlarRepo = new EfGenericRepository<DekamProjeLaboratuvarlar>();
-            DekamProjeTeknikDestekTalepHayvanSayisiRepo = new EfGenericRepository<DekamProjeTeknikDestekTalepHayvanSayisi>();
             DekamProjeTeknikDestekTalepTurRepo = new EfGenericRepository<DekamProjeTeknikDestekTalepTur>();
         }
 
@@ -51,11 +52,81 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
             ViewBag.DeneyHayvaniIrkCategories = new SelectList(DekamProjeDeneyHayvaniIrkRepo.GetAll(), "Id", "Name");
             ViewBag.DeneyHayvaniTurCategories = new SelectList(DekamProjeDeneyHayvaniTurRepo.GetAll(), "Id", "Name");
             ViewBag.LaboratuvarlarCategories = new SelectList(DekamProjeLaboratuvarlarRepo.GetAll(), "Id", "Name");
-            ViewBag.TeknikDestekTalepHayvanSayisiCategories = new SelectList(DekamProjeTeknikDestekTalepHayvanSayisiRepo.GetAll(), "Id", "Name");
-            ViewBag.TeknikDestekTalepSureCategories = new SelectList(TeknikDestekTalepSureRepo.GetAll(), "Id", "Name");
-            ViewBag.ProjeTeknikDestekTalepTurCategories = new SelectList(DekamProjeTeknikDestekTalepTurRepo.GetAll(), "Id", "Name");
             return View(new DekamProjeTakipCreateDto());
         }
+
+        //buradaki amaç çoklu view model yapısını gondermek 
+        public IActionResult CreateNEWNotused()
+        {
+            TempData["Active"] = TempdataInfo.Category;
+            ViewBag.GeneralTitle = "Proje Takip";
+            ViewBag.DeneyHayvaniIrkCategories = new SelectList(DekamProjeDeneyHayvaniIrkRepo.GetAll(), "Id", "Name");
+            ViewBag.DeneyHayvaniTurCategories = new SelectList(DekamProjeDeneyHayvaniTurRepo.GetAll(), "Id", "Name");
+            ViewBag.LaboratuvarlarCategories = new SelectList(DekamProjeLaboratuvarlarRepo.GetAll(), "Id", "Name");
+            //http://www.dotnet-stuff.com/tutorials/aspnet-mvc/way-to-use-multiple-models-in-a-view-in-asp-net-mvc
+            DekamProjeTakipCreateDto vmDemo = new DekamProjeTakipCreateDto();
+            vmDemo.allEmployees = DekamProjeTeknikDestekTalepTurRepo.GetAll();
+             /* //view kodu
+               @foreach (var item in Model.allEmployees)
+             {
+             <input type="checkbox" name="name" style="width:60px" value="@item.Name" /> @item.Price
+             }
+
+             */
+
+
+            return View(vmDemo);
+        }
+
+        /// <summary>
+        /// ajax result
+        /// </summary>
+        /// <param name="TurID"></param>
+        /// <returns></returns>
+        public JsonResult FiyatSec(string TurID)
+        {
+            List<SelectListItem> sonuc = new List<SelectListItem>();
+            var context = new StncCMSContext();
+            var teknikDestekTalepTur = DekamProjeTeknikDestekTalepTurRepo.GetAll();
+            try
+            {
+                var data = context.DekamProjeDeneyHayvaniIrkFiyat
+               .Where(s => s.DekamProjeDeneyHayvaniTur.Id == int.Parse(TurID))
+               .Where(s => s.DekamProjeDeneyHayvaniIrk.Id == s.DekamProjeDeneyHayvaniIrkId)
+               .OrderByDescending(I => I.CreatedAt)
+               .Select(I => new DeneyHayvaniAjaxListDto()
+               {
+                   Id = I.Id,
+                   Isim = I.Isım,
+                   TurAdi = I.DekamProjeDeneyHayvaniTur.Name,
+                   GunlukBakimUcreti = I.DekamProjeDeneyHayvaniTur.GunlukBakimUcret,
+                   OtenaziUcret = I.DekamProjeDeneyHayvaniTur.OtenaziUcret,
+                   IrkAdi = I.DekamProjeDeneyHayvaniIrk.Name,
+                   Fiyat = I.Fiyat,
+               }).ToList();
+
+                if (data.Any())
+                {
+                    return Json(new { status = "ok", cartSelectItems = data, teknikDestekTalepTurleri = teknikDestekTalepTur });
+                }
+                else
+                {
+                    return Json(new { status = "empty" });
+                }
+            }
+            catch (Exception)
+            {
+                sonuc = new List<SelectListItem>();
+                sonuc.Add(new SelectListItem
+                {
+                    Text = "Bir hata oluştu :(",
+                    Value = "Default"
+                });
+
+                return Json(sonuc);
+            }
+        }
+
         /*
         [HttpPost]
         public IActionResult Create(CategoryAddDto model)

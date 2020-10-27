@@ -4,8 +4,17 @@
     {
         public int Id { get; set; }
         public int HayvaniIrkFiyatID { get; set; }
-        public int GunlukUcretId { get; set; }
-        public int TeknikDestekId { get; set; }
+        public string HayvanIrkAdi { get; set; }
+        public string  HayvanAdi { get; set; }
+        public string  HayvanIrkFiyatTipAdi { get; set; }
+        public int  IstenenHayvanSayisi { get; set; }
+        public int  DestekIstenenHayvanSayisi { get; set; }
+        public int  BakimDestegiGunSayisi { get; set; }
+        public bool   Otenazi { get; set; }
+        public decimal   OtenaziUcreti { get; set; }
+        public decimal HayvanFiyati { get; set; }
+        public decimal GunlukBakimUcreti { get; set; }
+        public string DestekTalepTurleri { get; set; }
 
         public decimal ToplamFiyat { get; set; }
 

@@ -39,11 +39,7 @@ namespace Stnc.CMS.Entities.Concrete
         public int LaboratuvarID { get; set; }
         public virtual DekamProjeLaboratuvarlar DekamProjeLaboratuvarlar { get; set; }
 
-        public int TeknikHayvanSayisiID { get; set; }
-        public virtual DekamProjeTeknikDestekTalepHayvanSayisi TeknikHayvanSayisi { get; set; }
 
-        public int TeknikDestekSuresiID { get; set; }
-        public virtual DekamProjeTeknikDestekTalepSure TeknikDestekSuresi { get; set; }
 
         public int TeknikDestekTuruID { get; set; }
         public virtual DekamProjeTeknikDestekTalepTur TeknikDestekTuru { get; set; }

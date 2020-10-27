@@ -1,5 +1,6 @@
 ﻿using Stnc.CMS.Entities.Concrete;
 using System;
+using System.Collections.Generic;
 
 namespace Stnc.CMS.DTO.DTOs.DekamProjeTakipDtos
 {
@@ -30,5 +31,8 @@ namespace Stnc.CMS.DTO.DTOs.DekamProjeTakipDtos
         public int? DeneyHayvaniTurID { get; set; }
         public int? AppUserId { get; set; }
         public AppUser AppUser { get; set; }
+
+        public virtual List<DekamProjeTeknikDestekTalepTur> allEmployees { get; set; }
+
     }
 }

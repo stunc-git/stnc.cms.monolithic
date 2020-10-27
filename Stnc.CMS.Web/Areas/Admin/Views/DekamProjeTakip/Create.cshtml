@@ -1,4 +1,5 @@
 ﻿@model DekamProjeTakipCreateDto
+
 @{
     ViewData["Title"] = "EkleAciliyet";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
@@ -64,8 +65,6 @@
         }
 </style>
 
-
-
 <div class="container-fluid">
     <div class="row">
 
@@ -98,7 +97,6 @@
                         <div class="step-content">
                             <div class="step-tab-panel" data-step="step1">
 
-
                                 <div class="row">
                                     <div class="col-md-2">
                                         <div class="card card-info">
@@ -109,7 +107,6 @@
                                             <!-- /.card-header -->
                                             <!-- form start -->
 
-
                                             <div class="card-body">
                                                 <div class="form-group">
                                                     <label>Hayvan Irkını Seçiniz:</label>
@@ -119,14 +116,41 @@
                                                 </div>
                                             </div>
 
-
                                             <!-- /.card-body -->
-
                                         </div>
                                     </div>
 
-
                                     <div class="col-md-10">
+
+                                        <div class="row">
+
+                                            <div class="col-md-6">
+                                                <div class="card card-outline card-danger">
+                                                    <div class="card-header">
+                                                        <h3 class="card-title">Bilgi</h3>
+                                                    </div>
+                                                    <div class="card-body">
+                                                        <strong>  Ötenazi Ücreti - Bir kere istenen bir ücrettir  :</strong> {{otenaziUcreti}} [ ₺] <br>
+                                                    </div>
+                                                    <!-- /.card-body -->
+                                                </div>
+                                                <!-- /.card -->
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="card card-outline card-danger">
+                                                    <div class="card-header">
+                                                        <h3 class="card-title">Bilgi</h3>
+                                                    </div>
+                                                    <div class="card-body">
+                                                        <strong>   	Günlük Destek Ücreti  Destek istenen gün sayısı ile çarpılır  :</strong> {{destekUcreti}} ₺  <br>
+                                                    </div>
+                                                    <!-- /.card-body -->
+                                                </div>
+                                                <!-- /.card -->
+                                            </div>
+                                        </div>
+
                                         <div class="card card-info">
                                             <div class="card-header">
                                                 <h3 class="card-title">Hayvan Seçimi</h3>
@@ -135,59 +159,95 @@
                                             <!-- /.card-header -->
                                             <!-- form start -->
 
-
                                             <div class="card-body">
-                                                --not db den sil bu alanları yeni kolon oluştur
 
-                                                <table class="table table-bordered">
+                                                <table class="table table-bordered table-striped">
                                                     <thead>
                                                         <tr>
                                                             <th>Hayvan Adı</th>
                                                             <th>Tip</th>
                                                             <th>Fiyat</th>
-                                                            <th>Bakım Desteği [kaç gün?]</th>
-                                                            <th>Ötenazi - Ücreti [{{otenaziUcreti}} ₺]</th>
-                                                            <th>İstenen Hayvan Sayısı  </th>
+                                                            <th>İstenen Hayvan Sayısı   </th>
                                                             <th>Destek istenen Hayvan Sayısı</th>
+                                                            <th>Bakım Desteği Gün sayısı </th>
+                                                            <th>Ötenazi  </th>
+                                                            <th style="width: 40px">Genel Toplam</th>
                                                             <th style="width: 40px">Sepet</th>
                                                         </tr>
                                                     </thead>
 
-                                                    <script id="cartSelectItemsTpl" type="text-template">
-                                                        {{#cartSelectItems}}
-                                                        <tr>
+                                                    <script id="cartSelectItemsTpl" type="text/x-handlebars-template">
+                                                        {{#each cartSelectItems}}
+                                                        <tr id="CartAddData-{{id}}">
                                                             <td>{{irkAdi}}</td>
                                                             <td>{{isim}}</td>
                                                             <td>{{fiyat}} ₺</td>
-                                                            <td><input type="text" name="name" style="width:60px" value="" /> </td>
-                                                            <td> <input type="checkbox" style="width:60px" name="name" value="" /></td>
-                                                            <td><input type="type" name="name" style="width:60px" value="" /> </td>
-                                                            <td>Günlük Destek Ücreti[{{destekUcreti}} ₺] <br /> <input type="type" style="width:60px" name="name" value="" /> </td>
-                                                            <td> <a href="#{{id}}" class="btn btn-primary">Sepete Ekle</a> </td>
+                                                            <td> <input type="text" name="name" class="IstenenHayvanSayisi" style="width:60px"/> </td>
+                                                            <td> <input type="text" name="name" class="DestekIstenenHayvanSayisi" style="width:60px"/></td>
+                                                            <td> <input type="text" name="name" class="BakimDestegiGunSayisi" style="width:60px"/> </td>
+                                                            <td> <input type="checkbox" style="width:60px" class="OtenaziIstek" name="name"/></td>
+                                                            <td> </td>
+                                                            <td> <a href="#" data-val="{{id}}" class="add-to-cart btn btn-primary"> Sepete Ekle </a>   </td>
+
                                                         </tr>
-                                                        {{/cartSelectItems}}
+
+                                                        <tr>
+                                                            <td>  </td>
+                                                            <td>  </td>
+                                                            <td>  </td>
+                                                            <td>Günlük Bakım ücret  {{gunlukBakimUcreti}} ₺ * Gün Sayısı  </td>
+                                                            <td>  </td>
+                                                            <td>  </td>
+                                                            <td>Ötenazi Ücreti {{otenaziUcret}} ₺ </td>
+                                                            <td>  </td>
+                                                            <td>  </td>
+
+                                                        </tr>
+
+
+                                                        <tr id="CartDestekTalep-{{id}}">
+                                                            <td colspan="9">
+                                                                <strong> Destek Talep Türü Seçenekleri </strong>
+                                                                <div class="row teknikDestekTalepTurleri">
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+
+                                                        {{/each}}
+
+
+                                                    </script>
+
+                                                    <script id="teknikDestekTalepTurleriTpl" type="text/x-handlebars-template">
+                                                        {{#each teknikDestekTalepTurleri}}
+                                                        <div class="col-md-3">
+
+                                                            <div class="form-group">
+                                                                <div class="form-check">
+                                                                    <input class="form-check-input destekTalepTur" name="destekTalepTur" id="destekTalepTurId-{{id}}" value="{{id}}" type="checkbox">
+                                                                    <label for="destekTalepTurId-{{id}}" class="form-check-label"> {{name}} /Fiyat {{price}} ₺</label>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                        {{/each}}
                                                     </script>
 
                                                     <tbody id="cartSelectItems">
-                                                        <td class="tg-0lax" colspan="4">
-                                                            <span class="text-danger text-center">Lütfen Hayvan Irkı Seçimi Yapınız </span>
-                                                        </td>
+                                                        <tr>
+                                                            <td colspan="9">
+                                                                <span class="text-danger text-center">Lütfen Hayvan Irkı Seçimi Yapınız </span>
+                                                            </td>
+                                                        </tr>
                                                     </tbody>
+
                                                 </table>
-
-
-
                                             </div>
 
-
                                             <!-- /.card-body -->
-
                                         </div>
                                     </div>
-
                                 </div>
-
-
 
                                 <div class="card card-info">
                                     <div class="card-header">
@@ -196,7 +256,6 @@
 
                                     <!-- /.card-header -->
                                     <!-- form start -->
-
 
                                     <div class="card-body">
                                         <form name="veri" id="veri">
@@ -223,14 +282,9 @@
                                         </form>
                                     </div>
 
-
                                     <!-- /.card-body -->
-
                                 </div>
-
                             </div>
-
-
 
                             <div class="step-tab-panel" data-step="step2">
                                 <h3>Tab2</h3>
@@ -268,28 +322,17 @@
                             <button data-step-action="next" class="step-btn">Next</button>
                             <button data-step-action="finish" class="step-btn">Finish</button>
                         </div>
-
                     </div>
-
-
                 </div>
                 <!-- /.card-body -->
-
-
-
             </div>
         </div>
 
         <div class="col-md-3 ">
             cfsdfsf
         </div>
-
     </div>
-
-
-
 </div>
-
 
 <div class="row">
     <div class="col-md-10 ">
@@ -435,8 +478,6 @@
                 <!-- form start -->
                 <div class="card-body">
 
-
-
                     <div class="form-group">
                         <label>Hayvan Irkını Seçiniz:</label>
                         <select class="form-control" asp-for="DeneyHayvaniIrkID" asp-items="ViewBag.DeneyHayvaniIrkCategories">
@@ -452,12 +493,6 @@
                             <option value="2">Erkek</option>
                         </select>
                         <span asp-validation-for="@Model.DeneyHayvaniCinsiyet" class="text-danger"></span>
-                    </div>
-
-                    <div class="form-group">
-                        <label asp-for="DeneyHayvaniSayisi">Deney hayvanı Sayısı: * </label>
-                        <input asp-for="DeneyHayvaniSayisi" type="text" class="form-control" />
-                        <span asp-validation-for="DeneyHayvaniSayisi" class="text-danger"></span>
                     </div>
 
                     <div class="form-group">
@@ -485,14 +520,6 @@
                 <!-- /.card-header -->
                 <!-- form start -->
                 <div class="card-body">
-
-                    <div class="form-group">
-                        <label>Destek Süresi:</label>
-                        <select class="form-control" asp-for="TeknikDestekSuresiID" asp-items="ViewBag.TeknikDestekTalepSureCategories">
-                            <option value="">Seçiniz</option>
-                        </select>
-                        <span asp-validation-for="@Model.TeknikDestekSuresiID" class="text-danger"></span>
-                    </div>
 
                     <div class="form-group">
                         <label>Teknik Destek Türü:</label>
@@ -598,6 +625,8 @@
     <script src="~/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
     <script src="https://oguzhanoya.github.io/jquery-steps/dist/jquery-steps.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/1.2.0/mustache.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0/handlebars.js"></script>
+
     <!-- date-range-picker -->
     <!-- bootstrap color picker -->
 
@@ -612,21 +641,20 @@
         //$('#EtikKurulOnayTarihi').inputmask("m/d/y", { clearIncomplete: false, clearMaskOnLostFocus: false, showMaskOnFocus: false, showMaskOnHover: false });
     </script>
     @*<style>
-        input.input-validation-error {
-            border-color: red;
-        }
+            input.input-validation-error {
+                border-color: red;
+            }
 
-        span.field-validation-error {
-            color: red;
-        }
-    </style>*@
+            span.field-validation-error {
+                color: red;
+            }
+        </style>*@
     <script>
 
         var veri = $('#veri');
 
         veri.removeData("validator");
         veri.removeData("unobtrusiveValidation");
-
 
         var settings = {
             validClass: "is-valid",
@@ -637,18 +665,13 @@
         $.validator.setDefaults(settings);
         $.validator.unobtrusive.options = settings;
 
-
-
         $.validator.unobtrusive.parse("#veri");
-
 
         // var veriValidator = veri.validate();
         //console.log(veriValidator)
 
         var frmInfo = $('#frmInfo');
         var frmInfoValidator = frmInfo.validate();
-
-
 
         var frmLogin = $('#frmLogin');
         var frmLoginValidator = frmLogin.validate();
@@ -713,21 +736,28 @@
 
             jQuery.ajax({
                 type: 'GET',
-                data: { TurID:$(this).val()},
+                data: { TurID: $(this).val() },
                 datatype: 'json',
-                url: '/Admin/DpDeneyHayvaniIrkFiyat/FiyatSec',
+                url: '/Admin/DekamProjeTakip/FiyatSec',
                 beforeSend: function () {
                     //loadMore.text('').addClass('active');
                 },
                 success: function (data) {
                     if (data.status == "ok") {
-                        var template = jQuery('#cartSelectItemsTpl').html();
-                        var output = jQuery('#cartSelectItems');
-                        var result = Mustache.render(template, data);
-                        output.html(result);
-                    } else {
-                        jQuery('#cartSelectItems').html(' <td class="tg-0lax" colspan="4"><span class="text-danger text-center"> Veri Bulunamadı </span ></td >');
+                        var cartSelectTemplate = jQuery('#cartSelectItemsTpl').html();
+                        var TemplateCompileCartSelect = Handlebars.compile(cartSelectTemplate);
+                        var CompiledHtmlCartSelect = TemplateCompileCartSelect(data);
+                        jQuery('#cartSelectItems').html(CompiledHtmlCartSelect);
 
+
+                        var cartTeknikDestekTalepTurleri = jQuery('#teknikDestekTalepTurleriTpl').html();
+                        var TemplateCompileCartSelectTalepTur = Handlebars.compile(cartTeknikDestekTalepTurleri);
+                        var CompiledHtmlCartSelectTalepTur = TemplateCompileCartSelectTalepTur(data);
+                        jQuery('.teknikDestekTalepTurleri').html(CompiledHtmlCartSelectTalepTur);
+
+                    } else {
+                        jQuery('#cartSelectItems').html(' <td class="tg-0lax" colspan="9"><span class="text-danger text-center"> Veri Bulunamadı </span ></td >');
+                      //  jQuery('.teknikDestekTalepTurleri').html("");
                     }
 
                 },
@@ -738,8 +768,77 @@
 
                 },
             });
-         });
+        });
+    </script>
 
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#DeneyHayvaniTurID").change(function () {
+                $.ajax({
+                    url: '/Admin/DekamProjeTakip/IrkSec',
+                    data: { TurID: $(this).val() },
+                    dataType: "JSON",
+                    success: function (result) {
+                        var irkListesi = $("#DeneyHayvaniIrkID");
+                        irkListesi.empty();
+                        $.each(result.cartSelectItems, function (i, item) {
+                            irkListesi.append($("<option></option>").attr("value", item.id).html(item.hayvan));
+                        });
+                    }
+                });
+            });
+
+            //$(".add-to-cart").on("click", function (event) {
+        
+            
+
+            //});
+
+
+
+        });
+
+        $(document).on("click", ".add-to-cart", function () {
+            event.preventDefault();
+      
+            $baseID = $(this).data("val");
+            // alert($baseID);
+            var destekTalepTurLeri = [];
+            $("#CartDestekTalep-" + $baseID + " .destekTalepTur").each(function () {             
+                if ($(this).is(':checked')) {
+                  //  alert($(this).val())
+                    destekTalepTurLeri.push($(this).val());
+                }
+            });
+
+
+            IstenenHayvanSayisi = $("#CartAddData-" + $baseID + " .IstenenHayvanSayisi").val();
+            DestekIstenenHayvanSayisi = $("#CartAddData-" + $baseID + " .DestekIstenenHayvanSayisi").val();
+            BakimDestegiGunSayisi = $("#CartAddData-" + $baseID + " .BakimDestegiGunSayisi").val();
+            OtenaziIstek = 0;
+
+            if ($("#CartAddData-" + $baseID + " .OtenaziIstek").is(':checked')) {
+                OtenaziIstek = 1;
+            }
+
+
+          //  console.log(destekTalepTurLeri.join())
+
+            $.ajax({
+                url: '/Admin/DekamProjeTakip/IrkSec',
+                 type: "POST",
+                data: {
+                    BaseId: $baseID,
+                    IstenenHayvanSayisi: IstenenHayvanSayisi,
+                    DestekIstenenHayvanSayisi: DestekIstenenHayvanSayisi,
+                    DestekIstenenHayvanSayisi: BakimDestegiGunSayisi,
+                    OtenaziIstek: OtenaziIstek,
+                    destekTalepTurLeri: destekTalepTurLeri.join(),
+                },
+              
+            });
+
+        }); 
 
     </script>
 

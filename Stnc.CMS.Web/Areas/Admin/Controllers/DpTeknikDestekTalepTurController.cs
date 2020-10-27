@@ -48,6 +48,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
                 Myrepo.Kaydet(new DekamProjeTeknikDestekTalepTur
                 {
                     Name = model.Name,
+                    Price = model.Price,
                     AppUserId = user.Id,
                 });
                 f.Flash(Types.Success, "Kaydınız başarı ile eklendi", dismissable: true);
@@ -86,6 +87,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
                 {
                     Id = model.Id,
                     Name = model.Name,
+                    Price = model.Price,
                     AppUserId = user.Id,
                 });
                 f.Flash(Types.Success, "Kaydınız başarı ile düzenlendi", dismissable: true);

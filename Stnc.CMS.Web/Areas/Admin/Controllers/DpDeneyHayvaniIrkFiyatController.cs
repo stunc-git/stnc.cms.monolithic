@@ -169,53 +169,6 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
             }
         }
 
-        //ajax result
-        public JsonResult FiyatSec(string TurID)
-        {
-            List<SelectListItem> sonuc = new List<SelectListItem>();
-            var context = new StncCMSContext();
-
-            try
-            {
-
-     var data = context.DekamProjeDeneyHayvaniIrkFiyat
-    .Where(s => s.DekamProjeDeneyHayvaniTur.Id == int.Parse(TurID))
-    .Where(s => s.DekamProjeDeneyHayvaniIrk.Id == s.DekamProjeDeneyHayvaniIrkId)
-    .OrderByDescending(I => I.CreatedAt)
-    .Select(I => new DeneyHayvaniAjaxListDto()
-    {
-        Id = I.Id,
-        Isim = I.Isım,
-        TurAdi = I.DekamProjeDeneyHayvaniTur.Name,
-        IrkAdi = I.DekamProjeDeneyHayvaniIrk.Name,
-        Fiyat = I.Fiyat,
-    }).ToList();
-
-
-                if (!data.Any())
-                {
-                    return Json(new { status = "empty", cartSelectItems = data });
-                }
-                else {
-                    return Json(new { status = "ok", cartSelectItems = data });
-                }
-
-
-            }
-            catch (Exception)
-            {
-
-                sonuc = new List<SelectListItem>();
-                sonuc.Add(new SelectListItem
-                {
-                    Text = "Bir hata oluştu :(",
-                    Value = "Default"
-                });
-
-                return Json(sonuc);
-
-            }
-        }
 
 
         //[HttpPost]

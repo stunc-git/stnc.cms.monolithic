@@ -24,6 +24,16 @@
                 </div>
 
 
+
+                <div class="form-group">
+                    <label asp-for="Price">Fiyatı * :</label>
+                    <input value='@Model.Price.ToString("#,##0.00")' name="Price" type="text" asp-is-invariant="true" class="form-control" />
+                    <span asp-validation-for="Price" class="text-danger"></span>
+                    @*@((line.Amount * line.Food.Price).ToString("c",CultureInfo.CreateSpecificCulture("en-US")))*@
+
+                </div>
+
+
             </div>
             <!-- /.card-body -->
 

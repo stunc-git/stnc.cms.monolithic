@@ -40,10 +40,8 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts
             modelBuilder.ApplyConfiguration(new DekamProjeDeneyHayvaniTurMap());
             modelBuilder.ApplyConfiguration(new DekamProjeDeneyHayvaniIrkMap());
             modelBuilder.ApplyConfiguration(new DekamProjeLaboratuvarlarMap());
-            modelBuilder.ApplyConfiguration(new DekamProjeTeknikDestekTalepSureMap());
-            modelBuilder.ApplyConfiguration(new DekamProjeDeneyHayvanSayisiMap());
+
             modelBuilder.ApplyConfiguration(new StShoppingCartItemMap());
-            modelBuilder.ApplyConfiguration(new GunlukUcretlerMap());
             modelBuilder.ApplyConfiguration(new DekamProjeDeneyHayvaniIrkFiyatMap());
 
             modelBuilder.Entity<StShoppingCartItem>()
@@ -96,15 +94,13 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts
 
         public DbSet<DekamProjeLaboratuvarlar> DekamProjeLaboratuvarlar { get; set; }
         public DbSet<DekamProjeTeknikDestekTalepTur> DekamProjeTeknikDestekTalepTur { get; set; }
-        public DbSet<DekamProjeTeknikDestekTalepSure> DekamProjeTeknikDestekTalepSure { get; set; }
-        public DbSet<DekamProjeTeknikDestekTalepHayvanSayisi> DekamProjeDeneyHayvanSayisi { get; set; }
+
         public DbSet<DekamProjeDeneyHayvaniTur> DekamProjeDeneyHayvaniTur { get; set; }
 
         public DbSet<DekamProjeDeneyHayvaniIrk> DekamProjeDeneyHayvaniIrk { get; set; }
 
         public DbSet<StShoppingCartItem> StShoppingCartItem { get; set; }
         public DbSet<DekamProjeDeneyHayvaniIrkFiyat> DekamProjeDeneyHayvaniIrkFiyat { get; set; }
-        public DbSet<GunlukUcretler> GunlukUcretler { get; set; }
         public DbSet<StCart> StCart { get; set; }
 
         //public DbSet<City> City { get; set; }

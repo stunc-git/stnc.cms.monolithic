@@ -10,5 +10,7 @@ namespace Stnc.CMS.DTO.DTOs.DeneyHayvaniIrkFiyatDtos
         public decimal Fiyat { get; set; }
         public string TurAdi { get; set; }
         public string IrkAdi { get; set; }
+        public decimal GunlukBakimUcreti { get; set; }
+        public decimal OtenaziUcret { get; set; }
     }
 }

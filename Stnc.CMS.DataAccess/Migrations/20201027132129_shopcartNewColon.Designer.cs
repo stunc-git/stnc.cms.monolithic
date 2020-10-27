@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts;
 
 namespace Stnc.CMS.DataAccess.Migrations
 {
     [DbContext(typeof(StncCMSContext))]
-    partial class StncCMSContextModelSnapshot : ModelSnapshot
+    [Migration("20201027132129_shopcartNewColon")]
+    partial class shopcartNewColon
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -913,14 +915,14 @@ namespace Stnc.CMS.DataAccess.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 773705585,
+                            Id = 458036770,
                             Caption = "Lorem ipsum laramde loremde ipsumda inmpala",
-                            CreatedAt = new DateTime(2020, 10, 27, 16, 55, 32, 269, DateTimeKind.Local).AddTicks(7896),
+                            CreatedAt = new DateTime(2020, 10, 27, 16, 21, 29, 399, DateTimeKind.Local).AddTicks(1835),
                             Excerpt = "exceprt data loremmmmmm ipsummmmm",
                             MenuOrder = 1,
                             Picture = "default.jpg",
                             Status = true,
-                            UpdatedAt = new DateTime(2020, 10, 27, 16, 55, 32, 270, DateTimeKind.Local).AddTicks(741),
+                            UpdatedAt = new DateTime(2020, 10, 27, 16, 21, 29, 399, DateTimeKind.Local).AddTicks(4572),
                             UrlAddress = "",
                             UrlType = (short)0
                         });
@@ -978,17 +980,16 @@ namespace Stnc.CMS.DataAccess.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("DestekTalepTurleri")
-                        .HasColumnType("nvarchar(255)")
-                        .HasMaxLength(255);
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("GunlukBakimUcreti")
-                        .HasColumnType("decimal(6,2)");
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("HayvanAdi")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("HayvanFiyati")
-                        .HasColumnType("decimal(6,2)");
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("HayvanIrkAdi")
                         .HasColumnType("nvarchar(max)");
@@ -1006,7 +1007,7 @@ namespace Stnc.CMS.DataAccess.Migrations
                         .HasColumnType("bit");
 
                     b.Property<decimal>("OtenaziUcreti")
-                        .HasColumnType("decimal(6,2)");
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("ShoppingCartId")
                         .HasColumnType("nvarchar(max)");
