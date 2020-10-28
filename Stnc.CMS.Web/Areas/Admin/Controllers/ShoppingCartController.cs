@@ -63,7 +63,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
             int? amount = 5;
             var cart = _shopService.GetById(employeeData.BaseId);
 
-            _deneyHayvaniIrkFiyatService.GetDeneyHayvaniIrkFiyatID(employeeData.BaseId);
+           var data= _deneyHayvaniIrkFiyatService.GetDeneyHayvaniIrkFiyatID(employeeData.BaseId);
             
             bool isValidAmount = false;
 
@@ -74,6 +74,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
             Person obj = new Person()
             {
                 BaseId = employeeData.BaseId,
+              IstenenHayvanSayisi=data.Isim,
                 FirstName = HttpContext.Request.Form["BaseId"],
             };
 
