@@ -22,17 +22,21 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
     public class DekamProjeTakipController : BaseIdentityController
     {
         private readonly IDekamProjeTakipService _dekamProjeTakipService;
+        private readonly IDeneyHayvaniIrkFiyatService _deneyHayvaniIrkFiyatService;
         private readonly IMapper _mapper;
         private readonly EfGenericRepository<DekamProjeDeneyHayvaniIrk> DekamProjeDeneyHayvaniIrkRepo;
         private readonly EfGenericRepository<DekamProjeDeneyHayvaniTur> DekamProjeDeneyHayvaniTurRepo;
         private readonly EfGenericRepository<DekamProjeLaboratuvarlar> DekamProjeLaboratuvarlarRepo;
         private readonly EfGenericRepository<DekamProjeTeknikDestekTalepTur> DekamProjeTeknikDestekTalepTurRepo;
 
-        public DekamProjeTakipController(IDekamProjeTakipService dekamProjeTakipService, IMapper mapper, UserManager<AppUser> userManager) : base(userManager)
+
+        public DekamProjeTakipController(IDekamProjeTakipService dekamProjeTakipService, IDeneyHayvaniIrkFiyatService deneyHayvaniIrkFiyatService, IMapper mapper, UserManager<AppUser> userManager) : base(userManager)
         {
             _mapper = mapper;
             _dekamProjeTakipService = dekamProjeTakipService;
+            _deneyHayvaniIrkFiyatService = deneyHayvaniIrkFiyatService;
             DekamProjeDeneyHayvaniIrkRepo = new EfGenericRepository<DekamProjeDeneyHayvaniIrk>();
+
             DekamProjeDeneyHayvaniTurRepo = new EfGenericRepository<DekamProjeDeneyHayvaniTur>();
             DekamProjeLaboratuvarlarRepo = new EfGenericRepository<DekamProjeLaboratuvarlar>();
             DekamProjeTeknikDestekTalepTurRepo = new EfGenericRepository<DekamProjeTeknikDestekTalepTur>();
@@ -56,7 +60,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
         }
 
         //buradaki amaç çoklu view model yapısını gondermek 
-        public IActionResult CreateNEWNotused()
+        public IActionResult CreateNEW___Not_used()
         {
             TempData["Active"] = TempdataInfo.Category;
             ViewBag.GeneralTitle = "Proje Takip";
@@ -66,13 +70,13 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
             //http://www.dotnet-stuff.com/tutorials/aspnet-mvc/way-to-use-multiple-models-in-a-view-in-asp-net-mvc
             DekamProjeTakipCreateDto vmDemo = new DekamProjeTakipCreateDto();
             vmDemo.allEmployees = DekamProjeTeknikDestekTalepTurRepo.GetAll();
-             /* //view kodu
-               @foreach (var item in Model.allEmployees)
-             {
-             <input type="checkbox" name="name" style="width:60px" value="@item.Name" /> @item.Price
-             }
+            /* //view kodu
+              @foreach (var item in Model.allEmployees)
+            {
+            <input type="checkbox" name="name" style="width:60px" value="@item.Name" /> @item.Price
+            }
 
-             */
+            */
 
 
             return View(vmDemo);
@@ -85,25 +89,10 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
         /// <returns></returns>
         public JsonResult FiyatSec(string TurID)
         {
-            List<SelectListItem> sonuc = new List<SelectListItem>();
-            var context = new StncCMSContext();
             var teknikDestekTalepTur = DekamProjeTeknikDestekTalepTurRepo.GetAll();
             try
             {
-                var data = context.DekamProjeDeneyHayvaniIrkFiyat
-               .Where(s => s.DekamProjeDeneyHayvaniTur.Id == int.Parse(TurID))
-               .Where(s => s.DekamProjeDeneyHayvaniIrk.Id == s.DekamProjeDeneyHayvaniIrkId)
-               .OrderByDescending(I => I.CreatedAt)
-               .Select(I => new DeneyHayvaniAjaxListDto()
-               {
-                   Id = I.Id,
-                   Isim = I.Isım,
-                   TurAdi = I.DekamProjeDeneyHayvaniTur.Name,
-                   GunlukBakimUcreti = I.DekamProjeDeneyHayvaniTur.GunlukBakimUcret,
-                   OtenaziUcret = I.DekamProjeDeneyHayvaniTur.OtenaziUcret,
-                   IrkAdi = I.DekamProjeDeneyHayvaniIrk.Name,
-                   Fiyat = I.Fiyat,
-               }).ToList();
+                var data = _deneyHayvaniIrkFiyatService.DeneyHayvaniIrkFiyatListesiTurID (int.Parse(TurID));
 
                 if (data.Any())
                 {
@@ -116,6 +105,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
             }
             catch (Exception)
             {
+                List<SelectListItem> sonuc = new List<SelectListItem>();
                 sonuc = new List<SelectListItem>();
                 sonuc.Add(new SelectListItem
                 {

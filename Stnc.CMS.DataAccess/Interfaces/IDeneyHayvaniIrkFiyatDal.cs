@@ -7,5 +7,13 @@ namespace Stnc.CMS.DataAccess.Interfaces
     public interface IDeneyHayvaniIrkFiyatDal : IGenericDal<DekamProjeDeneyHayvaniIrkFiyat>
     {
         List<DeneyHayvaniIrkFiyatListAllDto> DeneyHayvaniIrkFiyatListesi();
+        List<DeneyHayvaniAjaxListDto> DeneyHayvaniIrkFiyatListesiID(int ID);
+
+        List<DeneyHayvaniAjaxListDto> DeneyHayvaniIrkFiyatListesiTurID(int TurID);
+
+        List<DeneyHayvaniAjaxListDto> DeneyHayvaniIrkFiyatListesiIrkID(int IrkID);
+
+        DeneyHayvaniAjaxListDto GetDeneyHayvaniIrkFiyatID(int ID);
+
     }
 }

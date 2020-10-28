@@ -160,92 +160,97 @@
                                             <!-- form start -->
 
                                             <div class="card-body">
+                                                <div class="table-responsive">
+                                                    <table class="table table-bordered table-striped">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Hayvan Adı</th>
+                                                                <th>Tip</th>
+                                                                <th>Fiyat</th>
+                                                                <th>İstenen Hayvan Sayısı   </th>
+                                                                <th>Destek istenen Hayvan Sayısı</th>
+                                                                <th>Bakım Desteği Gün sayısı </th>
+                                                                <th>Ötenazi  </th>
+                                                                <th style="width: 40px">Genel Toplam</th>
+                                                                <th style="width: 40px">Sepet</th>
+                                                            </tr>
+                                                        </thead>
 
-                                                <table class="table table-bordered table-striped">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>Hayvan Adı</th>
-                                                            <th>Tip</th>
-                                                            <th>Fiyat</th>
-                                                            <th>İstenen Hayvan Sayısı   </th>
-                                                            <th>Destek istenen Hayvan Sayısı</th>
-                                                            <th>Bakım Desteği Gün sayısı </th>
-                                                            <th>Ötenazi  </th>
-                                                            <th style="width: 40px">Genel Toplam</th>
-                                                            <th style="width: 40px">Sepet</th>
-                                                        </tr>
-                                                    </thead>
+                                                        <script id="cartSelectItemsTpl" type="text/x-handlebars-template">
+                                                            {{#each cartSelectItems}}
+                                                            <tr id="CartAddData-{{id}}">
+                                                                <td>{{irkAdi}}</td>
+                                                                <td>{{isim}}</td>
+                                                                <td>{{fiyat}} ₺</td>
+                                                                <td> <input type="text" name="name" class="IstenenHayvanSayisi" style="width:60px" /> </td>
+                                                                <td> <input type="text" name="name" class="DestekIstenenHayvanSayisi" style="width:60px" /></td>
+                                                                <td> <input type="text" name="name" class="BakimDestegiGunSayisi" style="width:60px" /> </td>
+                                                                <td> <input type="checkbox" style="width:60px" class="OtenaziIstek" name="name" /></td>
+                                                                <td> </td>
+                                                                <td style="border:none">   </td>
 
-                                                    <script id="cartSelectItemsTpl" type="text/x-handlebars-template">
-                                                        {{#each cartSelectItems}}
-                                                        <tr id="CartAddData-{{id}}">
-                                                            <td>{{irkAdi}}</td>
-                                                            <td>{{isim}}</td>
-                                                            <td>{{fiyat}} ₺</td>
-                                                            <td> <input type="text" name="name" class="IstenenHayvanSayisi" style="width:60px"/> </td>
-                                                            <td> <input type="text" name="name" class="DestekIstenenHayvanSayisi" style="width:60px"/></td>
-                                                            <td> <input type="text" name="name" class="BakimDestegiGunSayisi" style="width:60px"/> </td>
-                                                            <td> <input type="checkbox" style="width:60px" class="OtenaziIstek" name="name"/></td>
-                                                            <td> </td>
-                                                            <td> <a href="#" data-val="{{id}}" class="add-to-cart btn btn-primary"> Sepete Ekle </a>   </td>
+                                                            </tr>
 
-                                                        </tr>
+                                                            <tr>
+                                                                <td>  </td>
+                                                                <td>  </td>
+                                                                <td>  </td>
+                                                                <td>Günlük Bakım ücret  {{gunlukBakimUcreti}} ₺ * Gün Sayısı  </td>
+                                                                <td>  </td>
+                                                                <td>  </td>
+                                                                <td>Ötenazi Ücreti {{otenaziUcret}} ₺ </td>
+                                                                <td>  </td>
+                                                                <td style="border:none"> <a href="#" data-val="{{id}}" class="add-to-cart btn btn-primary"> Hesapla </a>  </td>
 
-                                                        <tr>
-                                                            <td>  </td>
-                                                            <td>  </td>
-                                                            <td>  </td>
-                                                            <td>Günlük Bakım ücret  {{gunlukBakimUcreti}} ₺ * Gün Sayısı  </td>
-                                                            <td>  </td>
-                                                            <td>  </td>
-                                                            <td>Ötenazi Ücreti {{otenaziUcret}} ₺ </td>
-                                                            <td>  </td>
-                                                            <td>  </td>
-
-                                                        </tr>
+                                                            </tr>
 
 
-                                                        <tr id="CartDestekTalep-{{id}}">
-                                                            <td colspan="9">
-                                                                <strong> Destek Talep Türü Seçenekleri </strong>
-                                                                <div class="row teknikDestekTalepTurleri">
+                                                            <tr id="CartDestekTalep-{{id}}">
+                                                                <td colspan="8">
+                                                                    <strong> Destek Talep Türü Seçenekleri </strong>
+                                                                    <div class="row teknikDestekTalepTurleri">
+                                                                    </div>
+                                                                </td>
+                                                                <td style="border-top:none">
+
+                                                                    <a href="#" data-val="{{id}}" class="add-to-cart btn btn-success"> Sepete Ekle </a>
+                                                                </td>
+                                                            </tr>
+
+                                                            {{/each}}
+
+
+                                                        </script>
+
+                                                        <script id="teknikDestekTalepTurleriTpl" type="text/x-handlebars-template">
+                                                            {{#each teknikDestekTalepTurleri}}
+                                                            <div class="col-md-3">
+
+                                                                <div class="form-group">
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input destekTalepTur" name="destekTalepTur" id="destekTalepTurId-{{id}}" value="{{id}}" type="checkbox">
+                                                                        <label for="destekTalepTurId-{{id}}" class="form-check-label"> {{name}} /Fiyat {{price}} ₺</label>
+                                                                    </div>
                                                                 </div>
-                                                            </td>
-                                                        </tr>
 
-                                                        {{/each}}
-
-
-                                                    </script>
-
-                                                    <script id="teknikDestekTalepTurleriTpl" type="text/x-handlebars-template">
-                                                        {{#each teknikDestekTalepTurleri}}
-                                                        <div class="col-md-3">
-
-                                                            <div class="form-group">
-                                                                <div class="form-check">
-                                                                    <input class="form-check-input destekTalepTur" name="destekTalepTur" id="destekTalepTurId-{{id}}" value="{{id}}" type="checkbox">
-                                                                    <label for="destekTalepTurId-{{id}}" class="form-check-label"> {{name}} /Fiyat {{price}} ₺</label>
-                                                                </div>
                                                             </div>
+                                                            {{/each}}
+                                                        </script>
 
-                                                        </div>
-                                                        {{/each}}
-                                                    </script>
+                                                        <tbody id="cartSelectItems">
+                                                            <tr>
+                                                                <td colspan="9">
+                                                                    <span class="text-danger text-center">Lütfen Yandaki Alandan  Hayvan Irkı Seçimi Yapınız </span>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
 
-                                                    <tbody id="cartSelectItems">
-                                                        <tr>
-                                                            <td colspan="9">
-                                                                <span class="text-danger text-center">Lütfen Hayvan Irkı Seçimi Yapınız </span>
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
+                                                    </table>
+                                                </div>
+                                                </div>
 
-                                                </table>
+                                                <!-- /.card-body -->
                                             </div>
-
-                                            <!-- /.card-body -->
-                                        </div>
                                     </div>
                                 </div>
 
@@ -821,21 +826,31 @@
                 OtenaziIstek = 1;
             }
 
-
+            var dataobj = {
+                BaseId: $baseID,
+                IstenenHayvanSayisi: IstenenHayvanSayisi,
+                DestekIstenenHayvanSayisi: DestekIstenenHayvanSayisi,
+                DestekIstenenHayvanSayisi: BakimDestegiGunSayisi,
+                OtenaziIstek: OtenaziIstek,
+                destekTalepTurLeri: destekTalepTurLeri.join(),
+            };
           //  console.log(destekTalepTurLeri.join())
 
             $.ajax({
-                url: '/Admin/DekamProjeTakip/IrkSec',
-                 type: "POST",
-                data: {
-                    BaseId: $baseID,
-                    IstenenHayvanSayisi: IstenenHayvanSayisi,
-                    DestekIstenenHayvanSayisi: DestekIstenenHayvanSayisi,
-                    DestekIstenenHayvanSayisi: BakimDestegiGunSayisi,
-                    OtenaziIstek: OtenaziIstek,
-                    destekTalepTurLeri: destekTalepTurLeri.join(),
-                },
-              
+                url: '/ShoppingCart/Add',
+                type: "POST",
+                //contentType: "application/json; charset=utf-8",
+                //dataType: "json",
+
+                //beforeSend: function (xhr) {
+                //    xhr.setRequestHeader("XSRF-TOKEN",
+                //        $('input:hidden[name="__RequestVerificationToken"]').val());
+                //},
+                data:dataobj,  
+
+                success: function (result) {
+                  console.log(result)
+                }
             });
 
         }); 

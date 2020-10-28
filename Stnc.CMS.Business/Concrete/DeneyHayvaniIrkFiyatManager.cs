@@ -14,14 +14,39 @@ namespace Stnc.CMS.Business.Concrete
             _deneyHayvaniIrkFiyatDal = deneyHayvaniIrkFiyatDal;
         }
 
+
+
+
+
+       
         public List<DeneyHayvaniIrkFiyatListAllDto> DeneyHayvaniIrkFiyatListesi()
         {
             return _deneyHayvaniIrkFiyatDal.DeneyHayvaniIrkFiyatListesi();
         }
 
+        public List<DeneyHayvaniAjaxListDto> DeneyHayvaniIrkFiyatListesiID(int ID)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public List<DeneyHayvaniAjaxListDto> DeneyHayvaniIrkFiyatListesiIrkID(int IrkID)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public List<DeneyHayvaniAjaxListDto> DeneyHayvaniIrkFiyatListesiTurID(int TurID)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public List<DekamProjeDeneyHayvaniIrkFiyat> GetAll()
         {
             return _deneyHayvaniIrkFiyatDal.GetAll();
+        }
+
+        public DeneyHayvaniAjaxListDto GetDeneyHayvaniIrkFiyatID(int ID)
+        {
+            return _deneyHayvaniIrkFiyatDal.GetDeneyHayvaniIrkFiyatID(ID);
         }
 
         public DekamProjeDeneyHayvaniIrkFiyat GetirIdile(int id)
