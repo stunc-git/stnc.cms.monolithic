@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts;
 
 namespace Stnc.CMS.DataAccess.Migrations
 {
     [DbContext(typeof(StncCMSContext))]
-    partial class StncCMSContextModelSnapshot : ModelSnapshot
+    [Migration("20201102081714_ShopCartJson")]
+    partial class ShopCartJson
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -753,43 +755,6 @@ namespace Stnc.CMS.DataAccess.Migrations
                     b.ToTable("Gorevler");
                 });
 
-            modelBuilder.Entity("Stnc.CMS.Entities.Concrete.Options", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("SqlServer:IdentityIncrement", 1)
-                        .HasAnnotation("SqlServer:IdentitySeed", 1)
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Autoload")
-                        .HasColumnType("nvarchar(20)")
-                        .HasMaxLength(20);
-
-                    b.Property<DateTime?>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("DefaultValue")
-                        .HasColumnType("ntext");
-
-                    b.Property<DateTime?>("DeletedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("OptionName")
-                        .HasColumnType("nvarchar(200)")
-                        .HasMaxLength(200);
-
-                    b.Property<string>("OptionValue")
-                        .HasColumnType("ntext");
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Options");
-                });
-
             modelBuilder.Entity("Stnc.CMS.Entities.Concrete.Posts", b =>
                 {
                     b.Property<int>("Id")
@@ -950,17 +915,50 @@ namespace Stnc.CMS.DataAccess.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 299449392,
+                            Id = 1264878060,
                             Caption = "Lorem ipsum laramde loremde ipsumda inmpala",
-                            CreatedAt = new DateTime(2020, 11, 4, 14, 47, 42, 976, DateTimeKind.Local).AddTicks(9790),
+                            CreatedAt = new DateTime(2020, 11, 2, 11, 17, 14, 156, DateTimeKind.Local).AddTicks(7677),
                             Excerpt = "exceprt data loremmmmmm ipsummmmm",
                             MenuOrder = 1,
                             Picture = "default.jpg",
                             Status = true,
-                            UpdatedAt = new DateTime(2020, 11, 4, 14, 47, 42, 977, DateTimeKind.Local).AddTicks(2743),
+                            UpdatedAt = new DateTime(2020, 11, 2, 11, 17, 14, 157, DateTimeKind.Local).AddTicks(458),
                             UrlAddress = "",
                             UrlType = (short)0
                         });
+                });
+
+            modelBuilder.Entity("Stnc.CMS.Entities.Concrete.StCart", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ImageUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("InStock")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsPreferedFood")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("LongDescription")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("ShortDescription")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("StCart");
                 });
 
             modelBuilder.Entity("Stnc.CMS.Entities.Concrete.StShoppingCartItem", b =>
@@ -977,15 +975,6 @@ namespace Stnc.CMS.DataAccess.Migrations
 
                     b.Property<int?>("CartId")
                         .HasColumnType("int");
-
-                    b.Property<DateTime?>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("DekamProjeTakipID")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("DeletedAt")
-                        .HasColumnType("datetime2");
 
                     b.Property<int>("DestekIstenenHayvanSayisi")
                         .HasColumnType("int");
@@ -1024,11 +1013,11 @@ namespace Stnc.CMS.DataAccess.Migrations
                     b.Property<decimal>("OtenaziUcreti")
                         .HasColumnType("decimal(6,2)");
 
+                    b.Property<string>("ShoppingCartId")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<decimal>("ToplamFiyat")
                         .HasColumnType("decimal(6,2)");
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -1247,7 +1236,7 @@ namespace Stnc.CMS.DataAccess.Migrations
 
             modelBuilder.Entity("Stnc.CMS.Entities.Concrete.StShoppingCartItem", b =>
                 {
-                    b.HasOne("Stnc.CMS.Entities.Concrete.DekamProjeDeneyHayvaniIrkFiyat", "Cart")
+                    b.HasOne("Stnc.CMS.Entities.Concrete.StCart", "Cart")
                         .WithMany()
                         .HasForeignKey("CartId");
                 });

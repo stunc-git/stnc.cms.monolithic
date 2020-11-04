@@ -14,29 +14,24 @@ namespace Stnc.CMS.Business.Concrete
             _deneyHayvaniIrkFiyatDal = deneyHayvaniIrkFiyatDal;
         }
 
-
-
-
-
-       
         public List<DeneyHayvaniIrkFiyatListAllDto> DeneyHayvaniIrkFiyatListesi()
         {
             return _deneyHayvaniIrkFiyatDal.DeneyHayvaniIrkFiyatListesi();
         }
 
-        public List<DeneyHayvaniAjaxListDto> DeneyHayvaniIrkFiyatListesiID(int ID)
+        public List<DeneyHayvaniIrkFiyatAjaxListDto> DeneyHayvaniIrkFiyatListesiID(int ID)
         {
-            throw new System.NotImplementedException();
+            return _deneyHayvaniIrkFiyatDal.DeneyHayvaniIrkFiyatListesiID(ID);
         }
 
-        public List<DeneyHayvaniAjaxListDto> DeneyHayvaniIrkFiyatListesiIrkID(int IrkID)
+        public List<DeneyHayvaniIrkFiyatAjaxListDto> DeneyHayvaniIrkFiyatListesiIrkID(int IrkID)
         {
-            throw new System.NotImplementedException();
+            return _deneyHayvaniIrkFiyatDal.DeneyHayvaniIrkFiyatListesiIrkID(IrkID);
         }
 
-        public List<DeneyHayvaniAjaxListDto> DeneyHayvaniIrkFiyatListesiTurID(int TurID)
+        public List<DeneyHayvaniIrkFiyatAjaxListDto> DeneyHayvaniIrkFiyatListesiTurID(int TurID)
         {
-            throw new System.NotImplementedException();
+            return _deneyHayvaniIrkFiyatDal.DeneyHayvaniIrkFiyatListesiTurID(TurID);
         }
 
         public List<DekamProjeDeneyHayvaniIrkFiyat> GetAll()
@@ -44,7 +39,7 @@ namespace Stnc.CMS.Business.Concrete
             return _deneyHayvaniIrkFiyatDal.GetAll();
         }
 
-        public DeneyHayvaniAjaxListDto GetDeneyHayvaniIrkFiyatID(int ID)
+        public DeneyHayvaniIrkFiyatAjaxListDto GetDeneyHayvaniIrkFiyatID(int ID)
         {
             return _deneyHayvaniIrkFiyatDal.GetDeneyHayvaniIrkFiyatID(ID);
         }

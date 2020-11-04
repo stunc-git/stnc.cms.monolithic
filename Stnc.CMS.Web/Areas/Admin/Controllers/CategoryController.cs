@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using Stnc.CMS.Business.Interfaces;
 
 using Stnc.CMS.DTO.DTOs.CategoryDtos;
@@ -83,5 +85,16 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
             _categoryservice.Sil(new Category { Id = id });
             return Json(null);
         }
+
+
+        //https://docs.microsoft.com/en-us/dotnet/standard/serialization/system-text-json-how-to
+
+        //https://www.newtonsoft.com/json/help/html/QueryJsonDynamic.htm
+
+
+
+
+
+
     }
 }

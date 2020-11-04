@@ -2,16 +2,40 @@
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json.Linq;
 using Stnc.CMS.Business.Interfaces;
 using Stnc.CMS.DTO.DTOs.AppUserDtos;
 using Stnc.CMS.DTO.DTOs.PostDtos;
 using Stnc.CMS.Entities.Concrete;
 using Stnc.CMS.Web.BaseControllers;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Stnc.CMS.Web.Controllers
 {
+
+    //public class JsonMenu
+    //{
+
+    //    public string Text { get; set; }
+    //    public string Href { get; set; }
+    //    public string Icon { get; set; }
+    //    public string Target { get; set; }
+    //    public string Title { get; set; }
+    //    public List<MenuChildren> MenuChildren { get; set; }
+    //}
+
+    //public class JsonMenuChildren
+    //{
+    //    public string Text { get; set; }
+    //    public string Href { get; set; }
+    //    public string Icon { get; set; }
+    //    public string Target { get; set; }
+    //    public string Title { get; set; }
+    //}
+
     public class HomeController : BaseIdentityController
     {
         private readonly SignInManager<AppUser> _signInManager;
@@ -122,6 +146,82 @@ namespace Stnc.CMS.Web.Controllers
             return View("Login", model);
         }
 
+        public IActionResult Menu()
+        {
+            string json = @"[{'text':'Home444','href':'http://home.com','icon':'fas fa-home','target':'_top','title':'My Home','children':[{'text':'Opcion2','href':'','icon':'fas fa-chart-bar','target':'_self','title':''}]},{'text':'Opcion4','href':'','icon':'fas fa-crop','target':'_self','title':'','children':[{'text':'Opcion5','href':'','icon':'fas fa-flask','target':'_self','title':''}]},{'text':'Opcion6','href':'','icon':'fas fa-map-marker','target':'_self','title':'','children':[{'text':'Opcion7-1','href':'','icon':'fas fa-plug','target':'_self','title':''}]},{'text':'Opcion7','href':'','icon':'fas fa-search','target':'_self','title':''}]";
+
+            //JObject parent = JObject.Parse(json);
+            ////  var companies = parent.Value<JObject>("children").Count()
+            //string companies = "";
+
+            string dd = @"
+
+ 'id': 123,  
+  'name': 'Mukesh Kumar',  
+  'address': {
+                'street': 'El Camino Real',  
+    'city': 'New Delhi',  
+    'zipcode': 95014
+  },  
+  'experiences': [
+    {
+                'companyid': 77,  
+      'companyname': 'Mind Tree LTD'
+    },  
+    {
+                'companyid': 89,  
+      'companyname': 'TCS'
+    },  
+    {
+                'companyid': 22,  
+      'companyname': 'Hello World LTD'
+    }  
+  ],  
+  'phoneNumber': 9988664422,  
+  'role': 'Developer'
+} 
+";
+
+
+            try
+            {
+                var jObject = JObject.Parse(dd);
+
+                if (jObject != null)
+                {
+                    Console.WriteLine("ID :" + jObject["id"].ToString());
+                    Console.WriteLine("Name :" + jObject["name"].ToString());
+
+                    var address = jObject["address"];
+                    Console.WriteLine("Street :" + address["street"].ToString());
+                    Console.WriteLine("City :" + address["city"].ToString());
+                    Console.WriteLine("Zipcode :" + address["zipcode"]);
+                    JArray experiencesArrary = (JArray)jObject["experiences"];
+                    if (experiencesArrary != null)
+                    {
+                        foreach (var item in experiencesArrary)
+                        {
+                            Console.WriteLine("company Id :" + item["companyid"]);
+                            Console.WriteLine("company Name :" + item["companyname"].ToString());
+                        }
+
+                    }
+                    Console.WriteLine("Phone Number :" + jObject["phoneNumber"].ToString());
+                    Console.WriteLine("Role :" + jObject["role"].ToString());
+
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+
+            return Ok(json);
+        }
+
+
         public IActionResult KayitOl()
         {
             return View();
@@ -183,6 +283,8 @@ namespace Stnc.CMS.Web.Controllers
 
             return View();
         }
+
+
 
         public void Hata()
         {

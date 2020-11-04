@@ -7,13 +7,13 @@ namespace Stnc.CMS.Business.Interfaces
     public interface IDeneyHayvaniIrkFiyatService : IGenericService<DekamProjeDeneyHayvaniIrkFiyat>
     {
         List<DeneyHayvaniIrkFiyatListAllDto> DeneyHayvaniIrkFiyatListesi();
-        List<DeneyHayvaniAjaxListDto> DeneyHayvaniIrkFiyatListesiID(int ID);
+        List<DeneyHayvaniIrkFiyatAjaxListDto> DeneyHayvaniIrkFiyatListesiID(int ID);
 
-        List<DeneyHayvaniAjaxListDto> DeneyHayvaniIrkFiyatListesiTurID(int TurID);
+        List<DeneyHayvaniIrkFiyatAjaxListDto> DeneyHayvaniIrkFiyatListesiTurID(int TurID);
 
-        List<DeneyHayvaniAjaxListDto> DeneyHayvaniIrkFiyatListesiIrkID(int IrkID);
+        List<DeneyHayvaniIrkFiyatAjaxListDto> DeneyHayvaniIrkFiyatListesiIrkID(int IrkID);
 
-        DeneyHayvaniAjaxListDto GetDeneyHayvaniIrkFiyatID(int ID);
+        DeneyHayvaniIrkFiyatAjaxListDto GetDeneyHayvaniIrkFiyatID(int ID);
 
     }
 }

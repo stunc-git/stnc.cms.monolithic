@@ -30,17 +30,17 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Repositories
 
         }
 
+        
 
-
-        public List<DeneyHayvaniAjaxListDto> DeneyHayvaniIrkFiyatListesiTurID(int TurID)
+        public List<DeneyHayvaniIrkFiyatAjaxListDto> DeneyHayvaniIrkFiyatListesiTurID(int TurID)
         {
             using var context = new StncCMSContext();
-            return context.DekamProjeDeneyHayvaniIrkFiyat
+            var list=  context.DekamProjeDeneyHayvaniIrkFiyat
 
                       .Where(s => s.DekamProjeDeneyHayvaniTur.Id == TurID)
                       .Where(s => s.DekamProjeDeneyHayvaniIrk.Id == s.DekamProjeDeneyHayvaniIrkId)
                       .OrderByDescending(I => I.CreatedAt)
-                      .Select(I => new DeneyHayvaniAjaxListDto()
+                      .Select(I => new DeneyHayvaniIrkFiyatAjaxListDto()
                       {
                           Id = I.Id,
                           Isim = I.Isım,
@@ -50,18 +50,18 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Repositories
                           IrkAdi = I.DekamProjeDeneyHayvaniIrk.Name,
                           Fiyat = I.Fiyat,
                       }).ToList();
-
+            return list;
 
         }
 
-        public List<DeneyHayvaniAjaxListDto> DeneyHayvaniIrkFiyatListesiID(int ID)
+        public List<DeneyHayvaniIrkFiyatAjaxListDto> DeneyHayvaniIrkFiyatListesiID(int ID)
         {
             using var context = new StncCMSContext();
             //return context.DekamProjeDeneyHayvaniIrkFiyat.Include(I => I.DekamProjeDeneyHayvaniIrk).Include(I => I.DekamProjeDeneyHayvaniTur).Include(I => I.AppUser).OrderByDescending(I => I.CreatedAt).ToList();
            return context.DekamProjeDeneyHayvaniIrkFiyat
                       .Where(s => s.Id == ID)
                       .OrderByDescending(I => I.CreatedAt)
-                      .Select(I => new DeneyHayvaniAjaxListDto()
+                      .Select(I => new DeneyHayvaniIrkFiyatAjaxListDto()
                       {
                           Id = I.Id,
                           Isim = I.Isım,
@@ -75,14 +75,14 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Repositories
 
 
 
-        public List<DeneyHayvaniAjaxListDto> DeneyHayvaniIrkFiyatListesiIrkID(int IrkID)
+        public List<DeneyHayvaniIrkFiyatAjaxListDto> DeneyHayvaniIrkFiyatListesiIrkID(int IrkID)
         {
             using var context = new StncCMSContext();
            return  context.DekamProjeDeneyHayvaniIrkFiyat
                       .Where(s => s.DekamProjeDeneyHayvaniTur.Id == IrkID)
                       .Where(s => s.DekamProjeDeneyHayvaniIrk.Id == s.DekamProjeDeneyHayvaniIrkId)
                       .OrderByDescending(I => I.CreatedAt)
-                      .Select(I => new DeneyHayvaniAjaxListDto()
+                      .Select(I => new DeneyHayvaniIrkFiyatAjaxListDto()
                       {
                           Id = I.Id,
                           Isim = I.Isım,
@@ -95,13 +95,13 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Repositories
         }
 
 
-        public DeneyHayvaniAjaxListDto GetDeneyHayvaniIrkFiyatID(int ID)
+        public DeneyHayvaniIrkFiyatAjaxListDto GetDeneyHayvaniIrkFiyatID(int ID)
         {
             using var context = new StncCMSContext();
             return context.DekamProjeDeneyHayvaniIrkFiyat
            .Where(s => s.Id == ID)
            .OrderByDescending(I => I.CreatedAt)
-           .Select(I => new DeneyHayvaniAjaxListDto()
+           .Select(I => new DeneyHayvaniIrkFiyatAjaxListDto()
            {
                Id = I.Id,
                Isim = I.Isım,

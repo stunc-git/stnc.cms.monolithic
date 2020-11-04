@@ -49,6 +49,10 @@ namespace Stnc.CMS.Business.DiContainer
             services.AddScoped<IDeneyHayvaniIrkFiyatService, DeneyHayvaniIrkFiyatManager>();
             services.AddScoped<IDeneyHayvaniIrkFiyatDal, EfDekamProjeDeneyHayvaniIrkFiyatRepository>();
 
+            //options 
+            services.AddScoped<IOptionsService, OptionsManager>();
+            services.AddScoped<IOptionsDal, EfOptionsRepository>();
+
             services.AddTransient<ICustomLogger, NLogLogger>();
         }
     }

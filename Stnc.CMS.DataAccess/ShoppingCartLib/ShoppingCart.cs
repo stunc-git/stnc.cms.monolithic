@@ -31,86 +31,82 @@ namespace Stnc.CMS.DataAccess.ShoppingCartLib
             return new ShoppingCart(context) { Id = cartId };
         }
 
-        public bool AddToCart(StCart cart, int amount)
+        public void AddToCart(StShoppingCartItem cart)
         {
-            if (cart.InStock == 0 || amount == 0)
-            {
-                return false;
-            }
 
-            var shoppingCartItem = _context.StShoppingCartItem.SingleOrDefault(s => s.Cart.Id == cart.Id && s.ShoppingCartId == Id);
-            var isValidAmount = true;
-            if (shoppingCartItem == null)
-            {
-                if (amount > cart.InStock)
-                {
-                    isValidAmount = false;
-                }
-                shoppingCartItem = new StShoppingCartItem
-                {
-                    ShoppingCartId = Id,
-                    Cart = cart,
-                    ToplamFiyat = Math.Min(cart.InStock, amount)
-                };
-                _context.StShoppingCartItem.Add(shoppingCartItem);
-            }
-            else
-            {
-                if (cart.InStock - shoppingCartItem.ToplamFiyat - amount >= 0)
-                {
-                    shoppingCartItem.ToplamFiyat += amount;
-                }
-                else
-                {
-                    shoppingCartItem.ToplamFiyat += (cart.InStock - shoppingCartItem.ToplamFiyat);
-                    isValidAmount = false;
-                }
-            }
+            //var shoppingCartItem = _context.StShoppingCartItem.SingleOrDefault(s => s.Cart.Id == cart.Id && s.ShoppingCartId == Id);
+            //var isValidAmount = true;
+            //if (shoppingCartItem == null)
+            //{
+         
+            //    shoppingCartItem = new StShoppingCartItem
+            //    {
+            //        ShoppingCartId = Id,
+            //       // StShoppingCartItem = cart,
+            //      //  ToplamFiyat = Math.Min(cart.InStock, amount)
+            //    };
+            //    _context.StShoppingCartItem.Add(shoppingCartItem);
+            //}
+            //else
+            //{
+            //    if (cart.InStock - shoppingCartItem.ToplamFiyat - amount >= 0)
+            //    {
+            //        shoppingCartItem.ToplamFiyat += amount;
+            //    }
+            //    else
+            //    {
+            //        shoppingCartItem.ToplamFiyat += (cart.InStock - shoppingCartItem.ToplamFiyat);
+            //        isValidAmount = false;
+            //    }
+            //}
 
-            _context.SaveChanges();
-            return isValidAmount;
+            //_context.SaveChanges();
+            //return isValidAmount;
+
+
         }
 
-        public decimal RemoveFromCart(StCart cart)
+        public void RemoveFromCart(StShoppingCartItem cart)
         {
-            var shoppingCartItem = _context.StShoppingCartItem.SingleOrDefault(s => s.Cart.Id == cart.Id && s.ShoppingCartId == Id);
-            decimal localAmount = 0;
-            if (shoppingCartItem != null)
-            {
-                if (shoppingCartItem.ToplamFiyat > 1)
-                {
-                    shoppingCartItem.ToplamFiyat--;
-                    localAmount = shoppingCartItem.ToplamFiyat;
-                }
-                else
-                {
-                    _context.StShoppingCartItem.Remove(shoppingCartItem);
-                }
-            }
-            _context.SaveChanges();
-            return localAmount;
+            //var shoppingCartItem = _context.StShoppingCartItem.SingleOrDefault(s => s.Cart.Id == cart.Id && s.ShoppingCartId == Id);
+            //decimal localAmount = 0;
+            //if (shoppingCartItem != null)
+            //{
+            //    if (shoppingCartItem.ToplamFiyat > 1)
+            //    {
+            //        shoppingCartItem.ToplamFiyat--;
+            //        localAmount = shoppingCartItem.ToplamFiyat;
+            //    }
+            //    else
+            //    {
+            //        _context.StShoppingCartItem.Remove(shoppingCartItem);
+            //    }
+            //}
+            //_context.SaveChanges();
+            //return localAmount;
         }
 
-        public IEnumerable<StShoppingCartItem> GetShoppingCartItems()
+       // public IEnumerable<StShoppingCartItem> GetShoppingCartItems()
+        public void  GetShoppingCartItems()
         {
-            return StShoppingCartItems ??
-                   (StShoppingCartItems = _context.StShoppingCartItem.Where(c => c.ShoppingCartId == Id)
-                       .Include(s => s.Cart));
+            //return StShoppingCartItems ??
+            //       (StShoppingCartItems = _context.StShoppingCartItem.Where(c => c.ShoppingCartId == Id)
+            //           .Include(s => s.StShoppingCartItem));
         }
 
         public void ClearCart()
         {
-            var cartItems = _context
-                .StShoppingCartItem
-                .Where(cart => cart.ShoppingCartId == Id);
+            //var cartItems = _context
+            //    .StShoppingCartItem
+            //    .Where(cart => cart.ShoppingCartId == Id);
 
-            _context.StShoppingCartItem.RemoveRange(cartItems);
-            _context.SaveChanges();
+            //_context.StShoppingCartItem.RemoveRange(cartItems);
+            //_context.SaveChanges();
         }
 
-        public decimal GetShoppingCartTotal()
+        public void GetShoppingCartTotal()
         {
-            return _context.StShoppingCartItem.Where(c => c.ShoppingCartId == Id).Select(c => c.Cart.Price * c.ToplamFiyat).Sum();
+           // return _context.StShoppingCartItem.Where(c => c.ShoppingCartId == Id).Select(c => c.StShoppingCartItem.Price * c.ToplamFiyat).Sum();
         }
     }
 }

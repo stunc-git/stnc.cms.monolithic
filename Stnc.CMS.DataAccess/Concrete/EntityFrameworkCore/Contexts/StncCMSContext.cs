@@ -40,7 +40,7 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts
             modelBuilder.ApplyConfiguration(new DekamProjeDeneyHayvaniTurMap());
             modelBuilder.ApplyConfiguration(new DekamProjeDeneyHayvaniIrkMap());
             modelBuilder.ApplyConfiguration(new DekamProjeLaboratuvarlarMap());
-
+            modelBuilder.ApplyConfiguration(new OptionsMap());
             modelBuilder.ApplyConfiguration(new StShoppingCartItemMap());
             modelBuilder.ApplyConfiguration(new DekamProjeDeneyHayvaniIrkFiyatMap());
 
@@ -100,8 +100,9 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts
         public DbSet<DekamProjeDeneyHayvaniIrk> DekamProjeDeneyHayvaniIrk { get; set; }
 
         public DbSet<StShoppingCartItem> StShoppingCartItem { get; set; }
+        public DbSet<Options> Options { get; set; }
         public DbSet<DekamProjeDeneyHayvaniIrkFiyat> DekamProjeDeneyHayvaniIrkFiyat { get; set; }
-        public DbSet<StCart> StCart { get; set; }
+        //public DbSet<StCart> StCart { get; set; }
 
         //public DbSet<City> City { get; set; }
         //public DbSet<CityInformation> CityInformation { get; set; }

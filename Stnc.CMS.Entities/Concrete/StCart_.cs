@@ -1,6 +1,6 @@
 ﻿namespace Stnc.CMS.Entities.Concrete
 {
-    public class StCart
+    public class StCart_
     {
         public int Id { get; set; }
         public string Name { get; set; }

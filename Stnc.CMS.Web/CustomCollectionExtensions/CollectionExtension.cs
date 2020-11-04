@@ -68,6 +68,8 @@ namespace Stnc.CMS.Web.CustomCollectionExtensions
 
             services.AddTransient<IValidator<DeneyHayvaniIrkFiyatCreateDto>, DeneyHayvaniIrkFiyatCreateValidator>();
             services.AddTransient<IValidator<DeneyHayvaniIrkFiyatUpdateDto>, DeneyHayvaniIrkFiyatUpdateValidator>();
+
+
         }
     }
 }

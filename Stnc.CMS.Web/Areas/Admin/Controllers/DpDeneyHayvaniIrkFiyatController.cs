@@ -145,7 +145,6 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
         //ajax result
         public JsonResult IrkSec(string TurID)
         {
-            List<SelectListItem> sonuc = new List<SelectListItem>();
             var context = new StncCMSContext();
 
             try
@@ -157,7 +156,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
             catch (Exception)
             {
 
-                sonuc = new List<SelectListItem>();
+                List<SelectListItem> sonuc = new List<SelectListItem>();
                 sonuc.Add(new SelectListItem
                 {
                     Text = "Bir hata oluştu :(",

@@ -3,7 +3,7 @@ using System;
 
 namespace Stnc.CMS.DTO.DTOs.DeneyHayvaniIrkFiyatDtos
 {
-    public class DeneyHayvaniAjaxListDto
+    public class DeneyHayvaniIrkFiyatAjaxListDto
     {
         public int Id { get; set; }
         public string Isim { get; set; }

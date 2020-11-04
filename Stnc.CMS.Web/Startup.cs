@@ -33,6 +33,7 @@ namespace Stnc.CMS.Web
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             services.AddScoped(sp => ShoppingCart.GetCart(sp));
+            services.AddMvc().AddNewtonsoftJson();
             services.AddMvc();
             // services.AddMemoryCache();
         }

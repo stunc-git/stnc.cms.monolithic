@@ -17,7 +17,44 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Repositories
             _context = context;
         }
 
-        public void DeleteFood(int id)
+        public void Delete(StShoppingCartItem tablo)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<StShoppingCartItem> GetAll()
+        {
+            throw new NotImplementedException();
+        }
+
+        public StShoppingCartItem GetById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Save(StShoppingCartItem tablo)
+        {
+            throw new NotImplementedException();
+        }
+
+        public StShoppingCartItem SaveReturn(StShoppingCartItem tablo)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Update(StShoppingCartItem tablo)
+        {
+            throw new NotImplementedException();
+        }
+
+
+
+
+
+
+
+        /*
+        public void DeleteProduct(int id)
         {
             var food = GetById(id);
             if (food == null)
@@ -28,23 +65,24 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Repositories
             _context.SaveChanges();
         }
 
-        public void EditFood(StCart food)
+        public void EditProduct(DekamProjeDeneyHayvaniIrkFiyat food)
         {
-            var model = _context.StCart.First(f => f.Id == food.Id);
-            _context.Entry<StCart>(model).State = EntityState.Detached;
+            var model = _context.DekamProjeDeneyHayvaniIrkFiyat.First(f => f.Id == food.Id);
+            _context.Entry<DekamProjeDeneyHayvaniIrkFiyat>(model).State = EntityState.Detached;
             _context.Update(food);
             _context.SaveChanges();
         }
 
-        public IEnumerable<StCart> GetAll()
+        public IEnumerable<DekamProjeDeneyHayvaniIrkFiyat> GetAll()
         {
-            return _context.StCart.ToList() ;
+            return _context.DekamProjeDeneyHayvaniIrkFiyat.ToList() ;
         }
 
-        public StCart GetById(int id)
+        public DekamProjeDeneyHayvaniIrkFiyat GetById(int id)
         {
-            return GetAll().FirstOrDefault(food => food.Id == id);
+            return GetAll().FirstOrDefault(x => x.Id == id);
         }
+        */
 
         //public IEnumerable<StCart> GetFilteredFoods(int id, string searchQuery)
         //{
@@ -57,7 +95,8 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Repositories
         //    return GetFilteredFoods(searchQuery).Where(food => food.Category.Id == id);
         //}
 
-        public IEnumerable<StCart> GetFilteredFoods(string searchQuery)
+        /*
+        public IEnumerable<DekamProjeDeneyHayvaniIrkFiyat> GetFilteredProducts(string searchQuery)
         {
             var queries = string.IsNullOrEmpty(searchQuery) ? null : Regex.Replace(searchQuery, @"\s+", " ").Trim().ToLower().Split(" ");
             if (queries == null)
@@ -67,21 +106,14 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Repositories
 
             return GetAll().Where(item => queries.Any(query => (item.Name.ToLower().Contains(query))));
         }
+        */
+
 
         //public IEnumerable<StCart> GetFoodsByCategoryId(int categoryId)
         //{
         //    return GetAll().Where(food => food.Category.Id == categoryId);
         //}
 
-        public IEnumerable<StCart> GetPreferred(int count)
-        {
-            return GetAll().OrderByDescending(food => food.Id).Where(food => food.IsPreferedFood && food.InStock != 0).Take(count);
-        }
 
-        public void NewFood(StCart food)
-        {
-            _context.Add(food);
-            _context.SaveChanges();
-        }
     }
 }

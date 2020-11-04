@@ -59,7 +59,9 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
             return View(new DekamProjeTakipCreateDto());
         }
 
+        //çoklu view
         //buradaki amaç çoklu view model yapısını gondermek 
+        //shopcart yeni yada eski hallerindede vardı sanırım 
         public IActionResult CreateNEW___Not_used()
         {
             TempData["Active"] = TempdataInfo.Category;
@@ -89,10 +91,12 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
         /// <returns></returns>
         public JsonResult FiyatSec(string TurID)
         {
+
+      
             var teknikDestekTalepTur = DekamProjeTeknikDestekTalepTurRepo.GetAll();
             try
             {
-                var data = _deneyHayvaniIrkFiyatService.DeneyHayvaniIrkFiyatListesiTurID (int.Parse(TurID));
+                var data = _deneyHayvaniIrkFiyatService.DeneyHayvaniIrkFiyatListesiTurID(int.Parse(TurID));
 
                 if (data.Any())
                 {
@@ -106,7 +110,6 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
             catch (Exception)
             {
                 List<SelectListItem> sonuc = new List<SelectListItem>();
-                sonuc = new List<SelectListItem>();
                 sonuc.Add(new SelectListItem
                 {
                     Text = "Bir hata oluştu :(",
