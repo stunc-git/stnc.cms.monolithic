@@ -23,9 +23,9 @@ namespace Stnc.CMS.Web.ViewComponents
 
         }
 
-        static string htmlReturn(string target, string href, string text, bool li_type = false)
+        static string htmlReturn(string target, string href, string text, bool li_type = true)
         {
-            if (li_type == false)
+            if (li_type == true)
             {
                 if (target.ToString() != "_self")
                 {
@@ -67,7 +67,7 @@ namespace Stnc.CMS.Web.ViewComponents
                                       if (item["children"] != null)
                                       {
                                           menu += "<li class=\"has-children\">\n";
-                                          menu += htmlReturn(item["target"].ToString(), item["href"].ToString(), item["text"].ToString(), true);
+                                          menu += htmlReturn(item["target"].ToString(), item["href"].ToString(), item["text"].ToString(), false);
 
                                           menu += "<ul class=\"dropdown\">\n";
                                           foreach (var itemChild in item["children"])
@@ -80,7 +80,7 @@ namespace Stnc.CMS.Web.ViewComponents
                                       else
                                       {
                                           menu += "<li>\n";
-                                          menu += htmlReturn(item["target"].ToString(), item["href"].ToString(), item["text"].ToString(), true);
+                                          menu += htmlReturn(item["target"].ToString(), item["href"].ToString(), item["text"].ToString(), false);
                                           menu += "</li>\n";
                                       }
                                   }
