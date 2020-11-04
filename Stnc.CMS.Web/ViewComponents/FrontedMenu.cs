@@ -92,7 +92,6 @@ namespace Stnc.CMS.Web.ViewComponents
                       {
                           throw;
                       }
-            
 
             return new HtmlContentViewComponentResult(new HtmlString(menu));
 
