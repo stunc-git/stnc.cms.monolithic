@@ -15,6 +15,13 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Mapping
             builder.Property(I => I.OptionValue).HasColumnType("ntext");
             builder.Property(I => I.DefaultValue).HasColumnType("ntext");
             builder.Property(I => I.Autoload).HasMaxLength(20);
+
+            builder.HasData(new Options
+            {
+                Id = 1,
+                OptionName = "front-menu",
+                OptionValue = "",
+            }); ;
         }
     }
 }
