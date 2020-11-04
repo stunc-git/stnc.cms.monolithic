@@ -23,6 +23,7 @@
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Member\Models\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\Shared\Components\FrontedMenu\" />
     <Folder Include="wwwroot\documents\" />
   </ItemGroup>
 
@@ -35,7 +36,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="3.1.7" />
+
     <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="3.9.7">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
