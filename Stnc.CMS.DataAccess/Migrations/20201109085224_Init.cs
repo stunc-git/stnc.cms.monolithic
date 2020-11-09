@@ -656,9 +656,39 @@ namespace Stnc.CMS.DataAccess.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "Categories",
+                columns: new[] { "Id", "CreatedAt", "DeletedAt", "Description", "Name", "Slug", "UpdatedAt" },
+                values: new object[] { 1, null, null, null, "Genel", "genel", null });
+
+            migrationBuilder.InsertData(
+                table: "DekamProjeDeneyHayvaniIrk",
+                columns: new[] { "Id", "AppUserId", "CreatedAt", "DeletedAt", "DeneyHayvaniTurID", "Description", "Name", "UpdatedAt" },
+                values: new object[] { 1, null, new DateTime(2020, 11, 9, 11, 52, 24, 391, DateTimeKind.Local).AddTicks(5435), null, 1, null, "fare (Balb-C)", new DateTime(2020, 11, 9, 11, 52, 24, 391, DateTimeKind.Local).AddTicks(5449) });
+
+            migrationBuilder.InsertData(
+                table: "DekamProjeDeneyHayvaniTur",
+                columns: new[] { "Id", "AppUserId", "CreatedAt", "DeletedAt", "GunlukBakimUcret", "Name", "OtenaziUcret", "Picture", "UpdatedAt" },
+                values: new object[] { 1, null, new DateTime(2020, 11, 9, 11, 52, 24, 390, DateTimeKind.Local).AddTicks(5417), null, 10m, "Fare", 1m, null, new DateTime(2020, 11, 9, 11, 52, 24, 390, DateTimeKind.Local).AddTicks(5439) });
+
+            migrationBuilder.InsertData(
+                table: "DekamProjeLaboratuvarlar",
+                columns: new[] { "Id", "AppUserId", "CreatedAt", "DeletedAt", "Name", "UpdatedAt" },
+                values: new object[] { 1, null, new DateTime(2020, 11, 9, 11, 52, 24, 392, DateTimeKind.Local).AddTicks(4877), null, "Ernam", new DateTime(2020, 11, 9, 11, 52, 24, 392, DateTimeKind.Local).AddTicks(4888) });
+
+            migrationBuilder.InsertData(
+                table: "Options",
+                columns: new[] { "Id", "Autoload", "CreatedAt", "DefaultValue", "DeletedAt", "OptionName", "OptionValue", "UpdatedAt" },
+                values: new object[] { 1L, null, null, null, null, "front-menu", "[{\"text\":\"Home\",\"href\":\"http://home.com\",\"icon\":\"fas fa-home\",\"target\":\"_top\",\"title\":\"My Home\"}]", null });
+
+            migrationBuilder.InsertData(
                 table: "Slider",
                 columns: new[] { "Id", "AppUserId", "Caption", "CreatedAt", "DeletedAt", "Excerpt", "MenuOrder", "Picture", "Status", "UpdatedAt", "UrlAddress", "UrlType" },
-                values: new object[] { 506630051, null, "Lorem ipsum laramde loremde ipsumda inmpala", new DateTime(2020, 11, 4, 23, 9, 28, 549, DateTimeKind.Local).AddTicks(3998), null, "exceprt data loremmmmmm ipsummmmm", 1, "default.jpg", true, new DateTime(2020, 11, 4, 23, 9, 28, 550, DateTimeKind.Local).AddTicks(2767), "", (short)0 });
+                values: new object[] { 771592251, null, "Lorem ipsum laramde loremde ipsumda inmpala", new DateTime(2020, 11, 9, 11, 52, 24, 384, DateTimeKind.Local).AddTicks(2437), null, "exceprt data loremmmmmm ipsummmmm", 1, "default.jpg", true, new DateTime(2020, 11, 9, 11, 52, 24, 384, DateTimeKind.Local).AddTicks(5211), "", (short)0 });
+
+            migrationBuilder.InsertData(
+                table: "DekamProjeDeneyHayvaniIrkFiyat",
+                columns: new[] { "Id", "AppUserId", "CreatedAt", "DekamProjeDeneyHayvaniIrkId", "DekamProjeDeneyHayvaniTurId", "DeletedAt", "Fiyat", "Isım", "UpdatedAt" },
+                values: new object[] { 1, null, new DateTime(2020, 11, 9, 11, 52, 24, 395, DateTimeKind.Local).AddTicks(9421), 1, 1, null, 5m, "8 Haftalık Yaşa Kadar", new DateTime(2020, 11, 9, 11, 52, 24, 395, DateTimeKind.Local).AddTicks(9432) });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

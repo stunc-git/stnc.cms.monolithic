@@ -25,6 +25,33 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Mapping
                 .WithMany(I => I.Posts)
                 .HasForeignKey(I => I.CategoryId);
 
+            /*
+          builder.HasData(
+                new Category
+                {
+                    Name = "Genel",
+                },
+                new Category
+                {
+                    Name = "Kurumsal",
+                }, new Category
+                {
+                    Name = "Yönetim",
+                }, new Category
+                {
+                    Name = "Belge Bilgi",
+                }, new Category
+                {
+                    Name = "Galeri",
+                }, new Category
+                {
+                    Name = "İletişim",
+                }, new Category
+                {
+                    Name = "Duyurular",
+                }
+        );*/
+
             //builder.HasMany(I => I.Comments).WithOne(I => I.Posts).HasForeignKey(I => I.PostID);
             //   builder.HasMany(I => I.CategoryBlogs).WithOne(I => I.Posts).HasForeignKey(I => I.PostID);
         }

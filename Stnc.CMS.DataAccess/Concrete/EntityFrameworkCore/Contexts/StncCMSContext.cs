@@ -20,9 +20,9 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts
                 .AddJsonFile("appsettings.json")
                 .Build();
 
-            //  optionsBuilder.UseSqlServer(config.GetConnectionString("SQLProvider"));
-              optionsBuilder.UseSqlServer(config.GetConnectionString("HomeSQLProvider"));
-           // optionsBuilder.UseMySql(config.GetConnectionString("DefaultConnection"));
+              optionsBuilder.UseSqlServer(config.GetConnectionString("SQLProvider"));
+           //   optionsBuilder.UseSqlServer(config.GetConnectionString("HomeSQLProvider"));
+           // optionsBuilder.UseMySql(config.GetConnectionString("MysqlConnection"));
 
             base.OnConfiguring(optionsBuilder);
         }

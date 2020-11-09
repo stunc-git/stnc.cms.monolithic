@@ -182,24 +182,24 @@
                                                                 <td>{{irkAdi}}</td>
                                                                 <td>{{isim}}</td>
                                                                 <td>{{fiyat}} ₺</td>
-                                                                <td> <input type="text" name="name" class="IstenenHayvanSayisi" style="width:60px" /> </td>
-                                                                <td> <input type="text" name="name" class="DestekIstenenHayvanSayisi" style="width:60px" /></td>
-                                                                <td> <input type="text" name="name" class="BakimDestegiGunSayisi" style="width:60px" /> </td>
-                                                                <td> <input type="checkbox" style="width:60px" class="OtenaziIstek" name="name" /></td>
+                                                                <td> <input type="text" name="IstenenHayvanSayisi"  class="IstenenHayvanSayisi"  style="width:60px" /> </td>
+                                                                <td> <input type="text" name="DestekIstenenHayvanSayisi" class="DestekIstenenHayvanSayisi" style="width:60px" /></td>
+                                                                <td> <input type="text" name="BakimDestegiGunSayisi" class="BakimDestegiGunSayisi" style="width:60px" /> </td>
+                                                                <td> <input type="checkbox" style="width:60px" name="OtenaziIstek" class="OtenaziIstek" /></td>
                                                                 <td> </td>
                                                                 <td style="border:none">   </td>
 
                                                             </tr>
 
                                                             <tr>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
                                                                 <td>  </td>
-                                                                <td>  </td>
-                                                                <td>  </td>
-                                                                <td>Günlük Bakım ücret  {{gunlukBakimUcreti}} ₺ * Gün Sayısı  </td>
-                                                                <td>  </td>
-                                                                <td>  </td>
+                                                                <td> Günlük Bakım ücret  {{gunlukBakimUcreti}} ₺ * Gün Sayısı  </td>
                                                                 <td>Ötenazi Ücreti {{otenaziUcret}} ₺ </td>
-                                                                <td>  </td>
+                                                                <td></td>
                                                                 <td style="border:none"> <a href="#" data-val="{{id}}" class="add-to-cart btn btn-primary"> Hesapla </a>  </td>
 
                                                             </tr>
@@ -820,18 +820,19 @@
             IstenenHayvanSayisi = $("#CartAddData-" + $baseID + " .IstenenHayvanSayisi").val();
             DestekIstenenHayvanSayisi = $("#CartAddData-" + $baseID + " .DestekIstenenHayvanSayisi").val();
             BakimDestegiGunSayisi = $("#CartAddData-" + $baseID + " .BakimDestegiGunSayisi").val();
-            OtenaziIstek = 0;
+          
+            otenaziIstek = 0;
 
             if ($("#CartAddData-" + $baseID + " .OtenaziIstek").is(':checked')) {
-                OtenaziIstek = 1;
+                otenaziIstek = 1;
             }
 
             var dataobj = {
                 BaseId: $baseID,
                 IstenenHayvanSayisi: IstenenHayvanSayisi,
                 DestekIstenenHayvanSayisi: DestekIstenenHayvanSayisi,
-                DestekIstenenHayvanSayisi: BakimDestegiGunSayisi,
-                OtenaziIstek: OtenaziIstek,
+                BakimDestegiGunSayisi: BakimDestegiGunSayisi,
+                OtenaziIstek: otenaziIstek,
                 destekTalepTurLeri: destekTalepTurLeri.join(),
             };
           //  console.log(destekTalepTurLeri.join())

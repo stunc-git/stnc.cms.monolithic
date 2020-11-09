@@ -23,7 +23,7 @@ namespace Stnc.CMS.Web.ViewComponents
 
         }
 
-        static string htmlReturn(string target, string href, string text, bool li_type = true)
+        static string HtmlReturn(string target, string href, string text, bool li_type = true)
         {
             if (li_type == true)
             {
@@ -67,12 +67,12 @@ namespace Stnc.CMS.Web.ViewComponents
                                       if (item["children"] != null)
                                       {
                                           menu += "<li class=\"has-children\">\n";
-                                          menu += htmlReturn(item["target"].ToString(), item["href"].ToString(), item["text"].ToString(), false);
+                                          menu += HtmlReturn(item["target"].ToString(), item["href"].ToString(), item["text"].ToString(), false);
 
                                           menu += "<ul class=\"dropdown\">\n";
                                           foreach (var itemChild in item["children"])
                                           {
-                                              menu += htmlReturn(itemChild["target"].ToString(), itemChild["href"].ToString(), itemChild["text"].ToString());
+                                              menu += HtmlReturn(itemChild["target"].ToString(), itemChild["href"].ToString(), itemChild["text"].ToString());
                                           }
                                           menu += "</ul>\n";
                                           menu += "</li>\n";
@@ -80,7 +80,7 @@ namespace Stnc.CMS.Web.ViewComponents
                                       else
                                       {
                                           menu += "<li>\n";
-                                          menu += htmlReturn(item["target"].ToString(), item["href"].ToString(), item["text"].ToString(), false);
+                                          menu += HtmlReturn(item["target"].ToString(), item["href"].ToString(), item["text"].ToString(), false);
                                           menu += "</li>\n";
                                       }
                                   }

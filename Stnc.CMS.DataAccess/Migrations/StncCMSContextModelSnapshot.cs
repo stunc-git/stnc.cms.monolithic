@@ -299,6 +299,14 @@ namespace Stnc.CMS.DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Genel",
+                            Slug = "genel"
+                        });
                 });
 
             modelBuilder.Entity("Stnc.CMS.Entities.Concrete.CategoryBlogs", b =>
@@ -456,6 +464,16 @@ namespace Stnc.CMS.DataAccess.Migrations
                     b.HasIndex("AppUserId");
 
                     b.ToTable("DekamProjeDeneyHayvaniIrk");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTime(2020, 11, 9, 11, 52, 24, 391, DateTimeKind.Local).AddTicks(5435),
+                            DeneyHayvaniTurID = 1,
+                            Name = "fare (Balb-C)",
+                            UpdatedAt = new DateTime(2020, 11, 9, 11, 52, 24, 391, DateTimeKind.Local).AddTicks(5449)
+                        });
                 });
 
             modelBuilder.Entity("Stnc.CMS.Entities.Concrete.DekamProjeDeneyHayvaniIrkFiyat", b =>
@@ -500,6 +518,18 @@ namespace Stnc.CMS.DataAccess.Migrations
                     b.HasIndex("DekamProjeDeneyHayvaniTurId");
 
                     b.ToTable("DekamProjeDeneyHayvaniIrkFiyat");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTime(2020, 11, 9, 11, 52, 24, 395, DateTimeKind.Local).AddTicks(9421),
+                            DekamProjeDeneyHayvaniIrkId = 1,
+                            DekamProjeDeneyHayvaniTurId = 1,
+                            Fiyat = 5m,
+                            Isım = "8 Haftalık Yaşa Kadar",
+                            UpdatedAt = new DateTime(2020, 11, 9, 11, 52, 24, 395, DateTimeKind.Local).AddTicks(9432)
+                        });
                 });
 
             modelBuilder.Entity("Stnc.CMS.Entities.Concrete.DekamProjeDeneyHayvaniTur", b =>
@@ -542,6 +572,17 @@ namespace Stnc.CMS.DataAccess.Migrations
                     b.HasIndex("AppUserId");
 
                     b.ToTable("DekamProjeDeneyHayvaniTur");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTime(2020, 11, 9, 11, 52, 24, 390, DateTimeKind.Local).AddTicks(5417),
+                            GunlukBakimUcret = 10m,
+                            Name = "Fare",
+                            OtenaziUcret = 1m,
+                            UpdatedAt = new DateTime(2020, 11, 9, 11, 52, 24, 390, DateTimeKind.Local).AddTicks(5439)
+                        });
                 });
 
             modelBuilder.Entity("Stnc.CMS.Entities.Concrete.DekamProjeLaboratuvarlar", b =>
@@ -575,6 +616,15 @@ namespace Stnc.CMS.DataAccess.Migrations
                     b.HasIndex("AppUserId");
 
                     b.ToTable("DekamProjeLaboratuvarlar");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTime(2020, 11, 9, 11, 52, 24, 392, DateTimeKind.Local).AddTicks(4877),
+                            Name = "Ernam",
+                            UpdatedAt = new DateTime(2020, 11, 9, 11, 52, 24, 392, DateTimeKind.Local).AddTicks(4888)
+                        });
                 });
 
             modelBuilder.Entity("Stnc.CMS.Entities.Concrete.DekamProjeTakip", b =>
@@ -794,7 +844,7 @@ namespace Stnc.CMS.DataAccess.Migrations
                         {
                             Id = 1L,
                             OptionName = "front-menu",
-                            OptionValue = ""
+                            OptionValue = "[{\"text\":\"Home\",\"href\":\"http://home.com\",\"icon\":\"fas fa-home\",\"target\":\"_top\",\"title\":\"My Home\"}]"
                         });
                 });
 
@@ -958,14 +1008,14 @@ namespace Stnc.CMS.DataAccess.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 1470176986,
+                            Id = 771592251,
                             Caption = "Lorem ipsum laramde loremde ipsumda inmpala",
-                            CreatedAt = new DateTime(2020, 11, 4, 23, 25, 59, 759, DateTimeKind.Local).AddTicks(7565),
+                            CreatedAt = new DateTime(2020, 11, 9, 11, 52, 24, 384, DateTimeKind.Local).AddTicks(2437),
                             Excerpt = "exceprt data loremmmmmm ipsummmmm",
                             MenuOrder = 1,
                             Picture = "default.jpg",
                             Status = true,
-                            UpdatedAt = new DateTime(2020, 11, 4, 23, 25, 59, 760, DateTimeKind.Local).AddTicks(6608),
+                            UpdatedAt = new DateTime(2020, 11, 9, 11, 52, 24, 384, DateTimeKind.Local).AddTicks(5211),
                             UrlAddress = "",
                             UrlType = (short)0
                         });

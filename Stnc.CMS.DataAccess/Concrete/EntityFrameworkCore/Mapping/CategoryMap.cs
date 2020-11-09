@@ -14,34 +14,17 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Mapping
             builder.Property(I => I.Slug).HasMaxLength(100);
             builder.Property(I => I.Description).HasColumnType("ntext");
             builder.HasMany(I => I.Posts).WithOne(I => I.Category).HasForeignKey(I => I.CategoryId);
+
             //builder.HasMany(I => I.CategoryBlogs).WithOne(I => I.Category).HasForeignKey(I => I.CategoryID);
 
-            /*
-            builder.HasData(
-                  new Category
-                  {
-                      Name = "Genel",
-                  },
-                  new Category
-                  {
-                      Name = "Kurumsal",
-                  }, new Category
-                  {
-                      Name = "Yönetim",
-                  }, new Category
-                  {
-                      Name = "Belge Bilgi",
-                  }, new Category
-                  {
-                      Name = "Galeri",
-                  }, new Category
-                  {
-                      Name = "İletişim",
-                  }, new Category
-                  {
-                      Name = "Duyurular",
-                  }
-          );*/
+            builder.HasData(new Category
+            {
+              Id = 1,
+              Name="Genel",
+              Slug="genel",
+            });
+
+          
         }
     }
 }

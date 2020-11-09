@@ -1,12 +1,14 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Newtonsoft.Json;
 using Stnc.CMS.Business.Interfaces;
 using Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Repositories;
 using Stnc.CMS.DataAccess.Interfaces;
 using Stnc.CMS.DataAccess.ShoppingCartLib;
 using Stnc.CMS.Entities.Concrete;
 using Stnc.CMS.Web.StringInfo;
+using System;
 using System.Collections.Generic;
 
 namespace Stnc.CMS.Web.Areas.Admin.Controllers
@@ -16,8 +18,17 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
         public int BaseId { get; set; }
         public int IstenenHayvanSayisi { get; set; }
         public int DestekIstenenHayvanSayisi { get; set; }
-        public bool OtenaziIstek { get; set; }
+        public int BakimDestegiGunSayisi { get; set; }
+        public int OtenaziIstek { get; set; }
         public string destekTalepTurLeri { get; set; }
+    }
+
+
+    public class DestekTalepTurleriJson
+    {
+        public int ID { get; set; }
+        public string Name { get; set; }
+        public decimal Price { get; set; }
     }
 
     [Authorize(Roles = RoleInfo.Admin)]
@@ -63,9 +74,21 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
         //  public IActionResult Add(int id, [FromQuery] string catID)
         public JsonResult Add(PostToCart cartData)
         {
-            decimal? amount;
-            decimal? destekTalepTurLeriToplamFiyat;
-
+            decimal destekTalepTurLeriToplamFiyat;
+            decimal fiyatToplami;
+            decimal otenaziUcretToplami;
+            string[] destektalepturleris;
+            string destektalepturleriStr=null;
+            string JsonOutput = null;
+            decimal hayvanSayisiFiyati;
+            decimal bakimDestegiGunlukUcretToplami;
+            decimal destekIstenenUcretToplami;
+            destekTalepTurLeriToplamFiyat = 0;
+            hayvanSayisiFiyati = 0;
+            bakimDestegiGunlukUcretToplami = 0;
+            destekIstenenUcretToplami = 0;
+            fiyatToplami = 0;
+            otenaziUcretToplami = 0;
             if (cartData.BaseId == null)
             {
                 List<SelectListItem> sonuc = new List<SelectListItem>();
@@ -80,51 +103,69 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
 
             // var cart = _shopService.GetById(employeeData.BaseId);
 
-            var obj = _deneyHayvaniIrkFiyatService.GetDeneyHayvaniIrkFiyatID(cartData.BaseId);
+            var hayvanFiyatlari = _deneyHayvaniIrkFiyatService.GetDeneyHayvaniIrkFiyatID(cartData.BaseId);
 
-            // FirstName = HttpContext.Request.Form["BaseId"],
-            
+            DestekTalepTurleriJson destekjson = new DestekTalepTurleriJson();
+
+            // destekjson = new DestekTalepTurleriJson() { ID=0,Name="",Price=1 };
+     
             if (cartData.destekTalepTurLeri != null)
             {
-               string[] destekTalepTurLeriIds = cartData.destekTalepTurLeri.Split(',');
-            }
-
-            // TODO: fiyat hesaplama alanında  yapılacak 
-            var returndata= this._dekamProjeTeknikDestekTalepTur_Repo.GetirIdile(5);
-            amount= returndata.Price;
-
-            //foreach (var destekTalepTurID in destekTalepTurLeriIds)
-            //{
-            //    destekTalepTurLeriToplamFiyat += 
-            //}
-
-
-
-
-            //       destekTalepTurLeriToplamFiyat += amount;
-
-
-
-
-            /*
-            if (obj != null)
-            {
-                _shopService.SaveReturn(new StShoppingCartItem
+                //destekTalepTurLeriIds = cartData.destekTalepTurLeri.Split(',');
+                 destektalepturleris = cartData.destekTalepTurLeri.Split(',');
+                 JsonOutput = JsonConvert.SerializeObject(destekjson);
+                foreach (string part in destektalepturleris)
                 {
-                    HayvaniIrkFiyatID = cartData.BaseId,
-                    BakimDestegiGunSayisi=cartData.DestekIstenenHayvanSayisi,
-                    IstenenHayvanSayisi = cartData.IstenenHayvanSayisi,
-                    Otenazi = cartData.OtenaziIstek,
-                    DestekTalepTurleriJson = cartData.destekTalepTurLeri,
+                    //Console.WriteLine(part);
+                    var returndata = this._dekamProjeTeknikDestekTalepTur_Repo.GetirIdile(int.Parse(part));
+                    
+                    destektalepturleriStr += part;
 
-                });
+                    destekTalepTurLeriToplamFiyat += returndata.Price;
+
+                    destekjson.ID = returndata.Id;
+
+                    destekjson.Name = returndata.Name;
+
+                    destekjson.Price = returndata.Price;
+                }
             }
-            */
 
 
-            return Json(obj);
 
-            //return Index(isValidAmount, returnUrl);
+             hayvanSayisiFiyati = hayvanFiyatlari.Fiyat * cartData.IstenenHayvanSayisi;
+
+             bakimDestegiGunlukUcretToplami = cartData.BakimDestegiGunSayisi * hayvanFiyatlari.GunlukBakimUcreti;
+
+             destekIstenenUcretToplami = bakimDestegiGunlukUcretToplami * cartData.DestekIstenenHayvanSayisi;
+
+            if (cartData.OtenaziIstek==1)
+            {
+                 otenaziUcretToplami = hayvanFiyatlari.OtenaziUcret * cartData.IstenenHayvanSayisi;
+            }
+
+            fiyatToplami = hayvanSayisiFiyati +  destekIstenenUcretToplami + otenaziUcretToplami + destekTalepTurLeriToplamFiyat;
+
+            if (hayvanFiyatlari != null)
+            {
+                /* 
+                  _shopService.SaveReturn(new StShoppingCartItem
+                 {
+                     HayvaniIrkFiyatID = cartData.BaseId,
+                     BakimDestegiGunSayisi=cartData.DestekIstenenHayvanSayisi,
+                     IstenenHayvanSayisi = cartData.IstenenHayvanSayisi,
+                     Otenazi = cartData.OtenaziIstek,
+                     DestekTalepTurleri = destektalepturleriStr,
+                     DestekTalepTurleriJson = JsonOutput,
+
+                 });
+                */
+            }
+
+
+
+            return Json(new { fiyatToplami= fiyatToplami });
+
         }
 
         public IActionResult Remove(int foodId)

@@ -20,8 +20,8 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Mapping
             {
                 Id = 1,
                 OptionName = "front-menu",
-                OptionValue = "",
-            }); ;
+                OptionValue = "[{\"text\":\"Home\",\"href\":\"http://home.com\",\"icon\":\"fas fa-home\",\"target\":\"_top\",\"title\":\"My Home\"}]",
+            }); 
         }
     }
 }

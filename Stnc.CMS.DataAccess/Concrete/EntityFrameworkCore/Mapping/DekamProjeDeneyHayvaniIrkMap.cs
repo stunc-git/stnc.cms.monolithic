@@ -11,6 +11,17 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Mapping
             builder.HasKey(I => I.Id);
             builder.Property(I => I.Id).UseIdentityColumn();
             builder.Property(I => I.Name).HasMaxLength(500).IsRequired();
+
+
+            builder.HasData(new DekamProjeDeneyHayvaniIrk
+            {
+                Id = 1,
+                Name = "fare (Balb-C)",
+                DeneyHayvaniTurID=1, 
+           
+            });
+
+
         }
     }
 }
