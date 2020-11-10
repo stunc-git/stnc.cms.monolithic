@@ -161,7 +161,7 @@
 
                                             <div class="card-body">
                                                 <div class="table-responsive">
-                                                    <table class="table table-bordered table-striped">
+                                                    <table class="table table-bordered table-striped-">
                                                         <thead>
                                                             <tr>
                                                                 <th>Hayvan Adı</th>
@@ -182,12 +182,12 @@
                                                                 <td>{{irkAdi}}</td>
                                                                 <td>{{isim}}</td>
                                                                 <td>{{fiyat}} ₺</td>
-                                                                <td> <input type="text" name="IstenenHayvanSayisi"  class="IstenenHayvanSayisi"  style="width:60px" /> </td>
-                                                                <td> <input type="text" name="DestekIstenenHayvanSayisi" class="DestekIstenenHayvanSayisi" style="width:60px" /></td>
-                                                                <td> <input type="text" name="BakimDestegiGunSayisi" class="BakimDestegiGunSayisi" style="width:60px" /> </td>
-                                                                <td> <input type="checkbox" style="width:60px" name="OtenaziIstek" class="OtenaziIstek" /></td>
-                                                                <td> </td>
-                                                                <td style="border:none">   </td>
+                                                                <td> <input type="text" name="IstenenHayvanSayisi"  class="IstenenHayvanSayisi"  style="width:80px" /> </td>
+                                                                <td> <input type="text"  name="DestekIstenenHayvanSayisi" class="DestekIstenenHayvanSayisi" style="width:80px" /></td>
+                                                                <td> <input type="text" name="BakimDestegiGunSayisi" class="BakimDestegiGunSayisi" style="width:80px" /> </td>
+                                                                <td> <input type="checkbox" style="width:80px" name="OtenaziIstek" class="OtenaziIstek" /></td>
+                                                                <td style="border-bottom:none"> <span  class="totalPrice"></span> </td>
+                                                                <td style="border-bottom:none">   </td>
 
                                                             </tr>
 
@@ -199,21 +199,21 @@
                                                                 <td>  </td>
                                                                 <td> Günlük Bakım ücret  {{gunlukBakimUcreti}} ₺ * Gün Sayısı  </td>
                                                                 <td>Ötenazi Ücreti {{otenaziUcret}} ₺ </td>
-                                                                <td></td>
-                                                                <td style="border:none"> <a href="#" data-val="{{id}}" class="add-to-cart btn btn-primary"> Hesapla </a>  </td>
+                                                                <td style="border-top:none"></td>
+                                                                <td style="border-top:none"> <a href="#" data-val="{{id}}" data-type="hesapla" class="add-to-cart btn btn-primary"> Hesapla </a>  </td>
 
                                                             </tr>
 
 
-                                                            <tr id="CartDestekTalep-{{id}}">
+                                                            <tr id="CartDestekTalep-{{id}}" style="border-bottom: 5px solid burlywood">
                                                                 <td colspan="8">
                                                                     <strong> Destek Talep Türü Seçenekleri </strong>
                                                                     <div class="row teknikDestekTalepTurleri">
                                                                     </div>
                                                                 </td>
-                                                                <td style="border-top:none">
 
-                                                                    <a href="#" data-val="{{id}}" class="add-to-cart btn btn-success"> Sepete Ekle </a>
+                                                                <td style="border-top:none">
+                                                                    <a href="#" data-val="{{id}}"  data-type="ekle" class="add-to-cart btn btn-success"> Sepete Ekle </a>
                                                                 </td>
                                                             </tr>
 
@@ -770,7 +770,7 @@
                     console.log(e);
                 },
                 complete: function () {
-
+                    
                 },
             });
         });
@@ -803,22 +803,40 @@
 
         });
 
+
+
+     //   $('input.DestekIstenenHayvanSayisi').on('input', function (e) { });
+
+
         $(document).on("click", ".add-to-cart", function () {
             event.preventDefault();
       
             $baseID = $(this).data("val");
+            ReturnType = $(this).data("type");
             // alert($baseID);
             var destekTalepTurLeri = [];
             $("#CartDestekTalep-" + $baseID + " .destekTalepTur").each(function () {             
                 if ($(this).is(':checked')) {
-                  //  alert($(this).val())
                     destekTalepTurLeri.push($(this).val());
                 }
             });
 
-
             IstenenHayvanSayisi = $("#CartAddData-" + $baseID + " .IstenenHayvanSayisi").val();
             DestekIstenenHayvanSayisi = $("#CartAddData-" + $baseID + " .DestekIstenenHayvanSayisi").val();
+
+            console.log("istenene hayvan" + IstenenHayvanSayisi)
+
+            console.log("destek hayvan" + DestekIstenenHayvanSayisi)
+          
+            /*
+            if (DestekIstenenHayvanSayisi > IstenenHayvanSayisi) {
+                alert("Destek istenen Hayvan Sayısı adeti İstenen Hayvan Sayısı adetinden büyük olamaz");
+                $("#CartAddData-" + $baseID + " .DestekIstenenHayvanSayisi").addClass("form-control is-invalid");
+                return 
+            }
+            */
+
+
             BakimDestegiGunSayisi = $("#CartAddData-" + $baseID + " .BakimDestegiGunSayisi").val();
           
             otenaziIstek = 0;
@@ -832,25 +850,21 @@
                 IstenenHayvanSayisi: IstenenHayvanSayisi,
                 DestekIstenenHayvanSayisi: DestekIstenenHayvanSayisi,
                 BakimDestegiGunSayisi: BakimDestegiGunSayisi,
+                ReturnType: ReturnType,
                 OtenaziIstek: otenaziIstek,
                 destekTalepTurLeri: destekTalepTurLeri.join(),
             };
-          //  console.log(destekTalepTurLeri.join())
 
             $.ajax({
                 url: '/ShoppingCart/Add',
                 type: "POST",
                 //contentType: "application/json; charset=utf-8",
                 //dataType: "json",
-
-                //beforeSend: function (xhr) {
-                //    xhr.setRequestHeader("XSRF-TOKEN",
-                //        $('input:hidden[name="__RequestVerificationToken"]').val());
-                //},
                 data:dataobj,  
-
                 success: function (result) {
-                  console.log(result)
+                    console.log(result)
+                    $("#CartAddData-" + $baseID + " .totalPrice").html("Toplam Ücret: " + result.fiyatToplam +" ₺");
+
                 }
             });
 

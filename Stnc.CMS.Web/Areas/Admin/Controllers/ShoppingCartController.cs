@@ -8,7 +8,6 @@ using Stnc.CMS.DataAccess.Interfaces;
 using Stnc.CMS.DataAccess.ShoppingCartLib;
 using Stnc.CMS.Entities.Concrete;
 using Stnc.CMS.Web.StringInfo;
-using System;
 using System.Collections.Generic;
 
 namespace Stnc.CMS.Web.Areas.Admin.Controllers
@@ -21,8 +20,8 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
         public int BakimDestegiGunSayisi { get; set; }
         public int OtenaziIstek { get; set; }
         public string destekTalepTurLeri { get; set; }
+        public string ReturnType { get; set; }
     }
-
 
     public class DestekTalepTurleriJson
     {
@@ -39,6 +38,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
         private readonly IShopDal _shopService;
         private readonly IDeneyHayvaniIrkFiyatService _deneyHayvaniIrkFiyatService;
         private readonly EfGenericRepository<DekamProjeTeknikDestekTalepTur> _dekamProjeTeknikDestekTalepTur_Repo;
+
         public ShoppingCartController(ShoppingCart shoppingCart, IShopDal shopService, IDeneyHayvaniIrkFiyatService deneyHayvaniIrkFiyatService)
         {
             _deneyHayvaniIrkFiyatService = deneyHayvaniIrkFiyatService;
@@ -78,7 +78,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
             decimal fiyatToplami;
             decimal otenaziUcretToplami;
             string[] destektalepturleris;
-            string destektalepturleriStr=null;
+            string destektalepturleriStr = null;
             string JsonOutput = null;
             decimal hayvanSayisiFiyati;
             decimal bakimDestegiGunlukUcretToplami;
@@ -105,67 +105,78 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
 
             var hayvanFiyatlari = _deneyHayvaniIrkFiyatService.GetDeneyHayvaniIrkFiyatID(cartData.BaseId);
 
-            DestekTalepTurleriJson destekjson = new DestekTalepTurleriJson();
+            // DestekTalepTurleriJson destekjson = new DestekTalepTurleriJson();
 
+            List<DestekTalepTurleriJson> destekjson = new List<DestekTalepTurleriJson>(2);
+
+            //   destekjson.ID = returndata.Id;
             // destekjson = new DestekTalepTurleriJson() { ID=0,Name="",Price=1 };
-     
+
             if (cartData.destekTalepTurLeri != null)
             {
                 //destekTalepTurLeriIds = cartData.destekTalepTurLeri.Split(',');
-                 destektalepturleris = cartData.destekTalepTurLeri.Split(',');
-                 JsonOutput = JsonConvert.SerializeObject(destekjson);
+                destektalepturleris = cartData.destekTalepTurLeri.Split(',');
+
                 foreach (string part in destektalepturleris)
                 {
                     //Console.WriteLine(part);
                     var returndata = this._dekamProjeTeknikDestekTalepTur_Repo.GetirIdile(int.Parse(part));
-                    
-                    destektalepturleriStr += part;
+
+                    destektalepturleriStr += part + ',';
 
                     destekTalepTurLeriToplamFiyat += returndata.Price;
 
-                    destekjson.ID = returndata.Id;
-
-                    destekjson.Name = returndata.Name;
-
-                    destekjson.Price = returndata.Price;
+                    destekjson.Add(new DestekTalepTurleriJson()
+                    {
+                        ID = returndata.Id,
+                        Name = returndata.Name,
+                        Price = returndata.Price,
+                    });
                 }
             }
 
+            JsonOutput = JsonConvert.SerializeObject(destekjson);
 
+            hayvanSayisiFiyati = hayvanFiyatlari.Fiyat * cartData.IstenenHayvanSayisi;
 
-             hayvanSayisiFiyati = hayvanFiyatlari.Fiyat * cartData.IstenenHayvanSayisi;
+            bakimDestegiGunlukUcretToplami = cartData.BakimDestegiGunSayisi * hayvanFiyatlari.GunlukBakimUcreti;
 
-             bakimDestegiGunlukUcretToplami = cartData.BakimDestegiGunSayisi * hayvanFiyatlari.GunlukBakimUcreti;
+            destekIstenenUcretToplami = bakimDestegiGunlukUcretToplami * cartData.DestekIstenenHayvanSayisi;
 
-             destekIstenenUcretToplami = bakimDestegiGunlukUcretToplami * cartData.DestekIstenenHayvanSayisi;
-
-            if (cartData.OtenaziIstek==1)
+            if (cartData.OtenaziIstek == 1)
             {
-                 otenaziUcretToplami = hayvanFiyatlari.OtenaziUcret * cartData.IstenenHayvanSayisi;
+                otenaziUcretToplami = hayvanFiyatlari.OtenaziUcret * cartData.IstenenHayvanSayisi;
             }
 
-            fiyatToplami = hayvanSayisiFiyati +  destekIstenenUcretToplami + otenaziUcretToplami + destekTalepTurLeriToplamFiyat;
-
-            if (hayvanFiyatlari != null)
+            fiyatToplami = hayvanSayisiFiyati + destekIstenenUcretToplami + otenaziUcretToplami + destekTalepTurLeriToplamFiyat;
+            if (cartData.ReturnType == "ekle")
             {
-                /* 
-                  _shopService.SaveReturn(new StShoppingCartItem
-                 {
-                     HayvaniIrkFiyatID = cartData.BaseId,
-                     BakimDestegiGunSayisi=cartData.DestekIstenenHayvanSayisi,
-                     IstenenHayvanSayisi = cartData.IstenenHayvanSayisi,
-                     Otenazi = cartData.OtenaziIstek,
-                     DestekTalepTurleri = destektalepturleriStr,
-                     DestekTalepTurleriJson = JsonOutput,
-
-                 });
-                */
+                if (hayvanFiyatlari != null)
+                {
+                    _shopService.SaveReturn(new StShoppingCartItem
+                    {
+                        HayvaniIrkFiyatID = hayvanFiyatlari.Id,
+                        HayvanIrkAdi = hayvanFiyatlari.IrkAdi,
+                        HayvanAdi = hayvanFiyatlari.Isim,
+                        HayvanIrkFiyatTipAdi = hayvanFiyatlari.TurAdi,
+                        IstenenHayvanSayisi = cartData.IstenenHayvanSayisi,
+                        BakimDestegiGunSayisi = cartData.BakimDestegiGunSayisi,
+                        DestekIstenenHayvanSayisi = cartData.DestekIstenenHayvanSayisi,
+                        Otenazi = cartData.OtenaziIstek,
+                        OtenaziUcreti = hayvanFiyatlari.OtenaziUcret,
+                        HayvanFiyati = hayvanFiyatlari.Fiyat,
+                        GunlukBakimUcreti = hayvanFiyatlari.GunlukBakimUcreti,
+                        DestekTalepTurleri = destektalepturleriStr,
+                        DestekTalepTurleriJson = JsonOutput,
+                        ToplamFiyat = fiyatToplami,
+                    });
+                }
+                return Json(new { status = "ok", sepetDegerleri = fiyatToplami, fiyatToplam = fiyatToplami });
             }
-
-
-
-            return Json(new { fiyatToplami= fiyatToplami });
-
+            else
+            {
+                return Json(new { status = "ok", fiyatToplam = fiyatToplami });
+            }
         }
 
         public IActionResult Remove(int foodId)

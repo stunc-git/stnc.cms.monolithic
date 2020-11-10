@@ -39,7 +39,9 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Repositories
 
         public StShoppingCartItem SaveReturn(StShoppingCartItem tablo)
         {
-            throw new NotImplementedException();
+            _context.Set<StShoppingCartItem>().Add(tablo);
+            _context.SaveChanges();
+            return tablo;
         }
 
         public void Update(StShoppingCartItem tablo)
