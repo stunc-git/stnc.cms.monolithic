@@ -26,7 +26,6 @@ namespace Stnc.CMS.Entities.Concrete
         public int? AppUserId { get; set; }
         public AppUser AppUser { get; set; }
 
-        public List<DekamProjeDeneyHayvaniIrkFiyat> DekamProjeDeneyHayvaniIrkFiyat { get; set; }
 
     }
 }

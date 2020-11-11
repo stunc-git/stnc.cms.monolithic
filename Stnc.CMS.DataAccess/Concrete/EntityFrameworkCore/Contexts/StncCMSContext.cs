@@ -45,9 +45,11 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts
             modelBuilder.ApplyConfiguration(new OptionsMap());
             modelBuilder.ApplyConfiguration(new StShoppingCartItemMap());
             modelBuilder.ApplyConfiguration(new DekamProjeDeneyHayvaniIrkFiyatMap());
-
+            /*
             modelBuilder.Entity<StShoppingCartItem>()
                 .HasOne(sci => sci.Cart);
+            */
+
 
             //     modelBuilder.Entity<City>()
             //    .HasOne(e => e.CityInformation)

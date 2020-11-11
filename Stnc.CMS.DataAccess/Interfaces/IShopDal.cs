@@ -22,13 +22,13 @@ namespace Stnc.CMS.DataAccess.Interfaces
         void Delete(StShoppingCartItem tablo);
 
         void Update(StShoppingCartItem tablo);
-
+                    
         StShoppingCartItem GetById(int id);
 
         StShoppingCartItem SaveReturn(StShoppingCartItem tablo);
 
         List<StShoppingCartItem> GetAll();
 
-
+        List<StShoppingCartItem> GetCartUserIdList(int userID);
     }
 }

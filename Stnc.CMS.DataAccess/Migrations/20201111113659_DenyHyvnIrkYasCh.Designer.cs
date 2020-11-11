@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts;
 
 namespace Stnc.CMS.DataAccess.Migrations
 {
     [DbContext(typeof(StncCMSContext))]
-    partial class StncCMSContextModelSnapshot : ModelSnapshot
+    [Migration("20201111113659_DenyHyvnIrkYasCh")]
+    partial class DenyHyvnIrkYasCh
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -469,10 +471,10 @@ namespace Stnc.CMS.DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2020, 11, 11, 16, 43, 48, 840, DateTimeKind.Local).AddTicks(5385),
+                            CreatedAt = new DateTime(2020, 11, 11, 14, 36, 58, 348, DateTimeKind.Local).AddTicks(3879),
                             DeneyHayvaniTurID = 1,
                             Name = "fare (Balb-C)",
-                            UpdatedAt = new DateTime(2020, 11, 11, 16, 43, 48, 840, DateTimeKind.Local).AddTicks(5402)
+                            UpdatedAt = new DateTime(2020, 11, 11, 14, 36, 58, 348, DateTimeKind.Local).AddTicks(3893)
                         });
                 });
 
@@ -523,11 +525,11 @@ namespace Stnc.CMS.DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2020, 11, 11, 16, 43, 48, 845, DateTimeKind.Local).AddTicks(2694),
+                            CreatedAt = new DateTime(2020, 11, 11, 14, 36, 58, 353, DateTimeKind.Local).AddTicks(1136),
                             DekamProjeDeneyHayvaniIrkId = 1,
                             DekamProjeDeneyHayvaniTurId = 1,
                             Fiyat = 5m,
-                            UpdatedAt = new DateTime(2020, 11, 11, 16, 43, 48, 845, DateTimeKind.Local).AddTicks(2706),
+                            UpdatedAt = new DateTime(2020, 11, 11, 14, 36, 58, 353, DateTimeKind.Local).AddTicks(1148),
                             YasBilgisi = "8 Haftalık Yaşa Kadar"
                         });
                 });
@@ -577,11 +579,11 @@ namespace Stnc.CMS.DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2020, 11, 11, 16, 43, 48, 839, DateTimeKind.Local).AddTicks(5498),
+                            CreatedAt = new DateTime(2020, 11, 11, 14, 36, 58, 347, DateTimeKind.Local).AddTicks(4023),
                             GunlukBakimUcret = 10m,
                             Name = "Fare",
                             OtenaziUcret = 1m,
-                            UpdatedAt = new DateTime(2020, 11, 11, 16, 43, 48, 839, DateTimeKind.Local).AddTicks(5515)
+                            UpdatedAt = new DateTime(2020, 11, 11, 14, 36, 58, 347, DateTimeKind.Local).AddTicks(4040)
                         });
                 });
 
@@ -621,9 +623,9 @@ namespace Stnc.CMS.DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2020, 11, 11, 16, 43, 48, 841, DateTimeKind.Local).AddTicks(6995),
+                            CreatedAt = new DateTime(2020, 11, 11, 14, 36, 58, 349, DateTimeKind.Local).AddTicks(2742),
                             Name = "Ernam",
-                            UpdatedAt = new DateTime(2020, 11, 11, 16, 43, 48, 841, DateTimeKind.Local).AddTicks(7007)
+                            UpdatedAt = new DateTime(2020, 11, 11, 14, 36, 58, 349, DateTimeKind.Local).AddTicks(2753)
                         });
                 });
 
@@ -984,14 +986,14 @@ namespace Stnc.CMS.DataAccess.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 1560730076,
+                            Id = 1484073263,
                             Caption = "Lorem ipsum laramde loremde ipsumda inmpala",
-                            CreatedAt = new DateTime(2020, 11, 11, 16, 43, 48, 834, DateTimeKind.Local).AddTicks(182),
+                            CreatedAt = new DateTime(2020, 11, 11, 14, 36, 58, 341, DateTimeKind.Local).AddTicks(8446),
                             Excerpt = "exceprt data loremmmmmm ipsummmmm",
                             MenuOrder = 1,
                             Picture = "default.jpg",
                             Status = true,
-                            UpdatedAt = new DateTime(2020, 11, 11, 16, 43, 48, 834, DateTimeKind.Local).AddTicks(2966),
+                            UpdatedAt = new DateTime(2020, 11, 11, 14, 36, 58, 342, DateTimeKind.Local).AddTicks(1302),
                             UrlAddress = "",
                             UrlType = (short)0
                         });
@@ -1006,10 +1008,10 @@ namespace Stnc.CMS.DataAccess.Migrations
                         .HasAnnotation("SqlServer:IdentitySeed", 1)
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("AppUserId")
+                    b.Property<int>("BakimDestegiGunSayisi")
                         .HasColumnType("int");
 
-                    b.Property<int>("BakimDestegiGunSayisi")
+                    b.Property<int?>("CartId")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("CreatedAt")
@@ -1075,7 +1077,7 @@ namespace Stnc.CMS.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AppUserId");
+                    b.HasIndex("CartId");
 
                     b.ToTable("StShoppingCartItem");
                 });
@@ -1272,9 +1274,9 @@ namespace Stnc.CMS.DataAccess.Migrations
 
             modelBuilder.Entity("Stnc.CMS.Entities.Concrete.StShoppingCartItem", b =>
                 {
-                    b.HasOne("Stnc.CMS.Entities.Concrete.AppUser", "AppUser")
-                        .WithMany("StShoppingCartItem")
-                        .HasForeignKey("AppUserId");
+                    b.HasOne("Stnc.CMS.Entities.Concrete.DekamProjeDeneyHayvaniIrkFiyat", "Cart")
+                        .WithMany()
+                        .HasForeignKey("CartId");
                 });
 #pragma warning restore 612, 618
         }

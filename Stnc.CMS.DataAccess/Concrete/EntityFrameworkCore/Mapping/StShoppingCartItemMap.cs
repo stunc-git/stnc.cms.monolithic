@@ -15,6 +15,8 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Mapping
             builder.Property(I => I.OtenaziUcreti).HasColumnType("decimal(6,2)");
             builder.Property(I => I.HayvanFiyati).HasColumnType("decimal(6,2)");
             builder.Property(I => I.GunlukBakimUcreti).HasColumnType("decimal(6,2)");
+            builder.Property(I => I.OtenaziToplamUcreti).HasColumnType("decimal(6,2)");
+            builder.Property(I => I.HayvanAgirlik).HasColumnType("tinyint");
             builder.Property(I => I.DestekTalepTurleri).HasMaxLength(255);
         }
     }

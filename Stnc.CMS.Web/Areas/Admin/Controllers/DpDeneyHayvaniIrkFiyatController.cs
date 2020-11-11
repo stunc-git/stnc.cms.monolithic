@@ -76,7 +76,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
             {
                 _deneyHayvaniIrkFiyatService.Kaydet(new DekamProjeDeneyHayvaniIrkFiyat
                 {
-                    Isım = model.Isım,
+                    YasBilgisi = model.YasBilgisi,
                     Fiyat = model.Fiyat,
                     AppUserId = user.Id,
                     DekamProjeDeneyHayvaniIrkId = model.DeneyHayvaniIrkID,
@@ -122,7 +122,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
                 Myrepo.Guncelle(new DekamProjeDeneyHayvaniIrkFiyat
                 {
                     Id = model.Id,
-                    Isım = model.Isım,
+                    YasBilgisi = model.YasBilgisi,
                     Fiyat = model.Fiyat,
                     AppUserId = user.Id,
                     DekamProjeDeneyHayvaniTurId = model.DekamProjeDeneyHayvaniTurId,

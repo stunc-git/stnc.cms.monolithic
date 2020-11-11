@@ -8,61 +8,6 @@
 @*https://codepen.io/ChamaraHarindra/full/GNEyqo/*@
 
 <style>
-    .step-app > .step-steps > li.done {
-        background-color: #427bb7 !important;
-        padding: 15px;
-    }
-
-    .st-title {
-        display: flex;
-        justify-content: space-between;
-        position: relative;
-    }
-
-        .st-title .step-icon {
-            position: relative;
-            outline: none;
-            width: 35px;
-            line-height: 100%;
-            height: 35px;
-            padding: 10px 0 0 0;
-            background: #ffffff;
-            margin: auto;
-            margin-bottom: auto;
-            border-radius: 50%;
-            font-weight: bold;
-            font-size: 16px;
-            color: #555;
-            margin-bottom: 10px;
-            text-align: center;
-        }
-
-        .st-title .step-text {
-            margin-top: 10px;
-        }
-
-            .st-title .step-text span {
-                color: #fff;
-                float: left;
-                display: block;
-                width: 100%;
-                text-align: center;
-            }
-
-            .st-title .step-text .step-inner-1 {
-                font-size: 16px;
-                font-weight: 600;
-            }
-
-            .st-title .step-text .step-inner-2 {
-                font-size: 14px;
-                font-style: italic;
-                color: rgba(255, 255, 255, 0.7);
-            }
-
-        .st-title .title::after, .st-title .title::after {
-            border-left: 45px solid #33a7d7;
-        }
 </style>
 
 <div class="container-fluid">
@@ -78,25 +23,42 @@
 
                 <div class="card-body">
 
-                    <div class="step-app" id="demo">
+                    <div class="step-app" id="StepStepCart">
                         <ul class="step-steps">
                             <li data-step-target="step1">
                                 <div class="st-title">
                                     <p class="step-icon"><span>1</span></p>
                                     <div class="step-text">
-                                        <span class="step-inner-1">Account Setup</span>
-                                        <span class="step-inner-2">Account Details</span>
+                                        <span class="step-inner-1">ADIM 1 </span>
+                                        <span class="step-inner-2">Satın alınacak deney hayvanı seçimi</span>
                                     </div>
                                 </div>
                             </li>
-                            <li data-step-target="step2">Step 2</li>
-                            <li data-step-target="step3">Step 3</li>
-                            <li data-step-target="step4">Step 4</li>
-                            <li data-step-target="step5">Step 5</li>
+                            <li data-step-target="step2">
+                                <div class="st-title">
+                                    <p class="step-icon"><span>2</span></p>
+                                    <div class="step-text">
+                                        <span class="step-inner-1">ADIM 2 </span>
+                                        <span class="step-inner-2">Proje Yöneticisi / Sorumlu Araştırmacı  Seçimi</span>
+                                    </div>
+                                </div>
+
+                            </li>
+                            <li data-step-target="step3">
+                                <div class="st-title">
+                                    <p class="step-icon"><span>3</span></p>
+                                    <div class="step-text">
+                                        <span class="step-inner-1">ADIM 3 </span>
+                                        <span class="step-inner-2">Etik Kurul / Proje Tarihi / Laboratuvar Seçimi </span>
+                                    </div>
+                                </div>
+
+                            </li>
+         
                         </ul>
                         <div class="step-content">
                             <div class="step-tab-panel" data-step="step1">
-
+                                <h3>Adım 1 </h3>
                                 <div class="row">
                                     <div class="col-md-2">
                                         <div class="card card-info">
@@ -110,9 +72,9 @@
                                             <div class="card-body">
                                                 <div class="form-group">
                                                     <label>Hayvan Irkını Seçiniz:</label>
-                                                    <select class="form-control" size="10" asp-for="DeneyHayvaniTurID" asp-items="ViewBag.DeneyHayvaniTurCategories">
+                                                    <select class="form-control DeneyHavyanIrklari" size="10" asp-items="ViewBag.DeneyHayvaniTurCategories">
                                                     </select>
-                                                    <span asp-validation-for="@Model.DeneyHayvaniTurID" class="text-danger"></span>
+                                                    <span class="text-danger"></span>
                                                 </div>
                                             </div>
 
@@ -122,34 +84,6 @@
 
                                     <div class="col-md-10">
 
-                                        <div class="row">
-
-                                            <div class="col-md-6">
-                                                <div class="card card-outline card-danger">
-                                                    <div class="card-header">
-                                                        <h3 class="card-title">Bilgi</h3>
-                                                    </div>
-                                                    <div class="card-body">
-                                                        <strong>  Ötenazi Ücreti - Bir kere istenen bir ücrettir  :</strong> {{otenaziUcreti}} [ ₺] <br>
-                                                    </div>
-                                                    <!-- /.card-body -->
-                                                </div>
-                                                <!-- /.card -->
-                                            </div>
-
-                                            <div class="col-md-6">
-                                                <div class="card card-outline card-danger">
-                                                    <div class="card-header">
-                                                        <h3 class="card-title">Bilgi</h3>
-                                                    </div>
-                                                    <div class="card-body">
-                                                        <strong>   	Günlük Destek Ücreti  Destek istenen gün sayısı ile çarpılır  :</strong> {{destekUcreti}} ₺  <br>
-                                                    </div>
-                                                    <!-- /.card-body -->
-                                                </div>
-                                                <!-- /.card -->
-                                            </div>
-                                        </div>
 
                                         <div class="card card-info">
                                             <div class="card-header">
@@ -161,59 +95,94 @@
 
                                             <div class="card-body">
                                                 <div class="table-responsive">
-                                                    <table class="table table-bordered table-striped-">
+                                                    <table class="table table-borderedXXXX table-stripedXXXX">
                                                         <thead>
                                                             <tr>
-                                                                <th>Hayvan Adı</th>
-                                                                <th>Tip</th>
+                                                                <th>Hayvan Türü / Yaşı </th>
                                                                 <th>Fiyat</th>
                                                                 <th>İstenen Hayvan Sayısı   </th>
                                                                 <th>Destek istenen Hayvan Sayısı</th>
                                                                 <th>Bakım Desteği Gün sayısı </th>
-                                                                <th>Ötenazi  </th>
-                                                                <th style="width: 40px">Genel Toplam</th>
-                                                                <th style="width: 40px">Sepet</th>
+                                                                <th>Ağırlık</th>
+                                                                <th>Cinsiyet  </th>
                                                             </tr>
                                                         </thead>
 
                                                         <script id="cartSelectItemsTpl" type="text/x-handlebars-template">
                                                             {{#each cartSelectItems}}
                                                             <tr id="CartAddData-{{id}}">
-                                                                <td>{{irkAdi}}</td>
-                                                                <td>{{isim}}</td>
+                                                                <td>{{turAdi}}</td>
                                                                 <td>{{fiyat}} ₺</td>
-                                                                <td> <input type="text" name="IstenenHayvanSayisi"  class="IstenenHayvanSayisi"  style="width:80px" /> </td>
-                                                                <td> <input type="text"  name="DestekIstenenHayvanSayisi" class="DestekIstenenHayvanSayisi" style="width:80px" /></td>
-                                                                <td> <input type="text" name="BakimDestegiGunSayisi" class="BakimDestegiGunSayisi" style="width:80px" /> </td>
-                                                                <td> <input type="checkbox" style="width:80px" name="OtenaziIstek" class="OtenaziIstek" /></td>
-                                                                <td style="border-bottom:none"> <span  class="totalPrice"></span> </td>
-                                                                <td style="border-bottom:none">   </td>
+                                                                <td> <input type="text" value="1" name="IstenenHayvanSayisi" class="IstenenHayvanSayisi" style="width:80px" /> </td>
+                                                                <td> <input type="text" value="0" name="DestekIstenenHayvanSayisi" class="DestekIstenenHayvanSayisi" style="width:80px" /></td>
+                                                                <td> <input type="text" value="0" name="BakimDestegiGunSayisi" class="BakimDestegiGunSayisi" style="width:80px" /> </td>
+                                                                <td> <input type="text" value="0" name="HayvanAgirlik" class="HayvanAgirlik" style="width:80px" /> </td>
+                                                                <td>
+                                                                    <div class="form-group">
+
+                                                                        <select class="form-control DeneyHayvaniCinsiyet" name="DeneyHayvaniCinsiyet">
+
+                                                                            <option value="1">Erkek</option>
+                                                                            <option value="0">Dişi</option>
+                                                                        </select>
+                                                                        <span class="text-danger field-validation-valid"></span>
+                                                                    </div>
+                                                                </td>
+                                                                <td>   </td>
 
                                                             </tr>
 
                                                             <tr>
+                                                                <td>{{yasBilgisi}}</td>
                                                                 <td></td>
                                                                 <td></td>
                                                                 <td></td>
-                                                                <td></td>
-                                                                <td>  </td>
-                                                                <td> Günlük Bakım ücret  {{gunlukBakimUcreti}} ₺ * Gün Sayısı  </td>
-                                                                <td>Ötenazi Ücreti {{otenaziUcret}} ₺ </td>
-                                                                <td style="border-top:none"></td>
-                                                                <td style="border-top:none"> <a href="#" data-val="{{id}}" data-type="hesapla" class="add-to-cart btn btn-primary"> Hesapla </a>  </td>
+                                                                <td>BİLGİ = Günlük Bakım ücret  {{gunlukBakimUcreti}} ₺ <span style="color:red">*</span> Gün Sayısı  </td>
+                                                                <td> </td>
+                                                                <td> </td>
 
                                                             </tr>
 
 
-                                                            <tr id="CartDestekTalep-{{id}}" style="border-bottom: 5px solid burlywood">
-                                                                <td colspan="8">
+                                                            <tr id="CartDestekTalep-{{id}}">
+                                                                <td colspan="7">
                                                                     <strong> Destek Talep Türü Seçenekleri </strong>
                                                                     <div class="row teknikDestekTalepTurleri">
                                                                     </div>
                                                                 </td>
 
-                                                                <td style="border-top:none">
-                                                                    <a href="#" data-val="{{id}}"  data-type="ekle" class="add-to-cart btn btn-success"> Sepete Ekle </a>
+                                                                <td>
+                                                                </td>
+                                                            </tr>
+
+                                                            <tr id="OtenaziIstek-{{id}}">
+                                                                <td colspan="7">
+                                                                    Ötenazi istiyor musunuz? <input type="checkbox" style="width:80px" name="OtenaziIstek" class="OtenaziIstek" /> /
+                                                                    Ücret {{otenaziUcret}} ₺ <span style="color:red">*</span>  Hayvan Sayisi
+                                                                </td>
+                                                            </tr>
+
+                                                            <tr id="CartTotal-{{id}}">
+                                                                <td colspan="7">
+                                                                    <span class="text-danger text-center totalPrice"> Toplam Fiyat: 0</span>
+                                                                </td>
+                                                            </tr>
+
+
+                                                            <tr style="border-bottom: 5px solid burlywood">
+                                                                <td colspan="7">
+                                                                    <div class="row">
+                                                                        <div class="col-md-6">
+                                                                            <a href="#" data-val="{{id}}" data-type="ekle" class="add-to-cart btn btn-success"> Sepete Ekle </a>
+                                                                        </div>
+
+                                                                        <div class="col-md-6 float-right">
+                                                                            <a href="#" data-val="{{id}}" data-type="hesapla" class="add-to-cart btn btn-primary"> Hesapla </a>
+                                                                        </div>
+
+                                                                    </div>
+
+
                                                                 </td>
                                                             </tr>
 
@@ -237,9 +206,11 @@
                                                             {{/each}}
                                                         </script>
 
+
+
                                                         <tbody id="cartSelectItems">
                                                             <tr>
-                                                                <td colspan="9">
+                                                                <td colspan="7">
                                                                     <span class="text-danger text-center">Lütfen Yandaki Alandan  Hayvan Irkı Seçimi Yapınız </span>
                                                                 </td>
                                                             </tr>
@@ -247,85 +218,234 @@
 
                                                     </table>
                                                 </div>
-                                                </div>
-
-                                                <!-- /.card-body -->
                                             </div>
+
+                                            <!-- /.card-body -->
+                                        </div>
                                     </div>
                                 </div>
 
-                                <div class="card card-info">
-                                    <div class="card-header">
-                                        <h3 class="card-title">Proje Yöneticisi</h3>
+
+                            </div>
+
+                            <div class="step-tab-panel" data-step="step2">
+                                <h3>Adım 2 </h3>
+                                <div class="row">
+                                    <div class="col-md-6 ">
+
+                                        <div class="card card-info">
+                                            <div class="card-header">
+                                                <h3 class="card-title">Proje Yöneticisi</h3>
+                                            </div>
+
+                                            <!-- /.card-header -->
+                                            <!-- form start -->
+
+                                            <div class="card-body">
+                                                <form name="ProjeYurutucusuForm" id="ProjeYurutucusuForm">
+                                                    <div class="form-group">
+                                                        <label asp-for="ProjeYurutucusu">Proje Yürütücüsü: * </label>
+                                                        <input asp-for="ProjeYurutucusu" type="text" required class="form-control" />
+                                                        <span asp-validation-for="ProjeYurutucusu" class="text-danger"></span>
+                                                        <p>Proje yürütücüsünün adı soyadı bilgisi</p>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label asp-for="ProjeYurutukurumu">Proje Yürütücüsünün Kurumu: * </label>
+                                                        <input asp-for="ProjeYurutukurumu" type="text" class="form-control" />
+                                                        <span asp-validation-for="ProjeYurutukurumu" class="text-danger"></span>
+                                                        <p>Proje yürütücüsünün bağlı olduğu kurum bilgisi</p>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label asp-for="ProjeYurutuTelefon">Proje Yürütücüsü Telefon No: * </label>
+                                                        <input asp-for="ProjeYurutuTelefon" type="text" class="form-control" />
+                                                        <span asp-validation-for="ProjeYurutuTelefon" class="text-danger"></span>
+                                                        <p>Proje yürütücüsünün telefon numarası </p>
+                                                    </div>
+                                                </form>
+                                            </div>
+
+                                            <!-- /.card-body -->
+                                        </div>
+
                                     </div>
 
-                                    <!-- /.card-header -->
-                                    <!-- form start -->
 
-                                    <div class="card-body">
-                                        <form name="veri" id="veri">
-                                            <div class="form-group">
-                                                <label asp-for="ProjeYurutucusu">Proje Yürütücüsü: * </label>
-                                                <input asp-for="ProjeYurutucusu" type="text" required class="form-control" />
-                                                <span asp-validation-for="ProjeYurutucusu" class="text-danger"></span>
-                                                <p>Proje yürütücüsünün adı soyadı bilgisi</p>
-                                            </div>
+                                    <div class="col-md-6">
+                                        <form name="SorumluArastirmaciForm" id="SorumluArastirmaciForm">
+                                            <div class="card card-info">
+                                                <div class="card-header">
+                                                    <h3 class="card-title">Sorumlu Araştırmacı</h3>
+                                                </div>
+                                                <!-- /.card-header -->
+                                                <!-- form start -->
+                                                <div class="card-body">
 
-                                            <div class="form-group">
-                                                <label asp-for="ProjeYurutukurumu">Proje Yürütücüsünün Kurumu: * </label>
-                                                <input asp-for="ProjeYurutukurumu" type="text" class="form-control" />
-                                                <span asp-validation-for="ProjeYurutukurumu" class="text-danger"></span>
-                                                <p>Proje yürütücüsünün bağlı olduğu kurum bilgisi</p>
-                                            </div>
+                                                    <div class="form-group">
+                                                        <label asp-for="SorumluArastirmaci">Sorumlu Araştırmacı: * </label>
+                                                        <input asp-for="SorumluArastirmaci" type="text" class="form-control" />
+                                                        <span asp-validation-for="SorumluArastirmaci" class="text-danger"></span>
+                                                        <p>Proje ile sorumlu olacak kişi bilgisi </p>
+                                                    </div>
 
-                                            <div class="form-group">
-                                                <label asp-for="ProjeYurutuTelefon">Proje Yürütücüsü Telefon No: * </label>
-                                                <input asp-for="ProjeYurutuTelefon" type="text" class="form-control" />
-                                                <span asp-validation-for="ProjeYurutuTelefon" class="text-danger"></span>
-                                                <p>Proje yürütücüsünün telefon numarası </p>
+                                                    <div class="form-group">
+                                                        <label asp-for="SorumluArastirmaciTelefon">Sorumlu Araştırmacı Telefon No: * </label>
+                                                        <input asp-for="SorumluArastirmaciTelefon" type="text" class="form-control" />
+                                                        <span asp-validation-for="SorumluArastirmaciTelefon" class="text-danger"></span>
+                                                        <p>Proje ile sorumlu olacak kişi telefon numarası </p>
+                                                    </div>
+                                                </div>
+                                                <!-- /.card-body -->
                                             </div>
                                         </form>
                                     </div>
 
-                                    <!-- /.card-body -->
+
                                 </div>
                             </div>
-
-                            <div class="step-tab-panel" data-step="step2">
-                                <h3>Tab2</h3>
-                                <form name="frmInfo" id="frmInfo">
-                                    First name:<br>
-                                    <input type="text" name="txtFirstName" required>
-                                    <br> Last name:<br>
-                                    <input type="text" name="txtLastName" required>
-                                </form>
-                            </div>
                             <div class="step-tab-panel" data-step="step3">
-                                <h3>Tab3</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus facere porro iste quas numquam officia totam facilis suscipit, expedita rem quod, fugiat quo, veniam voluptate ut autem quia qui amet necessitatibus perferendis dignissimos ipsa doloremque. Necessitatibus delectus voluptatem unde. Architecto animi unde nostrum tenetur, doloremque distinctio, porro officiis dicta similique omnis quos odit ducimus minima ea quas facilis quod. Natus adipisci consequuntur sapiente alias culpa fugit tenetur, doloribus? Magni ipsum dolor debitis beatae quo, dicta voluptas veritatis, quos. Iusto quisquam doloribus laboriosam esse, dicta, odio facilis eligendi explicabo sequi accusamus a iste minus alias. Nisi sed laborum, aut maiores beatae aliquam voluptatum est enim impedit delectus blanditiis, neque sint nemo deleniti a quaerat voluptatem harum! Laboriosam assumenda, ullam iure. Corrupti maxime perferendis facilis ipsum, eius excepturi commodi consectetur, velit nobis reiciendis, ipsam! Maiores possimus tempore vel doloremque in facilis qui quos molestias. Culpa eius magnam repellat, ad eaque. Possimus, voluptatem.</p>
+                                <h3>Adım 3</h3>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <form name="EtikKurulForm" id="EtikKurulForm">
+
+                                            <div class="card card-primary">
+                                                <div class="card-header">
+                                                    <h3 class="card-title">Etik Kurul </h3>
+                                                </div>
+                                                <!-- /.card-header -->
+                                                <!-- form start -->
+                                                <div class="card-body">
+
+                                                    <div class="form-group">
+                                                        <label asp-for="EtikKurulOnayNumarasi">Etik Kurul Onay Numarası: * </label>
+                                                        <input asp-for="EtikKurulOnayNumarasi" type="text" class="form-control" />
+                                                        <span asp-validation-for="EtikKurulOnayNumarasi" class="text-danger"></span>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label asp-for="EtikKurulOnayTarihi">Etik Kurul Onay Tarihi: * </label>
+
+                                                        <div class="input-group date" id="EtikKurulOnayTarihiDate" data-target-input="nearest">
+                                                            <input type="text" asp-for="EtikKurulOnayTarihi" class="form-control datetimepicker-input"
+                                                                   data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask data-target="#EtikKurulOnayTarihiDate">
+                                                            <div class="input-group-append" data-target="#EtikKurulOnayTarihiDate" data-toggle="datetimepicker">
+                                                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                                            </div>
+                                                        </div>
+                                                        <span asp-validation-for="EtikKurulOnayTarihi" class="text-danger"></span>
+                                                    </div>
+                                                </div>
+                                                <!-- /.card-body -->
+                                            </div>
+                                        </form>
+                                    </div>
+
+                                    <div class="col-md-4 ">
+                                        <form name="ProjeTarihleriForm" id="ProjeTarihleriForm">
+                                            <div class="card card-primary">
+                                                <div class="card-header">
+                                                    <h3 class="card-title">Proje Tarihleri </h3>
+                                                </div>
+                                                <!-- /.card-header -->
+                                                <!-- form start -->
+                                                <div class="card-body">
+                                                    <div class="form-group">
+                                                        <label asp-for="ProjeBaslangicTarihi">Proje Başlangıç  Tarihi: * </label>
+
+                                                        <div class="input-group date" id="ProjeBaslangicTarihiDate" data-target-input="nearest">
+                                                            <input type="text" asp-for="ProjeBaslangicTarihi" class="form-control datetimepicker-input"
+                                                                   data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask data-target="#ProjeBaslangicTarihiDate">
+                                                            <div class="input-group-append" data-target="#ProjeBaslangicTarihiDate" data-toggle="datetimepicker">
+                                                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                                            </div>
+                                                        </div>
+                                                        <span asp-validation-for="ProjeBaslangicTarihi" class="text-danger"></span>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label asp-for="ProjeBitisTarihi">Proje Bitiş  Tarihi: * </label>
+                                                        <div class="input-group date" id="ProjeBitisTarihiDate" data-target-input="nearest">
+                                                            <input type="text" asp-for="ProjeBitisTarihi" class="form-control datetimepicker-input"
+                                                                   data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask data-target="#ProjeBitisTarihiDate">
+                                                            <div class="input-group-append" data-target="#ProjeBitisTarihiDate" data-toggle="datetimepicker">
+                                                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                                            </div>
+                                                        </div>
+                                                        <span asp-validation-for="ProjeBitisTarihi" class="text-danger"></span>
+                                                    </div>
+                                                </div>
+                                                <!-- /.card-body -->
+                                            </div>
+                                        </form>
+                                    </div>
+
+                                    <div class="col-md-4 ">
+                                        <form name="LaboratuvarForm" id="LaboratuvarForm">
+                                            <div class="card card-primary">
+                                                <div class="card-header">
+                                                    <h3 class="card-title">Kullanılacak Laboratuvar ve Tarihleri: </h3>
+                                                </div>
+                                                <!-- /.card-header -->
+                                                <!-- form start -->
+                                                <div class="card-body">
+
+                                                    <div class="form-group">
+                                                        <label>Kullanılacak Labaratuvar:</label>
+                                                        <select class="form-control" asp-for="LaboratuvarID" asp-items="ViewBag.LaboratuvarlarCategories">
+                                                            <option value="">Seçiniz</option>
+                                                        </select>
+                                                        <span asp-validation-for="@Model.LaboratuvarID" class="text-danger"></span>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label asp-for="LaboratuvarBaslangicTarihi">Kullanılacak Laboratuvar Başlangıç Tarihi: * </label>
+
+                                                        <div class="input-group date" id="LaboratuvarBaslangicTarihiDate" data-target-input="nearest">
+                                                            <input type="text" asp-for="LaboratuvarBaslangicTarihi" class="form-control datetimepicker-input"
+                                                                   data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask data-target="#LaboratuvarBaslangicTarihiDate">
+                                                            <div class="input-group-append" data-target="#LaboratuvarBaslangicTarihiDate" data-toggle="datetimepicker">
+                                                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                                            </div>
+                                                        </div>
+                                                        <span asp-validation-for="LaboratuvarBaslangicTarihi" class="text-danger"></span>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label asp-for="LaboratuvarBitisTarihi">Kullanılacak Laboratuvar Bitiş Tarihi: * </label>
+
+                                                        <div class="input-group date" id="LaboratuvarBitisTarihiDate" data-target-input="nearest">
+                                                            <input type="text" asp-for="LaboratuvarBitisTarihi" class="form-control datetimepicker-input"
+                                                                   data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask data-target="#LaboratuvarBitisTarihiDate">
+                                                            <div class="input-group-append" data-target="#LaboratuvarBitisTarihiDate" data-toggle="datetimepicker">
+                                                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                                            </div>
+                                                        </div>
+                                                        <span asp-validation-for="LaboratuvarBitisTarihi" class="text-danger"></span>
+                                                    </div>
+                                                </div>
+                                                <!-- /.card-body -->
+                                            </div>
+                                        </form>
+                                    </div>
+
+
+
+                                </div>
+
                             </div>
-                            <div class="step-tab-panel" data-step="step4">
-                                <h3>Tab4</h3>
-                                <form name="frmLogin" id="frmLogin">
-                                    Email address:<br>
-                                    <input type="text" name="txtEmail" required>
-                                    <br> Password:<br>
-                                    <input type="text" name="txtPassword" required>
-                                </form>
-                            </div>
-                            <div class="step-tab-panel" data-step="step5">
-                                <h3>Tab5</h3>
-                                <form name="frmMobile" id="frmMobile">
-                                    Mobile No:<br>
-                                    <input type="text" name="txtMobileNum" required>
-                                </form>
-                            </div>
+
+
+
+
+
                         </div>
 
                         <div class="step-footer">
-                            <button data-step-action="prev" class="step-btn">Previous</button>
-                            <button data-step-action="next" class="step-btn">Next</button>
-                            <button data-step-action="finish" class="step-btn">Finish</button>
+                            <button data-step-action="prev" class="step-btn">Önceki</button>
+                            <button data-step-action="next" class="step-btn">Sonraki</button>
+                            <button data-step-action="finish" class="step-btn">Bitir</button>
                         </div>
                     </div>
                 </div>
@@ -333,293 +453,109 @@
             </div>
         </div>
 
-        <div class="col-md-3 ">
-            cfsdfsf
-        </div>
+        <div class="col-md-3">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="cart">
+                        <h2 id="cartTitle">Alışveriş Sepetiniz</h2>
+
+                        <div class="display" id="cartBox">
+                            <div class="cartWrap">
+                                <div class="cartEmpty">Sepetiniz Boş</div>
+                                <script id="CartItemsTpl" type="text/x-handlebars-template">
+                                    {{#each successCartItems}}
+                                    <div class="cartItem">
+                                        <div class="İtemDelete">
+                                            <button type="button" data-value="{{jsonID}}"
+                                                    class="btn action-button siparissil">
+                                                <i class="fa fa-times-circle" aria-hidden="true"></i>
+                                            </button>
+                                        </div>
+                                        <div class="info">
+                                            <div class="urun">
+                                                {{hayvanAdi}}
+                                            </div>
+
+                                            <div class="musteri"></div>
+                                        </div>
+                                        <div class="cartFiyat">
+                                            <div class="sptfiyat">{{toplamFiyat}} ₺	</div>
+                                            <div class="sptadet">{{istenenHayvanSayisi}} Adet </div>
+                                        </div>
+                                    </div>
+                                    {{/each}}
+                                </script>
+
+                                <div id="successCartItems"></div>
+                               </div>
+
+                            <div class="cartFooter displayNone">
+                                <div class="cartBottom">
+                                    <div class="total">Toplam</div>
+                                    <script id="priceTpl" type="text/template">
+                                        {{cartTotalPrice}} ₺
+                                    </script>
+                                    <div class="price"></div>
+                                </div>
+                                <div style="text-align:center; margin: 10px 0;">
+                                    <a class="btn btn-primary" href="/sepetim">Siparişi Oluştur</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="card card-primary">
+                        <!-- /.card-header -->
+                        <div class="card-header">
+                            <h3 class="card-title">Diğer İşlemler: </h3>
+                        </div>
+
+                        <div class="card-body">
+                            Proforma Talebi
+                        </div>
+                        <div class="card-body">
+
+                            <div class="card-footer ">
+                                <button type="submit" class="btn btn-primary"><i class="fas fa-check mr-2"></i>Proforma Talep Et</button>
+                            </div>
+                           
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                </div>
+                </div>
+            </div>
     </div>
 </div>
 
 <div class="row">
-    <div class="col-md-10 ">
-
-        <div class="col-md-4 float-left">
-
-            <div class="card card-primary">
-                <div class="card-header">
-                    <h3 class="card-title">Proje Yöneticisi</h3>
+    <div class="modal fade" id="donatModalCenter" tabindex="-1" role="dialog" aria-labelledby="donatModalCenter"
+         aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Bilgi</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
-                <!-- /.card-header -->
-                <!-- form start -->
-                <div class="card-body">
+                <div class="modal-body modal-content">
+                    <div class="alert alert-success" id="fiyatModalBox" role="alert">
 
-                    <div class="form-group">
-                        <label asp-for="ProjeYurutucusu">Proje Yürütücüsü: * </label>
-                        <input asp-for="ProjeYurutucusu" type="text" class="form-control" />
-                        <span asp-validation-for="ProjeYurutucusu" class="text-danger"></span>
-                        <p>Proje yürütücüsünün adı soyadı bilgisi</p>
-                    </div>
-
-                    <div class="form-group">
-                        <label asp-for="ProjeYurutukurumu">Proje Yürütücüsünün Kurumu: * </label>
-                        <input asp-for="ProjeYurutukurumu" type="text" class="form-control" />
-                        <span asp-validation-for="ProjeYurutukurumu" class="text-danger"></span>
-                        <p>Proje yürütücüsünün bağlı olduğu kurum bilgisi</p>
-                    </div>
-
-                    <div class="form-group">
-                        <label asp-for="ProjeYurutuTelefon">Proje Yürütücüsü Telefon No: * </label>
-                        <input asp-for="ProjeYurutuTelefon" type="text" class="form-control" />
-                        <span asp-validation-for="ProjeYurutuTelefon" class="text-danger"></span>
-                        <p>Proje yürütücüsünün telefon numarası </p>
                     </div>
                 </div>
-                <!-- /.card-body -->
-            </div>
-        </div>
-
-        <div class="col-md-4 float-left">
-
-            <div class="card card-primary">
-                <div class="card-header">
-                    <h3 class="card-title">Sorumlu Araştırmacı</h3>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+                    @*<a class="btn btn-primary" href="/sepetim"> Ödeme Sayfasına Git </a>*@
                 </div>
-                <!-- /.card-header -->
-                <!-- form start -->
-                <div class="card-body">
-
-                    <div class="form-group">
-                        <label asp-for="SorumluArastirmaci">Sorumlu Araştırmacı: * </label>
-                        <input asp-for="SorumluArastirmaci" type="text" class="form-control" />
-                        <span asp-validation-for="SorumluArastirmaci" class="text-danger"></span>
-                        <p>Proje ile sorumlu olacak kişi bilgisi </p>
-                    </div>
-
-                    <div class="form-group">
-                        <label asp-for="SorumluArastirmaciTelefon">Sorumlu Araştırmacı Telefon No: * </label>
-                        <input asp-for="SorumluArastirmaciTelefon" type="text" class="form-control" />
-                        <span asp-validation-for="SorumluArastirmaciTelefon" class="text-danger"></span>
-                        <p>Proje ile sorumlu olacak kişi telefon numarası </p>
-                    </div>
-                </div>
-                <!-- /.card-body -->
-            </div>
-        </div>
-
-        <div class="col-md-4 float-left">
-            <div class="card card-primary">
-                <div class="card-header">
-                    <h3 class="card-title">Etik Kurul </h3>
-                </div>
-                <!-- /.card-header -->
-                <!-- form start -->
-                <div class="card-body">
-
-                    <div class="form-group">
-                        <label asp-for="EtikKurulOnayNumarasi">Etik Kurul Onay Numarası: * </label>
-                        <input asp-for="EtikKurulOnayNumarasi" type="text" class="form-control" />
-                        <span asp-validation-for="EtikKurulOnayNumarasi" class="text-danger"></span>
-                    </div>
-
-                    <div class="form-group">
-                        <label asp-for="EtikKurulOnayTarihi">Etik Kurul Onay Tarihi: * </label>
-
-                        <div class="input-group date" id="EtikKurulOnayTarihiDate" data-target-input="nearest">
-                            <input type="text" asp-for="EtikKurulOnayTarihi" class="form-control datetimepicker-input"
-                                   data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask data-target="#EtikKurulOnayTarihiDate">
-                            <div class="input-group-append" data-target="#EtikKurulOnayTarihiDate" data-toggle="datetimepicker">
-                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                            </div>
-                        </div>
-                        <span asp-validation-for="EtikKurulOnayTarihi" class="text-danger"></span>
-                    </div>
-                </div>
-                <!-- /.card-body -->
-            </div>
-        </div>
-
-        <div class="col-md-4 float-left">
-            <div class="card card-primary">
-                <div class="card-header">
-                    <h3 class="card-title">Proje Tarihleri </h3>
-                </div>
-                <!-- /.card-header -->
-                <!-- form start -->
-                <div class="card-body">
-                    <div class="form-group">
-                        <label asp-for="ProjeBaslangicTarihi">Proje Başlangıç  Tarihi: * </label>
-
-                        <div class="input-group date" id="ProjeBaslangicTarihiDate" data-target-input="nearest">
-                            <input type="text" asp-for="ProjeBaslangicTarihi" class="form-control datetimepicker-input"
-                                   data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask data-target="#ProjeBaslangicTarihiDate">
-                            <div class="input-group-append" data-target="#ProjeBaslangicTarihiDate" data-toggle="datetimepicker">
-                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                            </div>
-                        </div>
-                        <span asp-validation-for="ProjeBaslangicTarihi" class="text-danger"></span>
-                    </div>
-
-                    <div class="form-group">
-                        <label asp-for="ProjeBitisTarihi">Proje Bitiş  Tarihi: * </label>
-                        <div class="input-group date" id="ProjeBitisTarihiDate" data-target-input="nearest">
-                            <input type="text" asp-for="ProjeBitisTarihi" class="form-control datetimepicker-input"
-                                   data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask data-target="#ProjeBitisTarihiDate">
-                            <div class="input-group-append" data-target="#ProjeBitisTarihiDate" data-toggle="datetimepicker">
-                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                            </div>
-                        </div>
-                        <span asp-validation-for="ProjeBitisTarihi" class="text-danger"></span>
-                    </div>
-                </div>
-                <!-- /.card-body -->
-            </div>
-        </div>
-
-        <div class="col-md-4 float-left">
-            <div class="card card-primary">
-                <div class="card-header">
-                    <h3 class="card-title">Kullanılacak Deney Hayvanı:</h3>
-                </div>
-                <!-- /.card-header -->
-                <!-- form start -->
-                <div class="card-body">
-
-                    <div class="form-group">
-                        <label>Hayvan Irkını Seçiniz:</label>
-                        <select class="form-control" asp-for="DeneyHayvaniIrkID" asp-items="ViewBag.DeneyHayvaniIrkCategories">
-                            <option value="">Seçiniz</option>
-                        </select>
-                        <span asp-validation-for="@Model.DeneyHayvaniIrkID" class="text-danger"></span>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Hayvan Cinsiyetini Seçiniz:</label>
-                        <select class="form-control" asp-for="DeneyHayvaniCinsiyet">
-                            <option value="1">Dişi</option>
-                            <option value="2">Erkek</option>
-                        </select>
-                        <span asp-validation-for="@Model.DeneyHayvaniCinsiyet" class="text-danger"></span>
-                    </div>
-
-                    <div class="form-group">
-
-                        <label asp-for="DeneyHayvaniYasi">Deney hayvanı Yaşı: * </label>
-                        <input asp-for="DeneyHayvaniYasi" type="text" class="form-control" />
-                        <span asp-validation-for="DeneyHayvaniYasi" class="text-danger"></span>
-                    </div>
-
-                    <div class="form-group">
-                        <label asp-for="DeneyHayvaniAgirligi">Deney Hayvanı Ağırlığı: * </label>
-                        <input asp-for="DeneyHayvaniAgirligi" type="text" class="form-control" />
-                        <span asp-validation-for="DeneyHayvaniAgirligi" class="text-danger"></span>
-                    </div>
-                </div>
-                <!-- /.card-body -->
-            </div>
-        </div>
-
-        <div class="col-md-4 float-left">
-            <div class="card card-primary">
-                <div class="card-header">
-                    <h3 class="card-title">Teknik Destek Talebi:</h3>
-                </div>
-                <!-- /.card-header -->
-                <!-- form start -->
-                <div class="card-body">
-
-                    <div class="form-group">
-                        <label>Teknik Destek Türü:</label>
-                        <select class="form-control" asp-for="TeknikDestekTuruID" asp-items="ViewBag.ProjeTeknikDestekTalepTurCategories">
-                            <option value="">Seçiniz</option>
-                        </select>
-                        <span asp-validation-for="@Model.TeknikDestekTuruID" class="text-danger"></span>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Destek Hayvan Sayısı:</label>
-                        <select class="form-control" asp-for="TeknikHayvanSayisiID" asp-items="ViewBag.TeknikDestekTalepHayvanSayisiCategories">
-                            <option value="">Seçiniz</option>
-                        </select>
-                        <span asp-validation-for="@Model.TeknikHayvanSayisiID" class="text-danger"></span>
-                    </div>
-                </div>
-                <!-- /.card-body -->
-            </div>
-        </div>
-
-        <div class="col-md-4 float-left">
-            <div class="card card-primary">
-                <div class="card-header">
-                    <h3 class="card-title">Kullanılacak Laboratuvar ve Tarihleri: </h3>
-                </div>
-                <!-- /.card-header -->
-                <!-- form start -->
-                <div class="card-body">
-
-                    <div class="form-group">
-                        <label>Kullanılacak Labaratuvar:</label>
-                        <select class="form-control" asp-for="LaboratuvarID" asp-items="ViewBag.LaboratuvarlarCategories">
-                            <option value="">Seçiniz</option>
-                        </select>
-                        <span asp-validation-for="@Model.LaboratuvarID" class="text-danger"></span>
-                    </div>
-
-                    <div class="form-group">
-                        <label asp-for="LaboratuvarBaslangicTarihi">Kullanılacak Laboratuvar Başlangıç Tarihi: * </label>
-
-                        <div class="input-group date" id="LaboratuvarBaslangicTarihiDate" data-target-input="nearest">
-                            <input type="text" asp-for="LaboratuvarBaslangicTarihi" class="form-control datetimepicker-input"
-                                   data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask data-target="#LaboratuvarBaslangicTarihiDate">
-                            <div class="input-group-append" data-target="#LaboratuvarBaslangicTarihiDate" data-toggle="datetimepicker">
-                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                            </div>
-                        </div>
-                        <span asp-validation-for="LaboratuvarBaslangicTarihi" class="text-danger"></span>
-                    </div>
-
-                    <div class="form-group">
-                        <label asp-for="LaboratuvarBitisTarihi">Kullanılacak Laboratuvar Bitiş Tarihi: * </label>
-
-                        <div class="input-group date" id="LaboratuvarBitisTarihiDate" data-target-input="nearest">
-                            <input type="text" asp-for="LaboratuvarBitisTarihi" class="form-control datetimepicker-input"
-                                   data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask data-target="#LaboratuvarBitisTarihiDate">
-                            <div class="input-group-append" data-target="#LaboratuvarBitisTarihiDate" data-toggle="datetimepicker">
-                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                            </div>
-                        </div>
-                        <span asp-validation-for="LaboratuvarBitisTarihi" class="text-danger"></span>
-                    </div>
-                </div>
-                <!-- /.card-body -->
             </div>
         </div>
     </div>
 
-    <div class="col-md-2 ">
 
-        <div class="card card-primary">
-            <!-- /.card-header -->
-            <div class="card-header">
-                <h3 class="card-title">Diğer İşlemler: </h3>
-            </div>
-
-            <div class="card-body">
-                Proforma Talebi
-            </div>
-            <div class="card-body">
-
-                <div class="card-footer ">
-                    <button type="submit" class="btn btn-primary"><i class="fas fa-check mr-2"></i>Proforma Talep Et</button>
-                </div>
-                <div class="card-footer">
-                    <button type="submit" class="btn btn-success"><i class="fas fa-check mr-2"></i>Kaydet</button>
-                </div>
-            </div>
-            <!-- /.card-body -->
-        </div>
-    </div>
 </div>
-
-<link href="https://oguzhanoya.github.io/jquery-steps/dist/jquery-steps.css" rel="stylesheet">
 
 @section JavaScript{
     <script src="~/lib/jqueryValidate/jquery.validate.min.js"></script>
@@ -628,23 +564,15 @@
     <script src="~/plugins/moment/moment.min.js"></script>
     <script src="~/plugins/inputmask/min/jquery.inputmask.bundle.min.js"></script>
     <script src="~/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
-    <script src="https://oguzhanoya.github.io/jquery-steps/dist/jquery-steps.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/1.2.0/mustache.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0/handlebars.js"></script>
+    <script src="~/lib/jquery-steps.js"></script>
+    <script src="~/lib/handlebars.min-v4.7.6.js"></script>
 
     <!-- date-range-picker -->
     <!-- bootstrap color picker -->
+    
 
-    <script>
-        $('#EtikKurulOnayTarihiDate,#ProjeBaslangicTarihiDate,#ProjeBitisTarihiDate,#LaboratuvarBaslangicTarihiDate,#LaboratuvarBitisTarihiDate').datetimepicker({
-            format: 'R',
-            locale: 'tr',
-            format: 'DD-MM-YYYY'
-        });
 
-        $('.datetimepicker-input').inputmask('dd-mm-yyyy', { 'placeholder': 'dd-mm-yyyy' })
-        //$('#EtikKurulOnayTarihi').inputmask("m/d/y", { clearIncomplete: false, clearMaskOnLostFocus: false, showMaskOnFocus: false, showMaskOnHover: false });
-    </script>
+   
     @*<style>
             input.input-validation-error {
                 border-color: red;
@@ -656,79 +584,103 @@
         </style>*@
     <script>
 
-        var veri = $('#veri');
 
-        veri.removeData("validator");
-        veri.removeData("unobtrusiveValidation");
+        $('#EtikKurulOnayTarihiDate,#ProjeBaslangicTarihiDate,#ProjeBitisTarihiDate,#LaboratuvarBaslangicTarihiDate,#LaboratuvarBitisTarihiDate').datetimepicker({
+            format: 'R',
+            locale: 'tr',
+            format: 'DD-MM-YYYY'
+        });
+
+        $('.datetimepicker-input').inputmask('dd-mm-yyyy', { 'placeholder': 'dd-mm-yyyy' })
+        //$('#EtikKurulOnayTarihi').inputmask("m/d/y", { clearIncomplete: false, clearMaskOnLostFocus: false, showMaskOnFocus: false, showMaskOnHover: false });
 
         var settings = {
             validClass: "is-valid",
             errorClass: "is-invalid"
-
         };
 
+         //------------ProjeYurutucusuForm ------////
+        var ProjeYurutucusuForm = $('#ProjeYurutucusuForm');
+        ProjeYurutucusuForm.removeData("validator");
+        ProjeYurutucusuForm.removeData("unobtrusiveValidation");
         $.validator.setDefaults(settings);
         $.validator.unobtrusive.options = settings;
+        $.validator.unobtrusive.parse("#ProjeYurutucusuForm");
+        var ProjeYurutucusuForm_Validator = ProjeYurutucusuForm.validate();
 
-        $.validator.unobtrusive.parse("#veri");
+        //------------SorumluArastirmaciForm ------////
+        var SorumluArastirmaciForm = $('#SorumluArastirmaciForm');
+        SorumluArastirmaciForm.removeData("validator");
+        SorumluArastirmaciForm.removeData("unobtrusiveValidation");
+        $.validator.setDefaults(settings);
+        $.validator.unobtrusive.options = settings;
+        $.validator.unobtrusive.parse("#SorumluArastirmaciForm");
+        var SorumluArastirmaciForm_Validator = SorumluArastirmaciForm.validate();
 
-        // var veriValidator = veri.validate();
-        //console.log(veriValidator)
 
-        var frmInfo = $('#frmInfo');
-        var frmInfoValidator = frmInfo.validate();
+        //------------LaboratuvarForm ------////
+        var LaboratuvarForm = $('#LaboratuvarForm');
+        LaboratuvarForm.removeData("validator");
+        LaboratuvarForm.removeData("unobtrusiveValidation");
+        $.validator.setDefaults(settings);
+        $.validator.unobtrusive.options = settings;
+        $.validator.unobtrusive.parse("#LaboratuvarForm");
+        var LaboratuvarForm_Validator = LaboratuvarForm.validate();
 
-        var frmLogin = $('#frmLogin');
-        var frmLoginValidator = frmLogin.validate();
 
-        var frmMobile = $('#frmMobile');
-        var frmMobileValidator = frmMobile.validate();
+        //------------ProjeTarihleriForm ------////
+        var ProjeTarihleriForm = $('#ProjeTarihleriForm');
+        ProjeTarihleriForm.removeData("validator");
+        ProjeTarihleriForm.removeData("unobtrusiveValidation");
+        $.validator.setDefaults(settings);
+        $.validator.unobtrusive.options = settings;
+        $.validator.unobtrusive.parse("#ProjeTarihleriForm");
+        var ProjeTarihleriForm_Validator = ProjeTarihleriForm.validate();
 
-        $('#demo').steps({
+        //------------EtikKurulForm ------////
+        var EtikKurulForm = $('#EtikKurulForm');
+        EtikKurulForm.removeData("validator");
+        EtikKurulForm.removeData("unobtrusiveValidation");
+        $.validator.setDefaults(settings);
+        $.validator.unobtrusive.options = settings;
+        $.validator.unobtrusive.parse("#EtikKurulForm");
+        var EtikKurulForm_Validator = EtikKurulForm.validate();
+
+        
+
+
+
+
+        $('#StepStepCart').steps({
             onChange: function (currentIndex, newIndex, stepDirection) {
 
-                console.log(currentIndex)
-                console.log(stepDirection)
-
                 // step1
-                if (currentIndex === 0) {
-
-                    if (stepDirection === 'forward') {
-
-                        return veri.valid();
-                    }
-                    if (stepDirection === 'backward') {
-                        veriValidator.resetForm();
-                    }
-                }
-
-                // step2
                 if (currentIndex === 1) {
+
                     if (stepDirection === 'forward') {
-                        return frmInfo.valid();
+                        SorumluArastirmaciForm.valid();
+                        return ProjeYurutucusuForm.valid();
                     }
                     if (stepDirection === 'backward') {
-                        frmInfoValidator.resetForm();
+                        SorumluArastirmaciForm_Validator.resetForm();
+                        ProjeYurutucusuForm_Validator.resetForm();
                     }
                 }
-                // step4
-                if (currentIndex === 3) {
+                                // step2
+                if (currentIndex === 2) {
+
                     if (stepDirection === 'forward') {
-                        return frmLogin.valid();
+                        LaboratuvarForm.valid();
+                        EtikKurulForm.valid();
+                        return ProjeTarihleriForm.valid();
                     }
                     if (stepDirection === 'backward') {
-                        frmLoginValidator.resetForm();
+                        LaboratuvarForm_Validator.resetForm();
+                       EtikKurulForm_Validator.resetForm();
+                      ProjeTarihleriForm_Validator.resetForm();
                     }
                 }
-                // step5
-                if (currentIndex === 4) {
-                    if (stepDirection === 'forward') {
-                        return frmMobile.valid();
-                    }
-                    if (stepDirection === 'backward') {
-                        frmMobileValidator.resetForm();
-                    }
-                }
+
                 return true;
             },
             onFinish: function () {
@@ -737,7 +689,7 @@
             }
         });
 
-        $("#DeneyHayvaniTurID").change(function () {
+        $(".DeneyHavyanIrklari").change(function () {
 
             jQuery.ajax({
                 type: 'GET',
@@ -761,8 +713,8 @@
                         jQuery('.teknikDestekTalepTurleri').html(CompiledHtmlCartSelectTalepTur);
 
                     } else {
-                        jQuery('#cartSelectItems').html(' <td class="tg-0lax" colspan="9"><span class="text-danger text-center"> Veri Bulunamadı </span ></td >');
-                      //  jQuery('.teknikDestekTalepTurleri').html("");
+                        jQuery('#cartSelectItems').html(' <td colspan="7"><span class="text-danger text-center"> Veri Bulunamadı </span ></td >');
+                        //  jQuery('.teknikDestekTalepTurleri').html("");
                     }
 
                 },
@@ -770,79 +722,71 @@
                     console.log(e);
                 },
                 complete: function () {
-                    
+
                 },
             });
         });
     </script>
 
     <script type="text/javascript">
-        $(document).ready(function () {
-            $("#DeneyHayvaniTurID").change(function () {
-                $.ajax({
-                    url: '/Admin/DekamProjeTakip/IrkSec',
-                    data: { TurID: $(this).val() },
-                    dataType: "JSON",
-                    success: function (result) {
-                        var irkListesi = $("#DeneyHayvaniIrkID");
-                        irkListesi.empty();
-                        $.each(result.cartSelectItems, function (i, item) {
-                            irkListesi.append($("<option></option>").attr("value", item.id).html(item.hayvan));
-                        });
-                    }
-                });
-            });
-
-            //$(".add-to-cart").on("click", function (event) {
-        
-            
-
-            //});
+        /* $(document).ready(function () {
+             $(".DeneyHavyanIrklari").change(function () {
+                 $.ajax({
+                     url: '/Admin/DekamProjeTakip/IrkSec',
+                     data: { TurID: $(this).val() },
+                     dataType: "JSON",
+                     success: function (result) {
+                         var irkListesi = $("#DeneyHayvaniIrkID");
+                         irkListesi.empty();
+                         $.each(result.cartSelectItems, function (i, item) {
+                             irkListesi.append($("<option></option>").attr("value", item.id).html(item.hayvan));
+                         });
+                     }
+                 });
+             });
+         });
+         */
 
 
-
-        });
-
-
-
-     //   $('input.DestekIstenenHayvanSayisi').on('input', function (e) { });
+        //   $('input.DestekIstenenHayvanSayisi').on('input', function (e) { });
 
 
         $(document).on("click", ".add-to-cart", function () {
             event.preventDefault();
-      
-            $baseID = $(this).data("val");
-            ReturnType = $(this).data("type");
+
+            let $baseID = $(this).data("val");
+            let ReturnType = $(this).data("type");
             // alert($baseID);
             var destekTalepTurLeri = [];
-            $("#CartDestekTalep-" + $baseID + " .destekTalepTur").each(function () {             
+            $("#CartDestekTalep-" + $baseID + " .destekTalepTur").each(function () {
                 if ($(this).is(':checked')) {
                     destekTalepTurLeri.push($(this).val());
                 }
             });
 
-            IstenenHayvanSayisi = $("#CartAddData-" + $baseID + " .IstenenHayvanSayisi").val();
-            DestekIstenenHayvanSayisi = $("#CartAddData-" + $baseID + " .DestekIstenenHayvanSayisi").val();
+            let IstenenHayvanSayisi = $("#CartAddData-" + $baseID + " .IstenenHayvanSayisi").val();
+            let DestekIstenenHayvanSayisi = $("#CartAddData-" + $baseID + " .DestekIstenenHayvanSayisi").val();
+            let HayvanAgirlik = $("#CartAddData-" + $baseID + " .HayvanAgirlik").val();
+            let DeneyHayvaniCinsiyet = $("#CartAddData-" + $baseID + " .DeneyHayvaniCinsiyet").val();
 
-            console.log("istenene hayvan" + IstenenHayvanSayisi)
+            // console.log("istenene hayvan" + IstenenHayvanSayisi)
 
-            console.log("destek hayvan" + DestekIstenenHayvanSayisi)
-          
-            /*
-            if (DestekIstenenHayvanSayisi > IstenenHayvanSayisi) {
-                alert("Destek istenen Hayvan Sayısı adeti İstenen Hayvan Sayısı adetinden büyük olamaz");
-                $("#CartAddData-" + $baseID + " .DestekIstenenHayvanSayisi").addClass("form-control is-invalid");
-                return 
-            }
-            */
+            // console.log("destek hayvan" + DestekIstenenHayvanSayisi)
 
 
-            BakimDestegiGunSayisi = $("#CartAddData-" + $baseID + " .BakimDestegiGunSayisi").val();
-          
-            otenaziIstek = 0;
+            let BakimDestegiGunSayisi = $("#CartAddData-" + $baseID + " .BakimDestegiGunSayisi").val();
 
-            if ($("#CartAddData-" + $baseID + " .OtenaziIstek").is(':checked')) {
+           let  otenaziIstek = 0;
+
+            if ($("#OtenaziIstek-" + $baseID + " .OtenaziIstek").is(':checked')) {
                 otenaziIstek = 1;
+            }
+
+
+            if (DeneyHayvaniCinsiyet == 0) {
+                DeneyHayvaniCinsiyet = false;
+            } else {
+                DeneyHayvaniCinsiyet = true;
             }
 
             var dataobj = {
@@ -850,6 +794,8 @@
                 IstenenHayvanSayisi: IstenenHayvanSayisi,
                 DestekIstenenHayvanSayisi: DestekIstenenHayvanSayisi,
                 BakimDestegiGunSayisi: BakimDestegiGunSayisi,
+                HayvanAgirlik: HayvanAgirlik,
+                DeneyHayvaniCinsiyet: DeneyHayvaniCinsiyet,
                 ReturnType: ReturnType,
                 OtenaziIstek: otenaziIstek,
                 destekTalepTurLeri: destekTalepTurLeri.join(),
@@ -860,15 +806,37 @@
                 type: "POST",
                 //contentType: "application/json; charset=utf-8",
                 //dataType: "json",
-                data:dataobj,  
+                data: dataobj,
                 success: function (result) {
-                    console.log(result)
-                    $("#CartAddData-" + $baseID + " .totalPrice").html("Toplam Ücret: " + result.fiyatToplam +" ₺");
+                    if (result.status == "ok" && ReturnType == "hesapla") {
+                        $("#donatModalCenter #fiyatModalBox").html("Toplam Ücret: " + result.fiyatToplam + " ₺");
+                        jQuery('#donatModalCenter').modal('show');
+                        $("#CartTotal-" + $baseID + " .totalPrice").html("Toplam Ücret: " + result.fiyatToplam + " ₺");
+                        $("#CartTotal-" + $baseID + " .totalPrice").addClass("form-control is-invalid");
+                        return
+                    }
 
+                    if (result.status == "ok") {
+                        $("#donatModalCenter #fiyatModalBox").html("Sepetinize Başarı ile Eklediniz <br> Toplam Ücret: " + result.fiyatToplam + " ₺");
+                        jQuery('#donatModalCenter').modal('show');
+
+                        $("#CartTotal-" + $baseID + " .totalPrice").html("Toplam Ücret: " + result.fiyatToplam + " ₺");
+                        $("#CartTotal-" + $baseID + " .totalPrice").addClass("form-control is-invalid");
+
+                        var cartSelectTemplate1 = jQuery('#CartItemsTpl').html();
+                        var TemplateCompileCartSelect1 = Handlebars.compile(cartSelectTemplate1);
+                        var CompiledHtmlCartSelect1 = TemplateCompileCartSelect1(result);
+                        jQuery('#successCartItems').html(CompiledHtmlCartSelect1);
+
+                    } else {
+                        // $("#donatModalCenter #fiyatModalBox").html(result.mesaj);
+                        // jQuery('#donatModalCenter').modal('show');
+                        alert(result.mesaj)
+                    }
                 }
             });
 
-        }); 
+        });
 
     </script>
 

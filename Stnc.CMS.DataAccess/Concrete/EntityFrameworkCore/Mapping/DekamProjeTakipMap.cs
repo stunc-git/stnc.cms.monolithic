@@ -16,18 +16,14 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Mapping
             builder.Property(I => I.SorumluArastirmaci).HasMaxLength(500).IsRequired();
             builder.Property(I => I.SorumluArastirmaciTelefon).HasMaxLength(500).IsRequired();
             builder.Property(I => I.EtikKurulOnayNumarasi).HasMaxLength(500).IsRequired();
-
-            builder.Property(I => I.DeneyHayvaniCinsiyet).HasColumnType("smallint");
             builder.Property(I => I.DeneyHayvaniSayisi).HasColumnType("smallint");
-            builder.Property(I => I.DeneyHayvaniYasi).HasColumnType("smallint");
-            builder.Property(I => I.DeneyHayvaniAgirligi).HasColumnType("smallint");
+            //builder.Property(I => I.DeneyHayvaniCinsiyet).HasColumnType("smallint");
+            //
+            //builder.Property(I => I.DeneyHayvaniYasi).HasColumnType("smallint");
+            //builder.Property(I => I.DeneyHayvaniAgirligi).HasColumnType("smallint");
+
             builder.HasOne(I => I.DekamProjeLaboratuvarlar).WithMany(x => x.DekamProjeTakip).HasForeignKey(I => I.LaboratuvarID);
-            /*    builder.Property(I => I.TeknikDestekSuresiID).HasColumnType("smallint");
-                builder.Property(I => I.TeknikDestekTuruID).HasColumnType("smallint");
-                builder.Property(I => I.TeknikHayvanSayisiID).HasColumnType("smallint");
-                builder.Property(I => I.LaboratuvarID).HasColumnType("smallint");
-                builder.Property(I => I.DeneyHayvaniTurID).HasColumnType("smallint");
-                builder.Property(I => I.DeneyHayvaniIrkID).HasColumnType("smallint");*/
+   
 
             //https://www.learnentityframeworkcore.com/configuration/one-to-one-relationship-configuration
             //burada kaldım

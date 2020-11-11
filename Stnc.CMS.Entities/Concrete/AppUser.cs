@@ -22,5 +22,6 @@ namespace Stnc.CMS.Entities.Concrete
         public List<DekamProjeDeneyHayvaniIrkFiyat> DekamProjeDeneyHayvaniIrkFiyat { get; set; }
 
         public List<DekamProjeTakip> DekamProjeTakip { get; set; }
+        public List<StShoppingCartItem> StShoppingCartItem { get; set; }
     }
 }

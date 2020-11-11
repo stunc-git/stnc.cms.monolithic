@@ -6,7 +6,7 @@ namespace Stnc.CMS.DTO.DTOs.DeneyHayvaniIrkFiyatDtos
     public class DeneyHayvaniIrkFiyatCreateDto
     {
         public int Id { get; set; }
-        public string Isım { get; set; }
+        public string YasBilgisi { get; set; }
         public int DeneyHayvaniTurID { get; set; }
         public int DeneyHayvaniIrkID { get; set; }
         public decimal Fiyat { get; set; }

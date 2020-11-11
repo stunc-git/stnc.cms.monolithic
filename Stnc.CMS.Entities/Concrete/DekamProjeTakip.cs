@@ -16,11 +16,13 @@ namespace Stnc.CMS.Entities.Concrete
         public DateTime? ProjeBaslangicTarihi { get; set; }
         public DateTime? ProjeBitisTarihi { get; set; }
 
-        public int DeneyHayvaniCinsiyet { get; set; }//erkeke dişi sadece iki adet
         public int DeneyHayvaniSayisi { get; set; }
+
+        /*
+        public int DeneyHayvaniCinsiyet { get; set; }//erkeke dişi sadece iki adet
         public int DeneyHayvaniYasi { get; set; }
         public int DeneyHayvaniAgirligi { get; set; }
-
+        */
         public DateTime? LaboratuvarBaslangicTarihi { get; set; }
         public DateTime? LaboratuvarBitisTarihi { get; set; }
 
@@ -30,18 +32,10 @@ namespace Stnc.CMS.Entities.Concrete
         public int? AppUserId { get; set; }
         public AppUser AppUser { get; set; }
 
-        public int DeneyHayvaniIrkID { get; set; }
-        public virtual DekamProjeDeneyHayvaniIrk DeneyHayvaniIrk { get; set; }
-
-        public int DeneyHayvaniTurID { get; set; }
-        public virtual DekamProjeDeneyHayvaniTur DeneyHayvaniTur { get; set; }
 
         public int LaboratuvarID { get; set; }
         public virtual DekamProjeLaboratuvarlar DekamProjeLaboratuvarlar { get; set; }
 
 
-
-        public int TeknikDestekTuruID { get; set; }
-        public virtual DekamProjeTeknikDestekTalepTur TeknikDestekTuru { get; set; }
     }
 }

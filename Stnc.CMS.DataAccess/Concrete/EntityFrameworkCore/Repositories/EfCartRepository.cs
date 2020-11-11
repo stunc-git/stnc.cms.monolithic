@@ -32,6 +32,30 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Repositories
             throw new NotImplementedException();
         }
 
+
+        public StShoppingCartItem GetCartId(int id)
+        {
+            throw new NotImplementedException();
+        }
+        public List<StShoppingCartItem> GetCartUserIdList(int userID)
+        {
+            var query = _context.StShoppingCartItem.Where(s => s.AppUserId == userID)
+                //burada kaldım bunun için bir alan oluştur yani dto falan 
+                .Select(I => new DeneyHayvaniIrkFiyatAjaxListDto()
+                {
+                    Id = I.Id,
+                    YasBilgisi = I.YasBilgisi,
+                    TurAdi = I.DekamProjeDeneyHayvaniIrk.Name,
+                    GunlukBakimUcreti = I.DekamProjeDeneyHayvaniTur.GunlukBakimUcret,
+                    OtenaziUcret = I.DekamProjeDeneyHayvaniTur.OtenaziUcret,
+                    IrkAdi = I.DekamProjeDeneyHayvaniTur.Name,
+                    Fiyat = I.Fiyat,
+                }).
+                OrderByDescending(I => I.Id);
+            return query.ToList();
+        }
+
+
         public void Save(StShoppingCartItem tablo)
         {
             throw new NotImplementedException();

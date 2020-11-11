@@ -21,7 +21,7 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Repositories
                 .Select(I => new DeneyHayvaniIrkFiyatListAllDto()
                 {
                     Id = I.Id,
-                    Isım = I.Isım,
+                    Isım = I.YasBilgisi,
                     UserName = I.AppUser.Name,
                     HayvaniTurAdi = I.DekamProjeDeneyHayvaniTur.Name,
                     HayvaniIrkAdi = I.DekamProjeDeneyHayvaniIrk.Name,
@@ -43,11 +43,11 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Repositories
                       .Select(I => new DeneyHayvaniIrkFiyatAjaxListDto()
                       {
                           Id = I.Id,
-                          Isim = I.Isım,
-                          TurAdi = I.DekamProjeDeneyHayvaniTur.Name,
+                          YasBilgisi = I.YasBilgisi,
+                          TurAdi = I.DekamProjeDeneyHayvaniIrk.Name,
                           GunlukBakimUcreti = I.DekamProjeDeneyHayvaniTur.GunlukBakimUcret,
                           OtenaziUcret = I.DekamProjeDeneyHayvaniTur.OtenaziUcret,
-                          IrkAdi = I.DekamProjeDeneyHayvaniIrk.Name,
+                          IrkAdi = I.DekamProjeDeneyHayvaniTur.Name,
                           Fiyat = I.Fiyat,
                       }).ToList();
             return list;
@@ -64,7 +64,7 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Repositories
                       .Select(I => new DeneyHayvaniIrkFiyatAjaxListDto()
                       {
                           Id = I.Id,
-                          Isim = I.Isım,
+                          YasBilgisi = I.YasBilgisi,
                           TurAdi = I.DekamProjeDeneyHayvaniTur.Name,
                           GunlukBakimUcreti = I.DekamProjeDeneyHayvaniTur.GunlukBakimUcret,
                           OtenaziUcret = I.DekamProjeDeneyHayvaniTur.OtenaziUcret,
@@ -85,7 +85,7 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Repositories
                       .Select(I => new DeneyHayvaniIrkFiyatAjaxListDto()
                       {
                           Id = I.Id,
-                          Isim = I.Isım,
+                          YasBilgisi = I.YasBilgisi,
                           TurAdi = I.DekamProjeDeneyHayvaniTur.Name,
                           GunlukBakimUcreti = I.DekamProjeDeneyHayvaniTur.GunlukBakimUcret,
                           OtenaziUcret = I.DekamProjeDeneyHayvaniTur.OtenaziUcret,
@@ -104,7 +104,7 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Repositories
            .Select(I => new DeneyHayvaniIrkFiyatAjaxListDto()
            {
                Id = I.Id,
-               Isim = I.Isım,
+               YasBilgisi = I.YasBilgisi,
                TurAdi = I.DekamProjeDeneyHayvaniTur.Name,
                GunlukBakimUcreti = I.DekamProjeDeneyHayvaniTur.GunlukBakimUcret,
                OtenaziUcret = I.DekamProjeDeneyHayvaniTur.OtenaziUcret,

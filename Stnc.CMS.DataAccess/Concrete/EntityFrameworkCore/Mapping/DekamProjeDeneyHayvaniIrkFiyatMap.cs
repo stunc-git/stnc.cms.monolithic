@@ -16,7 +16,7 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Mapping
             builder.HasData(new DekamProjeDeneyHayvaniIrkFiyat
             {
                 Id=1,
-                Isım = "8 Haftalık Yaşa Kadar",
+                YasBilgisi = "8 Haftalık Yaşa Kadar",
                 DekamProjeDeneyHayvaniTurId = 1,
                 DekamProjeDeneyHayvaniIrkId = 1,
                 Fiyat=5,

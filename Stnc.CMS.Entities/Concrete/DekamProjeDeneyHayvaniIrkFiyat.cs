@@ -6,7 +6,7 @@ namespace Stnc.CMS.Entities.Concrete
     public class DekamProjeDeneyHayvaniIrkFiyat : ITablo
     {
         public int Id { get; set; }
-        public string Isım { get; set; }
+        public string YasBilgisi { get; set; }
 
         public decimal Fiyat { get; set; }
         public DateTime? CreatedAt { get; set; } = DateTime.Now;
