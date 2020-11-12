@@ -1,4 +1,6 @@
-﻿kayıt yapıldıktan sonra flash mesaage uyarısı yapsın 
+﻿https://bootstrapious.com/p/bootstrap-table-with-a-fixed-header
+
+kayıt yapıldıktan sonra flash mesaage uyarısı yapsın 
 
 gallery için 
 
