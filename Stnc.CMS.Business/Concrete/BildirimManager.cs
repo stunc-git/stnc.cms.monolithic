@@ -21,7 +21,7 @@ namespace Stnc.CMS.Business.Concrete
 
         public Bildirim GetirIdile(int id)
         {
-            return _bildirimDal.GetirIdile(id);
+            return _bildirimDal.GetID(id);
         }
 
         public List<Bildirim> GetirOkunmayanlar(int AppUserId)
@@ -36,12 +36,12 @@ namespace Stnc.CMS.Business.Concrete
 
         public void Guncelle(Bildirim tablo)
         {
-            _bildirimDal.Guncelle(tablo);
+            _bildirimDal.Update(tablo);
         }
 
         public void Kaydet(Bildirim tablo)
         {
-            _bildirimDal.Kaydet(tablo);
+            _bildirimDal.Save(tablo);
         }
 
         public Bildirim SaveReturn(Bildirim tablo)
@@ -51,7 +51,7 @@ namespace Stnc.CMS.Business.Concrete
 
         public void Sil(Bildirim tablo)
         {
-            _bildirimDal.Sil(tablo);
+            _bildirimDal.Delete(tablo);
         }
     }
 }

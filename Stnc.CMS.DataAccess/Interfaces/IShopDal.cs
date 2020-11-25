@@ -1,4 +1,5 @@
-﻿using Stnc.CMS.Entities.Concrete;
+﻿using Stnc.CMS.DTO.DTOs.ShopCartDto;
+using Stnc.CMS.Entities.Concrete;
 using System.Collections.Generic;
 
 namespace Stnc.CMS.DataAccess.Interfaces
@@ -19,7 +20,7 @@ namespace Stnc.CMS.DataAccess.Interfaces
 
         void Save(StShoppingCartItem tablo);
 
-        void Delete(StShoppingCartItem tablo);
+        void Delete(int id);
 
         void Update(StShoppingCartItem tablo);
                     
@@ -29,6 +30,9 @@ namespace Stnc.CMS.DataAccess.Interfaces
 
         List<StShoppingCartItem> GetAll();
 
-        List<StShoppingCartItem> GetCartUserIdList(int userID);
+        List<ShopCartAjaxListDto> GetCartUserIdList(int userID);
+
+        decimal ToplamUcret(int userID);
+        int ToplamUrunAdeti(int userID);
     }
 }

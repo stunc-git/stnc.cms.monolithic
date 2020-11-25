@@ -21,17 +21,17 @@ namespace Stnc.CMS.Business.Concrete
 
         public Slider GetirIdile(int id)
         {
-            return _sliderDal.GetirIdile(id);
+            return _sliderDal.GetID(id);
         }
 
         public void Guncelle(Slider tablo)
         {
-            _sliderDal.Guncelle(tablo);
+            _sliderDal.Update(tablo);
         }
 
         public void Kaydet(Slider tablo)
         {
-            _sliderDal.Kaydet(tablo);
+            _sliderDal.Save(tablo);
         }
 
         public Slider SaveReturn(Slider tablo)
@@ -41,7 +41,7 @@ namespace Stnc.CMS.Business.Concrete
 
         public void Sil(Slider tablo)
         {
-            _sliderDal.Sil(tablo);
+            _sliderDal.Delete(tablo);
         }
 
         public List<Slider> SliderList()

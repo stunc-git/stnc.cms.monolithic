@@ -249,7 +249,7 @@
         overflow: hidden;
     }
 
-.cart .cartWrap .cartItem .Ä°temDelete {
+.cart .cartWrap .cartItem .itemDelete {
     width: 20px;
     float: left;
     margin-right: 15px;
@@ -275,7 +275,7 @@
         font-size: 13px;
         text-align: left;
         color: #707070;
-        margin-top: 8px;
+        margin: 3px;
     }
 
 .cart .cartWrap .cartItems .cartItem .cartFiyat {
@@ -361,3 +361,4 @@
 .displayNone {
 display:none;
 }
+

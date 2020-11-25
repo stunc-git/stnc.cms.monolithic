@@ -45,7 +45,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
 
             if (ModelState.IsValid)
             {
-                Myrepo.Kaydet(new DekamProjeLaboratuvarlar
+                Myrepo.Save(new DekamProjeLaboratuvarlar
                 {
                     Name = model.Name,
                     AppUserId = user.Id,
@@ -62,7 +62,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
             ViewBag.GeneralTitle = "Laboratuvar Düzenleme";
 
             TempData["Active"] = TempdataInfo.Category;
-            var data = this.Myrepo.GetirIdile(id);
+            var data = this.Myrepo.GetID(id);
             if (data != null)
             {
                 return View(data);
@@ -82,7 +82,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
             var user = await GetUserLoginInfo().ConfigureAwait(false);
             if (ModelState.IsValid)
             {
-                Myrepo.Guncelle(new DekamProjeLaboratuvarlar
+                Myrepo.Update(new DekamProjeLaboratuvarlar
                 {
                     Id = model.Id,
                     Name = model.Name,
@@ -98,7 +98,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
         public IActionResult Delete(int id)
         {
             f.Flash(Types.Success, "Kaydınız başarı ile silindi", dismissable: true);
-            Myrepo.Sil(new DekamProjeLaboratuvarlar { Id = id });
+            Myrepo.Delete(new DekamProjeLaboratuvarlar { Id = id });
             return Json(null);
         }
     }

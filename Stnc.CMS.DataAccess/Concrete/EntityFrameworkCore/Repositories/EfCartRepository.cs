@@ -6,8 +6,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using Microsoft.EntityFrameworkCore;
+using Stnc.CMS.DTO.DTOs.ShopCartDto;
+using Newtonsoft.Json;
+
 namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Repositories
 {
+
+
     public class EfCartRepository : IShopDal
     {
         private readonly StncCMSContext _context;
@@ -17,9 +22,15 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Repositories
             _context = context;
         }
 
-        public void Delete(StShoppingCartItem tablo)
+        public void Delete(int id)
         {
-            throw new NotImplementedException();
+
+
+            var d = new StShoppingCartItem { Id = id };
+            _context.StShoppingCartItem.Attach(d);
+            _context.StShoppingCartItem.Remove(d);
+            _context.SaveChanges();
+
         }
 
         public List<StShoppingCartItem> GetAll()
@@ -37,22 +48,46 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Repositories
         {
             throw new NotImplementedException();
         }
-        public List<StShoppingCartItem> GetCartUserIdList(int userID)
+
+
+        public decimal ToplamUcret(int userID)
         {
-            var query = _context.StShoppingCartItem.Where(s => s.AppUserId == userID)
-                //burada kaldım bunun için bir alan oluştur yani dto falan 
-                .Select(I => new DeneyHayvaniIrkFiyatAjaxListDto()
+            return _context.StShoppingCartItem.Where(I => I.AppUserId == userID).Sum(p => p.ToplamFiyat);
+        }
+
+        public int ToplamUrunAdeti(int userID)
+        {
+            return _context.StShoppingCartItem.Where(I => I.AppUserId == userID).Count();
+        }
+
+        //burada kaldım bunun için bir alan oluştur yani dto falan 
+        public List<ShopCartAjaxListDto> GetCartUserIdList(int userID)
+        {
+            //return context.DekamProjeDeneyHayvaniIrkFiyat.Include(I => I.DekamProjeDeneyHayvaniIrk).Include(I => I.DekamProjeDeneyHayvaniTur).Include(I => I.AppUser).OrderByDescending(I => I.CreatedAt).ToList();
+            return _context.StShoppingCartItem.Select(I => new ShopCartAjaxListDto()
                 {
-                    Id = I.Id,
-                    YasBilgisi = I.YasBilgisi,
-                    TurAdi = I.DekamProjeDeneyHayvaniIrk.Name,
-                    GunlukBakimUcreti = I.DekamProjeDeneyHayvaniTur.GunlukBakimUcret,
-                    OtenaziUcret = I.DekamProjeDeneyHayvaniTur.OtenaziUcret,
-                    IrkAdi = I.DekamProjeDeneyHayvaniTur.Name,
-                    Fiyat = I.Fiyat,
-                }).
-                OrderByDescending(I => I.Id);
-            return query.ToList();
+                    HayvaniIrkFiyatID = I.HayvaniIrkFiyatID,
+                    HayvanIrkAdi = I.HayvanIrkAdi,
+                    HayvanAdi = I.HayvanAdi,
+                    HayvanIrkFiyatTipYasBilgisi = I.HayvanIrkFiyatTipYasBilgisi,
+                    IstenenHayvanSayisi = I.IstenenHayvanSayisi,
+                    BakimDestegiGunSayisi = I.BakimDestegiGunSayisi,
+                    DestekIstenenHayvanSayisi = I.DestekIstenenHayvanSayisi,
+                    Otenazi = I.Otenazi,
+                    HayvanAgirlik = I.HayvanAgirlik,
+                    DeneyHayvaniCinsiyet = I.DeneyHayvaniCinsiyet,
+                    OtenaziUcreti = I.OtenaziUcreti,
+                    OtenaziToplamUcreti = I.OtenaziToplamUcreti,
+                    HayvanFiyati = I.HayvanFiyati,
+                    GunlukBakimUcreti = I.GunlukBakimUcreti,
+                   // DestekTalepTurleriJson = JsonConvert.DeserializeObject<DestekTalepTurleriJsonDto>(I.DestekTalepTurleriJson),
+                     DestekTalepTurleriJson = JsonConvert.DeserializeObject(I.DestekTalepTurleriJson),
+                   //DestekTalepTurleriJson = I.DestekTalepTurleriJson,
+                    ToplamFiyat = I.ToplamFiyat,
+                    AppUserId = I.AppUserId,
+                    Id=I.Id,
+
+                }).OrderByDescending(I => I.Id).Where(I => I.AppUserId == userID).ToList();
         }
 
 

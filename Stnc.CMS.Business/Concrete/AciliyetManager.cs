@@ -20,17 +20,17 @@ namespace Stnc.CMS.Business.Concrete
 
         public Aciliyet GetirIdile(int id)
         {
-            return _aciliyetDal.GetirIdile(id);
+            return _aciliyetDal.GetID(id);
         }
 
         public void Guncelle(Aciliyet tablo)
         {
-            _aciliyetDal.Guncelle(tablo);
+            _aciliyetDal.Update(tablo);
         }
 
         public void Kaydet(Aciliyet tablo)
         {
-            _aciliyetDal.Kaydet(tablo);
+            _aciliyetDal.Save(tablo);
         }
 
         public Aciliyet SaveReturn(Aciliyet tablo)
@@ -40,7 +40,7 @@ namespace Stnc.CMS.Business.Concrete
 
         public void Sil(Aciliyet tablo)
         {
-            _aciliyetDal.Sil(tablo);
+            _aciliyetDal.Delete(tablo);
         }
     }
 }

@@ -3,6 +3,13 @@
 
 # core  için 
 
+mail ve pdf oluşturma 
+
+pdf 
+https://www.codeguru.com/csharp/.net/net_general/generating-a-pdf-document-using-c-.net-and-itext-7.html
+
+https://www.c-sharpcorner.com/blogs/create-table-in-pdf-using-c-sharp-and-itextsharp
+
 --data access katmanında yapılır yani context in olduğu katmanda 
 context file içinde tanımlamalarını yapmayı unutma 
 

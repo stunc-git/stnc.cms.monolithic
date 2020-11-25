@@ -53,9 +53,9 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Update()
+        public IActionResult Update()
         {
-        //    var user = await GetUserLoginInfo().ConfigureAwait(false);
+            //    var user = await GetUserLoginInfo().ConfigureAwait(false);
             string saveData = HttpContext.Request.Form["saveData"];
 
             if (ModelState.IsValid)

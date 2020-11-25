@@ -46,17 +46,17 @@ namespace Stnc.CMS.Business.Concrete
 
         public DekamProjeDeneyHayvaniIrkFiyat GetirIdile(int id)
         {
-            return _deneyHayvaniIrkFiyatDal.GetirIdile(id);
+            return _deneyHayvaniIrkFiyatDal.GetID(id);
         }
 
         public void Guncelle(DekamProjeDeneyHayvaniIrkFiyat tablo)
         {
-            _deneyHayvaniIrkFiyatDal.Guncelle(tablo);
+            _deneyHayvaniIrkFiyatDal.Update(tablo);
         }
 
         public void Kaydet(DekamProjeDeneyHayvaniIrkFiyat tablo)
         {
-            _deneyHayvaniIrkFiyatDal.Kaydet(tablo);
+            _deneyHayvaniIrkFiyatDal.Save(tablo);
         }
 
         public DekamProjeDeneyHayvaniIrkFiyat SaveReturn(DekamProjeDeneyHayvaniIrkFiyat tablo)
@@ -66,7 +66,7 @@ namespace Stnc.CMS.Business.Concrete
 
         public void Sil(DekamProjeDeneyHayvaniIrkFiyat tablo)
         {
-            _deneyHayvaniIrkFiyatDal.Sil(tablo);
+            _deneyHayvaniIrkFiyatDal.Delete(tablo);
         }
     }
 }

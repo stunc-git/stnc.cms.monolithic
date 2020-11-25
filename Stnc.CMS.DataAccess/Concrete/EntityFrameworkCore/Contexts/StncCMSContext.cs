@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Mapping;
 using Stnc.CMS.Entities.Concrete;
 using System.IO;
@@ -20,9 +21,11 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts
                 .AddJsonFile("appsettings.json")
                 .Build();
 
-              optionsBuilder.UseSqlServer(config.GetConnectionString("SQLProvider"));
-           //   optionsBuilder.UseSqlServer(config.GetConnectionString("HomeSQLProvider"));
-           // optionsBuilder.UseMySql(config.GetConnectionString("MysqlConnection"));
+            optionsBuilder
+                .UseLoggerFactory(LoggerFactory.Create(builder => builder.AddConsole()))
+              .UseSqlServer(config.GetConnectionString("SQLProvider"));
+            //   optionsBuilder.UseSqlServer(config.GetConnectionString("HomeSQLProvider"));
+            // optionsBuilder.UseMySql(config.GetConnectionString("MysqlConnection"));
 
             base.OnConfiguring(optionsBuilder);
         }
@@ -49,7 +52,6 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts
             modelBuilder.Entity<StShoppingCartItem>()
                 .HasOne(sci => sci.Cart);
             */
-
 
             //     modelBuilder.Entity<City>()
             //    .HasOne(e => e.CityInformation)

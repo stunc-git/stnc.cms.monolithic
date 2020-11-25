@@ -4,25 +4,45 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Stnc.CMS.Business.Interfaces;
-using Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts;
 using Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Repositories;
 using Stnc.CMS.DTO.DTOs.DekamProjeTakipDtos;
-using Stnc.CMS.DTO.DTOs.DeneyHayvaniIrkFiyatDtos;
 using Stnc.CMS.Entities.Concrete;
 using Stnc.CMS.Web.BaseControllers;
 using Stnc.CMS.Web.StringInfo;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+
 
 namespace Stnc.CMS.Web.Areas.Admin.Controllers
 {
+
+    public class DekamProjeToCart
+    {
+     //   public int BaseId { get; set; }
+        public string ProjeYurutucusu { get; set; }
+        public string ProjeYurutuKurumu { get; set; }
+        public string ProjeYurutuTelefon { get; set; }
+        public string SorumluArastirmaci { get; set; }
+        public string SorumluArastirmaciTelefon { get; set; }
+        public string EtikKurulOnayNumarasi { get; set; }
+        public DateTime EtikKurulOnayTarihi { get; set; }
+        public DateTime ProjeBaslangicTarihi { get; set; }
+        public DateTime ProjeBitisTarihi { get; set; }
+        public int LaboratuvarID { get; set; }
+        public DateTime LaboratuvarBaslangicTarihi { get; set; }
+        public DateTime LaboratuvarBitisTarihi { get; set; }
+    }
+
+
     [Authorize(Roles = RoleInfo.Admin)]
     [Area(AreaInfo.Admin)]
     public class DekamProjeTakipController : BaseIdentityController
     {
         private readonly IDekamProjeTakipService _dekamProjeTakipService;
         private readonly IDeneyHayvaniIrkFiyatService _deneyHayvaniIrkFiyatService;
+        private readonly IDosyaService _dosyaService;
         private readonly IMapper _mapper;
         private readonly EfGenericRepository<DekamProjeDeneyHayvaniIrk> DekamProjeDeneyHayvaniIrkRepo;
         private readonly EfGenericRepository<DekamProjeDeneyHayvaniTur> DekamProjeDeneyHayvaniTurRepo;
@@ -30,7 +50,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
         private readonly EfGenericRepository<DekamProjeTeknikDestekTalepTur> DekamProjeTeknikDestekTalepTurRepo;
 
 
-        public DekamProjeTakipController(IDekamProjeTakipService dekamProjeTakipService, IDeneyHayvaniIrkFiyatService deneyHayvaniIrkFiyatService, IMapper mapper, UserManager<AppUser> userManager) : base(userManager)
+        public DekamProjeTakipController(IDekamProjeTakipService dekamProjeTakipService, IDeneyHayvaniIrkFiyatService deneyHayvaniIrkFiyatService, IDosyaService dosyaService, IMapper mapper, UserManager<AppUser> userManager) : base(userManager)
         {
             _mapper = mapper;
             _dekamProjeTakipService = dekamProjeTakipService;
@@ -40,6 +60,8 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
             DekamProjeDeneyHayvaniTurRepo = new EfGenericRepository<DekamProjeDeneyHayvaniTur>();
             DekamProjeLaboratuvarlarRepo = new EfGenericRepository<DekamProjeLaboratuvarlar>();
             DekamProjeTeknikDestekTalepTurRepo = new EfGenericRepository<DekamProjeTeknikDestekTalepTur>();
+            _dosyaService = dosyaService;
+
         }
 
         public IActionResult Index()
@@ -58,6 +80,45 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
             ViewBag.LaboratuvarlarCategories = new SelectList(DekamProjeLaboratuvarlarRepo.GetAll(), "Id", "Name");
             return View(new DekamProjeTakipCreateDto());
         }
+
+        [HttpPost]
+        //[Route("/ShoppingCart/Add")]
+        public async Task<JsonResult> Save(DekamProjeToCart addData)
+        {
+            AppUser user = await GetUserLoginInfo();
+
+            int? returnId;
+            returnId = 0;
+            //projeYurutucusu
+
+            var returnData = _dekamProjeTakipService.SaveReturn(
+                 new DekamProjeTakip {
+                     ProjeYurutucusu = addData.ProjeYurutucusu,
+                     ProjeBaslangicTarihi=addData.ProjeBaslangicTarihi,
+                     ProjeBitisTarihi=addData.ProjeBitisTarihi,
+                     ProjeYurutukurumu=addData.ProjeYurutuKurumu,
+                     ProjeYurutuTelefon=addData.ProjeYurutuTelefon,
+                     SorumluArastirmaci=addData.SorumluArastirmaci,
+                     SorumluArastirmaciTelefon=addData.SorumluArastirmaciTelefon,
+                     EtikKurulOnayNumarasi=addData.EtikKurulOnayNumarasi,
+                     EtikKurulOnayTarihi=addData.EtikKurulOnayTarihi,
+                     LaboratuvarID=addData.LaboratuvarID,
+                     LaboratuvarBaslangicTarihi=addData.LaboratuvarBaslangicTarihi,
+                     LaboratuvarBitisTarihi=addData.LaboratuvarBitisTarihi,
+                     AppUserId=user.Id
+                 } );
+
+            returnId = returnData.Id;
+            return Json(new { status = "ok", mesaj = "Sipariş Tutarınız 0 TL, Sepete Eklenemedi " });
+
+
+        }
+        //[HttpPost]
+        //public async Task<IActionResult> Store(PostAddDto model)
+        //{
+
+        //}
+
 
         //çoklu view
         //buradaki amaç çoklu view model yapısını gondermek 
@@ -119,6 +180,14 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
                 return Json(sonuc);
             }
         }
+
+
+        public IActionResult GetirPdf()
+        {
+            var path = _dosyaService.AktarPdf2();
+            return File(path, "application/pdf", Guid.NewGuid() + ".pdf");
+        }
+
 
         /*
         [HttpPost]

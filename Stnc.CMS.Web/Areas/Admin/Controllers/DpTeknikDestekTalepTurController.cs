@@ -45,7 +45,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
 
             if (ModelState.IsValid)
             {
-                Myrepo.Kaydet(new DekamProjeTeknikDestekTalepTur
+                Myrepo.Save(new DekamProjeTeknikDestekTalepTur
                 {
                     Name = model.Name,
                     Price = model.Price,
@@ -63,7 +63,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
             ViewBag.GeneralTitle = "Teknik Destek Talep Türü Düzenleme";
 
             TempData["Active"] = TempdataInfo.Category;
-            var data = this.Myrepo.GetirIdile(id);
+            var data = this.Myrepo.GetID(id);
             if (data != null)
             {
                 return View(data);
@@ -83,7 +83,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
             var user = await GetUserLoginInfo().ConfigureAwait(false);
             if (ModelState.IsValid)
             {
-                Myrepo.Guncelle(new DekamProjeTeknikDestekTalepTur
+                Myrepo.Update(new DekamProjeTeknikDestekTalepTur
                 {
                     Id = model.Id,
                     Name = model.Name,
@@ -101,7 +101,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
         {
             f.Flash(Types.Success, "Kaydınız başarı ile silindi", dismissable: true);
 
-            Myrepo.Sil(new DekamProjeTeknikDestekTalepTur { Id = id });
+            Myrepo.Delete(new DekamProjeTeknikDestekTalepTur { Id = id });
             return Json(null);
         }
     }

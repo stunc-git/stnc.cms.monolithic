@@ -29,7 +29,7 @@ namespace Stnc.CMS.Business.Concrete
 
         public Rapor GetirIdile(int id)
         {
-            return _raporDal.GetirIdile(id);
+            return _raporDal.GetID(id);
         }
 
         public int GetirRaporSayisi()
@@ -44,12 +44,12 @@ namespace Stnc.CMS.Business.Concrete
 
         public void Guncelle(Rapor tablo)
         {
-            _raporDal.Guncelle(tablo);
+            _raporDal.Update(tablo);
         }
 
         public void Kaydet(Rapor tablo)
         {
-            _raporDal.Kaydet(tablo);
+            _raporDal.Save(tablo);
         }
 
         public Rapor SaveReturn(Rapor tablo)
@@ -59,7 +59,7 @@ namespace Stnc.CMS.Business.Concrete
 
         public void Sil(Rapor tablo)
         {
-            _raporDal.Sil(tablo);
+            _raporDal.Delete(tablo);
         }
     }
 }

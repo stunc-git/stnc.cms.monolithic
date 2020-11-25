@@ -53,7 +53,7 @@ namespace Stnc.CMS.Business.Concrete
 
         public Gorev GetirIdile(int id)
         {
-            return _gorevDal.GetirIdile(id);
+            return _gorevDal.GetID(id);
         }
 
         public List<Gorev> GetirileAppUserId(int appUserId)
@@ -83,12 +83,12 @@ namespace Stnc.CMS.Business.Concrete
 
         public void Guncelle(Gorev tablo)
         {
-            _gorevDal.Guncelle(tablo);
+            _gorevDal.Update(tablo);
         }
 
         public void Kaydet(Gorev tablo)
         {
-            _gorevDal.Kaydet(tablo);
+            _gorevDal.Save(tablo);
         }
 
         public Gorev SaveReturn(Gorev tablo)
@@ -98,7 +98,7 @@ namespace Stnc.CMS.Business.Concrete
 
         public void Sil(Gorev tablo)
         {
-            _gorevDal.Sil(tablo);
+            _gorevDal.Delete(tablo);
         }
     }
 }

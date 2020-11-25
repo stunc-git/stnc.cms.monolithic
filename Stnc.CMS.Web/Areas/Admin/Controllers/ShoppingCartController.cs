@@ -13,9 +13,12 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Stnc.CMS.Web.BaseControllers;
 using System;
+using System.Linq;
+using Microsoft.Extensions.Logging;
 
 namespace Stnc.CMS.Web.Areas.Admin.Controllers
 {
+    //burası post olarak gönderilen veriden dönen değerleri göstermek içindir
     public class PostToCart
     {
         public int BaseId { get; set; }
@@ -23,9 +26,9 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
         public int DestekIstenenHayvanSayisi { get; set; }
         public int BakimDestegiGunSayisi { get; set; }
         public int OtenaziIstek { get; set; }
-        public string destekTalepTurLeri { get; set; }
+        public string DestekTalepTurLeri { get; set; }
         public int HayvanYas { get; set; }
-        public int HayvanAgirlik { get; set; }
+        public string HayvanAgirlik { get; set; }
         public bool DeneyHayvaniCinsiyet { get; set; }
         public string ReturnType { get; set; }
     }
@@ -41,6 +44,8 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
     [Area(AreaInfo.Admin)]
     public class ShoppingCartController : BaseIdentityController
     {
+        protected readonly ILogger<ShoppingCartController> _logger;
+
         private readonly ShoppingCart _shoppingCart;
         private readonly IShopDal _shopService;
         private readonly IDeneyHayvaniIrkFiyatService _deneyHayvaniIrkFiyatService;
@@ -79,10 +84,13 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
         // HttpContext.Request.Form["UserName"]
         [Route("/ShoppingCart/Add")]
         //  public IActionResult Add(int id, [FromQuery] string catID)
-        public async Task <JsonResult> Add(PostToCart cartData)
+        public async Task<JsonResult> Add(PostToCart cartData)
         {
-            var user = await GetUserLoginInfo().ConfigureAwait(false);
+            AppUser user = await GetUserLoginInfo();
 
+            //Console.WriteLine(user.Id);
+            //_logger.LogInformation("Run endpoint {endpoint}" + user.Id);
+            //return Json("");
             decimal destekTalepTurLeriToplamFiyat;
             decimal fiyatToplami;
             decimal otenaziUcretToplami;
@@ -101,7 +109,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
             fiyatToplami = 0;
             otenaziUcretToplami = 0;
 
-          
+
 
 
             if (cartData.BaseId == null)
@@ -127,15 +135,15 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
             //   destekjson.ID = returndata.Id;
             // destekjson = new DestekTalepTurleriJson() { ID=0,Name="",Price=1 };
 
-            if (cartData.destekTalepTurLeri != null)
+            if (cartData.DestekTalepTurLeri != null)
             {
                 //destekTalepTurLeriIds = cartData.destekTalepTurLeri.Split(',');
-                destektalepturleris = cartData.destekTalepTurLeri.Split(',');
+                destektalepturleris = cartData.DestekTalepTurLeri.Split(',');
 
                 foreach (string part in destektalepturleris)
                 {
                     //Console.WriteLine(part);
-                    var returndata = this._dekamProjeTeknikDestekTalepTur_Repo.GetirIdile(int.Parse(part));
+                    var returndata = this._dekamProjeTeknikDestekTalepTur_Repo.GetID(int.Parse(part));
 
                     destektalepturleriStr += part + ',';
 
@@ -175,48 +183,48 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
                 return Json(new { status = "hata", mesaj = "Sipariş Tutarınız 0 TL, Sepete Eklenemedi " });
             }
 
-       
-            if (cartData.ReturnType == "ekle"){
+
+            if (cartData.ReturnType == "ekle")
+            {
                 if (hayvanFiyatlari != null)
                 {
                     if (fiyatToplami != 0)
                     {
 
+                        var returnData = _shopService.SaveReturn(
+                             new StShoppingCartItem
+                             {
+                                 HayvaniIrkFiyatID = hayvanFiyatlari.Id,
+                                 HayvanIrkAdi = hayvanFiyatlari.TurAdi,
+                                 HayvanAdi = hayvanFiyatlari.IrkAdi,
+                                 HayvanIrkFiyatTipYasBilgisi = hayvanFiyatlari.YasBilgisi,
+                                 IstenenHayvanSayisi = cartData.IstenenHayvanSayisi,
+                                 BakimDestegiGunSayisi = cartData.BakimDestegiGunSayisi,
+                                 DestekIstenenHayvanSayisi = cartData.DestekIstenenHayvanSayisi,
+                                 Otenazi = cartData.OtenaziIstek,
+                                 HayvanAgirlik = cartData.HayvanAgirlik,
+                                 DeneyHayvaniCinsiyet = cartData.DeneyHayvaniCinsiyet,
+                                 OtenaziUcreti = hayvanFiyatlari.OtenaziUcret,
+                                 OtenaziToplamUcreti = otenaziUcretToplami,
+                                 HayvanFiyati = hayvanFiyatlari.Fiyat,
+                                 GunlukBakimUcreti = hayvanFiyatlari.GunlukBakimUcreti,
+                                 DestekTalepTurleri = destektalepturleriStr,
+                                 DestekTalepTurleriJson = JsonOutput,
+                                 ToplamFiyat = fiyatToplami,
+                                 AppUserId = user.Id,
+                             }
+                            );
 
-
-                       
-
-                      var returnData=  _shopService.SaveReturn(
-                           new StShoppingCartItem
-                           {
-                               HayvaniIrkFiyatID = hayvanFiyatlari.Id,
-                               HayvanIrkAdi = hayvanFiyatlari.TurAdi,
-                               HayvanAdi = hayvanFiyatlari.IrkAdi,
-                               HayvanIrkFiyatTipYasBilgisi = hayvanFiyatlari.YasBilgisi,
-                               IstenenHayvanSayisi = cartData.IstenenHayvanSayisi,
-                               BakimDestegiGunSayisi = cartData.BakimDestegiGunSayisi,
-                               DestekIstenenHayvanSayisi = cartData.DestekIstenenHayvanSayisi,
-                               Otenazi = cartData.OtenaziIstek,
-                               HayvanAgirlik = cartData.HayvanAgirlik,
-                               DeneyHayvaniCinsiyet = cartData.DeneyHayvaniCinsiyet,
-                               OtenaziUcreti = hayvanFiyatlari.OtenaziUcret,
-                               OtenaziToplamUcreti = otenaziUcretToplami,
-                               HayvanFiyati = hayvanFiyatlari.Fiyat,
-                               GunlukBakimUcreti = hayvanFiyatlari.GunlukBakimUcreti,
-                               DestekTalepTurleri = destektalepturleriStr,
-                               DestekTalepTurleriJson = JsonOutput,
-                               ToplamFiyat = fiyatToplami,
-                               AppUserId = user.Id,
-                           }
-
-                          );
-
-                        returnId=returnData.Id;
+                        returnId = returnData.Id;
                     }
                 }
-                 var JsonData = _shopService.GetCartUserIdList(user.Id);
-                Console.WriteLine(JsonData);
-                return Json(new { status = "ok", SuccessCartItems = JsonData, returnID= returnId, destekTalepTurleri= JsonOutput, fiyatToplam = fiyatToplami });
+
+
+
+                var SuccessCartItemsData = _shopService.GetCartUserIdList(user.Id);
+                var ToplamUcret = _shopService.ToplamUcret(user.Id);
+                Console.WriteLine(SuccessCartItemsData);
+                return Json(new { status = "ok", SuccessCartItems = SuccessCartItemsData, returnID = returnId, fiyatToplam = ToplamUcret, birimFiyat = fiyatToplami });
             }
             else
             {
@@ -224,14 +232,43 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
             }
         }
 
-        public IActionResult Remove(int foodId)
+
+        [HttpGet]
+        [Route("/ShoppingCart/SepetGetir")]
+        public async Task<JsonResult> SepetGetir()
         {
-            //var food = _shopService.GetById(foodId);
-            //if (food != null)
-            //{
-            //    _shoppingCart.RemoveFromCart(food);
-            //}
-            return RedirectToAction("Index");
+            AppUser user = await GetUserLoginInfo();
+
+            var successCartItemsData = _shopService.GetCartUserIdList(user.Id);
+
+            if (successCartItemsData.Count() != 0)
+            {
+                var toplamUcret = _shopService.ToplamUcret(user.Id);
+                return Json(new { status = "ok", SuccessCartItems = successCartItemsData, FiyatToplam = toplamUcret });
+            }
+            else
+            {
+                return Json(new { status = "empty" });
+            }
+        }
+
+
+        public async Task<IActionResult> Delete(int id)
+        {
+            var user = await GetUserLoginInfo().ConfigureAwait(false);
+            _shopService.Delete(id);
+            var JsonData = _shopService.GetCartUserIdList(user.Id);
+            //    return Json(id);
+            if (JsonData.Count() != 0)
+            {
+                var ToplamUcret = _shopService.ToplamUcret(user.Id);
+                return Json(new { status = "ok", SuccessCartItems = JsonData, fiyatToplam = ToplamUcret });
+            }
+            else
+            {
+                return Json(new { status = "null" });
+            }
+
         }
 
         public IActionResult Back(string returnUrl = "/")

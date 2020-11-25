@@ -51,7 +51,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
 
             if (ModelState.IsValid)
             {
-                Myrepo.Kaydet(new DekamProjeDeneyHayvaniIrk
+                Myrepo.Save(new DekamProjeDeneyHayvaniIrk
                 {
                     Name = model.Name,
                     AppUserId = user.Id,
@@ -71,7 +71,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
 
             TempData["Active"] = TempdataInfo.Category;
 
-            var data = this.Myrepo.GetirIdile(id);
+            var data = this.Myrepo.GetID(id);
 
             ViewBag.Categories = new SelectList(DeneyHayvaniTurRepo.GetAll(), "Id", "Name", data.DeneyHayvaniTurID);
 
@@ -94,7 +94,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
             var user = await GetUserLoginInfo().ConfigureAwait(false);
             if (ModelState.IsValid)
             {
-                Myrepo.Guncelle(new DekamProjeDeneyHayvaniIrk
+                Myrepo.Update(new DekamProjeDeneyHayvaniIrk
                 {
                     Id = model.Id,
                     Name = model.Name,
@@ -111,7 +111,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
         public IActionResult Delete(int id)
         {
             f.Flash(Types.Success, "Kaydınız başarı ile silindi", dismissable: true);
-            Myrepo.Sil(new DekamProjeDeneyHayvaniIrk { Id = id });
+            Myrepo.Delete(new DekamProjeDeneyHayvaniIrk { Id = id });
             return Json(null);
         }
     }

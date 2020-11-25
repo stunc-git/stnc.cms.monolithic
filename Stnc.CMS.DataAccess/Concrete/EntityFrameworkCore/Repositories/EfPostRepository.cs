@@ -27,7 +27,7 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Repositories
         }
 
       //  public List<Posts>    PostList()
-       public List<Posts>    PostList()
+       public List<Posts> PostList()
         {
             //  using var context = new StncCMSContext();
             // using var context = new StncCMSContext();

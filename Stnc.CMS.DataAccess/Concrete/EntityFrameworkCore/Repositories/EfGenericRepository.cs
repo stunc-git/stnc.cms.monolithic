@@ -14,20 +14,20 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Repositories
             return context.Set<Tablo>().ToList();
         }
 
-        public Tablo GetirIdile(int id)
+        public Tablo GetID(int id)
         {
             using var context = new StncCMSContext();
             return context.Set<Tablo>().Find(id);
         }
 
-        public void Guncelle(Tablo tablo)
+        public void Update(Tablo tablo)
         {
             using var context = new StncCMSContext();
             context.Set<Tablo>().Update(tablo);
             context.SaveChanges();
         }
 
-        public void Kaydet(Tablo tablo)
+        public void Save(Tablo tablo)
         {
             using var context = new StncCMSContext();
             context.Set<Tablo>().Add(tablo);
@@ -42,7 +42,7 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Repositories
             return tablo;
         }
 
-        public void Sil(Tablo tablo)
+        public void Delete(Tablo tablo)
         {
             using var context = new StncCMSContext();
             context.Set<Tablo>().Remove(tablo);

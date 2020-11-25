@@ -45,7 +45,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
             var user = await GetUserLoginInfo().ConfigureAwait(false);
             if (ModelState.IsValid)
             {
-                Myrepo.Kaydet(new DekamProjeDeneyHayvaniTur
+                Myrepo.Save(new DekamProjeDeneyHayvaniTur
                 {
                     Name = model.Name,
                     GunlukBakimUcret = model.GunlukBakimUcret,
@@ -65,7 +65,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
             ViewBag.GeneralTitle = "Deney Hayvanı Türü Düzenleme";
 
             TempData["Active"] = TempdataInfo.Category;
-            var data = this.Myrepo.GetirIdile(id);
+            var data = this.Myrepo.GetID(id);
             if (data != null)
             {
                 return View(data);
@@ -86,7 +86,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
             var user = await GetUserLoginInfo().ConfigureAwait(false);
             if (ModelState.IsValid)
             {
-                Myrepo.Guncelle(new DekamProjeDeneyHayvaniTur
+                Myrepo.Update(new DekamProjeDeneyHayvaniTur
                 {
                     Id = model.Id,
                     Name = model.Name,
@@ -107,7 +107,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
         {
             f.Flash(Types.Success, "Kaydınız başarı ile silindi", dismissable: true);
 
-            Myrepo.Sil(new DekamProjeDeneyHayvaniTur { Id = id });
+            Myrepo.Delete(new DekamProjeDeneyHayvaniTur { Id = id });
             return Json(null);
         }
     }

@@ -63,5 +63,54 @@ namespace Stnc.CMS.Business.Concrete
 
             return returnPath;
         }
+
+        public string AktarPdf2()
+        {
+        
+
+            var fileName = Guid.NewGuid() + ".pdf";
+            var returnPath = "/documents/" + fileName;
+            var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/documents/" + fileName);
+
+            var stream = new FileStream(path, FileMode.Create);
+
+            string arialTtf = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Fonts), "arial.ttf");
+
+            BaseFont baseFont = BaseFont.CreateFont(arialTtf, BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
+
+            Font font = new Font(baseFont, 12, Font.NORMAL);
+
+            Document document = new Document(PageSize.A4, 25f, 25f, 25f, 25f);
+            PdfWriter.GetInstance(document, stream);
+            document.Open();
+
+            PdfPTable table = new PdfPTable(6);
+
+            PdfPCell cell = new PdfPCell(new Phrase("Row 1, Col 1"));
+            table.AddCell(cell);
+            cell = new PdfPCell(new Phrase("Row 1, Col 2"));
+            table.AddCell(cell);
+            cell = new PdfPCell(new Phrase("Row 1, Col 3"));
+            table.AddCell(cell);
+
+            cell = new PdfPCell(new Phrase("Row 2 , Col 1"));
+            table.AddCell(cell);
+            cell = new PdfPCell(new Phrase("Row 2, Col 2"));
+            table.AddCell(cell);
+            cell = new PdfPCell(new Phrase("Row 2 and Row 3, Col 3"));
+            cell.Rowspan = 2;
+            table.AddCell(cell);
+
+            cell = new PdfPCell(new Phrase("Row 3, Col 1"));
+            table.AddCell(cell);
+            cell = new PdfPCell(new Phrase("Row 3, Col 2"));
+            table.AddCell(cell);
+
+            document.Add(table);
+            document.Close();
+
+            return returnPath;
+        }
+
     }
 }

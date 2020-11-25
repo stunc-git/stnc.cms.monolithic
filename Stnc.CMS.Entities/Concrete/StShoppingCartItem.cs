@@ -20,7 +20,7 @@ namespace Stnc.CMS.Entities.Concrete
         public decimal GunlukBakimUcreti { get; set; }
         public string DestekTalepTurleri { get; set; }
         public bool DeneyHayvaniCinsiyet { get; set; }
-        public int HayvanAgirlik { get; set; }
+        public string HayvanAgirlik { get; set; }
         public decimal ToplamFiyat { get; set; }
         //burada shop cart
       //  public string ShoppingCartId { get; set; }

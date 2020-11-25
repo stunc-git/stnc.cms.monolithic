@@ -26,22 +26,22 @@ namespace Stnc.CMS.Business.Concrete
 
         public void Guncelle(Posts tablo)
         {
-            _postDal.Guncelle(tablo);
+            _postDal.Update(tablo);
         }
 
         public void Kaydet(Posts tablo)
         {
-            _postDal.Kaydet(tablo);
+            _postDal.Save(tablo);
         }
 
         public void Sil(Posts tablo)
         {
-            _postDal.Sil(tablo);
+            _postDal.Delete(tablo);
         }
 
         public Posts GetirIdile(int id)
         {
-            return _postDal.GetirIdile(id);
+            return _postDal.GetID(id);
         }
 
         public List<Posts> GetAll()

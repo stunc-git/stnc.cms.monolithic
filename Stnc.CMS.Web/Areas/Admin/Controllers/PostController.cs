@@ -48,8 +48,6 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
             return View(new PostAddDto());
         }
 
-
-
         [HttpPost]
         public async Task<IActionResult> AddPost(PostAddDto model, IFormFile picture)
         {
@@ -94,15 +92,6 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
             }
             ViewBag.Categories = new SelectList(_categoryService.GetAll(), "Id", "Name");
             return View(model);
-        }
-
-
-        public async Task<IActionResult> UploadFile(IFormFile aUploadedFile)
-        {
-            //todo: burada json return donmesi gerekli
-            string name = await Uploader(aUploadedFile, "file").ConfigureAwait(false);
-            string vReturnImagePath = "/upload/file/" + name;
-            return Ok(vReturnImagePath);
         }
 
 
@@ -182,6 +171,15 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
 
             _postService.Sil(new Posts { Id = id });
             return Json(null);
+        }
+
+
+        public async Task<IActionResult> UploadFile(IFormFile aUploadedFile)
+        {
+            //todo: burada json return donmesi gerekli
+            string name = await Uploader(aUploadedFile, "file").ConfigureAwait(false);
+            string vReturnImagePath = "/upload/file/" + name;
+            return Ok(vReturnImagePath);
         }
     }
 }

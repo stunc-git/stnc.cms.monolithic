@@ -20,8 +20,11 @@ namespace Stnc.CMS.Web.BaseControllers
 
         protected async Task<AppUser> GetUserLoginInfo()
         {
-            return await _userManager.FindByNameAsync(User.Identity.Name).ConfigureAwait(false);
+            return await _userManager.FindByNameAsync(User.Identity.Name);
         }
+
+   
+
 
         protected string SlugHelper(string value)
         {

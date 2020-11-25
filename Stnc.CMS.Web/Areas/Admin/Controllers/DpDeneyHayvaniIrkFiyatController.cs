@@ -119,7 +119,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
             var user = await GetUserLoginInfo().ConfigureAwait(false);
             if (ModelState.IsValid)
             {
-                Myrepo.Guncelle(new DekamProjeDeneyHayvaniIrkFiyat
+                Myrepo.Update(new DekamProjeDeneyHayvaniIrkFiyat
                 {
                     Id = model.Id,
                     YasBilgisi = model.YasBilgisi,

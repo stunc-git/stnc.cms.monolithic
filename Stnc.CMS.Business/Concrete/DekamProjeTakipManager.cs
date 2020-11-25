@@ -21,7 +21,7 @@ namespace Stnc.CMS.Business.Concrete
 
         public DekamProjeTakip GetirIdile(int id)
         {
-            return _dekamProjeTakipDal.GetirIdile(id);
+            return _dekamProjeTakipDal.GetID(id);
         }
 
         public int GetProjectTotal()
@@ -31,12 +31,12 @@ namespace Stnc.CMS.Business.Concrete
 
         public void Guncelle(DekamProjeTakip tablo)
         {
-            _dekamProjeTakipDal.Guncelle(tablo);
+            _dekamProjeTakipDal.Update(tablo);
         }
 
         public void Kaydet(DekamProjeTakip tablo)
         {
-            _dekamProjeTakipDal.Kaydet(tablo);
+            _dekamProjeTakipDal.Save(tablo);
         }
 
         public List<DekamProjeTakip> ProjeList()
@@ -51,7 +51,7 @@ namespace Stnc.CMS.Business.Concrete
 
         public void Sil(DekamProjeTakip tablo)
         {
-             _dekamProjeTakipDal.Sil(tablo);
+             _dekamProjeTakipDal.Delete(tablo);
         }
     }
 }

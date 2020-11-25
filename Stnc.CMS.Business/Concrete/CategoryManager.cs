@@ -21,17 +21,17 @@ namespace Stnc.CMS.Business.Concrete
 
         public Category GetirIdile(int id)
         {
-            return _categoryDal.GetirIdile(id);
+            return _categoryDal.GetID(id);
         }
 
         public void Guncelle(Category tablo)
         {
-            _categoryDal.Guncelle(tablo);
+            _categoryDal.Update(tablo);
         }
 
         public void Kaydet(Category tablo)
         {
-            _categoryDal.Kaydet(tablo);
+            _categoryDal.Save(tablo);
         }
 
         public Category SaveReturn(Category tablo)
@@ -41,7 +41,7 @@ namespace Stnc.CMS.Business.Concrete
 
         public void Sil(Category tablo)
         {
-            _categoryDal.Sil(tablo);
+            _categoryDal.Delete(tablo);
         }
     }
 }
