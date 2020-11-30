@@ -69,6 +69,7 @@ namespace Stnc.CMS.Business.Concrete
 
             //https://www.c-sharpcorner.com/blogs/create-table-in-pdf-using-c-sharp-and-itextsharp 
             //https://www.mikesdotnetting.com/article/87/itextsharp-working-with-images
+
             var fileName = Guid.NewGuid() + ".pdf";
             var returnPath = "/documents/" + fileName;
             var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/documents/" + fileName);
@@ -81,20 +82,40 @@ namespace Stnc.CMS.Business.Concrete
 
             Font font = new Font(baseFont, 12, Font.NORMAL);
 
-            Document document = new Document(PageSize.A4, 25f, 25f, 25f, 25f);
+            Document document = new Document(PageSize.A4, 5f, 5f, 5f,5f);
             PdfWriter.GetInstance(document, stream);
             document.Open();
 
 
 
-            document.Add(new Paragraph("ERCİYES ÜNİVERSİTESİ TIP FAKÜLTESİ"));
+           /// document.Add(new Paragraph("ERCİYES ÜNİVERSİTESİ TIP FAKÜLTESİ"));
 
             PdfPTable table = new PdfPTable(5);
 
-            Image image2 = Image.GetInstance("D:\\logo.png");
+            Image image = Image.GetInstance("D:\\logo2.png");
+
+            var scalePercent = (((document.PageSize.Width / image.Width) * 100) - 10);
+            image.ScalePercent(scalePercent);
+
+            image.Alignment = 1;
+
+            //resmi tam ortaya al
+
+            //image2.SetAbsolutePosition((PageSize.A4.Width - image2.ScaledWidth) / 2, (PageSize.A4.Height - image2.ScaledHeight) / 2);
+
+
+            //image2.IndentationLeft = 25;
+            //image2.IndentationRight = 25;
+
+            table.SpacingBefore = 20f;
+            table.SpacingAfter = 12.5f;
+           
+
+
 
             /// ****** HEADER *******//// 
-            PdfPCell cell = new PdfPCell(new Phrase("Hayvan Türü-  Yaşı", font));
+            PdfPCell cell = new PdfPCell(new Phrase("Hayvan Türü -  Yaşı", font));
+
             table.AddCell(cell);
 
             cell = new PdfPCell(new Phrase("Fiyat", font));
@@ -113,18 +134,26 @@ namespace Stnc.CMS.Business.Concrete
 
             /// ****** içerik *******//// 
             cell = new PdfPCell(new Phrase(" Fare (Balb-C) / 8 Haftalık Yaşa Kadar ", font));
+            cell.HorizontalAlignment = PdfCell.ALIGN_CENTER;
             table.AddCell(cell);
 
             cell = new PdfPCell(new Phrase("5 TL", font));
+            cell.HorizontalAlignment = PdfCell.ALIGN_CENTER;
             table.AddCell(cell);
 
             cell = new PdfPCell(new Phrase("10", font));
+            cell.HorizontalAlignment = PdfCell.ALIGN_CENTER;
             table.AddCell(cell);
 
             cell = new PdfPCell(new Phrase("5", font));
+
+            cell.HorizontalAlignment = Element.ALIGN_CENTER;
+            cell.VerticalAlignment = Element.ALIGN_MIDDLE;
+
             table.AddCell(cell);
 
             cell = new PdfPCell(new Phrase("10", font));
+            cell.HorizontalAlignment = PdfCell.ALIGN_CENTER;
             table.AddCell(cell);
             /// ****** HEADER end*******//// 
 
@@ -137,7 +166,7 @@ namespace Stnc.CMS.Business.Concrete
             */
         
 
-            cell = new PdfPCell(new Phrase("agirlik:420 gr / Cinsiyet: Erkek / Ötenazi[1 TL]: Evet  ", font));
+            cell = new PdfPCell(new Phrase("Ağırlık: 420 gr | Cinsiyet: Erkek | Ötenazi [1 TL]: Evet", font));
             cell.Colspan = 5;
             cell.PaddingTop = 5;
             cell.PaddingBottom = 5;
@@ -152,7 +181,7 @@ namespace Stnc.CMS.Business.Concrete
             table.AddCell(cell);
 
 
-            document.Add(image2);
+            document.Add(image);
             document.Add(table);
             document.Close();
 
