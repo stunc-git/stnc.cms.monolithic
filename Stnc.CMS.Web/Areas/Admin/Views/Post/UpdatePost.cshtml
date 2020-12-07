@@ -109,11 +109,9 @@
 @section JavaScript{
     <script src="~/lib/jqueryValidate/jquery.validate.min.js"></script>
     <script src="~/lib/jqueryUnob/jquery.validate.unobtrusive.min.js"></script>
-    <partial name="_ValidationScriptsPartial" />
-
     <link href="~/lib/summernote/summernote-bs4.min.css" rel="stylesheet" />
     <script src="~/lib/summernote/summernote-bs4.min.js"></script>
-    <script src="~/js/summernote-file.js"></script>
+    <script src="~/assets/js/summernote-file.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
             $("#Picture").change(function (e) {
@@ -233,11 +231,6 @@
         }
     }
 
-/**
- * DEPRECATED
- *
- *
- */
     function UploadImage(file) {
         var url = '@Url.Action("UploadFile", "Post")';
         alert("s");
@@ -264,11 +257,17 @@
         });
     }
 
+        //$(document).on("submit", ".postData", function (e) {
+        //    $("#PostContent").val($('#PostContent').code());
+        //    return true;
+        //});
+
         $('.note-codable').on('blur', function () {
             if ($('#PostContent').summernote('codeview.isActivated')) {
                 $('#PostContent').summernote('codeview.deactivate');
             }
         });
     </script>
+    <partial name="_ValidationScriptsPartial" />
 
 }
