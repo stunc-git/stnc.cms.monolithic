@@ -185,8 +185,10 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
 
         public IActionResult GetirPdf()
         {
-            var path = _dosyaService.AktarPdf2();
-            return File(path, "application/pdf", Guid.NewGuid() + ".pdf");
+           _dosyaService.AktarPdff();
+            return Json("");
+            //var path = _dosyaService.AktarPdf2();
+            //return File(path, "application/pdf", Guid.NewGuid() + ".pdf");
         }
 
 

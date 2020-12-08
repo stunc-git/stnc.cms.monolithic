@@ -21,10 +21,6 @@ https://csharp.hotexamples.com/examples/iTextSharp.text/Document/SetMargins/php-
 pdf de resim ve yazı yanyana şekli
 https://www.mikesdotnetting.com/article/87/itextsharp-working-with-images
 
-pdf yanyana kalınlı yazma şekli 
-https://www.mikesdotnetting.com/article/82/itextsharp-adding-text-with-chunks-phrases-and-paragraphs
-
-
 --data access katmanında yapılır yani context in olduğu katmanda 
 context file içinde tanımlamalarını yapmayı unutma 
 

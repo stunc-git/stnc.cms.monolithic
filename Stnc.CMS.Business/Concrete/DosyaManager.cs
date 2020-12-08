@@ -63,7 +63,10 @@ namespace Stnc.CMS.Business.Concrete
 
             return returnPath;
         }
+        //https://github.com/jonbride/strengthreport/blob/master/Backup/StrengthReport/Reporting/ReportFormat/ReportPdf.cs  bolumlere ayırmak için kullan 
+        //https://csharp.hotexamples.com/examples/iTextSharp.text/HeaderFooter/-/php-headerfooter-class-examples.html
 
+        //https://www.nilthakkar.com/2013/11/itextsharpadd-headerfooter-to-pdf.html bu çok onemli sayfalama mantığı burada var 
         public string AktarPdf2()
         {
 
@@ -82,13 +85,29 @@ namespace Stnc.CMS.Business.Concrete
 
             Font font = new Font(baseFont, 12, Font.NORMAL); //FontFactory.GetFont("Arial", 10, BaseColor.Black
             Font fontBold = new Font(baseFont, 11, Font.BOLD); //FontFactory.GetFont("Arial", 10, BaseColor.Black
-            Font fontMiniSmall = new Font(baseFont,7, Font.NORMAL, BaseColor.Black); //FontFactory.GetFont("Arial", 10, BaseColor.Black
+            Font fontMiniSmall = new Font(baseFont,7, Font.NORMAL, BaseColor.Black); 
+            Font fontMiniSmallBlue = new Font(baseFont,7, Font.NORMAL, BaseColor.Blue); 
             Font fontMiniBold = new Font(baseFont, 7, Font.BOLD, BaseColor.Black); //FontFactory.GetFont("Arial", 10, BaseColor.Black
             Document document = new Document(PageSize.Letter, 50f, 0,0,0);
             document.SetMargins(0,0,0,0);
 
   
             PdfWriter.GetInstance(document, stream);
+
+            Chunk chkFooter = new Chunk("son", fontMiniSmallBlue);
+            Phrase fo = new Phrase(chkFooter);
+
+            // Turn on numbering by setting the boolean to true
+            HeaderFooter footer = new HeaderFooter(fo, true);
+            footer.Border = Rectangle.NO_BORDER;
+            footer.Alignment = 1;
+
+            footer.Top = 50;
+            footer.Bottom = 50;
+    
+
+            document.Footer = footer;
+
             document.Open();
 
 
@@ -282,10 +301,12 @@ namespace Stnc.CMS.Business.Concrete
 
 
             string text = @"
-                    * Fiyatlar, Erciyes Üniversitesi’ne mensup araştırmacılar için ve kurum dışı taleplerde fiyatlar geçerlidir.
-                    ** Diyabet projeleri kapsamında takip edilecek hayvanlar için % 50 daha fazla günlük bakım ücreti alınır.
-                    *** Ötenazi ve özel cerrahi operasyonlar hariç; post operatif bakım, anestezi, enjeksiyon, kan alma, hayvan tutma,  hayvan tartma ve gavaj uygulaması gibi desteklerden oluşmaktadır.
-                    **** Ötenazi için gerekli kimyasal maddeler araştırmacı tarafından temin edilir. ";
+
+
+* Fiyatlar, Erciyes Üniversitesi’ne mensup araştırmacılar için ve kurum dışı taleplerde fiyatlar geçerlidir.
+** Diyabet projeleri kapsamında takip edilecek hayvanlar için % 50 daha fazla günlük bakım ücreti alınır.
+*** Ötenazi ve özel cerrahi operasyonlar hariç; post operatif bakım, anestezi, enjeksiyon, kan alma, hayvan tutma,  hayvan tartma ve gavaj uygulaması gibi desteklerden oluşmaktadır.
+**** Ötenazi için gerekli kimyasal maddeler araştırmacı tarafından temin edilir. ";
       
 
             PdfPTable table6 = new PdfPTable(1);
@@ -329,26 +350,48 @@ namespace Stnc.CMS.Business.Concrete
 
             //https://www.mikesdotnetting.com/article/82/itextsharp-adding-text-with-chunks-phrases-and-paragraphs
 
-            Chunk beginning = new Chunk("Adres:", fontMiniBold);
 
+
+            Chunk beginning = new Chunk("Adres: ", fontMiniBold);
             Phrase p1 = new Phrase(beginning);
+            Chunk c1 = new Chunk("DEKAM / Erciyes Üniversitesi Deneysel Araştırmalar Uygulama ve Araştırma Merkezi Merkez Kampüs Melikgazi / KAYSERİ ", fontMiniSmall);
+            Phrase par = new Phrase();
+            par.Add(c1);
+            Paragraph pes = new Paragraph();
+            pes.Add(p1);
+            pes.Add(par);
 
-            Chunk c1 = new Chunk("DEKAM / Erciyes Üniversitesi Deneysel Araştırmalar Uygulama ve Araştırma Merkezi Merkez Kampüs Melikgazi / KAYSERİ \"", fontMiniSmall);
 
             PdfPTable son = new PdfPTable(1);
-            PdfPCell cell66 = new PdfPCell(new Phrase("", font));
-            cell66.PaddingTop = 5;
-            cell66.PaddingBottom = 5;
-            cell66.HorizontalAlignment = PdfCell.ALIGN_CENTER;
-            cell66.Border = Rectangle.NO_BORDER;
-            table6Img.AddCell(cell66);
+            PdfPCell cell2son = new PdfPCell(pes);
+            cell2son.Border = Rectangle.NO_BORDER;
+            cell2son.HorizontalAlignment = PdfCell.ALIGN_LEFT;
+            son.AddCell(cell2son);
 
-            p1.Add(c1);
+            Chunk telefon = new Chunk("Telefon : ", fontMiniBold);
+            Phrase telefonp1 = new Phrase(telefon);
+            Chunk telefonp1c1 = new Chunk("+90 352 207 66 66 / 24 400", fontMiniSmall);
+            Chunk telefonp1c2 = new Chunk(" E-Posta : ", fontMiniBold);
+            Chunk telefonp1c3 =  new Chunk("dekam@erciyes.edu.tr", fontMiniSmallBlue);
+            telefonp1c3.SetAnchor("mailto:dekam@erciyes.edu.tr");
 
+     
 
+            Phrase telefonpar = new Phrase();
+            telefonpar.Add(telefonp1c1);
+            telefonpar.Add(telefonp1c2);
+            telefonpar.Add(telefonp1c3);
+            Paragraph telefonpes = new Paragraph();
+            telefonpes.Add(telefonp1);
+            telefonpes.Add(telefonpar);
 
+            cell2son = new PdfPCell(telefonpes);
+            cell2son.HorizontalAlignment = PdfCell.ALIGN_LEFT;
+            cell2son.Border = Rectangle.NO_BORDER;
+            son.AddCell(cell2son);
 
-
+    
+ 
 
 
             // metadata
@@ -369,11 +412,80 @@ namespace Stnc.CMS.Business.Concrete
             document.Add(table5);
             document.Add(table6);
             document.Add(table6Img);
+            document.Add(son);
 
             document.Close();
 
             return returnPath;
         }
 
+        public void AktarPdff()
+        {
+            Document doc = new Document(PageSize.A4.Rotate());
+
+            using (MemoryStream ms = new MemoryStream())
+            {
+                PdfWriter writer = PdfWriter.GetInstance(doc, ms);
+                PageEventHelper pageEventHelper = new PageEventHelper();
+                writer.PageEvent = pageEventHelper;
+            }
+        }
     }
+
+
+    public class PageEventHelper : PdfPageEventHelper
+    {
+        PdfContentByte cb;
+        PdfTemplate template;
+
+
+        public override void OnOpenDocument(PdfWriter writer, Document document)
+        {
+            cb = writer.DirectContent;
+            template = cb.CreateTemplate(50, 50);
+        }
+
+        public override void OnEndPage(PdfWriter writer, Document document)
+        {
+            base.OnEndPage(writer, document);
+
+            int pageN = writer.PageNumber;
+            String text = "Page " + pageN.ToString() + " of ";
+
+            string arialTtf = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Fonts), "arial.ttf");
+
+            BaseFont baseFont = BaseFont.CreateFont(arialTtf, BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
+
+            Font font = new Font(baseFont, 12, Font.NORMAL);
+
+            float len =50;
+
+            iTextSharp.text.Rectangle pageSize = document.PageSize;
+
+          
+
+            cb.BeginText();
+            cb.SetFontAndSize(baseFont, 14);
+            cb.SetTextMatrix(document.LeftMargin, pageSize.GetBottom(document.BottomMargin));
+            cb.ShowText(text);
+
+            cb.EndText();
+
+            cb.AddTemplate(template, document.LeftMargin + len, pageSize.GetBottom(document.BottomMargin));
+        }
+
+        public override void OnCloseDocument(PdfWriter writer, Document document)
+        {
+            base.OnCloseDocument(writer, document);
+            string arialTtf = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Fonts), "arial.ttf");
+
+            BaseFont baseFont = BaseFont.CreateFont(arialTtf, BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
+            template.BeginText();
+            template.SetFontAndSize(baseFont, 12);
+            template.SetTextMatrix(0, 0);
+            template.ShowText("" + (writer.PageNumber - 1));
+            template.EndText();
+        }
+    }
+
 }
