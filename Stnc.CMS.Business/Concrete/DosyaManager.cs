@@ -82,16 +82,12 @@ namespace Stnc.CMS.Business.Concrete
 
             Font font = new Font(baseFont, 12, Font.NORMAL); //FontFactory.GetFont("Arial", 10, BaseColor.Black
             Font fontBold = new Font(baseFont, 11, Font.BOLD); //FontFactory.GetFont("Arial", 10, BaseColor.Black
-            Font fontMiniSmall = new Font(baseFont, 5, Font.NORMAL, BaseColor.Blue); //FontFactory.GetFont("Arial", 10, BaseColor.Black
+            Font fontMiniSmall = new Font(baseFont,7, Font.NORMAL, BaseColor.Black); //FontFactory.GetFont("Arial", 10, BaseColor.Black
+            Font fontMiniBold = new Font(baseFont, 7, Font.BOLD, BaseColor.Black); //FontFactory.GetFont("Arial", 10, BaseColor.Black
+            Document document = new Document(PageSize.Letter, 50f, 0,0,0);
+            document.SetMargins(0,0,0,0);
 
-            Document document = new Document(PageSize.Letter, 50f, 10f, 10f, 0f);
-
-
-
-            document.SetMargins(10f, 10f, 10f, 0f);
-
-   
-
+  
             PdfWriter.GetInstance(document, stream);
             document.Open();
 
@@ -100,8 +96,8 @@ namespace Stnc.CMS.Business.Concrete
            /// document.Add(new Paragraph("ERCİYES ÜNİVERSİTESİ TIP FAKÜLTESİ"));
 
             PdfPTable table = new PdfPTable(5);
-
-            Image image = Image.GetInstance("D:\\logo2.png");
+            table.WidthPercentage = 80;
+            Image image = Image.GetInstance(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/pdf/logo.jpg"));
 
             var scalePercent = (((document.PageSize.Width / image.Width) * 80) - 5);
             image.ScalePercent(scalePercent);
@@ -166,7 +162,7 @@ namespace Stnc.CMS.Business.Concrete
             cell.HorizontalAlignment = PdfCell.ALIGN_CENTER;
             cell.VerticalAlignment = Element.ALIGN_MIDDLE;
             table.AddCell(cell);
-
+            table.WidthPercentage = 90;
             cell = new PdfPCell(new Phrase("Fiyat", fontBold));
             cell.HorizontalAlignment = PdfCell.ALIGN_CENTER;
             cell.VerticalAlignment = Element.ALIGN_MIDDLE;
@@ -270,7 +266,7 @@ namespace Stnc.CMS.Business.Concrete
 
             PdfPTable table5 = new PdfPTable(2);
             PdfPCell cell4 = new PdfPCell(new Phrase("Genel Toplam", fontBold));
-           // cell4.Colspan = 2;
+            table5.WidthPercentage = 90;
             cell4.PaddingTop = 5;
             cell4.PaddingBottom = 5;
             cell4.HorizontalAlignment = PdfCell.ALIGN_CENTER;
@@ -286,10 +282,10 @@ namespace Stnc.CMS.Business.Concrete
 
 
             string text = @"
-                    *Fiyatlar, Erciyes Üniversitesi’ne mensup araştırmacılar için ve kurum dışı taleplerde fiyatlar geçerlidir.
-                    **Diyabet projeleri kapsamında takip edilecek hayvanlar için % 50 daha fazla günlük bakım ücreti alınır.
-                    ***Ötenazi ve özel cerrahi operasyonlar hariç; post operatif bakım, anestezi, enjeksiyon, kan alma, hayvan tutma, hayvan tartma ve gavaj uygulaması gibi desteklerden oluşmaktadır.
-                     ****Ötenazi için gerekli kimyasal maddeler araştırmacı tarafından temin edilir. ";
+                    * Fiyatlar, Erciyes Üniversitesi’ne mensup araştırmacılar için ve kurum dışı taleplerde fiyatlar geçerlidir.
+                    ** Diyabet projeleri kapsamında takip edilecek hayvanlar için % 50 daha fazla günlük bakım ücreti alınır.
+                    *** Ötenazi ve özel cerrahi operasyonlar hariç; post operatif bakım, anestezi, enjeksiyon, kan alma, hayvan tutma,  hayvan tartma ve gavaj uygulaması gibi desteklerden oluşmaktadır.
+                    **** Ötenazi için gerekli kimyasal maddeler araştırmacı tarafından temin edilir. ";
       
 
             PdfPTable table6 = new PdfPTable(1);
@@ -300,22 +296,65 @@ namespace Stnc.CMS.Business.Concrete
             cell5.HorizontalAlignment = PdfCell.ALIGN_LEFT;
             table6.AddCell(cell5);
 
-            Image imzaImg = Image.GetInstance("D:\\imza.png");
+            Image imzaImg = Image.GetInstance(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/pdf/imza.jpg"));
 
-            //var scalePercentImza = (((document.PageSize.Width / imzaImg.Width) * 80) - 5);
-            //imzaImg.ScalePercent(scalePercentImza);
-
+            imzaImg.ScaleAbsolute(120f, 120f);
 
 
-            PdfPTable table6Img = new PdfPTable(1);
+
+            PdfPTable table6Img = new PdfPTable(2);
+            PdfPCell cell66 = new PdfPCell(new Phrase("", font));
+            cell66.PaddingTop = 5;
+            cell66.PaddingBottom = 5;
+            cell66.HorizontalAlignment = PdfCell.ALIGN_CENTER;
+            cell66.Border = Rectangle.NO_BORDER;
+            table6Img.AddCell(cell66);
+
+
             PdfPCell imageCell = new PdfPCell(imzaImg);
-            imageCell.Border = Rectangle.NO_BORDER;
-            imageCell.HorizontalAlignment = PdfCell.ALIGN_LEFT;
+            imageCell.Border = 0;
+            imageCell.HorizontalAlignment = PdfCell.ALIGN_RIGHT;
+            table6Img.AddCell(imageCell);
+
+            table6Img.SpacingBefore = 50f;
+            table6Img.SpacingAfter = 50f;
+
+
+
+
+
+
+            // var ImzatextAdres = new Paragraph(12, " ", fontMiniBold);
+            // var ImzatextAdresFull = new Paragraph(12, "", fontMiniSmall);
+
+            //https://www.mikesdotnetting.com/article/82/itextsharp-adding-text-with-chunks-phrases-and-paragraphs
+
+            Chunk beginning = new Chunk("Adres:", fontMiniBold);
+
+            Phrase p1 = new Phrase(beginning);
+
+            Chunk c1 = new Chunk("DEKAM / Erciyes Üniversitesi Deneysel Araştırmalar Uygulama ve Araştırma Merkezi Merkez Kampüs Melikgazi / KAYSERİ \"", fontMiniSmall);
+
+            PdfPTable son = new PdfPTable(1);
+            PdfPCell cell66 = new PdfPCell(new Phrase("", font));
+            cell66.PaddingTop = 5;
+            cell66.PaddingBottom = 5;
+            cell66.HorizontalAlignment = PdfCell.ALIGN_CENTER;
+            cell66.Border = Rectangle.NO_BORDER;
+            table6Img.AddCell(cell66);
+
+            p1.Add(c1);
+
+
+
+
+
+
 
             // metadata
             document.AddCreator("erciyes.edu.tr");
             document.AddKeywords("Erciyes üniversitesi Bilgi İşlem Daire Başkanlığı");
-            document.AddAuthor("@stnc");
+            document.AddAuthor("@stnc https://github.com/stnc");
             document.AddSubject("Proforma Fatura Oluşturucu");
             document.AddTitle("Proforma Fatura");
           

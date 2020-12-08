@@ -10,8 +10,8 @@ using Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts;
 namespace Stnc.CMS.DataAccess.Migrations
 {
     [DbContext(typeof(StncCMSContext))]
-    [Migration("20201111134349_DenyHyvnFiyatcartIdDelete")]
-    partial class DenyHyvnFiyatcartIdDelete
+    [Migration("20201208111436_initalCreate2")]
+    partial class initalCreate2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -471,10 +471,10 @@ namespace Stnc.CMS.DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2020, 11, 11, 16, 43, 48, 840, DateTimeKind.Local).AddTicks(5385),
+                            CreatedAt = new DateTime(2020, 12, 8, 14, 14, 35, 488, DateTimeKind.Local).AddTicks(9342),
                             DeneyHayvaniTurID = 1,
                             Name = "fare (Balb-C)",
-                            UpdatedAt = new DateTime(2020, 11, 11, 16, 43, 48, 840, DateTimeKind.Local).AddTicks(5402)
+                            UpdatedAt = new DateTime(2020, 12, 8, 14, 14, 35, 488, DateTimeKind.Local).AddTicks(9352)
                         });
                 });
 
@@ -525,11 +525,11 @@ namespace Stnc.CMS.DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2020, 11, 11, 16, 43, 48, 845, DateTimeKind.Local).AddTicks(2694),
+                            CreatedAt = new DateTime(2020, 12, 8, 14, 14, 35, 493, DateTimeKind.Local).AddTicks(8242),
                             DekamProjeDeneyHayvaniIrkId = 1,
                             DekamProjeDeneyHayvaniTurId = 1,
                             Fiyat = 5m,
-                            UpdatedAt = new DateTime(2020, 11, 11, 16, 43, 48, 845, DateTimeKind.Local).AddTicks(2706),
+                            UpdatedAt = new DateTime(2020, 12, 8, 14, 14, 35, 493, DateTimeKind.Local).AddTicks(8265),
                             YasBilgisi = "8 Haftalık Yaşa Kadar"
                         });
                 });
@@ -579,11 +579,11 @@ namespace Stnc.CMS.DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2020, 11, 11, 16, 43, 48, 839, DateTimeKind.Local).AddTicks(5498),
+                            CreatedAt = new DateTime(2020, 12, 8, 14, 14, 35, 487, DateTimeKind.Local).AddTicks(8169),
                             GunlukBakimUcret = 10m,
                             Name = "Fare",
                             OtenaziUcret = 1m,
-                            UpdatedAt = new DateTime(2020, 11, 11, 16, 43, 48, 839, DateTimeKind.Local).AddTicks(5515)
+                            UpdatedAt = new DateTime(2020, 12, 8, 14, 14, 35, 487, DateTimeKind.Local).AddTicks(8193)
                         });
                 });
 
@@ -623,9 +623,9 @@ namespace Stnc.CMS.DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2020, 11, 11, 16, 43, 48, 841, DateTimeKind.Local).AddTicks(6995),
+                            CreatedAt = new DateTime(2020, 12, 8, 14, 14, 35, 489, DateTimeKind.Local).AddTicks(8894),
                             Name = "Ernam",
-                            UpdatedAt = new DateTime(2020, 11, 11, 16, 43, 48, 841, DateTimeKind.Local).AddTicks(7007)
+                            UpdatedAt = new DateTime(2020, 12, 8, 14, 14, 35, 489, DateTimeKind.Local).AddTicks(8902)
                         });
                 });
 
@@ -901,6 +901,24 @@ namespace Stnc.CMS.DataAccess.Migrations
                     b.HasIndex("CategoryId");
 
                     b.ToTable("Posts");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 454034180,
+                            AppUserId = 1,
+                            CategoryId = 1,
+                            CommentCount = 0L,
+                            CommentStatus = false,
+                            CreatedAt = new DateTime(2020, 12, 8, 14, 14, 35, 467, DateTimeKind.Local).AddTicks(5424),
+                            MenuOrder = 1,
+                            Picture = "default.jpg",
+                            PostContent = "<p>Erciyes Üniversitesi Tıp Fakültesine bağlı bir merkez olarak; Hakan ÇETİNSAYA’nın (1976-1996) anısına, amcası hayırsever işadamı Sayın Süleyman ÇETİNSAYA tarafından yaptırılan merkez 1997 tarihinde hizmete açılmıştır. </ p >< p >< img src = \"/upload/file/tarihce-res1.jpg\" >< br ></ p >< p >•Hakan Çetinsaya Deneysel ve Klinik Araştırma Merkez'inde kurulduğu günden itibaren çok sayıda deneysel çalışmalar yapılmış ve bu çalışmalar ulusal ve uluslar arası dergilerde yayınlanmış, kongrelerde sunulmuş ve çeşitli ödüller almıştır.•21 Haziran 2013 tarihli ve 28684 sayılı Resmi Gazete’de yayımlanan Yönetmelik kapsamında Erciyes Üniversitesi \"Deneysel Araştırmalar Uygulama ve Araştırma Merkezi - DEKAM\" olarak isimlendirildi. </ p > ",
+                            PostSlug = "hakkimizda",
+                            PostStatus = true,
+                            PostTitle = "HAKKIMIZDA",
+                            UpdatedAt = new DateTime(2020, 12, 8, 14, 14, 35, 468, DateTimeKind.Local).AddTicks(6235)
+                        });
                 });
 
             modelBuilder.Entity("Stnc.CMS.Entities.Concrete.Rapor", b =>
@@ -986,14 +1004,14 @@ namespace Stnc.CMS.DataAccess.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 1560730076,
+                            Id = 1768819076,
                             Caption = "Lorem ipsum laramde loremde ipsumda inmpala",
-                            CreatedAt = new DateTime(2020, 11, 11, 16, 43, 48, 834, DateTimeKind.Local).AddTicks(182),
+                            CreatedAt = new DateTime(2020, 12, 8, 14, 14, 35, 482, DateTimeKind.Local).AddTicks(3748),
                             Excerpt = "exceprt data loremmmmmm ipsummmmm",
                             MenuOrder = 1,
                             Picture = "default.jpg",
                             Status = true,
-                            UpdatedAt = new DateTime(2020, 11, 11, 16, 43, 48, 834, DateTimeKind.Local).AddTicks(2966),
+                            UpdatedAt = new DateTime(2020, 12, 8, 14, 14, 35, 482, DateTimeKind.Local).AddTicks(3782),
                             UrlAddress = "",
                             UrlType = (short)0
                         });
@@ -1042,8 +1060,9 @@ namespace Stnc.CMS.DataAccess.Migrations
                     b.Property<string>("HayvanAdi")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<byte>("HayvanAgirlik")
-                        .HasColumnType("tinyint");
+                    b.Property<string>("HayvanAgirlik")
+                        .HasColumnType("nvarchar(255)")
+                        .HasMaxLength(255);
 
                     b.Property<decimal>("HayvanFiyati")
                         .HasColumnType("decimal(6,2)");

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Stnc.CMS.DataAccess.Migrations
 {
-    public partial class Init : Migration
+    public partial class initalCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -386,6 +386,46 @@ namespace Stnc.CMS.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "StShoppingCartItem",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    HayvaniIrkFiyatID = table.Column<int>(nullable: false),
+                    DekamProjeTakipID = table.Column<int>(nullable: false),
+                    HayvanIrkAdi = table.Column<string>(nullable: true),
+                    HayvanAdi = table.Column<string>(nullable: true),
+                    HayvanIrkFiyatTipYasBilgisi = table.Column<string>(nullable: true),
+                    IstenenHayvanSayisi = table.Column<int>(nullable: false),
+                    DestekIstenenHayvanSayisi = table.Column<int>(nullable: false),
+                    BakimDestegiGunSayisi = table.Column<int>(nullable: false),
+                    Otenazi = table.Column<int>(nullable: false),
+                    OtenaziUcreti = table.Column<decimal>(type: "decimal(6,2)", nullable: false),
+                    OtenaziToplamUcreti = table.Column<decimal>(type: "decimal(6,2)", nullable: false),
+                    HayvanFiyati = table.Column<decimal>(type: "decimal(6,2)", nullable: false),
+                    GunlukBakimUcreti = table.Column<decimal>(type: "decimal(6,2)", nullable: false),
+                    DestekTalepTurleri = table.Column<string>(maxLength: 255, nullable: true),
+                    DeneyHayvaniCinsiyet = table.Column<bool>(nullable: false),
+                    HayvanAgirlik = table.Column<string>(maxLength: 255, nullable: true),
+                    ToplamFiyat = table.Column<decimal>(type: "decimal(6,2)", nullable: false),
+                    DestekTalepTurleriJson = table.Column<string>(nullable: true),
+                    AppUserId = table.Column<int>(nullable: true),
+                    CreatedAt = table.Column<DateTime>(nullable: true),
+                    UpdatedAt = table.Column<DateTime>(nullable: true),
+                    DeletedAt = table.Column<DateTime>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_StShoppingCartItem", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_StShoppingCartItem_AspNetUsers_AppUserId",
+                        column: x => x.AppUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Posts",
                 columns: table => new
                 {
@@ -431,7 +471,7 @@ namespace Stnc.CMS.DataAccess.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Isım = table.Column<string>(nullable: true),
+                    YasBilgisi = table.Column<string>(nullable: true),
                     Fiyat = table.Column<decimal>(type: "decimal(6,2)", nullable: false),
                     CreatedAt = table.Column<DateTime>(nullable: true),
                     UpdatedAt = table.Column<DateTime>(nullable: true),
@@ -478,20 +518,14 @@ namespace Stnc.CMS.DataAccess.Migrations
                     EtikKurulOnayTarihi = table.Column<DateTime>(nullable: true),
                     ProjeBaslangicTarihi = table.Column<DateTime>(nullable: true),
                     ProjeBitisTarihi = table.Column<DateTime>(nullable: true),
-                    DeneyHayvaniCinsiyet = table.Column<short>(type: "smallint", nullable: false),
                     DeneyHayvaniSayisi = table.Column<short>(type: "smallint", nullable: false),
-                    DeneyHayvaniYasi = table.Column<short>(type: "smallint", nullable: false),
-                    DeneyHayvaniAgirligi = table.Column<short>(type: "smallint", nullable: false),
                     LaboratuvarBaslangicTarihi = table.Column<DateTime>(nullable: true),
                     LaboratuvarBitisTarihi = table.Column<DateTime>(nullable: true),
                     CreatedAt = table.Column<DateTime>(nullable: true),
                     UpdatedAt = table.Column<DateTime>(nullable: true),
                     DeletedAt = table.Column<DateTime>(nullable: true),
                     AppUserId = table.Column<int>(nullable: true),
-                    DeneyHayvaniIrkID = table.Column<int>(nullable: false),
-                    DeneyHayvaniTurID = table.Column<int>(nullable: false),
-                    LaboratuvarID = table.Column<int>(nullable: false),
-                    TeknikDestekTuruID = table.Column<int>(nullable: false)
+                    LaboratuvarID = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -503,27 +537,9 @@ namespace Stnc.CMS.DataAccess.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.SetNull);
                     table.ForeignKey(
-                        name: "FK_DekamProjeTakip_DekamProjeDeneyHayvaniIrk_DeneyHayvaniIrkID",
-                        column: x => x.DeneyHayvaniIrkID,
-                        principalTable: "DekamProjeDeneyHayvaniIrk",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_DekamProjeTakip_DekamProjeDeneyHayvaniTur_DeneyHayvaniTurID",
-                        column: x => x.DeneyHayvaniTurID,
-                        principalTable: "DekamProjeDeneyHayvaniTur",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
                         name: "FK_DekamProjeTakip_DekamProjeLaboratuvarlar_LaboratuvarID",
                         column: x => x.LaboratuvarID,
                         principalTable: "DekamProjeLaboratuvarlar",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_DekamProjeTakip_DekamProjeTeknikDestekTalepTur_TeknikDestekTuruID",
-                        column: x => x.TeknikDestekTuruID,
-                        principalTable: "DekamProjeTeknikDestekTalepTur",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -547,43 +563,6 @@ namespace Stnc.CMS.DataAccess.Migrations
                         principalTable: "Gorevler",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "StShoppingCartItem",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    HayvaniIrkFiyatID = table.Column<int>(nullable: false),
-                    DekamProjeTakipID = table.Column<int>(nullable: false),
-                    HayvanIrkAdi = table.Column<string>(nullable: true),
-                    HayvanAdi = table.Column<string>(nullable: true),
-                    HayvanIrkFiyatTipAdi = table.Column<string>(nullable: true),
-                    IstenenHayvanSayisi = table.Column<int>(nullable: false),
-                    DestekIstenenHayvanSayisi = table.Column<int>(nullable: false),
-                    BakimDestegiGunSayisi = table.Column<int>(nullable: false),
-                    Otenazi = table.Column<bool>(nullable: false),
-                    OtenaziUcreti = table.Column<decimal>(type: "decimal(6,2)", nullable: false),
-                    HayvanFiyati = table.Column<decimal>(type: "decimal(6,2)", nullable: false),
-                    GunlukBakimUcreti = table.Column<decimal>(type: "decimal(6,2)", nullable: false),
-                    DestekTalepTurleri = table.Column<string>(maxLength: 255, nullable: true),
-                    ToplamFiyat = table.Column<decimal>(type: "decimal(6,2)", nullable: false),
-                    DestekTalepTurleriJson = table.Column<string>(nullable: true),
-                    CreatedAt = table.Column<DateTime>(nullable: true),
-                    UpdatedAt = table.Column<DateTime>(nullable: true),
-                    DeletedAt = table.Column<DateTime>(nullable: true),
-                    CartId = table.Column<int>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_StShoppingCartItem", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_StShoppingCartItem_DekamProjeDeneyHayvaniIrkFiyat_CartId",
-                        column: x => x.CartId,
-                        principalTable: "DekamProjeDeneyHayvaniIrkFiyat",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -663,17 +642,17 @@ namespace Stnc.CMS.DataAccess.Migrations
             migrationBuilder.InsertData(
                 table: "DekamProjeDeneyHayvaniIrk",
                 columns: new[] { "Id", "AppUserId", "CreatedAt", "DeletedAt", "DeneyHayvaniTurID", "Description", "Name", "UpdatedAt" },
-                values: new object[] { 1, null, new DateTime(2020, 11, 9, 11, 52, 24, 391, DateTimeKind.Local).AddTicks(5435), null, 1, null, "fare (Balb-C)", new DateTime(2020, 11, 9, 11, 52, 24, 391, DateTimeKind.Local).AddTicks(5449) });
+                values: new object[] { 1, null, new DateTime(2020, 12, 8, 13, 50, 10, 616, DateTimeKind.Local).AddTicks(7721), null, 1, null, "fare (Balb-C)", new DateTime(2020, 12, 8, 13, 50, 10, 616, DateTimeKind.Local).AddTicks(7732) });
 
             migrationBuilder.InsertData(
                 table: "DekamProjeDeneyHayvaniTur",
                 columns: new[] { "Id", "AppUserId", "CreatedAt", "DeletedAt", "GunlukBakimUcret", "Name", "OtenaziUcret", "Picture", "UpdatedAt" },
-                values: new object[] { 1, null, new DateTime(2020, 11, 9, 11, 52, 24, 390, DateTimeKind.Local).AddTicks(5417), null, 10m, "Fare", 1m, null, new DateTime(2020, 11, 9, 11, 52, 24, 390, DateTimeKind.Local).AddTicks(5439) });
+                values: new object[] { 1, null, new DateTime(2020, 12, 8, 13, 50, 10, 615, DateTimeKind.Local).AddTicks(6493), null, 10m, "Fare", 1m, null, new DateTime(2020, 12, 8, 13, 50, 10, 615, DateTimeKind.Local).AddTicks(6525) });
 
             migrationBuilder.InsertData(
                 table: "DekamProjeLaboratuvarlar",
                 columns: new[] { "Id", "AppUserId", "CreatedAt", "DeletedAt", "Name", "UpdatedAt" },
-                values: new object[] { 1, null, new DateTime(2020, 11, 9, 11, 52, 24, 392, DateTimeKind.Local).AddTicks(4877), null, "Ernam", new DateTime(2020, 11, 9, 11, 52, 24, 392, DateTimeKind.Local).AddTicks(4888) });
+                values: new object[] { 1, null, new DateTime(2020, 12, 8, 13, 50, 10, 617, DateTimeKind.Local).AddTicks(8559), null, "Ernam", new DateTime(2020, 12, 8, 13, 50, 10, 617, DateTimeKind.Local).AddTicks(8576) });
 
             migrationBuilder.InsertData(
                 table: "Options",
@@ -683,12 +662,12 @@ namespace Stnc.CMS.DataAccess.Migrations
             migrationBuilder.InsertData(
                 table: "Slider",
                 columns: new[] { "Id", "AppUserId", "Caption", "CreatedAt", "DeletedAt", "Excerpt", "MenuOrder", "Picture", "Status", "UpdatedAt", "UrlAddress", "UrlType" },
-                values: new object[] { 771592251, null, "Lorem ipsum laramde loremde ipsumda inmpala", new DateTime(2020, 11, 9, 11, 52, 24, 384, DateTimeKind.Local).AddTicks(2437), null, "exceprt data loremmmmmm ipsummmmm", 1, "default.jpg", true, new DateTime(2020, 11, 9, 11, 52, 24, 384, DateTimeKind.Local).AddTicks(5211), "", (short)0 });
+                values: new object[] { 365488076, null, "Lorem ipsum laramde loremde ipsumda inmpala", new DateTime(2020, 12, 8, 13, 50, 10, 608, DateTimeKind.Local).AddTicks(4355), null, "exceprt data loremmmmmm ipsummmmm", 1, "default.jpg", true, new DateTime(2020, 12, 8, 13, 50, 10, 609, DateTimeKind.Local).AddTicks(3666), "", (short)0 });
 
             migrationBuilder.InsertData(
                 table: "DekamProjeDeneyHayvaniIrkFiyat",
-                columns: new[] { "Id", "AppUserId", "CreatedAt", "DekamProjeDeneyHayvaniIrkId", "DekamProjeDeneyHayvaniTurId", "DeletedAt", "Fiyat", "Isım", "UpdatedAt" },
-                values: new object[] { 1, null, new DateTime(2020, 11, 9, 11, 52, 24, 395, DateTimeKind.Local).AddTicks(9421), 1, 1, null, 5m, "8 Haftalık Yaşa Kadar", new DateTime(2020, 11, 9, 11, 52, 24, 395, DateTimeKind.Local).AddTicks(9432) });
+                columns: new[] { "Id", "AppUserId", "CreatedAt", "DekamProjeDeneyHayvaniIrkId", "DekamProjeDeneyHayvaniTurId", "DeletedAt", "Fiyat", "UpdatedAt", "YasBilgisi" },
+                values: new object[] { 1, null, new DateTime(2020, 12, 8, 13, 50, 10, 621, DateTimeKind.Local).AddTicks(9682), 1, 1, null, 5m, new DateTime(2020, 12, 8, 13, 50, 10, 621, DateTimeKind.Local).AddTicks(9698), "8 Haftalık Yaşa Kadar" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -796,24 +775,9 @@ namespace Stnc.CMS.DataAccess.Migrations
                 column: "AppUserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_DekamProjeTakip_DeneyHayvaniIrkID",
-                table: "DekamProjeTakip",
-                column: "DeneyHayvaniIrkID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_DekamProjeTakip_DeneyHayvaniTurID",
-                table: "DekamProjeTakip",
-                column: "DeneyHayvaniTurID");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_DekamProjeTakip_LaboratuvarID",
                 table: "DekamProjeTakip",
                 column: "LaboratuvarID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_DekamProjeTakip_TeknikDestekTuruID",
-                table: "DekamProjeTakip",
-                column: "TeknikDestekTuruID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_DekamProjeTeknikDestekTalepTur_AppUserId",
@@ -851,9 +815,9 @@ namespace Stnc.CMS.DataAccess.Migrations
                 column: "AppUserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_StShoppingCartItem_CartId",
+                name: "IX_StShoppingCartItem_AppUserId",
                 table: "StShoppingCartItem",
-                column: "CartId");
+                column: "AppUserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -883,6 +847,12 @@ namespace Stnc.CMS.DataAccess.Migrations
                 name: "Comments");
 
             migrationBuilder.DropTable(
+                name: "DekamProjeDeneyHayvaniIrkFiyat");
+
+            migrationBuilder.DropTable(
+                name: "DekamProjeTeknikDestekTalepTur");
+
+            migrationBuilder.DropTable(
                 name: "Options");
 
             migrationBuilder.DropTable(
@@ -904,28 +874,22 @@ namespace Stnc.CMS.DataAccess.Migrations
                 name: "DekamProjeTakip");
 
             migrationBuilder.DropTable(
+                name: "DekamProjeDeneyHayvaniIrk");
+
+            migrationBuilder.DropTable(
+                name: "DekamProjeDeneyHayvaniTur");
+
+            migrationBuilder.DropTable(
                 name: "Categories");
 
             migrationBuilder.DropTable(
                 name: "Gorevler");
 
             migrationBuilder.DropTable(
-                name: "DekamProjeDeneyHayvaniIrkFiyat");
-
-            migrationBuilder.DropTable(
                 name: "DekamProjeLaboratuvarlar");
 
             migrationBuilder.DropTable(
-                name: "DekamProjeTeknikDestekTalepTur");
-
-            migrationBuilder.DropTable(
                 name: "Aciliyetler");
-
-            migrationBuilder.DropTable(
-                name: "DekamProjeDeneyHayvaniIrk");
-
-            migrationBuilder.DropTable(
-                name: "DekamProjeDeneyHayvaniTur");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
