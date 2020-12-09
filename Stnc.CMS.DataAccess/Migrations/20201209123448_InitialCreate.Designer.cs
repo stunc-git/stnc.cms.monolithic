@@ -10,8 +10,8 @@ using Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts;
 namespace Stnc.CMS.DataAccess.Migrations
 {
     [DbContext(typeof(StncCMSContext))]
-    [Migration("20201208105011_initalCreate")]
-    partial class initalCreate
+    [Migration("20201209123448_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -471,10 +471,10 @@ namespace Stnc.CMS.DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2020, 12, 8, 13, 50, 10, 616, DateTimeKind.Local).AddTicks(7721),
+                            CreatedAt = new DateTime(2020, 12, 9, 15, 34, 48, 99, DateTimeKind.Local).AddTicks(345),
                             DeneyHayvaniTurID = 1,
                             Name = "fare (Balb-C)",
-                            UpdatedAt = new DateTime(2020, 12, 8, 13, 50, 10, 616, DateTimeKind.Local).AddTicks(7732)
+                            UpdatedAt = new DateTime(2020, 12, 9, 15, 34, 48, 99, DateTimeKind.Local).AddTicks(356)
                         });
                 });
 
@@ -525,11 +525,11 @@ namespace Stnc.CMS.DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2020, 12, 8, 13, 50, 10, 621, DateTimeKind.Local).AddTicks(9682),
+                            CreatedAt = new DateTime(2020, 12, 9, 15, 34, 48, 103, DateTimeKind.Local).AddTicks(5986),
                             DekamProjeDeneyHayvaniIrkId = 1,
                             DekamProjeDeneyHayvaniTurId = 1,
                             Fiyat = 5m,
-                            UpdatedAt = new DateTime(2020, 12, 8, 13, 50, 10, 621, DateTimeKind.Local).AddTicks(9698),
+                            UpdatedAt = new DateTime(2020, 12, 9, 15, 34, 48, 103, DateTimeKind.Local).AddTicks(6001),
                             YasBilgisi = "8 Haftalık Yaşa Kadar"
                         });
                 });
@@ -579,11 +579,11 @@ namespace Stnc.CMS.DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2020, 12, 8, 13, 50, 10, 615, DateTimeKind.Local).AddTicks(6493),
+                            CreatedAt = new DateTime(2020, 12, 9, 15, 34, 48, 98, DateTimeKind.Local).AddTicks(670),
                             GunlukBakimUcret = 10m,
                             Name = "Fare",
                             OtenaziUcret = 1m,
-                            UpdatedAt = new DateTime(2020, 12, 8, 13, 50, 10, 615, DateTimeKind.Local).AddTicks(6525)
+                            UpdatedAt = new DateTime(2020, 12, 9, 15, 34, 48, 98, DateTimeKind.Local).AddTicks(689)
                         });
                 });
 
@@ -623,9 +623,9 @@ namespace Stnc.CMS.DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2020, 12, 8, 13, 50, 10, 617, DateTimeKind.Local).AddTicks(8559),
+                            CreatedAt = new DateTime(2020, 12, 9, 15, 34, 48, 99, DateTimeKind.Local).AddTicks(9402),
                             Name = "Ernam",
-                            UpdatedAt = new DateTime(2020, 12, 8, 13, 50, 10, 617, DateTimeKind.Local).AddTicks(8576)
+                            UpdatedAt = new DateTime(2020, 12, 9, 15, 34, 48, 99, DateTimeKind.Local).AddTicks(9412)
                         });
                 });
 
@@ -822,7 +822,13 @@ namespace Stnc.CMS.DataAccess.Migrations
                         {
                             Id = 1L,
                             OptionName = "front-menu",
-                            OptionValue = "[{\"text\":\"Home\",\"href\":\"http://home.com\",\"icon\":\"fas fa-home\",\"target\":\"_top\",\"title\":\"My Home\"}]"
+                            OptionValue = "[{\"text\":\"Anasayfa\",\"href\":\"/\",\"icon\":\"empty\",\"target\":\"_self\",\"title\":\"Anasayfa\"},{\"text\":\"Kurumsal\",\"href\":\"#\",\"icon\":\"empty\",\"target\":\"_self\",\"title\":\"\",\"children\":[{\"text\":\"Tarihçe\",\"href\":\"/icerik/tarihce\",\"icon\":\"empty\",\"target\":\"_self\",\"title\":\"\"},{\"text\":\" İnsan Kaynağı \",\"href\":\"/icerik/insan-kaynagi\",\"icon\":\"empty\",\"target\":\"_self\",\"title\":\"\"},{\"text\":\" Arastirma Bölümleri \",\"href\":\"/icerik/arastirma-bolumleri\",\"icon\":\"empty\",\"target\":\"_self\",\"title\":\"\"},{\"text\":\"Misyon Vizyon\",\"href\":\"/icerik/misyon-vizyon\",\"icon\":\"empty\",\"target\":\"_self\",\"title\":\"\"},{\"text\":\" Hayvan Ünitesi \",\"href\":\"/icerik/hayvan-unitesi\",\"icon\":\"empty\",\"target\":\"_self\",\"title\":\"\"},{\"text\":\"Araştırma\",\"href\":\"/icerik/arastirma\",\"icon\":\"\",\"target\":\"_self\",\"title\":\"\"},{\"text\":\"Faaliyet Alanları\",\"href\":\"/icerik/faaliyet-alanlari\",\"icon\":\"\",\"target\":\"_self\",\"title\":\"\"}]},{\"text\":\"Yönetim\",\"href\":\"#\",\"icon\":\"\",\"target\":\"_self\",\"title\":\"\",\"children\":[{\"text\":\"Yönetim\",\"href\":\"/icerik/yonetim\",\"icon\":\"empty\",\"target\":\"_self\",\"title\":\"\"},{\"text\":\"Komisyon Üyeleri\",\"href\":\"/icerik/komisyon-uyeleri\",\"icon\":\"empty\",\"target\":\"_self\",\"title\":\"\"},{\"text\":\"Personel\",\"href\":\"/icerik/personel\",\"icon\":\"empty\",\"target\":\"_self\",\"title\":\"\"},{\"text\":\"Yönetmelikler\",\"href\":\"/icerik/yonetmelikler\",\"icon\":\"empty\",\"target\":\"_self\",\"title\":\"\"},{\"text\":\"Belge & Bilgi \",\"href\":\"/icerik/calisma-izin-belgesi\",\"icon\":\"empty\",\"target\":\"_self\",\"title\":\"\"},{\"text\":\" İş Akış Şeması \",\"href\":\"/icerik/is-akis-semasi\",\"icon\":\"empty\",\"target\":\"_self\",\"title\":\"\"},{\"text\":\"İstatistikler\",\"href\":\"/icerik/istatistikler\",\"icon\":\"empty\",\"target\":\"_self\",\"title\":\"\"},{\"text\":\"Fiyat Listesi\",\"href\":\"/icerik/fiyat-listesi\",\"icon\":\"empty\",\"target\":\"_self\",\"title\":\"\"},{\"text\":\"Formlar\",\"href\":\"/icerik/formlar\",\"icon\":\"\",\"target\":\"_self\",\"title\":\"\"}]},{\"text\":\"Galeriler\",\"icon\":\"\",\"href\":\"#\",\"target\":\"_self\",\"title\":\"\",\"children\":[{\"text\":\"Resim Galerisi\",\"icon\":\"empty\",\"href\":\"/galeri\",\"target\":\"_self\",\"title\":\"\"},{\"text\":\"Video Galeri\",\"icon\":\"empty\",\"href\":\"/video-galeri\",\"target\":\"_self\",\"title\":\"\"}]},{\"text\":\"İletişim\",\"icon\":\"empty\",\"href\":\"/iletisim\",\"target\":\"_self\",\"title\":\"\",\"children\":[{\"text\":\"İletişim\",\"icon\":\"empty\",\"href\":\"/iletisim\",\"target\":\"_self\",\"title\":\"\"}]}]"
+                        },
+                        new
+                        {
+                            Id = 2L,
+                            OptionName = "front-menu-default",
+                            OptionValue = "[{\"text\":\"Anasayfa\",\"href\":\"/\",\"icon\":\"empty\",\"target\":\"_self\",\"title\":\"Anasayfa\"},{\"text\":\"Kurumsal\",\"href\":\"#\",\"icon\":\"empty\",\"target\":\"_self\",\"title\":\"\",\"children\":[{\"text\":\"Tarihçe\",\"href\":\"/icerik/tarihce\",\"icon\":\"empty\",\"target\":\"_self\",\"title\":\"\"},{\"text\":\" İnsan Kaynağı \",\"href\":\"/icerik/insan-kaynagi\",\"icon\":\"empty\",\"target\":\"_self\",\"title\":\"\"},{\"text\":\" Arastirma Bölümleri \",\"href\":\"/icerik/arastirma-bolumleri\",\"icon\":\"empty\",\"target\":\"_self\",\"title\":\"\"},{\"text\":\"Misyon Vizyon\",\"href\":\"/icerik/misyon-vizyon\",\"icon\":\"empty\",\"target\":\"_self\",\"title\":\"\"},{\"text\":\" Hayvan Ünitesi \",\"href\":\"/icerik/hayvan-unitesi\",\"icon\":\"empty\",\"target\":\"_self\",\"title\":\"\"},{\"text\":\"Araştırma\",\"href\":\"/icerik/arastirma\",\"icon\":\"\",\"target\":\"_self\",\"title\":\"\"},{\"text\":\"Faaliyet Alanları\",\"href\":\"/icerik/faaliyet-alanlari\",\"icon\":\"\",\"target\":\"_self\",\"title\":\"\"}]},{\"text\":\"Yönetim\",\"href\":\"#\",\"icon\":\"\",\"target\":\"_self\",\"title\":\"\",\"children\":[{\"text\":\"Yönetim\",\"href\":\"/icerik/yonetim\",\"icon\":\"empty\",\"target\":\"_self\",\"title\":\"\"},{\"text\":\"Komisyon Üyeleri\",\"href\":\"/icerik/komisyon-uyeleri\",\"icon\":\"empty\",\"target\":\"_self\",\"title\":\"\"},{\"text\":\"Personel\",\"href\":\"/icerik/personel\",\"icon\":\"empty\",\"target\":\"_self\",\"title\":\"\"},{\"text\":\"Yönetmelikler\",\"href\":\"/icerik/yonetmelikler\",\"icon\":\"empty\",\"target\":\"_self\",\"title\":\"\"},{\"text\":\"Belge & Bilgi \",\"href\":\"/icerik/calisma-izin-belgesi\",\"icon\":\"empty\",\"target\":\"_self\",\"title\":\"\"},{\"text\":\" İş Akış Şeması \",\"href\":\"/icerik/is-akis-semasi\",\"icon\":\"empty\",\"target\":\"_self\",\"title\":\"\"},{\"text\":\"İstatistikler\",\"href\":\"/icerik/istatistikler\",\"icon\":\"empty\",\"target\":\"_self\",\"title\":\"\"},{\"text\":\"Fiyat Listesi\",\"href\":\"/icerik/fiyat-listesi\",\"icon\":\"empty\",\"target\":\"_self\",\"title\":\"\"},{\"text\":\"Formlar\",\"href\":\"/icerik/formlar\",\"icon\":\"\",\"target\":\"_self\",\"title\":\"\"}]},{\"text\":\"Galeriler\",\"icon\":\"\",\"href\":\"#\",\"target\":\"_self\",\"title\":\"\",\"children\":[{\"text\":\"Resim Galerisi\",\"icon\":\"empty\",\"href\":\"/galeri\",\"target\":\"_self\",\"title\":\"\"},{\"text\":\"Video Galeri\",\"icon\":\"empty\",\"href\":\"/video-galeri\",\"target\":\"_self\",\"title\":\"\"}]},{\"text\":\"İletişim\",\"icon\":\"empty\",\"href\":\"/iletisim\",\"target\":\"_self\",\"title\":\"\",\"children\":[{\"text\":\"İletişim\",\"icon\":\"empty\",\"href\":\"/iletisim\",\"target\":\"_self\",\"title\":\"\"}]}]"
                         });
                 });
 
@@ -986,14 +992,14 @@ namespace Stnc.CMS.DataAccess.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 365488076,
+                            Id = 1201567435,
                             Caption = "Lorem ipsum laramde loremde ipsumda inmpala",
-                            CreatedAt = new DateTime(2020, 12, 8, 13, 50, 10, 608, DateTimeKind.Local).AddTicks(4355),
+                            CreatedAt = new DateTime(2020, 12, 9, 15, 34, 48, 91, DateTimeKind.Local).AddTicks(6448),
                             Excerpt = "exceprt data loremmmmmm ipsummmmm",
                             MenuOrder = 1,
                             Picture = "default.jpg",
                             Status = true,
-                            UpdatedAt = new DateTime(2020, 12, 8, 13, 50, 10, 609, DateTimeKind.Local).AddTicks(3666),
+                            UpdatedAt = new DateTime(2020, 12, 9, 15, 34, 48, 92, DateTimeKind.Local).AddTicks(7694),
                             UrlAddress = "",
                             UrlType = (short)0
                         });

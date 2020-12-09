@@ -56,22 +56,6 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Mapping
             //builder.HasMany(I => I.Comments).WithOne(I => I.Posts).HasForeignKey(I => I.PostID);
             //   builder.HasMany(I => I.CategoryBlogs).WithOne(I => I.Posts).HasForeignKey(I => I.PostID);
 
-            Guid guid = Guid.NewGuid();
-            Random random = new Random();
-            int i = random.Next();
-
-            builder.HasData(new Posts
-            {
-                Id = i,
-                CategoryId = 1,
-                PostTitle = "HAKKIMIZDA",
-                PostContent = "<p>Erciyes Üniversitesi Tıp Fakültesine bağlı bir merkez olarak; Hakan ÇETİNSAYA’nın (1976-1996) anısına, amcası hayırsever işadamı Sayın Süleyman ÇETİNSAYA tarafından yaptırılan merkez 1997 tarihinde hizmete açılmıştır. </ p >< p >< img src = \"/upload/file/tarihce-res1.jpg\" >< br ></ p >< p >•Hakan Çetinsaya Deneysel ve Klinik Araştırma Merkez'inde kurulduğu günden itibaren çok sayıda deneysel çalışmalar yapılmış ve bu çalışmalar ulusal ve uluslar arası dergilerde yayınlanmış, kongrelerde sunulmuş ve çeşitli ödüller almıştır.•21 Haziran 2013 tarihli ve 28684 sayılı Resmi Gazete’de yayımlanan Yönetmelik kapsamında Erciyes Üniversitesi \"Deneysel Araştırmalar Uygulama ve Araştırma Merkezi - DEKAM\" olarak isimlendirildi. </ p > ",
-                PostStatus = true,
-                CommentStatus = false,
-                PostSlug = "hakkimizda",
-                MenuOrder = 1,
-                AppUserId=1,
-            }); 
         }
     }
 }

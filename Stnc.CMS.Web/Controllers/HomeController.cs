@@ -78,7 +78,7 @@ namespace Stnc.CMS.Web.Controllers
             return View();
         }
 
-        [Route("iletism")]
+        [Route("iletisim")]
         public IActionResult İletisim()
         {
             return View();

@@ -469,10 +469,10 @@ namespace Stnc.CMS.DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2020, 12, 8, 14, 14, 35, 488, DateTimeKind.Local).AddTicks(9342),
+                            CreatedAt = new DateTime(2020, 12, 9, 15, 34, 48, 99, DateTimeKind.Local).AddTicks(345),
                             DeneyHayvaniTurID = 1,
                             Name = "fare (Balb-C)",
-                            UpdatedAt = new DateTime(2020, 12, 8, 14, 14, 35, 488, DateTimeKind.Local).AddTicks(9352)
+                            UpdatedAt = new DateTime(2020, 12, 9, 15, 34, 48, 99, DateTimeKind.Local).AddTicks(356)
                         });
                 });
 
@@ -523,11 +523,11 @@ namespace Stnc.CMS.DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2020, 12, 8, 14, 14, 35, 493, DateTimeKind.Local).AddTicks(8242),
+                            CreatedAt = new DateTime(2020, 12, 9, 15, 34, 48, 103, DateTimeKind.Local).AddTicks(5986),
                             DekamProjeDeneyHayvaniIrkId = 1,
                             DekamProjeDeneyHayvaniTurId = 1,
                             Fiyat = 5m,
-                            UpdatedAt = new DateTime(2020, 12, 8, 14, 14, 35, 493, DateTimeKind.Local).AddTicks(8265),
+                            UpdatedAt = new DateTime(2020, 12, 9, 15, 34, 48, 103, DateTimeKind.Local).AddTicks(6001),
                             YasBilgisi = "8 Haftalık Yaşa Kadar"
                         });
                 });
@@ -577,11 +577,11 @@ namespace Stnc.CMS.DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2020, 12, 8, 14, 14, 35, 487, DateTimeKind.Local).AddTicks(8169),
+                            CreatedAt = new DateTime(2020, 12, 9, 15, 34, 48, 98, DateTimeKind.Local).AddTicks(670),
                             GunlukBakimUcret = 10m,
                             Name = "Fare",
                             OtenaziUcret = 1m,
-                            UpdatedAt = new DateTime(2020, 12, 8, 14, 14, 35, 487, DateTimeKind.Local).AddTicks(8193)
+                            UpdatedAt = new DateTime(2020, 12, 9, 15, 34, 48, 98, DateTimeKind.Local).AddTicks(689)
                         });
                 });
 
@@ -621,9 +621,9 @@ namespace Stnc.CMS.DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2020, 12, 8, 14, 14, 35, 489, DateTimeKind.Local).AddTicks(8894),
+                            CreatedAt = new DateTime(2020, 12, 9, 15, 34, 48, 99, DateTimeKind.Local).AddTicks(9402),
                             Name = "Ernam",
-                            UpdatedAt = new DateTime(2020, 12, 8, 14, 14, 35, 489, DateTimeKind.Local).AddTicks(8902)
+                            UpdatedAt = new DateTime(2020, 12, 9, 15, 34, 48, 99, DateTimeKind.Local).AddTicks(9412)
                         });
                 });
 
@@ -820,7 +820,13 @@ namespace Stnc.CMS.DataAccess.Migrations
                         {
                             Id = 1L,
                             OptionName = "front-menu",
-                            OptionValue = "[{\"text\":\"Home\",\"href\":\"http://home.com\",\"icon\":\"fas fa-home\",\"target\":\"_top\",\"title\":\"My Home\"}]"
+                            OptionValue = "[{\"text\":\"Anasayfa\",\"href\":\"/\",\"icon\":\"empty\",\"target\":\"_self\",\"title\":\"Anasayfa\"},{\"text\":\"Kurumsal\",\"href\":\"#\",\"icon\":\"empty\",\"target\":\"_self\",\"title\":\"\",\"children\":[{\"text\":\"Tarihçe\",\"href\":\"/icerik/tarihce\",\"icon\":\"empty\",\"target\":\"_self\",\"title\":\"\"},{\"text\":\" İnsan Kaynağı \",\"href\":\"/icerik/insan-kaynagi\",\"icon\":\"empty\",\"target\":\"_self\",\"title\":\"\"},{\"text\":\" Arastirma Bölümleri \",\"href\":\"/icerik/arastirma-bolumleri\",\"icon\":\"empty\",\"target\":\"_self\",\"title\":\"\"},{\"text\":\"Misyon Vizyon\",\"href\":\"/icerik/misyon-vizyon\",\"icon\":\"empty\",\"target\":\"_self\",\"title\":\"\"},{\"text\":\" Hayvan Ünitesi \",\"href\":\"/icerik/hayvan-unitesi\",\"icon\":\"empty\",\"target\":\"_self\",\"title\":\"\"},{\"text\":\"Araştırma\",\"href\":\"/icerik/arastirma\",\"icon\":\"\",\"target\":\"_self\",\"title\":\"\"},{\"text\":\"Faaliyet Alanları\",\"href\":\"/icerik/faaliyet-alanlari\",\"icon\":\"\",\"target\":\"_self\",\"title\":\"\"}]},{\"text\":\"Yönetim\",\"href\":\"#\",\"icon\":\"\",\"target\":\"_self\",\"title\":\"\",\"children\":[{\"text\":\"Yönetim\",\"href\":\"/icerik/yonetim\",\"icon\":\"empty\",\"target\":\"_self\",\"title\":\"\"},{\"text\":\"Komisyon Üyeleri\",\"href\":\"/icerik/komisyon-uyeleri\",\"icon\":\"empty\",\"target\":\"_self\",\"title\":\"\"},{\"text\":\"Personel\",\"href\":\"/icerik/personel\",\"icon\":\"empty\",\"target\":\"_self\",\"title\":\"\"},{\"text\":\"Yönetmelikler\",\"href\":\"/icerik/yonetmelikler\",\"icon\":\"empty\",\"target\":\"_self\",\"title\":\"\"},{\"text\":\"Belge & Bilgi \",\"href\":\"/icerik/calisma-izin-belgesi\",\"icon\":\"empty\",\"target\":\"_self\",\"title\":\"\"},{\"text\":\" İş Akış Şeması \",\"href\":\"/icerik/is-akis-semasi\",\"icon\":\"empty\",\"target\":\"_self\",\"title\":\"\"},{\"text\":\"İstatistikler\",\"href\":\"/icerik/istatistikler\",\"icon\":\"empty\",\"target\":\"_self\",\"title\":\"\"},{\"text\":\"Fiyat Listesi\",\"href\":\"/icerik/fiyat-listesi\",\"icon\":\"empty\",\"target\":\"_self\",\"title\":\"\"},{\"text\":\"Formlar\",\"href\":\"/icerik/formlar\",\"icon\":\"\",\"target\":\"_self\",\"title\":\"\"}]},{\"text\":\"Galeriler\",\"icon\":\"\",\"href\":\"#\",\"target\":\"_self\",\"title\":\"\",\"children\":[{\"text\":\"Resim Galerisi\",\"icon\":\"empty\",\"href\":\"/galeri\",\"target\":\"_self\",\"title\":\"\"},{\"text\":\"Video Galeri\",\"icon\":\"empty\",\"href\":\"/video-galeri\",\"target\":\"_self\",\"title\":\"\"}]},{\"text\":\"İletişim\",\"icon\":\"empty\",\"href\":\"/iletisim\",\"target\":\"_self\",\"title\":\"\",\"children\":[{\"text\":\"İletişim\",\"icon\":\"empty\",\"href\":\"/iletisim\",\"target\":\"_self\",\"title\":\"\"}]}]"
+                        },
+                        new
+                        {
+                            Id = 2L,
+                            OptionName = "front-menu-default",
+                            OptionValue = "[{\"text\":\"Anasayfa\",\"href\":\"/\",\"icon\":\"empty\",\"target\":\"_self\",\"title\":\"Anasayfa\"},{\"text\":\"Kurumsal\",\"href\":\"#\",\"icon\":\"empty\",\"target\":\"_self\",\"title\":\"\",\"children\":[{\"text\":\"Tarihçe\",\"href\":\"/icerik/tarihce\",\"icon\":\"empty\",\"target\":\"_self\",\"title\":\"\"},{\"text\":\" İnsan Kaynağı \",\"href\":\"/icerik/insan-kaynagi\",\"icon\":\"empty\",\"target\":\"_self\",\"title\":\"\"},{\"text\":\" Arastirma Bölümleri \",\"href\":\"/icerik/arastirma-bolumleri\",\"icon\":\"empty\",\"target\":\"_self\",\"title\":\"\"},{\"text\":\"Misyon Vizyon\",\"href\":\"/icerik/misyon-vizyon\",\"icon\":\"empty\",\"target\":\"_self\",\"title\":\"\"},{\"text\":\" Hayvan Ünitesi \",\"href\":\"/icerik/hayvan-unitesi\",\"icon\":\"empty\",\"target\":\"_self\",\"title\":\"\"},{\"text\":\"Araştırma\",\"href\":\"/icerik/arastirma\",\"icon\":\"\",\"target\":\"_self\",\"title\":\"\"},{\"text\":\"Faaliyet Alanları\",\"href\":\"/icerik/faaliyet-alanlari\",\"icon\":\"\",\"target\":\"_self\",\"title\":\"\"}]},{\"text\":\"Yönetim\",\"href\":\"#\",\"icon\":\"\",\"target\":\"_self\",\"title\":\"\",\"children\":[{\"text\":\"Yönetim\",\"href\":\"/icerik/yonetim\",\"icon\":\"empty\",\"target\":\"_self\",\"title\":\"\"},{\"text\":\"Komisyon Üyeleri\",\"href\":\"/icerik/komisyon-uyeleri\",\"icon\":\"empty\",\"target\":\"_self\",\"title\":\"\"},{\"text\":\"Personel\",\"href\":\"/icerik/personel\",\"icon\":\"empty\",\"target\":\"_self\",\"title\":\"\"},{\"text\":\"Yönetmelikler\",\"href\":\"/icerik/yonetmelikler\",\"icon\":\"empty\",\"target\":\"_self\",\"title\":\"\"},{\"text\":\"Belge & Bilgi \",\"href\":\"/icerik/calisma-izin-belgesi\",\"icon\":\"empty\",\"target\":\"_self\",\"title\":\"\"},{\"text\":\" İş Akış Şeması \",\"href\":\"/icerik/is-akis-semasi\",\"icon\":\"empty\",\"target\":\"_self\",\"title\":\"\"},{\"text\":\"İstatistikler\",\"href\":\"/icerik/istatistikler\",\"icon\":\"empty\",\"target\":\"_self\",\"title\":\"\"},{\"text\":\"Fiyat Listesi\",\"href\":\"/icerik/fiyat-listesi\",\"icon\":\"empty\",\"target\":\"_self\",\"title\":\"\"},{\"text\":\"Formlar\",\"href\":\"/icerik/formlar\",\"icon\":\"\",\"target\":\"_self\",\"title\":\"\"}]},{\"text\":\"Galeriler\",\"icon\":\"\",\"href\":\"#\",\"target\":\"_self\",\"title\":\"\",\"children\":[{\"text\":\"Resim Galerisi\",\"icon\":\"empty\",\"href\":\"/galeri\",\"target\":\"_self\",\"title\":\"\"},{\"text\":\"Video Galeri\",\"icon\":\"empty\",\"href\":\"/video-galeri\",\"target\":\"_self\",\"title\":\"\"}]},{\"text\":\"İletişim\",\"icon\":\"empty\",\"href\":\"/iletisim\",\"target\":\"_self\",\"title\":\"\",\"children\":[{\"text\":\"İletişim\",\"icon\":\"empty\",\"href\":\"/iletisim\",\"target\":\"_self\",\"title\":\"\"}]}]"
                         });
                 });
 
@@ -899,24 +905,6 @@ namespace Stnc.CMS.DataAccess.Migrations
                     b.HasIndex("CategoryId");
 
                     b.ToTable("Posts");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 454034180,
-                            AppUserId = 1,
-                            CategoryId = 1,
-                            CommentCount = 0L,
-                            CommentStatus = false,
-                            CreatedAt = new DateTime(2020, 12, 8, 14, 14, 35, 467, DateTimeKind.Local).AddTicks(5424),
-                            MenuOrder = 1,
-                            Picture = "default.jpg",
-                            PostContent = "<p>Erciyes Üniversitesi Tıp Fakültesine bağlı bir merkez olarak; Hakan ÇETİNSAYA’nın (1976-1996) anısına, amcası hayırsever işadamı Sayın Süleyman ÇETİNSAYA tarafından yaptırılan merkez 1997 tarihinde hizmete açılmıştır. </ p >< p >< img src = \"/upload/file/tarihce-res1.jpg\" >< br ></ p >< p >•Hakan Çetinsaya Deneysel ve Klinik Araştırma Merkez'inde kurulduğu günden itibaren çok sayıda deneysel çalışmalar yapılmış ve bu çalışmalar ulusal ve uluslar arası dergilerde yayınlanmış, kongrelerde sunulmuş ve çeşitli ödüller almıştır.•21 Haziran 2013 tarihli ve 28684 sayılı Resmi Gazete’de yayımlanan Yönetmelik kapsamında Erciyes Üniversitesi \"Deneysel Araştırmalar Uygulama ve Araştırma Merkezi - DEKAM\" olarak isimlendirildi. </ p > ",
-                            PostSlug = "hakkimizda",
-                            PostStatus = true,
-                            PostTitle = "HAKKIMIZDA",
-                            UpdatedAt = new DateTime(2020, 12, 8, 14, 14, 35, 468, DateTimeKind.Local).AddTicks(6235)
-                        });
                 });
 
             modelBuilder.Entity("Stnc.CMS.Entities.Concrete.Rapor", b =>
@@ -1002,14 +990,14 @@ namespace Stnc.CMS.DataAccess.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 1768819076,
+                            Id = 1201567435,
                             Caption = "Lorem ipsum laramde loremde ipsumda inmpala",
-                            CreatedAt = new DateTime(2020, 12, 8, 14, 14, 35, 482, DateTimeKind.Local).AddTicks(3748),
+                            CreatedAt = new DateTime(2020, 12, 9, 15, 34, 48, 91, DateTimeKind.Local).AddTicks(6448),
                             Excerpt = "exceprt data loremmmmmm ipsummmmm",
                             MenuOrder = 1,
                             Picture = "default.jpg",
                             Status = true,
-                            UpdatedAt = new DateTime(2020, 12, 8, 14, 14, 35, 482, DateTimeKind.Local).AddTicks(3782),
+                            UpdatedAt = new DateTime(2020, 12, 9, 15, 34, 48, 92, DateTimeKind.Local).AddTicks(7694),
                             UrlAddress = "",
                             UrlType = (short)0
                         });

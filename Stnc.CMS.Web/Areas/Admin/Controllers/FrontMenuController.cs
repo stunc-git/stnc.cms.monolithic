@@ -48,7 +48,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
 
         public IActionResult DefaultLoadMenu()
         {
-            var sonuc = _optionsService.GetOptionNameDefault("front-menu");
+            var sonuc = _optionsService.GetOptionNameDefault("front-menu-default");
             return Ok(sonuc);
         }
 
