@@ -84,22 +84,11 @@
                 </p>
             </a>
             <ul class="nav nav-treeview">
-                <li class="nav-item">
-                    <a asp-action="Index" asp-controller="DpDeneyHayvaniIrk" class="nav-link active">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Deney Hayvani Irk Tipleri</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a asp-action="Create" asp-controller="DpDeneyHayvaniIrk" class="nav-link">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p> Ekle</p>
-                    </a>
-                </li>
+
 
 
                 <li class="nav-item">
-                    <a asp-action="Index" asp-controller="DProjeDeneyHayvaniTur" class="nav-link active">
+                    <a asp-action="Index" asp-controller="DProjeDeneyHayvaniTur" class="nav-link ">
                         <i class="far fa-circle nav-icon"></i>
                         <p>Deney Hayvani Türleri</p>
                     </a>
@@ -112,13 +101,29 @@
                 </li>
 
 
-            
-
-
-           
 
                 <li class="nav-item">
-                    <a asp-action="Index" asp-controller="DpTeknikDestekTalepTur" class="nav-link active">
+                    <a asp-action="Index" asp-controller="DpDeneyHayvaniIrk" class="nav-link ">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Deney Hayvani Irk Tipleri</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a asp-action="Create" asp-controller="DpDeneyHayvaniIrk" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p> Ekle</p>
+                    </a>
+                </li>
+
+
+
+
+
+
+
+
+                <li class="nav-item">
+                    <a asp-action="Index" asp-controller="DpTeknikDestekTalepTur" class="nav-link ">
                         <i class="far fa-circle nav-icon"></i>
                         <p> Dp Teknik Destek Talep türü</p>
                     </a>
@@ -133,7 +138,7 @@
 
 
                 <li class="nav-item">
-                    <a asp-action="Index" asp-controller="DpLaboratuvarlar" class="nav-link active">
+                    <a asp-action="Index" asp-controller="DpLaboratuvarlar" class="nav-link ">
                         <i class="far fa-circle nav-icon"></i>
                         <p> Labaratuvar</p>
                     </a>
@@ -146,6 +151,19 @@
                 </li>
 
 
+                <li class="nav-item">
+                    <a asp-action="Index" asp-controller="DpDeneyHayvaniIrkFiyat" class="nav-link @(active=="profil"?"active":"")">
+                        <i class="fas fa-user mr-2"></i>
+                        Fiyatlar
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a asp-action="Create" asp-controller="DpDeneyHayvaniIrkFiyat" class="nav-link @(active=="profil"?"active":"")">
+                        <i class="fas fa-user mr-2"></i>
+                        Fiyat Ekle
+                    </a>
+
+                </li>
             </ul>
         </li>
 
@@ -237,16 +255,25 @@
                 </p>
             </a>
             <ul class="nav nav-treeview">
+                
                 <li class="nav-item">
                     <a href="/Admin/Post" class="nav-link active">
                         <i class="far fa-circle nav-icon"></i>
                         <p>Ayarlar</p>
                     </a>
                 </li>
+                
                 <li class="nav-item">
                     <a href="/Admin/FrontMenu" class="nav-link active">
                         <i class="far fa-circle nav-icon"></i>
                         <p>Önyüz Menü Ayarları</p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a asp-action="Index" asp-controller="Profil" class="list-group-item list-group-item-action @(active=="profil"?"active":"")">
+                        <i class="fas fa-user mr-2"></i>
+                        Profilim
                     </a>
                 </li>
 
@@ -302,37 +329,28 @@
                 </li>
 
             </ul>
+
+
+
+            <ul class="nav nav-treeview">
+                <li class="nav-item">
+
+                    <a asp-area="" asp-action="CikisYap" asp-controller="Home" class="list-group-item list-group-item-action ">
+                        <i class="fas fa-sign-out-alt mr-2"></i>
+                        Çıkış Yap
+                    </a>
+
+                </li>
+            
+
+            </ul>
         </li>
 
-        <a asp-action="Index" asp-controller="Profil" class="list-group-item list-group-item-action @(active=="profil"?"active":"")">
-            <i class="fas fa-user mr-2"></i>
-            Profilim
-        </a>
-
-
-
-        <a asp-action="Index" asp-controller="DpDeneyHayvaniIrkFiyat" class="list-group-item list-group-item-action @(active=="profil"?"active":"")">
-            <i class="fas fa-user mr-2"></i>
-            Fiyatlar
-        </a>
-
-        <a asp-action="Create" asp-controller="DpDeneyHayvaniIrkFiyat" class="list-group-item list-group-item-action @(active=="profil"?"active":"")">
-            <i class="fas fa-user mr-2"></i>
-            Fiyat Ekle
-        </a>
+     
 
 
 
 
-        <a asp-action="Index" asp-controller="ShoppingCart" class="list-group-item list-group-item-action @(active=="profil"?"active":"")">
-            <i class="fas fa-user mr-2"></i>
-            SEPET
-        </a>
-
-        <a asp-area="" asp-action="CikisYap" asp-controller="Home" class="list-group-item list-group-item-action ">
-            <i class="fas fa-sign-out-alt mr-2"></i>
-            Çıkış Yap
-        </a>
-
+     
     </ul>
 </nav>

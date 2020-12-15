@@ -259,7 +259,7 @@
 .cart .cartWrap .cartItems .cartItem .info {
     height: auto;
     float: left;
-    width: 200px;
+    /*width: 200px;*/
 }
 
     .cart .cartWrap .cartItems .cartItem .info .urun {

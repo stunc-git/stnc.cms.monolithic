@@ -10,7 +10,7 @@
 
 
 <div class="container-fluid">
-
+    @ViewBag.Name
     <div class="row">
 
         <div class="col-md-9 ">
@@ -130,7 +130,6 @@
                                                                     </div>
                                                                 </td>
                                                                 <td>
-
                                                                 </td>
 
                                                             </tr>
@@ -160,7 +159,7 @@
 
                                                             <tr id="OtenaziIstek-{{id}}">
                                                                 <td colspan="7">
-                                                                    Ötenazi istiyor musunuz? <input type="checkbox" style="width:80px" name="OtenaziIstek" class="OtenaziIstek" /> 
+                                                                    Ötenazi istiyor musunuz? <input type="checkbox" style="width:80px" name="OtenaziIstek" class="OtenaziIstek" />
                                                                     Ücret {{otenaziUcret}} ₺ <span style="color:red">*</span>  Hayvan Sayisi
                                                                 </td>
                                                             </tr>
@@ -449,9 +448,9 @@
                         </div>
 
                         <div class="step-footer">
-                            <button data-step-action="prev" class="step-btn">Önceki</button>
-                            <button data-step-action="next" class="step-btn">Sonraki</button>
-                            <button data-step-action="finish" class="step-btn">Proforma Oluştur</button>
+                            <button data-step-action="prev" class="step-btn-- btn btn-warning">Önceki</button>
+                            <button data-step-action="next" class="step-btn-- btn btn-warning">Sonraki</button>
+                            <button data-step-action="finish" class="step-btn-- btn btn-success">Proforma Oluştur</button>
                         </div>
                     </div>
                 </div>

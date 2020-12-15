@@ -11,6 +11,7 @@ using Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts;
 using Stnc.CMS.DataAccess.ShoppingCartLib;
 using Stnc.CMS.Entities.Concrete;
 using Stnc.CMS.Web.CustomCollectionExtensions;
+using System;
 
 namespace Stnc.CMS.Web
 {
@@ -34,6 +35,14 @@ namespace Stnc.CMS.Web
 
             services.AddScoped(sp => ShoppingCart.GetCart(sp));
             services.AddMvc().AddNewtonsoftJson();
+
+
+            services.AddDistributedMemoryCache();
+            services.AddSession(options => {
+                options.IdleTimeout = TimeSpan.FromMinutes(360);//You can set Time   
+            });
+
+
             services.AddMvc();
             // services.AddMemoryCache();
         }

@@ -38,7 +38,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
         {
             TempData["Active"] = TempdataInfo.Post;
             ViewBag.GeneralTitle = "Sayfalar";
-            return Json(_mapper.Map<List<PostListAllDto>>(_postService.PostList()));
+            return View(_mapper.Map<List<PostListAllDto>>(_postService.PostList()));
         }
 
         public IActionResult AddPost()

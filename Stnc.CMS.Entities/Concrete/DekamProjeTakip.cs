@@ -16,9 +16,10 @@ namespace Stnc.CMS.Entities.Concrete
         public DateTime? ProjeBaslangicTarihi { get; set; }
         public DateTime? ProjeBitisTarihi { get; set; }
 
-        public int DeneyHayvaniSayisi { get; set; }
+
 
         /*
+          public int DeneyHayvaniSayisi { get; set; }
         public int DeneyHayvaniCinsiyet { get; set; }//erkeke dişi sadece iki adet
         public int DeneyHayvaniYasi { get; set; }
         public int DeneyHayvaniAgirligi { get; set; }

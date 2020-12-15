@@ -46,7 +46,6 @@ namespace Stnc.CMS.Web.ViewComponents
 
             string  json = "{\"menuList\":" + _optionsService.GetOptionName("front-menu")+ "}";
             string menu = "";
-
                       try
                       {
                           var jObject = JObject.Parse(json);
@@ -88,16 +87,10 @@ namespace Stnc.CMS.Web.ViewComponents
                       {
                           throw;
                       }
-
             return new HtmlContentViewComponentResult(new HtmlString(menu));
-
-
-
         }
     }
 }
-
-
 
 /*
 // burası frontende kullanılan menunun yedeği 

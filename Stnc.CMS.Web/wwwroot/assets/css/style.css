@@ -263,8 +263,10 @@ padding-left:5px;
     padding-right: 7rem; }
   .site-navbar .site-navigation.border-bottom {
     border-bottom: 1px solid #f3f3f4 !important; }
-  .site-navbar .site-navigation .site-menu {
-    margin-bottom: 0; }
+    .site-navbar .site-navigation .site-menu {
+        padding-left: 145px;
+        margin-bottom: 0;
+    }
     .site-navbar .site-navigation .site-menu .active > a {
       color: #51be78;
       display: inline-block;

@@ -15,6 +15,7 @@ using Stnc.CMS.Web.BaseControllers;
 using System;
 using System.Linq;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Http;
 
 namespace Stnc.CMS.Web.Areas.Admin.Controllers
 {
@@ -51,6 +52,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
         private readonly IDeneyHayvaniIrkFiyatService _deneyHayvaniIrkFiyatService;
         private readonly EfGenericRepository<DekamProjeTeknikDestekTalepTur> _dekamProjeTeknikDestekTalepTur_Repo;
 
+
         public ShoppingCartController(ShoppingCart shoppingCart, IShopDal shopService, IDeneyHayvaniIrkFiyatService deneyHayvaniIrkFiyatService, UserManager<AppUser> userManager) : base(userManager)
         {
             _deneyHayvaniIrkFiyatService = deneyHayvaniIrkFiyatService;
@@ -86,6 +88,9 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
         //  public IActionResult Add(int id, [FromQuery] string catID)
         public async Task<JsonResult> Add(PostToCart cartData)
         {
+        
+           
+
             AppUser user = await GetUserLoginInfo();
 
             //Console.WriteLine(user.Id);
@@ -128,21 +133,18 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
 
             var hayvanFiyatlari = _deneyHayvaniIrkFiyatService.GetDeneyHayvaniIrkFiyatID(cartData.BaseId);
 
-            // DestekTalepTurleriJson destekjson = new DestekTalepTurleriJson();
 
             List<DestekTalepTurleriJson> destekjson = new List<DestekTalepTurleriJson>();
 
-            //   destekjson.ID = returndata.Id;
-            // destekjson = new DestekTalepTurleriJson() { ID=0,Name="",Price=1 };
 
             if (cartData.DestekTalepTurLeri != null)
             {
-                //destekTalepTurLeriIds = cartData.destekTalepTurLeri.Split(',');
+ 
                 destektalepturleris = cartData.DestekTalepTurLeri.Split(',');
 
                 foreach (string part in destektalepturleris)
                 {
-                    //Console.WriteLine(part);
+     
                     var returndata = this._dekamProjeTeknikDestekTalepTur_Repo.GetID(int.Parse(part));
 
                     destektalepturleriStr += part + ',';
@@ -218,8 +220,11 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
                         returnId = returnData.Id;
                     }
                 }
-
-
+           
+                string sessionData = HttpContext.Session.GetString("DekamSessionCartData");
+                //sessionData = sessionData.Split(',');
+                sessionData +=   Convert.ToString(returnId)+',';
+                HttpContext.Session.SetString( "DekamSessionCartData", sessionData);
 
                 var SuccessCartItemsData = _shopService.GetCartUserIdList(user.Id);
                 var ToplamUcret = _shopService.ToplamUcret(user.Id);
@@ -255,6 +260,30 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
 
         public async Task<IActionResult> Delete(int id)
         {
+
+           // sessionData += Convert.ToString(returnId) + ',';
+
+            HttpContext.Session.GetString("DekamSessionCartData");
+
+            string[] destektalepturleris;
+            //https://www.techiedelight.com/remove-specified-element-from-array-csharp/   https://www.techiedelight.com/convert-string-array-to-int-array-csharp/
+            destektalepturleris = HttpContext.Session.GetString("DekamSessionCartData").Split(',');
+
+
+
+            int[] array = Array.ConvertAll(destektalepturleris, s => int.TryParse(s, out var x) ? x : 0);
+            array = Array.FindAll(array, i => i != id).ToArray();
+
+            Console.WriteLine(array);
+            Console.WriteLine(String.Join(",", array));
+
+
+
+            HttpContext.Session.SetString("DekamSessionCartData", String.Join(",", array));
+
+
+
+
             var user = await GetUserLoginInfo().ConfigureAwait(false);
             _shopService.Delete(id);
             var JsonData = _shopService.GetCartUserIdList(user.Id);

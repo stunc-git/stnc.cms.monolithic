@@ -17,7 +17,7 @@ namespace Stnc.CMS.DTO.DTOs.DekamProjeTakipDtos
         public DateTime? ProjeBitisTarihi { get; set; }
 
         public int DeneyHayvaniCinsiyet { get; set; }//erkeke dişi sadece iki adet
-        public int DeneyHayvaniSayisi { get; set; }
+
         public int DeneyHayvaniYasi { get; set; }
         public int DeneyHayvaniAgirligi { get; set; }
 

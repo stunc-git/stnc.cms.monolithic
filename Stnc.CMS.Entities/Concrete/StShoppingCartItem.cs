@@ -27,7 +27,7 @@ namespace Stnc.CMS.Entities.Concrete
         public string DestekTalepTurleriJson { get; set; }
 
         public int? AppUserId { get; set; }
-        public AppUser AppUser { get; set; }
+
 
         public DateTime? CreatedAt { get; set; } = DateTime.Now;
         public DateTime? UpdatedAt { get; set; } = DateTime.Now;

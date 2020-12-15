@@ -16,7 +16,7 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Mapping
             builder.Property(I => I.SorumluArastirmaci).HasMaxLength(500).IsRequired();
             builder.Property(I => I.SorumluArastirmaciTelefon).HasMaxLength(500).IsRequired();
             builder.Property(I => I.EtikKurulOnayNumarasi).HasMaxLength(500).IsRequired();
-            builder.Property(I => I.DeneyHayvaniSayisi).HasColumnType("smallint");
+            //builder.Property(I => I.DeneyHayvaniSayisi).HasColumnType("smallint");
             //builder.Property(I => I.DeneyHayvaniCinsiyet).HasColumnType("smallint");
             //
             //builder.Property(I => I.DeneyHayvaniYasi).HasColumnType("smallint");

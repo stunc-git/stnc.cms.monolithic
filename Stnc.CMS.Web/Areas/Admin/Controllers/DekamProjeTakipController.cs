@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -75,6 +76,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
         {
             TempData["Active"] = TempdataInfo.Category;
             ViewBag.GeneralTitle = "Proje Takip";
+            ViewBag.Name = HttpContext.Session.GetString("DekamSessionCartData");
             ViewBag.DeneyHayvaniIrkCategories = new SelectList(DekamProjeDeneyHayvaniIrkRepo.GetAll(), "Id", "Name");
             ViewBag.DeneyHayvaniTurCategories = new SelectList(DekamProjeDeneyHayvaniTurRepo.GetAll(), "Id", "Name");
             ViewBag.LaboratuvarlarCategories = new SelectList(DekamProjeLaboratuvarlarRepo.GetAll(), "Id", "Name");
@@ -110,7 +112,22 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
                  } );
 
             returnId = returnData.Id;
-            return Json(new { status = "ok", mesaj = "Sipariş Tutarınız 0 TL, Sepete Eklenemedi " });
+            string[] destektalepturleris;
+            destektalepturleris = HttpContext.Session.GetString("DekamSessionCartData").Split(',');
+
+            foreach (string part in destektalepturleris)
+            {
+                /*
+                destekjson.Add(new DestekTalepTurleriJson()
+                {
+                    ID = returndata.Id,
+                    Name = returndata.Name,
+                    Price = returndata.Price,
+                });
+                */
+            }
+
+            return Json(new { status = "ok" });
 
 
         }
@@ -185,7 +202,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
 
         public IActionResult GetirPdf()
         {
-            var path = _dosyaService.AktarPdf2();
+            var path = _dosyaService.AktarMockup();
             return File(path, "application/pdf", Guid.NewGuid() + ".pdf");
         }
 
