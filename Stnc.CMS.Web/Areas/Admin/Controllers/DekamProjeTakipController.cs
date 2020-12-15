@@ -117,6 +117,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
 
             foreach (string part in destektalepturleris)
             {
+                burada update yapan kodl olacak 
                 /*
                 destekjson.Add(new DestekTalepTurleriJson()
                 {
