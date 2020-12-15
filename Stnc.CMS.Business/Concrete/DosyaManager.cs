@@ -65,7 +65,7 @@ namespace Stnc.CMS.Business.Concrete
         }
         //https://github.com/jonbride/strengthreport/blob/master/Backup/StrengthReport/Reporting/ReportFormat/ReportPdf.cs  bolumlere ayırmak için kullan 
         //https://csharp.hotexamples.com/examples/iTextSharp.text/HeaderFooter/-/php-headerfooter-class-examples.html
-
+        //https://coderanch.com/t/675056/open-source/iText-Page-content-overlapping-footer
         //https://www.nilthakkar.com/2013/11/itextsharpadd-headerfooter-to-pdf.html bu çok onemli sayfalama mantığı burada var 
         public string AktarPdf2()
         {
