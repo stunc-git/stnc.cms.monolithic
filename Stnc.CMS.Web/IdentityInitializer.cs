@@ -11,31 +11,46 @@ namespace Stnc.CMS.Web
     {
         public static async Task SeedData(UserManager<AppUser> userManager,RoleManager<AppRole> roleManager)
         {
-            var adminRole = await roleManager.FindByNameAsync("Admin");
+            var adminRole = await roleManager.FindByNameAsync("Admin").ConfigureAwait(false);
             if (adminRole == null)
             {
-                await roleManager.CreateAsync(new AppRole { Name = "Admin" });
+                await roleManager.CreateAsync(new AppRole { Name = "Admin" }).ConfigureAwait(false);
             }
 
-            var memberRole = await roleManager.FindByNameAsync("Member");
+            var memberRole = await roleManager.FindByNameAsync("Member").ConfigureAwait(false);
             if (memberRole == null)
             {
-                await roleManager.CreateAsync(new AppRole { Name = "Member" });
+                await roleManager.CreateAsync(new AppRole { Name = "Member" }).ConfigureAwait(false);
             }
 
-            var adminUser = await userManager.FindByNameAsync("yavuz");
+            var adminUser = await userManager.FindByNameAsync("selman").ConfigureAwait(false);
             if (adminUser==null)
             {
                 AppUser user = new AppUser
                 {
-                    Name = "Yavuz",
-                    Surname = "Kahraman",
-                    UserName = "yavuz",
-                    Email = "yavuz@gmail.com"
+                    Name = "selman",
+                    Surname = "tunç",
+                    UserName = "selman",
+                    Email = "selmantunc@gmail.com"
                 };
-                await userManager.CreateAsync(user,"1");
-                await userManager.AddToRoleAsync(user, "Admin");
+                await userManager.CreateAsync(user,"1").ConfigureAwait(false);
+                await userManager.AddToRoleAsync(user, "Admin").ConfigureAwait(false);
             }
+
+            var memberUser = await userManager.FindByNameAsync("member");
+            if (memberUser == null)
+            {
+                AppUser member = new AppUser
+                {
+                    Name = "member",
+                    Surname = "tunç",
+                    UserName = "member",
+                    Email = "selmantunc@yahoo.com"
+                };
+                await userManager.CreateAsync(member, "1");
+                await userManager.AddToRoleAsync(member, "Member");
+            }
+
         }
     }
 }

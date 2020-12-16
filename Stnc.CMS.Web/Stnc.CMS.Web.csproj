@@ -2,24 +2,51 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <AutoGenerateBindingRedirects>false</AutoGenerateBindingRedirects>
+    <UserSecretsId>d45e5056-66fd-49f9-9957-bb081398eb59</UserSecretsId>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove=".config\Mylib\**" />
+    <Content Remove=".config\Mylib\**" />
+    <EmbeddedResource Remove=".config\Mylib\**" />
+    <None Remove=".config\Mylib\**" />
+    <TypeScriptCompile Remove=".config\Mylib\**" />
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Stnc.CMS.Business\Stnc.CMS.Business.csproj" />
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include=".config\" />
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Member\Models\" />
     <Folder Include="Models\" />
-    <Folder Include="wwwroot\js\" />
-    <Folder Include="wwwroot\css\" />
+    <Folder Include="Views\Shared\Components\FrontedMenu\" />
     <Folder Include="wwwroot\documents\" />
+    <Folder Include="wwwroot\NewFolder\" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.2" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.0.1" />
+    <PackageReference Include="Core.Flash" Version="2.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Formatters.Json" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.9" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.7">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Logging.EventLog" Version="5.0.0" />
+
+    <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="3.9.7">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
+    <PackageReference Include="OfficeOpenXml.Core.ExcelPackage" Version="1.0.0" />
+    <PackageReference Include="PdfSharpCore" Version="1.2.9" />
+    <PackageReference Include="Slugify.Core" Version="2.3.0" />
   </ItemGroup>
 
 </Project>

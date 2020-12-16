@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Stnc.CMS.Entities.Concrete;
+﻿using Stnc.CMS.Entities.Concrete;
+using System;
 
 namespace Stnc.CMS.DTO.DTOs.GorevDtos
 {
@@ -16,5 +14,8 @@ namespace Stnc.CMS.DTO.DTOs.GorevDtos
 
         public int AciliyetId { get; set; }
         public Aciliyet Aciliyet { get; set; }
+
+        public int AppUserId { get; set; }
+        public AppUser AppUser { get; set; }
     }
 }

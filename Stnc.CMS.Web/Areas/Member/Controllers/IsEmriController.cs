@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -12,6 +8,8 @@ using Stnc.CMS.DTO.DTOs.RaporDtos;
 using Stnc.CMS.Entities.Concrete;
 using Stnc.CMS.Web.BaseControllers;
 using Stnc.CMS.Web.StringInfo;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Stnc.CMS.Web.Areas.Member.Controllers
 {
@@ -23,7 +21,8 @@ namespace Stnc.CMS.Web.Areas.Member.Controllers
         private readonly IGorevService _gorevService;
         private readonly IRaporService _raporService;
         private readonly IMapper _mapper;
-        public IsEmriController(IGorevService gorevService, UserManager<AppUser> userManager, IRaporService raporService, IBildirimService bildirimService,IMapper mapper) : base(userManager)
+
+        public IsEmriController(IGorevService gorevService, UserManager<AppUser> userManager, IRaporService raporService, IBildirimService bildirimService, IMapper mapper) : base(userManager)
         {
             _mapper = mapper;
             _bildirimService = bildirimService;
@@ -35,7 +34,7 @@ namespace Stnc.CMS.Web.Areas.Member.Controllers
         {
             TempData["Active"] = TempdataInfo.IsEmri;
 
-            var user = await GetirGirisYapanKullanici();
+            var user = await GetUserLoginInfo().ConfigureAwait(false);
 
             return View(_mapper.Map<List<GorevListAllDto>>(_gorevService.GetirTumTablolarla(I => I.AppUserId == user.Id && !I.Durum)));
         }
@@ -43,7 +42,6 @@ namespace Stnc.CMS.Web.Areas.Member.Controllers
         public IActionResult EkleRapor(int id)
         {
             TempData["Active"] = TempdataInfo.IsEmri;
-
 
             var gorev = _gorevService.GetirAciliyetileId(id);
 
@@ -68,9 +66,9 @@ namespace Stnc.CMS.Web.Areas.Member.Controllers
                     Tanim = model.Tanim
                 });
 
-                var adminUserList = await _userManager.GetUsersInRoleAsync("Admin");
+                var adminUserList = await _userManager.GetUsersInRoleAsync("Admin").ConfigureAwait(false);
 
-                var aktifKullanici = await GetirGirisYapanKullanici();
+                var aktifKullanici = await GetUserLoginInfo().ConfigureAwait(false);
 
                 foreach (var admin in adminUserList)
                 {
@@ -78,7 +76,6 @@ namespace Stnc.CMS.Web.Areas.Member.Controllers
                     {
                         Aciklama = $"{aktifKullanici.Name} {aktifKullanici.Surname} yeni bir rapor yazdı",
                         AppUserId = admin.Id
-                        
                     });
                 }
 
@@ -119,16 +116,15 @@ namespace Stnc.CMS.Web.Areas.Member.Controllers
             return View(model);
         }
 
-
         public async Task<IActionResult> TamamlaGorev(int gorevId)
         {
             var guncellenecekGorev = _gorevService.GetirIdile(gorevId);
             guncellenecekGorev.Durum = true;
             _gorevService.Guncelle(guncellenecekGorev);
 
-            var adminUserList = await _userManager.GetUsersInRoleAsync("Admin");
+            var adminUserList = await _userManager.GetUsersInRoleAsync("Admin").ConfigureAwait(false);
 
-            var aktifKullanici = await GetirGirisYapanKullanici();
+            var aktifKullanici = await GetUserLoginInfo().ConfigureAwait(false);
 
             foreach (var admin in adminUserList)
             {
@@ -136,12 +132,10 @@ namespace Stnc.CMS.Web.Areas.Member.Controllers
                 {
                     Aciklama = $"{aktifKullanici.Name} {aktifKullanici.Surname} vermiş olduğunuz bir görevi tamamladı",
                     AppUserId = admin.Id
-
                 });
             }
 
             return Json(null);
         }
-
     }
 }

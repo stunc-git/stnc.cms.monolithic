@@ -1,0 +1,1101 @@
+﻿@model DekamProjeTakipCreateDto
+
+@{
+    ViewData["Title"] = "EkleAciliyet";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+@*https://codepen.io/ChamaraHarindra/full/GNEyqo/*@
+
+
+
+<div class="container-fluid">
+
+    <div class="row">
+
+        <div class="col-md-9 ">
+            <div class="card card-default">
+                <div class="card-header">
+                    <h3 class="card-title">Adım Adım Sipariş Sistemi</h3>
+                </div>
+                <!-- /.card-header -->
+                <!-- form start -->
+
+                <div class="card-body">
+
+                    <div class="step-app" id="StepStepCart">
+                        <ul class="step-steps">
+                            <li data-step-target="step1">
+                                <div class="st-title">
+                                    <p class="step-icon"><span>1</span></p>
+                                    <div class="step-text">
+                                        <span class="step-inner-1">ADIM 1 </span>
+                                        <span class="step-inner-2">Satın alınacak deney hayvanı seçimi</span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li data-step-target="step2">
+                                <div class="st-title">
+                                    <p class="step-icon"><span>2</span></p>
+                                    <div class="step-text">
+                                        <span class="step-inner-1">ADIM 2 </span>
+                                        <span class="step-inner-2">Proje Yöneticisi / Sorumlu Araştırmacı  Seçimi</span>
+                                    </div>
+                                </div>
+
+                            </li>
+                            <li data-step-target="step3">
+                                <div class="st-title">
+                                    <p class="step-icon"><span>3</span></p>
+                                    <div class="step-text">
+                                        <span class="step-inner-1">ADIM 3 </span>
+                                        <span class="step-inner-2">Etik Kurul / Proje Tarihi / Laboratuvar Seçimi </span>
+                                    </div>
+                                </div>
+
+                            </li>
+
+                        </ul>
+                        <div class="step-content">
+                            <div class="step-tab-panel" data-step="step1">
+                                <h3>Adım 1 </h3>
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <div class="card card-info">
+                                            <div class="card-header">
+                                                <h3 class="card-title">Irk Seçimi</h3>
+                                            </div>
+
+                                            <!-- /.card-header -->
+                                            <!-- form start -->
+
+                                            <div class="card-body">
+                                                <div class="form-group">
+                                                    <label>Hayvan Irkını Seçiniz:</label>
+                                                    <select class="form-control DeneyHavyanIrklari" size="10" asp-items="ViewBag.DeneyHayvaniTurCategories">
+                                                    </select>
+                                                    <span class="text-danger"></span>
+                                                </div>
+                                            </div>
+
+                                            <!-- /.card-body -->
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-10">
+
+
+                                        <div class="card card-info">
+                                            <div class="card-header">
+                                                <h3 class="card-title">Hayvan Seçimi</h3>
+                                            </div>
+
+                                            <!-- /.card-header -->
+                                            <!-- form start -->
+
+                                            <div class="card-body">
+                                                <div class="table-responsive">
+
+                                                    <table class="table table-fixed table-borderedXXXX table-stripedXXXX">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Hayvan Türü / Yaşı </th>
+                                                                <th>Fiyat</th>
+                                                                <th>İstenen Hayvan Sayısı   </th>
+                                                                <th>Destek istenen Hayvan Sayısı</th>
+                                                                <th>Bakım Desteği Gün sayısı </th>
+                                                                <th>Ağırlık</th>
+                                                                <th>Cinsiyet  </th>
+                                                            </tr>
+                                                        </thead>
+
+                                                        <script id="cartSelectItemsTpl" type="text/x-handlebars-template">
+                                                            {{#each cartSelectItems}}
+                                                            <tr id="CartAddData-{{id}}">
+                                                                <td>{{turAdi}}</td>
+                                                                <td>{{fiyat}} ₺</td>
+                                                                <td> <input type="text" value="1" name="IstenenHayvanSayisi" class="IstenenHayvanSayisi" style="width:80px" /> </td>
+                                                                <td> <input type="text" value="0" name="DestekIstenenHayvanSayisi" class="DestekIstenenHayvanSayisi" style="width:80px" /></td>
+                                                                <td> <input type="text" value="0" name="BakimDestegiGunSayisi" class="BakimDestegiGunSayisi" style="width:80px" /> </td>
+                                                                <td> <input type="text" value="0" name="HayvanAgirlik" class="HayvanAgirlik" style="width:80px" /> </td>
+                                                                <td>
+                                                                    <div class="form-group">
+
+                                                                        <select class="form-control DeneyHayvaniCinsiyet" name="DeneyHayvaniCinsiyet">
+
+                                                                            <option value="1">Erkek</option>
+                                                                            <option value="0">Dişi</option>
+                                                                        </select>
+                                                                        <span class="text-danger field-validation-valid"></span>
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+
+                                                                </td>
+
+                                                            </tr>
+
+                                                            <tr>
+                                                                <td>{{yasBilgisi}}</td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td> Günlük Bakım ücreti  {{gunlukBakimUcreti}} ₺ <span style="color:red">*</span> Gün Sayısı  </td>
+                                                                <td> </td>
+                                                                <td> </td>
+
+                                                            </tr>
+
+
+                                                            <tr id="CartDestekTalep-{{id}}">
+                                                                <td colspan="7">
+                                                                    <strong> Destek Talep Türü Seçenekleri </strong>
+                                                                    <div class="row teknikDestekTalepTurleri">
+                                                                    </div>
+                                                                </td>
+
+                                                                <td>
+                                                                </td>
+                                                            </tr>
+
+                                                            <tr id="OtenaziIstek-{{id}}">
+                                                                <td colspan="7">
+                                                                    Ötenazi istiyor musunuz? <input type="checkbox" style="width:80px" name="OtenaziIstek" class="OtenaziIstek" /> 
+                                                                    Ücret {{otenaziUcret}} ₺ <span style="color:red">*</span>  Hayvan Sayisi
+                                                                </td>
+                                                            </tr>
+
+                                                            <tr id="CartTotal-{{id}}">
+                                                                <td colspan="7">
+                                                                    <span class="text-danger text-center totalPrice"> Toplam Fiyat: 0</span>
+                                                                </td>
+                                                            </tr>
+
+
+                                                            <tr style="border-bottom: 5px solid burlywood">
+                                                                <td colspan="7">
+                                                                    <div class="row">
+                                                                        <div class="col-md-6">
+                                                                            <a href="#" data-val="{{id}}" data-type="ekle" class="add-to-cart btn btn-success"> Sepete Ekle </a>
+                                                                        </div>
+
+                                                                        <div class="col-md-6 float-right">
+                                                                            <a href="#" data-val="{{id}}" data-type="hesapla" class="add-to-cart btn btn-primary"> Hesapla </a>
+                                                                        </div>
+
+                                                                    </div>
+
+
+                                                                </td>
+                                                            </tr>
+
+                                                            {{/each}}
+
+
+                                                        </script>
+
+                                                        <script id="teknikDestekTalepTurleriTpl" type="text/x-handlebars-template">
+                                                            {{#each teknikDestekTalepTurleri}}
+                                                            <div class="col-md-3">
+
+                                                                <div class="form-group">
+                                                                    <div class="form-check">
+                                                                        <label class="form-check-label">
+                                                                            <input class="form-check-input destekTalepTur" value="{{id}}" type="checkbox">
+
+                                                                            {{name}} /Fiyat {{price}} ₺
+
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                            {{/each}}
+                                                        </script>
+
+                                                        <tbody id="cartSelectItems">
+                                                            <tr>
+                                                                <td colspan="7">
+                                                                    <span class="text-danger text-center">Lütfen Yandaki Alandan  Hayvan Irkı Seçimi Yapınız </span>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+
+                                                    </table>
+                                                </div>
+                                            </div>
+
+                                            <!-- /.card-body -->
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                            <div class="step-tab-panel" data-step="step2">
+                                <h3>Adım 2 </h3>
+                                <div class="row">
+                                    <div class="col-md-6 ">
+
+                                        <div class="card card-info">
+                                            <div class="card-header">
+                                                <h3 class="card-title">Proje Yöneticisi</h3>
+                                            </div>
+
+                                            <!-- /.card-header -->
+                                            <!-- form start -->
+
+                                            <div class="card-body">
+                                                <form name="ProjeYurutucusuForm" id="ProjeYurutucusuForm">
+                                                    <div class="form-group">
+                                                        <label asp-for="ProjeYurutucusu">Proje Yürütücüsü: * </label>
+                                                        <input asp-for="ProjeYurutucusu" type="text" required class="form-control" />
+                                                        <span asp-validation-for="ProjeYurutucusu" class="text-danger"></span>
+                                                        <p>Proje yürütücüsünün adı soyadı bilgisi</p>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label asp-for="ProjeYurutukurumu">Proje Yürütücüsünün Kurumu: * </label>
+                                                        <input asp-for="ProjeYurutukurumu" type="text" class="form-control" />
+                                                        <span asp-validation-for="ProjeYurutukurumu" class="text-danger"></span>
+                                                        <p>Proje yürütücüsünün bağlı olduğu kurum bilgisi</p>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label asp-for="ProjeYurutuTelefon">Proje Yürütücüsü Telefon No: * </label>
+                                                        <input asp-for="ProjeYurutuTelefon" type="text" class="form-control" />
+                                                        <span asp-validation-for="ProjeYurutuTelefon" class="text-danger"></span>
+                                                        <p>Proje yürütücüsünün telefon numarası </p>
+                                                    </div>
+                                                </form>
+                                            </div>
+
+                                            <!-- /.card-body -->
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="col-md-6">
+                                        <form name="SorumluArastirmaciForm" id="SorumluArastirmaciForm">
+                                            <div class="card card-info">
+                                                <div class="card-header">
+                                                    <h3 class="card-title">Sorumlu Araştırmacı</h3>
+                                                </div>
+                                                <!-- /.card-header -->
+                                                <!-- form start -->
+                                                <div class="card-body">
+
+                                                    <div class="form-group">
+                                                        <label asp-for="SorumluArastirmaci">Sorumlu Araştırmacı: * </label>
+                                                        <input asp-for="SorumluArastirmaci" type="text" class="form-control" />
+                                                        <span asp-validation-for="SorumluArastirmaci" class="text-danger"></span>
+                                                        <p>Proje ile sorumlu olacak kişi bilgisi </p>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label asp-for="SorumluArastirmaciTelefon">Sorumlu Araştırmacı Telefon No: * </label>
+                                                        <input asp-for="SorumluArastirmaciTelefon" type="text" class="form-control" />
+                                                        <span asp-validation-for="SorumluArastirmaciTelefon" class="text-danger"></span>
+                                                        <p>Proje ile sorumlu olacak kişi telefon numarası </p>
+                                                    </div>
+                                                </div>
+                                                <!-- /.card-body -->
+                                            </div>
+                                        </form>
+                                    </div>
+
+
+                                </div>
+                            </div>
+
+                            <div class="step-tab-panel" data-step="step3">
+                                <h3>Adım 3</h3>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <form name="EtikKurulForm" id="EtikKurulForm">
+
+                                            <div class="card card-primary">
+                                                <div class="card-header">
+                                                    <h3 class="card-title">Etik Kurul </h3>
+                                                </div>
+                                                <!-- /.card-header -->
+                                                <!-- form start -->
+                                                <div class="card-body">
+
+                                                    <div class="form-group">
+                                                        <label asp-for="EtikKurulOnayNumarasi">Etik Kurul Onay Numarası: * </label>
+                                                        <input asp-for="EtikKurulOnayNumarasi" type="text" class="form-control" />
+                                                        <span asp-validation-for="EtikKurulOnayNumarasi" class="text-danger"></span>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label asp-for="EtikKurulOnayTarihi">Etik Kurul Onay Tarihi: * </label>
+
+                                                        <div class="input-group date" id="EtikKurulOnayTarihiDate" data-target-input="nearest">
+                                                            <input type="text" asp-for="EtikKurulOnayTarihi" class="form-control datetimepicker-input"
+                                                                   data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask data-target="#EtikKurulOnayTarihiDate">
+                                                            <div class="input-group-append" data-target="#EtikKurulOnayTarihiDate" data-toggle="datetimepicker">
+                                                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                                            </div>
+                                                        </div>
+                                                        <span asp-validation-for="EtikKurulOnayTarihi" class="text-danger"></span>
+                                                    </div>
+                                                </div>
+                                                <!-- /.card-body -->
+                                            </div>
+                                        </form>
+                                    </div>
+
+                                    <div class="col-md-4 ">
+                                        <form name="ProjeTarihleriForm" id="ProjeTarihleriForm">
+                                            <div class="card card-primary">
+                                                <div class="card-header">
+                                                    <h3 class="card-title">Proje Tarihleri </h3>
+                                                </div>
+                                                <!-- /.card-header -->
+                                                <!-- form start -->
+                                                <div class="card-body">
+                                                    <div class="form-group">
+                                                        <label asp-for="ProjeBaslangicTarihi">Proje Başlangıç  Tarihi: * </label>
+
+                                                        <div class="input-group date" id="ProjeBaslangicTarihiDate" data-target-input="nearest">
+                                                            <input type="text" asp-for="ProjeBaslangicTarihi" class="form-control datetimepicker-input"
+                                                                   data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask data-target="#ProjeBaslangicTarihiDate">
+                                                            <div class="input-group-append" data-target="#ProjeBaslangicTarihiDate" data-toggle="datetimepicker">
+                                                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                                            </div>
+                                                        </div>
+                                                        <span asp-validation-for="ProjeBaslangicTarihi" class="text-danger"></span>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label asp-for="ProjeBitisTarihi">Proje Bitiş  Tarihi: * </label>
+                                                        <div class="input-group date" id="ProjeBitisTarihiDate" data-target-input="nearest">
+                                                            <input type="text" asp-for="ProjeBitisTarihi" class="form-control datetimepicker-input"
+                                                                   data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask data-target="#ProjeBitisTarihiDate">
+                                                            <div class="input-group-append" data-target="#ProjeBitisTarihiDate" data-toggle="datetimepicker">
+                                                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                                            </div>
+                                                        </div>
+                                                        <span asp-validation-for="ProjeBitisTarihi" class="text-danger"></span>
+                                                    </div>
+                                                </div>
+                                                <!-- /.card-body -->
+                                            </div>
+                                        </form>
+                                    </div>
+
+                                    <div class="col-md-4 ">
+                                        <form name="LaboratuvarForm" id="LaboratuvarForm">
+                                            <div class="card card-primary">
+                                                <div class="card-header">
+                                                    <h3 class="card-title">Kullanılacak Laboratuvar ve Tarihleri: </h3>
+                                                </div>
+                                                <!-- /.card-header -->
+                                                <!-- form start -->
+                                                <div class="card-body">
+
+                                                    <div class="form-group">
+                                                        <label>Kullanılacak Labaratuvar:</label>
+                                                        <select class="form-control" asp-for="LaboratuvarID" asp-items="ViewBag.LaboratuvarlarCategories">
+                                                            <option value="">Seçiniz</option>
+                                                        </select>
+                                                        <span asp-validation-for="@Model.LaboratuvarID" class="text-danger"></span>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label asp-for="LaboratuvarBaslangicTarihi">Kullanılacak Laboratuvar Başlangıç Tarihi: * </label>
+
+                                                        <div class="input-group date" id="LaboratuvarBaslangicTarihiDate" data-target-input="nearest">
+                                                            <input type="text" asp-for="LaboratuvarBaslangicTarihi" class="form-control datetimepicker-input"
+                                                                   data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask data-target="#LaboratuvarBaslangicTarihiDate">
+                                                            <div class="input-group-append" data-target="#LaboratuvarBaslangicTarihiDate" data-toggle="datetimepicker">
+                                                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                                            </div>
+                                                        </div>
+                                                        <span asp-validation-for="LaboratuvarBaslangicTarihi" class="text-danger"></span>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label asp-for="LaboratuvarBitisTarihi">Kullanılacak Laboratuvar Bitiş Tarihi: * </label>
+
+                                                        <div class="input-group date" id="LaboratuvarBitisTarihiDate" data-target-input="nearest">
+                                                            <input type="text" asp-for="LaboratuvarBitisTarihi" class="form-control datetimepicker-input"
+                                                                   data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask data-target="#LaboratuvarBitisTarihiDate">
+                                                            <div class="input-group-append" data-target="#LaboratuvarBitisTarihiDate" data-toggle="datetimepicker">
+                                                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                                            </div>
+                                                        </div>
+                                                        <span asp-validation-for="LaboratuvarBitisTarihi" class="text-danger"></span>
+                                                    </div>
+                                                </div>
+                                                <!-- /.card-body -->
+                                            </div>
+                                        </form>
+                                    </div>
+
+
+
+                                </div>
+
+                            </div>
+
+
+
+
+
+                        </div>
+
+                        <div class="step-footer">
+                            <button data-step-action="prev" class="step-btn btn btn-warning">Önceki</button>
+                            <button data-step-action="next" class="step-btn btn btn-warning">Sonraki</button>
+                            <button data-step-action="finish" class="step-btn btn btn-success">Proforma Oluştur</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.card-body -->
+            </div>
+
+        </div>
+
+        <div class="col-md-3">
+
+            <div class="col-md-12">
+                <div class="cart">
+                    <h2 id="cartTitle">Alışveriş Sepetiniz</h2>
+
+                    <div class="display" id="cartBox">
+                        <div class="cartWrap">
+                            <div class="cartEmpty">Sepetiniz Boş</div>
+                            <script id="CartItemsTpl" type="text/x-handlebars-template">
+                                {{#each successCartItems}}
+                                <div class="cartItem">
+                                    <div class="itemDelete">
+                                        <button type="button" data-value="{{id}}"
+                                                class="btn action-button siparissil">
+                                            <i class="fa fa-times-circle" aria-hidden="true"></i>
+                                        </button>
+                                    </div>
+                                    <div class="info">
+                                        <div class="urun">
+                                            {{hayvanAdi}}
+                                        </div>
+
+
+                                        <div class="musteri">
+                                            <a data-toggle="modal" href="#detailInfo-{{id}}" data-target="#detailInfo-{{id}}">  Detaylı Bilgi </a>
+                                            <!-- sepete detaylı bilgilerndirme -->
+                                            <div class="modal fade" id="detailInfo-{{id}}" tabindex="-1" role="dialog" aria-labelledby="detailInfo-{{id}}"
+                                                 aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLongTitle">Bilgi</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body modal-content">
+                                                            <div class="card">
+                                                                <div class="card-header">
+                                                                    <h3 class="card-title">Ayrıntılı Bilgi </h3>
+                                                                </div>
+                                                                <div class="card-body p-0">
+                                                                    <ul class="nav nav-pills flex-column">
+
+                                                                        <li class="nav-item">
+                                                                            <a href="#" class="nav-link">
+                                                                                <i class="fa fa-id-card"></i> Hayvan Irkı
+                                                                                <span class=" float-right ">{{hayvanIrkAdi}}</span>
+                                                                            </a>
+                                                                        </li>
+
+                                                                        <li class="nav-item">
+                                                                            <a href="#" class="nav-link">
+                                                                                <i class="far fa-file-alt"></i> Hayvan Türü
+                                                                                <span class=" float-right ">{{hayvanAdi}}</span>
+                                                                            </a>
+                                                                        </li>
+
+
+                                                                        <li class="nav-item">
+                                                                            <a href="#" class="nav-link">
+                                                                                <i class="fa fa-id-card"></i>  Hayvan Tekil Fiyatı
+                                                                                <span class=" float-right "> {{hayvanFiyati}} ₺</span>
+                                                                            </a>
+                                                                        </li>
+
+                                                                        <li class="nav-item">
+                                                                            <a href="#" class="nav-link">
+                                                                                <i class="far fa-file-alt"></i>  Hayvan Yaşı
+                                                                                <span class=" float-right "> {{hayvanIrkFiyatTipYasBilgisi}}</span>
+                                                                            </a>
+                                                                        </li>
+
+                                                                        <li class="nav-item">
+                                                                            <a href="#" class="nav-link">
+                                                                                <i class="far fa-id-card"></i>  İstenen Hayvan Sayısı
+                                                                                <span class=" float-right "> {{istenenHayvanSayisi}}</span>
+                                                                            </a>
+                                                                        </li>
+
+                                                                        <li class="nav-item">
+                                                                            <a href="#" class="nav-link">
+                                                                                <i class="fa fa-file-alt"></i>  Destek istenen Hayvan Sayısı
+                                                                                <span class=" float-right ">{{destekIstenenHayvanSayisi}}</span>
+                                                                            </a>
+                                                                        </li>
+
+                                                                        <li class="nav-item">
+                                                                            <a href="#" class="nav-link">
+                                                                                <i class="far fa-id-card"></i> Ağırlık
+                                                                                <span class=" float-right ">{{hayvanAgirlik}}</span>
+                                                                            </a>
+                                                                        </li>
+
+
+                                                                        <li class="nav-item">
+                                                                            <a href="#" class="nav-link">
+                                                                                <i class="far fa-file-alt"></i> Ötenazi İsteniyor Mu
+                                                                                <span class=" float-right ">
+
+
+                                                                                    {{#if otenazi}}
+                                                                                    Evet
+                                                                                    {{else}}
+                                                                                    Hayır
+                                                                                    {{/if}}
+
+
+                                                                                </span>
+                                                                            </a>
+                                                                        </li>
+
+                                                                        {{#if otenazi}}
+
+                                                                        <li class="nav-item">
+                                                                            <a href="#" class="nav-link">
+                                                                                <i class="far fa-id-card"></i> Ötenazi Toplam Ücreti
+                                                                                <span class=" float-right ">
+                                                                                    Birim Ücreti  {{otenaziUcreti}} ₺ <span style="color:red">X</span> Hayvan Sayısı {{istenenHayvanSayisi}}  = {{otenaziToplamUcreti}} ₺
+                                                                                </span>
+                                                                            </a>
+                                                                        </li>
+                                                                        {{/if}}
+
+
+                                                                        <li class="nav-item">
+                                                                            <a href="#" class="nav-link">
+                                                                                <i class="far fa-file-alt"></i> Bakım Desteği Gün sayısı
+                                                                                <span class=" float-right ">{{bakimDestegiGunSayisi}}</span>
+                                                                            </a>
+                                                                        </li>
+
+                                                                        <li class="nav-item">
+                                                                            <a href="#" class="nav-link">
+                                                                                <i class="fa  fa-id-card"></i> Cinsiyet
+                                                                                <span class=" float-right ">
+                                                                                    {{#if deneyHayvaniCinsiyet}}
+                                                                                    Erkek
+                                                                                    {{else}}
+                                                                                    Dişi
+                                                                                    {{/if}}
+                                                                                </span>
+                                                                            </a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                                <!-- /.card-body -->
+                                                            </div>
+                                                            <div class="col-12 table-responsive">
+                                                                <table class="table table-striped">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th> NO </th>
+                                                                            <th> Destek Talep Türü Seçenekleri </th>
+                                                                            <th> Fiyat </th>
+
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        {{#each this.destekTalepTurleriJson}}
+                                                                        <tr>
+
+                                                                            <td>{{inc @@index}}</td>
+                                                                            <td>{{this.Name}} </td>
+                                                                            <td>{{this.Price}} ₺</td>
+                                                                        </tr>
+                                                                        {{/each }}
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+
+                                                            <ul class="nav nav-pills flex-column">
+                                                                <li class="nav-item">
+                                                                    <a href="#" class="nav-link">
+                                                                        <i class="fa fa-bolt"></i> Genel Toplam
+                                                                        <span class=" float-right ">  {{toplamFiyat}} ₺</span>
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- /.sepete detaylı bilgilerndirme -->
+
+
+                                        </div>
+
+                                    </div>
+                                    <div class="cartFiyat">
+                                        <div class="sptfiyat">{{toplamFiyat}} ₺	</div>
+                                        <div class="sptadet">{{istenenHayvanSayisi}} Adet </div>
+                                    </div>
+                                </div>
+                                {{/each}}
+                            </script>
+
+                            <div id="successCartItems" class="cartItems"></div>
+                        </div>
+
+                        <div class="cartFooter displayNone">
+                            <div class="cartBottom">
+                                <div class="total">Toplam Ücret</div>
+                                @*<script class="priceTpl" type="text/template">
+                                        {{cartTotalPrice}} ₺
+                                    </script>*@
+                                <div class="price" id="totalCartPrice"></div>
+                            </div>
+                            @*<div style="text-align:center; margin: 10px 0;">
+                                    <a class="btn btn-primary" href="/sepetim">Siparişi Oluştur</a>
+                                </div>*@
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="card card-primary">
+                    <!-- /.card-header -->
+                    <div class="card-header">
+                        <h3 class="card-title">Bilgilendirme  </h3>
+                    </div>
+
+                    <div class="card-body">
+                        PROVİZYON NUMARANIZ:
+                        <div class="alert alert-info alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                            <h5><i class="icon fas fa-info"></i> Uyarı !</h5>
+                            Alışveriş Sepetinizin Geçerlilik Süresi 3 gündür, lütfen 3 gün içinde proforma oluşturunuz.
+                            Eğer 3 gün içinde proformayı bitirmeyecekseniz provizyon numaranızı not ediniz.
+                        </div>
+                    </div>
+
+                    <!-- /.card-body -->
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="modal fade" id="donatModalCenter" tabindex="-1" role="dialog" aria-labelledby="donatModalCenter"
+         aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Bilgi</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body modal-content">
+                    <div class="alert alert-success" id="fiyatModalBox" role="alert">
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+                    @*<a class="btn btn-primary" href="/sepetim"> Ödeme Sayfasına Git </a>*@
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+
+@section JavaScript{
+    <script src="~/lib/jqueryValidate/jquery.validate.min.js"></script>
+    <script src="~/lib/jqueryUnob/jquery.validate.unobtrusive.min.js"></script>
+
+    <script src="~/plugins/moment/moment.min.js"></script>
+    <script src="~/plugins/inputmask/min/jquery.inputmask.bundle.min.js"></script>
+    <script src="~/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+    <script src="~/lib/jquery-steps.js"></script>
+    <script src="~/lib/handlebars.min-v4.7.6.js"></script>
+
+    <!-- date-range-picker -->
+    <!-- bootstrap color picker -->
+    @*<style>
+            input.input-validation-error {
+                border-color: red;
+            }
+
+            span.field-validation-error {
+                color: red;
+            }
+        </style>*@
+    @*$('input.DestekIstenenHayvanSayisi').on('input', function (e) { });*@
+    <script>
+
+        //------------ açılışta sepeti otomatik yukle  ------////
+
+        $.ajax({
+            url: '/ShoppingCart/SepetGetir',
+            type: "GET",
+            success: function (result) {
+                if (result.status == "ok") {
+
+                    jQuery('.cartEmpty').hide();
+
+                    jQuery('.cartFooter').show();
+
+                    jQuery('#totalCartPrice').html(result.fiyatToplam + ' ₺');
+
+                    hAndleEvent(result);
+
+                } else if (result.status == "empty") {
+                    jQuery('.cartEmpty').show();
+                    jQuery('.cartFooter').hide();
+                }
+                else {
+                    alert(result.mesaj)
+                }
+            }
+        });
+
+                //------------ handle bar helper inrement  ------////
+
+
+        Handlebars.registerHelper("inc", function (value, options) {
+            return parseInt(value) + 1;
+        });
+
+        $('#EtikKurulOnayTarihiDate,#ProjeBaslangicTarihiDate,#ProjeBitisTarihiDate,#LaboratuvarBaslangicTarihiDate,#LaboratuvarBitisTarihiDate').datetimepicker({
+            format: 'R',
+            locale: 'tr',
+            format: 'DD-MM-YYYY'
+        });
+
+        $('.datetimepicker-input').inputmask('dd-mm-yyyy', { 'placeholder': 'dd-mm-yyyy' })
+        //$('#EtikKurulOnayTarihi').inputmask("m/d/y", { clearIncomplete: false, clearMaskOnLostFocus: false, showMaskOnFocus: false, showMaskOnHover: false });
+
+        let settings = {
+            validClass: "is-valid",
+            errorClass: "is-invalid"
+        };
+
+        //------------ProjeYurutucusuForm ------////
+        let ProjeYurutucusuForm = $('#ProjeYurutucusuForm');
+        ProjeYurutucusuForm.removeData("validator");
+        ProjeYurutucusuForm.removeData("unobtrusiveValidation");
+        $.validator.setDefaults(settings);
+        $.validator.unobtrusive.options = settings;
+        $.validator.unobtrusive.parse("#ProjeYurutucusuForm");
+        let ProjeYurutucusuForm_Validator = ProjeYurutucusuForm.validate();
+
+        //------------SorumluArastirmaciForm ------////
+        let SorumluArastirmaciForm = $('#SorumluArastirmaciForm');
+        SorumluArastirmaciForm.removeData("validator");
+        SorumluArastirmaciForm.removeData("unobtrusiveValidation");
+        $.validator.setDefaults(settings);
+        $.validator.unobtrusive.options = settings;
+        $.validator.unobtrusive.parse("#SorumluArastirmaciForm");
+        let SorumluArastirmaciForm_Validator = SorumluArastirmaciForm.validate();
+
+
+        //------------LaboratuvarForm ------////
+        let LaboratuvarForm = $('#LaboratuvarForm');
+        LaboratuvarForm.removeData("validator");
+        LaboratuvarForm.removeData("unobtrusiveValidation");
+        $.validator.setDefaults(settings);
+        $.validator.unobtrusive.options = settings;
+        $.validator.unobtrusive.parse("#LaboratuvarForm");
+        let LaboratuvarForm_Validator = LaboratuvarForm.validate();
+
+
+        //------------ProjeTarihleriForm ------////
+        let ProjeTarihleriForm = $('#ProjeTarihleriForm');
+        ProjeTarihleriForm.removeData("validator");
+        ProjeTarihleriForm.removeData("unobtrusiveValidation");
+        $.validator.setDefaults(settings);
+        $.validator.unobtrusive.options = settings;
+        $.validator.unobtrusive.parse("#ProjeTarihleriForm");
+        let ProjeTarihleriForm_Validator = ProjeTarihleriForm.validate();
+
+        //------------EtikKurulForm ------////
+        let EtikKurulForm = $('#EtikKurulForm');
+        EtikKurulForm.removeData("validator");
+        EtikKurulForm.removeData("unobtrusiveValidation");
+        $.validator.setDefaults(settings);
+        $.validator.unobtrusive.options = settings;
+        $.validator.unobtrusive.parse("#EtikKurulForm");
+        let EtikKurulForm_Validator = EtikKurulForm.validate();
+
+
+        //************************* step step event ********************
+        $('#StepStepCart').steps({
+            onChange: function (currentIndex, newIndex, stepDirection) {
+
+                // step1
+                if (currentIndex === 1) {
+
+                    if (stepDirection === 'forward') {
+                        SorumluArastirmaciForm.valid();
+                        return ProjeYurutucusuForm.valid();
+                    }
+                    if (stepDirection === 'backward') {
+                        SorumluArastirmaciForm_Validator.resetForm();
+                        ProjeYurutucusuForm_Validator.resetForm();
+                    }
+                }
+                // step2
+                if (currentIndex === 2) {
+
+                    if (stepDirection === 'forward') {
+                        LaboratuvarForm.valid();
+                        EtikKurulForm.valid();
+                        return ProjeTarihleriForm.valid();
+                    }
+                    if (stepDirection === 'backward') {
+                        LaboratuvarForm_Validator.resetForm();
+                        EtikKurulForm_Validator.resetForm();
+                        ProjeTarihleriForm_Validator.resetForm();
+                    }
+                }
+
+                return true;
+            },
+            onFinish: function () {
+
+                /*
+                 $("form").submit(function () {
+                     alert("Submitted");
+                 });
+                  //$('#dekamAnaForm').submit();
+               */
+
+
+                var dataPost = {
+                    ProjeYurutucusu: $("#ProjeYurutucusu").val(),
+                    ProjeYurutukurumu: $("#ProjeYurutukurumu").val(),
+                    ProjeYurutuTelefon: $("#ProjeYurutuTelefon").val(),
+                    SorumluArastirmaci: $("#SorumluArastirmaci").val(),
+                    SorumluArastirmaciTelefon: $("#SorumluArastirmaciTelefon").val(),
+                    EtikKurulOnayNumarasi: $("#EtikKurulOnayNumarasi").val(),
+                    EtikKurulOnayTarihi: $("#EtikKurulOnayTarihi").val(),
+                    ProjeBaslangicTarihi: $("#ProjeBaslangicTarihi").val(),
+                    ProjeBitisTarihi: $("#ProjeBitisTarihi").val(),
+                    LaboratuvarID: $("#LaboratuvarID").val(),
+                    LaboratuvarBaslangicTarihi: $("#LaboratuvarBaslangicTarihi").val(),
+                    LaboratuvarBitisTarihi: $("#LaboratuvarBitisTarihi").val(),
+                };
+
+
+                jQuery.ajax({
+                    type: 'POST',
+                    data: dataPost,
+                    datatype: 'json',
+                    url: '/Admin/DekamProjeTakip/Save',
+                    success: function (data) {
+                        if (data.status == "ok") {
+                        } else {
+                        }
+                    },
+                    error: function (e) {
+                        console.log(e);
+                    }
+                });
+
+            }
+        });
+
+        //************************* Irk seçimi yaparken  ********************
+        $(".DeneyHavyanIrklari").change(function () {
+            jQuery.ajax({
+                type: 'GET',
+                data: { TurID: $(this).val() },
+                datatype: 'json',
+                url: '/Admin/DekamProjeTakip/FiyatSec',
+                beforeSend: function () {
+                    //loadMore.text('').addClass('active');
+                },
+                success: function (data) {
+                    if (data.status == "ok") {
+                        let cartSelectTemplate = jQuery('#cartSelectItemsTpl').html();
+                        let TemplateCompileCartSelect = Handlebars.compile(cartSelectTemplate);
+                        let CompiledHtmlCartSelect = TemplateCompileCartSelect(data);
+                        jQuery('#cartSelectItems').html(CompiledHtmlCartSelect);
+
+
+                        let cartTeknikDestekTalepTurleri = jQuery('#teknikDestekTalepTurleriTpl').html();
+                        let TemplateCompileCartSelectTalepTur = Handlebars.compile(cartTeknikDestekTalepTurleri);
+                        let CompiledHtmlCartSelectTalepTur = TemplateCompileCartSelectTalepTur(data);
+                        jQuery('.teknikDestekTalepTurleri').html(CompiledHtmlCartSelectTalepTur);
+
+                    } else {
+                        jQuery('#cartSelectItems').html(' <td colspan="7"><span class="text-danger text-center"> Veri Bulunamadı </span ></td >');
+                    }
+
+                },
+                error: function (e) {
+                    console.log(e);
+                },
+                complete: function () {
+
+                },
+            });
+        });
+
+        //******************** Sepete ekleme ***************************
+        $(document).on("click", ".add-to-cart", function () {
+            event.preventDefault();
+
+            let $baseID = $(this).data("val");
+            let ReturnType = $(this).data("type");
+            // alert($baseID);
+            let destekTalepTurLeri = [];
+            $("#CartDestekTalep-" + $baseID + " .destekTalepTur").each(function () {
+                if ($(this).is(':checked')) {
+                    destekTalepTurLeri.push($(this).val());
+                }
+            });
+
+            let IstenenHayvanSayisi = $("#CartAddData-" + $baseID + " .IstenenHayvanSayisi").val();
+            let DestekIstenenHayvanSayisi = $("#CartAddData-" + $baseID + " .DestekIstenenHayvanSayisi").val();
+            let HayvanAgirlik = $("#CartAddData-" + $baseID + " .HayvanAgirlik").val();
+            let DeneyHayvaniCinsiyet = $("#CartAddData-" + $baseID + " .DeneyHayvaniCinsiyet").val();
+
+            let BakimDestegiGunSayisi = $("#CartAddData-" + $baseID + " .BakimDestegiGunSayisi").val();
+
+            let otenaziIstek = 0;
+
+            if ($("#OtenaziIstek-" + $baseID + " .OtenaziIstek").is(':checked')) {
+                otenaziIstek = 1;
+            }
+
+
+            if (DeneyHayvaniCinsiyet == 0) {
+                DeneyHayvaniCinsiyet = false;
+            } else {
+                DeneyHayvaniCinsiyet = true;
+            }
+
+            var dataobj = {
+                BaseId: $baseID,
+                IstenenHayvanSayisi: IstenenHayvanSayisi,
+                DestekIstenenHayvanSayisi: DestekIstenenHayvanSayisi,
+                BakimDestegiGunSayisi: BakimDestegiGunSayisi,
+                HayvanAgirlik: HayvanAgirlik,
+                DeneyHayvaniCinsiyet: DeneyHayvaniCinsiyet,
+                ReturnType: ReturnType,
+                OtenaziIstek: otenaziIstek,
+                destekTalepTurLeri: destekTalepTurLeri.join(),
+            };
+
+            $.ajax({
+                url: '/ShoppingCart/Add',
+                type: "POST",
+                //contentType: "application/json; charset=utf-8",
+                //dataType: "json",
+                data: dataobj,
+                success: function (result) {
+
+                    if (result.status == "ok" && ReturnType == "hesapla") {
+                        $("#donatModalCenter #fiyatModalBox").html("Bu Birimin Toplam Ücreti: " + result.fiyatToplam + " ₺");
+                        jQuery('#donatModalCenter').modal('show');
+                        $("#CartTotal-" + $baseID + " .totalPrice").html("Bu Birimin Toplam Ücreti: " + result.fiyatToplam + " ₺");
+                        $("#CartTotal-" + $baseID + " .totalPrice").addClass("form-control is-invalid");
+                        return
+                    }
+
+                    if (result.status == "ok") {
+                        $("#donatModalCenter #fiyatModalBox").html("Sepetinize Başarı ile Eklediniz <br> Toplam Ücret: " + result.fiyatToplam + " ₺ <br> Birim Fiyatı: " + result.birimFiyat + " ₺");
+                        jQuery('#donatModalCenter').modal('show');
+
+                        $("#CartTotal-" + $baseID + " .totalPrice").html("Bu Birimin Toplam Ücreti: " + result.birimFiyat + " ₺");
+                        $("#CartTotal-" + $baseID + " .totalPrice").addClass("form-control is-invalid");
+
+                        jQuery('.cartEmpty').hide();
+
+                        jQuery('.cartFooter').show();
+
+                        jQuery('#totalCartPrice').html(result.fiyatToplam + ' ₺');
+
+                        hAndleEvent(result);
+
+                    } else {
+                        // $("#donatModalCenter #fiyatModalBox").html(result.mesaj);
+                        // jQuery('#donatModalCenter').modal('show');
+                        alert(result.mesaj)
+                    }
+                }
+            });
+
+        });
+
+        //************************* SİPARİŞİ SİL ********************
+        $(document).on("click", ".siparissil", function () {
+            event.preventDefault();
+            let $baseID = $(this).data("value");
+
+            $.ajax({
+                url: '/Admin/ShoppingCart/Delete',
+                type: "GET",
+                data: { id: $baseID },
+                success: function (result) {
+                    if (result.status == "null") {
+                        jQuery('.cartEmpty').show();
+                        jQuery('#successCartItems').empty();
+                        jQuery('.cartFooter').hide();
+
+                    } else {
+                        jQuery('.cartEmpty').hide();
+
+                        jQuery('#totalCartPrice').html(result.fiyatToplam + ' ₺');
+                        jQuery('.cartFooter').show();
+
+                        hAndleEvent(result);
+                    }
+                }
+            });
+        });
+
+        //************************* handle js event ********************
+        function hAndleEvent(result) {
+            let cartSelectTemplate1 = jQuery('#CartItemsTpl').html();
+            let TemplateCompileCartSelect1 = Handlebars.compile(cartSelectTemplate1);
+            let CompiledHtmlCartSelect1 = TemplateCompileCartSelect1(result);
+            jQuery('#successCartItems').html(CompiledHtmlCartSelect1);
+        }
+
+    </script>
+
+    <partial name="_ValidationScriptsPartial" />
+}
+
+@section Style{
+    <link href="~/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+}

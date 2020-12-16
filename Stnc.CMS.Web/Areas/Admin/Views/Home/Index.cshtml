@@ -1,107 +1,85 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
-<div class="row mt-3">
 
+<div class="col-lg-3 col-6">
+    <!-- small box -->
+    <div class="small-box bg-info">
+        <div class="inner">
+            <h3>@ViewBag.ToplamPostSayisi</h3>
 
-    <div class="col-md-6">
-        <div class="card text-white text-center bg-primary mb-3">
-
-
-
-            <div class="card-body">
-                <h4 class="card-title">Okunmamış Bildirim Sayısı</h4>
-
-                @if (ViewBag.OkunmamisBildirimSayisi > 0)
-                {
-                    <p class="card-text display-4">@ViewBag.OkunmamisBildirimSayisi</p>
-                    <p class="">
-                        <a asp-action="Index" asp-controller="Bildirim" class="btn btn-light btn-sm"><i class="fas fa-chevron-circle-right"></i> İncele</a>
-                    </p>
-                }
-                else
-                {
-                    <p class="card-text lead">
-                       Tüm bildirimleriniz okunmuş.
-                    </p>
-                }
-            </div>
+            <p>Toplam İçerik Sayısı</p>
         </div>
-    </div>
-
-
-
-    <div class="col-md-6">
-        <div class="card text-white text-center bg-primary mb-3">
-
-
-
-            <div class="card-body">
-                <h4 class="card-title">Atanma Bekleyen Görev Sayısı</h4>
-
-                @if (ViewBag.AtanmayiBekleyenGorevSayisi > 0)
-                {
-                    <p class="card-text display-4">@ViewBag.AtanmayiBekleyenGorevSayisi</p>
-                    <p class="">
-                        <a asp-action="Index" asp-controller="IsEmri" class="btn btn-light btn-sm"><i class="fas fa-chevron-circle-right"></i> İncele</a>
-                    </p>
-                }
-                else
-                {
-                    <p class="card-text lead">
-                        Bütün görevlerinizde personelleriniz çalışmakta ya da herhangi bir görev bulunmamakta.
-                    </p>
-                }
-            </div>
+        <div class="icon">
+            <i class="ion ion-bag"></i>
         </div>
+        <a asp-action="Index" asp-controller="Bildirim" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
     </div>
-
-    <div class="col-md-6">
-        <div class="card text-white text-center bg-primary mb-3">
-
-            <div class="card-body">
-                <h4 class="card-title">Tamamlanmış Görev Sayısı</h4>
-
-                @if (ViewBag.TamamlanmisGorevSayisi > 0)
-                {
-                    <p class="card-text display-4">@ViewBag.TamamlanmisGorevSayisi</p>
-
-                }
-                else
-                {
-                    <p class="card-text lead">
-                        Herhangi bir görev henüz tamamlanmamış.
-                    </p>
-                }
-            </div>
-        </div>
-    </div>
-
-
-
-    <div class="col-md-6">
-        <div class="card text-white text-center bg-primary mb-3">
-
-            <div class="card-body">
-                <h4 class="card-title">Yazılmış Rapor Sayısı</h4>
-
-                @if (ViewBag.ToplamRaporSayisi > 0)
-                {
-                    <p class="card-text display-4">@ViewBag.ToplamRaporSayisi</p>
-
-                }
-                else
-                {
-                    <p class="card-text lead">
-                        Hiçbir rapor yazılmamış.
-                    </p>
-                }
-            </div>
-        </div>
-    </div>
-
-
-    @* ViewBag.OkunmamisBildirimSayisi*@
 </div>
+
+
+<div class="col-lg-3 col-6">
+    <!-- small box -->
+    <div class="small-box bg-info">
+        <div class="inner">
+            <h3>@ViewBag.OkunmamisBildirimSayisi</h3>
+
+            <p>Gelen Satınalma Bildirim Sayısı</p>
+        </div>
+        <div class="icon">
+            <i class="ion ion-bag"></i>
+        </div>
+        <a asp-action="Index" asp-controller="Bildirim" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+    </div>
+</div>
+
+
+
+
+<!-- ./col -->
+<div class="col-lg-3 col-6">
+    <!-- small box -->
+    <div class="small-box bg-success">
+        <div class="inner">
+            <h3>@ViewBag.AtanmayiBekleyenGorevSayisi</h3>
+
+            <p>Atanma Bekleyen Görev Sayısı</p>
+        </div>
+        <div class="icon">
+            <i class="ion ion-stats-bars"></i>
+        </div>
+        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+    </div>
+</div>
+<!-- ./col -->
+<div class="col-lg-3 col-6">
+    <!-- small box -->
+    <div class="small-box bg-warning">
+        <div class="inner">
+            <h3>@ViewBag.TamamlanmisGorevSayisi</h3>
+
+            <p>Tamamlanmış Görev Sayısı</p>
+        </div>
+        <div class="icon">
+            <i class="ion ion-person-add"></i>
+        </div>
+        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+    </div>
+</div>
+<!-- ./col -->
+<div class="col-lg-3 col-6">
+    <!-- small box -->
+    <div class="small-box bg-danger">
+        <div class="inner">
+            <h3>@ViewBag.ToplamRaporSayisi</h3>
+
+            <p>Yazılmış Rapor Sayısı</p>
+        </div>
+        <div class="icon">
+            <i class="ion ion-pie-graph"></i>
+        </div>
+        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+    </div>
+</div>
+<!-- ./col -->

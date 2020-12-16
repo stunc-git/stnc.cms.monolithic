@@ -26,8 +26,8 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
 
         public IActionResult Index()
         {
-            TempData["Active"] = TempdataInfo.Aciliyet;          
-            return View(_mapper.Map<List<AciliyetListDto>>(_aciliyetService.GetirHepsi()));
+            TempData["Active"] = TempdataInfo.Aciliyet;
+            return View(_mapper.Map<List<AciliyetListDto>>(_aciliyetService.GetAll()));
         }
 
         public IActionResult EkleAciliyet()
@@ -71,7 +71,6 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
                 return RedirectToAction("Index");
             }
             return View(model);
-           
         }
     }
 }

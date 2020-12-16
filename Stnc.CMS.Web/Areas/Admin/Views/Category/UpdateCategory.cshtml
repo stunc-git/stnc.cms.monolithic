@@ -1,0 +1,59 @@
+﻿@model CategoryUpdateDto
+@{
+    ViewData["Title"] = "GuncelleAciliyet";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="col-md-12">
+
+    <div class="card card-primary">
+        <div class="card-header">
+            <h3 class="card-title">Kategori Düzenleme</h3>
+        </div>
+        <!-- /.card-header -->
+        <!-- form start -->
+        <form class="w-75 mx-auto p-3" asp-action="UpdateCategory" method="post">
+            <input type="hidden" asp-for="Id" />
+            <div class="card-body">
+                <div class="form-group">
+                    <label asp-for="Name">Tanım :</label>
+                    <input asp-for="Name" type="text" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+
+                </div>
+
+
+                <div class="form-group">
+                    <label asp-for="Slug">Kısa isim :</label>
+                    <input asp-for="Slug" type="text" class="form-control" />
+                    <span asp-validation-for="Slug" class="text-danger"></span>
+
+                    <p> “slug” yazı isminin URL versiyonudur. Genellikle tümü küçük harflerden oluşur, sadece harf, rakam ve tire içerir.  </p>
+                </div>
+
+                <div class="form-group">
+                    <label> Açıklama :</label>
+                    <textarea asp-for="Description" class="form-control"></textarea>
+                    <span asp-validation-for="@Model.Description" class="text-danger"></span>
+                    <p> Tanım bölümü varsayılan olarak ön planda değildir, belli durumlarda kullanım içindir</p>
+
+                </div>
+
+            </div>
+            <!-- /.card-body -->
+
+            <div class="card-footer">
+                <button type="submit" class="btn btn-info btn-sm"><i class="fas fa-check mr-2"></i>Kaydet</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section JavaScript{
+    <script src="~/lib/jqueryValidate/jquery.validate.min.js"></script>
+    <script src="~/lib/jqueryUnob/jquery.validate.unobtrusive.min.js"></script>
+    <partial name="_ValidationScriptsPartial" />
+
+}
+

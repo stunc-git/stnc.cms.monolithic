@@ -1,0 +1,107 @@
+﻿@model DeneyHayvaniIrkFiyatUpdateDto
+@{
+    ViewData["Title"] = @ViewBag.GeneralTitle;
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="col-md-12">
+
+    <div class="card card-primary">
+        <div class="card-header">
+            <h3 class="card-title">@ViewBag.GeneralTitle</h3>
+        </div>
+        <!-- /.card-header -->
+        <!-- form start -->
+        <form class="w-75 mx-auto p-3" asp-action="Update" method="post">
+            <input type="hidden" asp-for="Id" />
+            <div class="card-body">
+
+                <div class="form-group">
+                    <label asp-for="YasBilgisi">Hayvan Yaşı :</label>
+                    <input asp-for="YasBilgisi" type="text" class="form-control" />
+                    <span asp-validation-for="YasBilgisi" class="text-danger"></span>
+                </div>
+
+
+
+
+                <div class="form-group">
+                    <label>Deney Hayvanı Türünü Seçiniz:</label>
+                    <select class="form-control" asp-for="DekamProjeDeneyHayvaniTurId" asp-items="ViewBag.HayvaniTurCategories">
+                        <option value="">Seçiniz</option>
+                    </select>
+                    <span asp-validation-for="@Model.DekamProjeDeneyHayvaniTurId" class="text-danger"></span>
+                </div>
+
+
+                <div class="form-group">
+                    <label>Deney Hayvanı Irkını Seçiniz:</label>
+                    <select class="form-control" asp-for="DeneyHayvaniIrkID" asp-items="ViewBag.HayvaniIrkCategories">
+                        <option value="">Seçiniz</option>
+                    </select>
+                    <span asp-validation-for="@Model.DeneyHayvaniIrkID" class="text-danger"></span>
+                </div>
+
+
+                <div class="form-group">
+                    <label asp-for="Fiyat">Fiyatı * :</label>
+                    <input value='@Model.Fiyat.ToString("#,##0.00")' name="Fiyat" type="text" asp-is-invariant="true" class="form-control" />
+                    <span asp-validation-for="Fiyat" class="text-danger"></span>
+                    @*@((line.Amount * line.Food.Price).ToString("c",CultureInfo.CreateSpecificCulture("en-US")))*@
+
+                </div>
+
+
+            </div>
+            <!-- /.card-body -->
+
+            <div class="card-footer">
+                <button type="submit" class="btn btn-info btn-sm"><i class="fas fa-check mr-2"></i>Kaydet</button>
+                <a href="/Admin/DpDeneyHayvaniIrkFiyat/" class="btn btn-danger btn-sm"><i class="fas fa-check mr-2"></i>Listeye Dön</a>
+
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section JavaScript{
+    <script src="~/lib/jqueryValidate/jquery.validate.min.js"></script>
+    <script src="~/lib/jqueryUnob/jquery.validate.unobtrusive.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+
+            const id = $("#DekamProjeDeneyHayvaniTurId").val();
+            StncMyAjax(id);
+
+            $("#DekamProjeDeneyHayvaniTurId").change(function () {
+                const id = $(this).val();
+                StncMyAjax(id);
+            });
+
+
+            function StncMyAjax(id) {
+                $.ajax({
+                    url: '/Admin/DpDeneyHayvaniIrkFiyat/IrkSec',
+                    data: { TurID: id },
+                    dataType: "JSON",
+                    success: function (result) {
+                        var irkListesi = $("#DeneyHayvaniIrkID");
+                        irkListesi.empty();
+                        $.each(result.cartSelectItems, function (i, item) {
+                            irkListesi.append($("<option></option>").attr("value", item.id).html(item.hayvan));
+                        });
+                    }
+                });
+
+            }
+
+
+        });
+    </script>
+
+    <partial name="_ValidationScriptsPartial" />
+}
+

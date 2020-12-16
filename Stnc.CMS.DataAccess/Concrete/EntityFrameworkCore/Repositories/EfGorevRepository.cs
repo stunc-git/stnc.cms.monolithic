@@ -1,11 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts;
+using Stnc.CMS.DataAccess.Interfaces;
+using Stnc.CMS.Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts;
-using Stnc.CMS.DataAccess.Interfaces;
-using Stnc.CMS.Entities.Concrete;
 
 namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Repositories
 {
@@ -20,14 +20,13 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Repositories
         public Gorev GetirRaporlarileId(int id)
         {
             using var context = new StncCMSContext();
-            return context.Gorevler.Include(I => I.Raporlar).Include(I => I.AppUser
-            ).Where(I => I.Id == id).FirstOrDefault();
+            return context.Gorevler.Include(I => I.Raporlar).Include(I => I.AppUser).Where(I => I.Id == id).FirstOrDefault();
         }
 
         public List<Gorev> GetirAciliyetIleTamamlanmayan()
         {
             using var context = new StncCMSContext();
-            return context.Gorevler.Include(I => I.Aciliyet).Where(I => !I.Durum).OrderByDescending(I => I.OlusturulmaTarih).ToList();
+            return context.Gorevler.Include(I => I.Aciliyet).Include(I => I.AppUser).Where(I => !I.Durum).OrderByDescending(I => I.OlusturulmaTarih).ToList();
         }
 
         public List<Gorev> GetirileAppUserId(int appUserId)
@@ -79,8 +78,7 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Repositories
         public int GetirGorevTamamlanmis()
         {
             using var context = new StncCMSContext();
-            return context.Gorevler.Count(I=>I.Durum);
+            return context.Gorevler.Count(I => I.Durum);
         }
-
     }
 }

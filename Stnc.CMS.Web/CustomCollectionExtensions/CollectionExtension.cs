@@ -1,21 +1,18 @@
 ﻿using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Stnc.CMS.Business.Concrete;
-using Stnc.CMS.Business.Interfaces;
 using Stnc.CMS.Business.ValidationRules.FluentValidation;
 using Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts;
-using Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Repositories;
-using Stnc.CMS.DataAccess.Interfaces;
 using Stnc.CMS.DTO.DTOs.AciliyetDtos;
 using Stnc.CMS.DTO.DTOs.AppUserDtos;
+using Stnc.CMS.DTO.DTOs.CategoryDtos;
+using Stnc.CMS.DTO.DTOs.DekamProjeTakipDtos;
+using Stnc.CMS.DTO.DTOs.DeneyHayvaniIrkFiyatDtos;
 using Stnc.CMS.DTO.DTOs.GorevDtos;
+using Stnc.CMS.DTO.DTOs.PostDtos;
 using Stnc.CMS.DTO.DTOs.RaporDtos;
+using Stnc.CMS.DTO.DTOs.SliderDtos;
 using Stnc.CMS.Entities.Concrete;
+using System;
 
 namespace Stnc.CMS.Web.CustomCollectionExtensions
 {
@@ -30,17 +27,16 @@ namespace Stnc.CMS.Web.CustomCollectionExtensions
                 opt.Password.RequiredLength = 1;
                 opt.Password.RequireLowercase = false;
                 opt.Password.RequireNonAlphanumeric = false;
-            })
-             .AddEntityFrameworkStores<StncCMSContext>();
+            }).AddEntityFrameworkStores<StncCMSContext>();
 
             services.ConfigureApplicationCookie(opt =>
             {
-                opt.Cookie.Name = "IsTakipCookie";
+                opt.Cookie.Name = "StncCRMCookie";
                 opt.Cookie.SameSite = Microsoft.AspNetCore.Http.SameSiteMode.Strict;
                 opt.Cookie.HttpOnly = true;
                 opt.ExpireTimeSpan = TimeSpan.FromDays(20);
                 opt.Cookie.SecurePolicy = Microsoft.AspNetCore.Http.CookieSecurePolicy.SameAsRequest;
-                opt.LoginPath = "/Home/Index";
+                opt.LoginPath = "/adminpanel";
             });
         }
 
@@ -48,12 +44,32 @@ namespace Stnc.CMS.Web.CustomCollectionExtensions
         {
             services.AddTransient<IValidator<AciliyetAddDto>, AciliyetAddValidator>();
             services.AddTransient<IValidator<AciliyetUpdateDto>, AciliyetUpdateValidator>();
+
             services.AddTransient<IValidator<AppUserAddDto>, AppUserAddValidator>();
             services.AddTransient<IValidator<AppUserSignInDto>, AppUserSignInValidator>();
+
             services.AddTransient<IValidator<GorevAddDto>, GorevAddValidator>();
             services.AddTransient<IValidator<GorevUpdateDto>, GorevUpdateValidator>();
+
             services.AddTransient<IValidator<RaporAddDto>, RaporAddValidator>();
             services.AddTransient<IValidator<RaporUpdateDto>, RaporUpdateValidator>();
+
+            services.AddTransient<IValidator<PostUpdateDto>, PostUpdateValidator>();
+            services.AddTransient<IValidator<PostAddDto>, PostAddValidator>();
+
+            services.AddTransient<IValidator<CategoryAddDto>, CategoryAddValidator>();
+            services.AddTransient<IValidator<CategoryUpdateDto>, CategoryUpdateValidator>();
+
+            services.AddTransient<IValidator<SliderAddDto>, SliderAddValidator>();
+            services.AddTransient<IValidator<SliderUpdateDto>, SliderUpdateValidator>();
+
+            services.AddTransient<IValidator<DekamProjeTakipCreateDto>, DekamProjeTakipCreateValidator>();
+            services.AddTransient<IValidator<DekamProjeTakipUpdateDto>, DekamProjeTakipUpdateValidator>();
+
+            services.AddTransient<IValidator<DeneyHayvaniIrkFiyatCreateDto>, DeneyHayvaniIrkFiyatCreateValidator>();
+            services.AddTransient<IValidator<DeneyHayvaniIrkFiyatUpdateDto>, DeneyHayvaniIrkFiyatUpdateValidator>();
+
+
         }
     }
 }

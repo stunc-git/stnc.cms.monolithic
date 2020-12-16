@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -12,6 +8,9 @@ using Stnc.CMS.DTO.DTOs.GorevDtos;
 using Stnc.CMS.DTO.DTOs.RaporDtos;
 using Stnc.CMS.Entities.Concrete;
 using Stnc.CMS.Web.StringInfo;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Stnc.CMS.Web.Areas.Admin.Controllers
 {
@@ -42,7 +41,6 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
             return View(_mapper.Map<List<GorevListAllDto>>(_gorevService.GetirTumTablolarla()));
         }
 
-
         public IActionResult Detaylandir(int id)
         {
             TempData["Active"] = TempdataInfo.IsEmri;
@@ -51,12 +49,13 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
 
         public IActionResult GetirExcel(int id)
         {
-            return File(_dosyaService.AktarExcel(_mapper.Map<List<RaporDosyaDto>>(_gorevService.GetirRaporlarileId(id).Raporlar)), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", Guid.NewGuid() + ".xlsx");
+            return File(_dosyaService.AktarExcel(_mapper.Map<List<RaporDosyaDto>>(_gorevService.GetirRaporlarileId(id).Raporlar)),
+                "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", Guid.NewGuid() + ".xlsx");
         }
 
         public IActionResult GetirPdf(int id)
         {
-            var path = _dosyaService.AktarPdf(_mapper.Map<List<RaporDosyaDto>>( _gorevService.GetirRaporlarileId(id).Raporlar));
+            var path = _dosyaService.AktarPdf(_mapper.Map<List<RaporDosyaDto>>(_gorevService.GetirRaporlarileId(id).Raporlar));
             return File(path, "application/pdf", Guid.NewGuid() + ".pdf");
         }
 
@@ -77,8 +76,6 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
             return View(_mapper.Map<GorevListDto>(_gorevService.GetirAciliyetileId(id)));
         }
 
-
-
         [HttpPost]
         public IActionResult AtaPersonel(PersonelGorevlendirDto model)
         {
@@ -95,11 +92,8 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
             return RedirectToAction("Index");
         }
 
-
-
         public IActionResult GorevlendirPersonel(PersonelGorevlendirDto model)
         {
-
             TempData["Active"] = "isemri";
 
             PersonelGorevlendirListDto personelGorevlendirModel = new PersonelGorevlendirListDto
@@ -109,6 +103,5 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
             };
             return View(personelGorevlendirModel);
         }
-
     }
 }

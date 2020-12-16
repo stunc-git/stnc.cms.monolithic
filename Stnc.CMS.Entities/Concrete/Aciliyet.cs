@@ -9,7 +9,6 @@ namespace Stnc.CMS.Entities.Concrete
     {
         public int Id { get; set; }
         public string Tanim { get; set; }
-
         public List<Gorev> Gorevler { get; set; }
     }
 }

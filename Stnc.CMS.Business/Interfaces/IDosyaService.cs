@@ -13,6 +13,8 @@ namespace Stnc.CMS.Business.Interfaces
         /// <param name="list"></param>
         /// <returns></returns>
         string AktarPdf<T>(List<T> list) where T : class, new();
+        string AktarPdf2() ;
+        void AktarPdff() ;
        /// <summary>
        /// Geriye excel verisini byte dizisi olarak döner.
        /// </summary>

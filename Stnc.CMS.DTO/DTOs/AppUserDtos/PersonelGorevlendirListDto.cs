@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Stnc.CMS.DTO.DTOs.GorevDtos;
+﻿using Stnc.CMS.DTO.DTOs.GorevDtos;
 
 namespace Stnc.CMS.DTO.DTOs.AppUserDtos
 {

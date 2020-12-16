@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -12,6 +7,10 @@ using Stnc.CMS.DTO.DTOs.AppUserDtos;
 using Stnc.CMS.Entities.Concrete;
 using Stnc.CMS.Web.BaseControllers;
 using Stnc.CMS.Web.StringInfo;
+using System;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Stnc.CMS.Web.Areas.Member.Controllers
 {
@@ -19,17 +18,17 @@ namespace Stnc.CMS.Web.Areas.Member.Controllers
     [Area(AreaInfo.Member)]
     public class ProfilController : BaseIdentityController
     {
-       
         private readonly IMapper _mapper;
-        public ProfilController(UserManager<AppUser> userManager, IMapper mapper):base(userManager)
+
+        public ProfilController(UserManager<AppUser> userManager, IMapper mapper) : base(userManager)
         {
             _mapper = mapper;
-           
         }
+
         public async Task<IActionResult> Index()
         {
             TempData["Active"] = TempdataInfo.Profil;
-            var appUser =  await GetirGirisYapanKullanici();
+            var appUser = await GetUserLoginInfo().ConfigureAwait(false);
             return View(_mapper.Map<AppUserListDto>(appUser));
         }
 
@@ -46,7 +45,7 @@ namespace Stnc.CMS.Web.Areas.Member.Controllers
                     string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/img/" + resimAd);
                     using (var stream = new FileStream(path, FileMode.Create))
                     {
-                        await resim.CopyToAsync(stream);
+                        await resim.CopyToAsync(stream).ConfigureAwait(false);
                     }
 
                     guncellencekKullanici.Picture = resimAd;
@@ -56,7 +55,7 @@ namespace Stnc.CMS.Web.Areas.Member.Controllers
                 guncellencekKullanici.Surname = model.SurName;
                 guncellencekKullanici.Email = model.Email;
 
-                var result = await _userManager.UpdateAsync(guncellencekKullanici);
+                var result = await _userManager.UpdateAsync(guncellencekKullanici).ConfigureAwait(false);
                 if (result.Succeeded)
                 {
                     TempData["message"] = "Güncelleme işleminiz başarı ile gerçekleşti";

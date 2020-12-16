@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq.Expressions;
-using Stnc.CMS.Business.Interfaces;
-using Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Repositories;
+﻿using Stnc.CMS.Business.Interfaces;
 using Stnc.CMS.DataAccess.Interfaces;
 using Stnc.CMS.Entities.Concrete;
+using System;
+using System.Collections.Generic;
+using System.Linq.Expressions;
 
 namespace Stnc.CMS.Business.Concrete
 {
@@ -15,7 +14,6 @@ namespace Stnc.CMS.Business.Concrete
         public GorevManager(IGorevDal gorevDal)
         {
             _gorevDal = gorevDal;
-            
         }
 
         public Gorev GetirAciliyetileId(int id)
@@ -48,14 +46,14 @@ namespace Stnc.CMS.Business.Concrete
             return _gorevDal.GetirGorevTamamlanmis();
         }
 
-        public List<Gorev> GetirHepsi()
+        public List<Gorev> GetAll()
         {
-            return _gorevDal.GetirHepsi();
+            return _gorevDal.GetAll();
         }
 
         public Gorev GetirIdile(int id)
         {
-            return _gorevDal.GetirIdile(id);
+            return _gorevDal.GetID(id);
         }
 
         public List<Gorev> GetirileAppUserId(int appUserId)
@@ -85,18 +83,22 @@ namespace Stnc.CMS.Business.Concrete
 
         public void Guncelle(Gorev tablo)
         {
-            _gorevDal.Guncelle(tablo);
+            _gorevDal.Update(tablo);
         }
 
         public void Kaydet(Gorev tablo)
         {
-            _gorevDal.Kaydet(tablo);
+            _gorevDal.Save(tablo);
+        }
+
+        public Gorev SaveReturn(Gorev tablo)
+        {
+         return  _gorevDal.SaveReturn(tablo);
         }
 
         public void Sil(Gorev tablo)
         {
-            _gorevDal.Sil(tablo);
+            _gorevDal.Delete(tablo);
         }
-
     }
 }

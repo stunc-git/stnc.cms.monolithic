@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Stnc.CMS.DTO.DTOs.GorevDtos
+﻿namespace Stnc.CMS.DTO.DTOs.GorevDtos
 {
     public class GorevAddDto
     {
@@ -10,6 +6,7 @@ namespace Stnc.CMS.DTO.DTOs.GorevDtos
         public string Ad { get; set; }
 
         public string Aciklama { get; set; }
+
         //[Range(0, int.MaxValue, ErrorMessage = "Lütfen bir aciliyet durumu seçiniz")]
         public int AciliyetId { get; set; }
     }

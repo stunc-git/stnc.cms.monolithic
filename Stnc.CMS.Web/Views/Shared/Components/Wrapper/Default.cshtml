@@ -10,53 +10,332 @@
     //string active2 = TempData["Active"]?.ToString();
 }
 
+<nav class="mt-2">
+    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <!-- Add icons to the links using the .nav-icon class
+    with font-awesome or any other icon font library -->
+        <li class="nav-item has-treeview menu-open-">
+            <a href="#" class="nav-link active">
+                <i class="nav-icon fas fa-tachometer-alt"></i>
+                <p>
+                    İçerikler
+                    <i class="right fas fa-angle-left"></i>
+                </p>
+            </a>
+            <ul class="nav nav-treeview">
+                <li class="nav-item">
+                    <a href="/Admin/Post"  class="nav-link active">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>İçerikler</p>
+                    </a>
+                </li>
 
-<div class="border border-right " id="sidebar-wrapper">
-    <div class="sidebar-heading">
-       
-        <img src="~/img/@Model.Picture" alt="@Model.Name" style="height:10rem!important;" class="w-100 img-thumbnail" />
-
-    </div>
-    <div class="list-group list-group-flush">
-
-        <a asp-action="Index" asp-controller="Home" class="list-group-item list-group-item-action  @(active=="anasayfa"?"active":"")">
-            <i class="fas fa-home mr-2"></i>
-            AnaSayfa
-        </a>
-
-
-        <a asp-action="Index" asp-controller="Gorev" class="list-group-item list-group-item-action @(active=="gorev"?"active":"")"><i class="fas fa-tasks mr-2"></i> Görev İşlemleri</a>
-        <a asp-action="Index" asp-controller="Aciliyet" class="list-group-item list-group-item-action  @(active=="aciliyet"?"active":"")">
-            <i class="fas fa-exclamation mr-2"></i>
-            Aciliyet İşlemleri
-        </a>
-        <a asp-action="Index" asp-controller="IsEmri" class="list-group-item list-group-item-action  @(active=="isemri"?"active":"")">
-            <i class="far fa-file mr-2"></i>
-            İş Emirleri
-        </a>
-        <a asp-action="Index" asp-controller="Grafik" class="list-group-item list-group-item-action  @(active=="grafik"?"active":"")">
-            <i class="fas fa-chart-pie mr-2"></i>
-            Grafikler
-        </a>
+                <li class="nav-item">
+                    <a href=" localhost:57684/Admin/DekamProjeTakip/GetirPdf" target="_blank" class="nav-link active">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>PDF GETİR</p>
+                    </a>
+                </li>
 
 
-        <a asp-action="Index" asp-controller="Bildirim" class="list-group-item list-group-item-action position-relative  @(active=="bildirim"?"active":"")">
-            <i class="far fa-bell  mr-2"></i>
-            @if (ViewBag.BildirimSayisi > 0)
-            {
-                <sub class="badge badge-info badge-pill position-absolute" style="bottom:0.625rem!important; left:1.7rem!important;"><small> @ViewBag.BildirimSayisi</small></sub>
-            }
+               
+                <li class="nav-item">
+                    <a href="/Admin/Post/AddPost" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>İçerik Ekle</p>
+                    </a>
+                </li>
 
-            Bildirimler
-        </a>
+            </ul>
+        </li>
 
-        <a asp-action="Index" asp-controller="Profil" class="list-group-item list-group-item-action @(active=="profil"?"active":"")">
-            <i class="fas fa-user mr-2"></i>
-            Profilim
-        </a>
+        <li class="nav-item has-treeview menu-open-">
+            <a href="#" class="nav-link active">
+                <i class="nav-icon fas fa-tachometer-alt"></i>
+                <p>
+                    Proje Takip
+                    <i class="right fas fa-angle-left"></i>
+                </p>
+            </a>
+            <ul class="nav nav-treeview">
+                <li class="nav-item">
+                    <a asp-action="Index" asp-controller="DekamProjeTakip" class="nav-link active">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Proje Takip  Listesi</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a asp-action="Create" asp-controller="DekamProjeTakip" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Yeni Ekle</p>
+                    </a>
+                </li>
+
+            </ul>
+        </li>
+
+
+        <li class="nav-item has-treeview menu-open-">
+            <a href="#" class="nav-link active">
+                <i class="nav-icon fas fa-tachometer-alt"></i>
+                <p>
+                    Deney hayvanı
+                    <i class="right fas fa-angle-left"></i>
+                </p>
+            </a>
+            <ul class="nav nav-treeview">
+                <li class="nav-item">
+                    <a asp-action="Index" asp-controller="DpDeneyHayvaniIrk" class="nav-link ">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Deney Hayvani Irk Tipleri</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a asp-action="Create" asp-controller="DpDeneyHayvaniIrk" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p> Ekle</p>
+                    </a>
+                </li>
+
+
+                <li class="nav-item">
+                    <a asp-action="Index" asp-controller="DProjeDeneyHayvaniTur" class="nav-link ">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Deney Hayvani Türleri</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a asp-action="Create" asp-controller="DProjeDeneyHayvaniTur" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p> Ekle</p>
+                    </a>
+                </li>
+
+
+
+
+
+
+
+                <li class="nav-item">
+                    <a asp-action="Index" asp-controller="DpTeknikDestekTalepTur" class="nav-link ">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p> Dp Teknik Destek Talep türü</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a asp-action="Create" asp-controller="DpTeknikDestekTalepTur" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p> Ekle</p>
+                    </a>
+                </li>
+
+
+
+                <li class="nav-item">
+                    <a asp-action="Index" asp-controller="DpLaboratuvarlar" class="nav-link ">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p> Labaratuvar</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a asp-action="Create" asp-controller="DpLaboratuvarlar" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p> Ekle</p>
+                    </a>
+                </li>
+
+
+                <li class="nav-item">
+                    <a asp-action="Index" asp-controller="DpDeneyHayvaniIrkFiyat" class="nav-link @(active=="profil"?"active":"")">
+                        <i class="fas fa-user mr-2"></i>
+                        Fiyatlar
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a asp-action="Create" asp-controller="DpDeneyHayvaniIrkFiyat" class="nav-link @(active=="profil"?"active":"")">
+                        <i class="fas fa-user mr-2"></i>
+                        Fiyat Ekle
+                    </a>
+
+                </li>
+            </ul>
+        </li>
+
+        <li class="nav-item has-treeview  @(active=="gorev"?"menu-open":"")">
+            <a href="#" class="nav-link ">
+                <i class="nav-icon fas fa-tachometer-alt"></i>
+                <p>
+                    GÖrev
+                    <i class="right fas fa-angle-left"></i>
+                </p>
+            </a>
+
+            <ul class="nav nav-treeview">
+
+                <li class="nav-item">
+                    <a asp-action="Index" asp-controller="Gorev" class="nav-link @(active=="gorev"?"active":"")">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Görev İşlemleri</p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a asp-action="Index" asp-controller="Aciliyet" class="nav-link  @(active=="aciliyet"?"active":"")">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Aciliyet</p>
+                    </a>
+                </li>
+
+            </ul>
+        </li>
+
+        <li class="nav-item has-treeview menu-open-">
+            <a href="#" class="nav-link ">
+                <i class="nav-icon fas fa-tachometer-alt"></i>
+                <p>
+                    Slİder
+                    <i class="right fas fa-angle-left"></i>
+                </p>
+            </a>
+            <ul class="nav nav-treeview">
+                <li class="nav-item">
+                    <a href="/Admin/Slider" class="nav-link active">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Slider</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/Admin/Slider/AddSlider" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>slider Ekle</p>
+                    </a>
+                </li>
+
+            </ul>
+        </li>
+
+
+        <li class="nav-item has-treeview menu-open-">
+            <a href="#" class="nav-link ">
+                <i class="nav-icon fas fa-tachometer-alt"></i>
+                <p>
+                    Personel
+                    <i class="right fas fa-angle-left"></i>
+                </p>
+            </a>
+            <ul class="nav nav-treeview">
+                <li class="nav-item">
+                    <a href="/Admin/Post" class="nav-link active">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Personel</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/Admin/Post/AddPost" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Personel Ekle</p>
+                    </a>
+                </li>
+
+            </ul>
+        </li>
+
+        <li class="nav-item has-treeview menu-open-">
+            <a href="#" class="nav-link ">
+                <i class="nav-icon far fa-plus-square"></i>
+                <p>
+                    Ayarlar
+                    <i class="right fas fa-angle-left"></i>
+                </p>
+            </a>
+            <ul class="nav nav-treeview">
+                
+                <li class="nav-item">
+                    <a href="/Admin/Post" class="nav-link active">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Ayarlar</p>
+                    </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="/Admin/FrontMenu" class="nav-link active">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Önyüz Menü Ayarları</p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a asp-action="Index" asp-controller="Profil" class="list-group-item list-group-item-action @(active=="profil"?"active":"")">
+                        <i class="fas fa-user mr-2"></i>
+                        Profilim
+                    </a>
+                </li>
+
+            </ul>
+        </li>
+
+        <li class="nav-item has-treeview menu-open-">
+            <a href="#" class="nav-link ">
+                <i class="nav-icon fas fa-tachometer-alt"></i>
+                <p>
+                    Duyurular
+                    <i class="right fas fa-angle-left"></i>
+                </p>
+            </a>
+            <ul class="nav nav-treeview">
+                <li class="nav-item">
+                    <a href="/Admin/Post" class="nav-link active">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Duyurular</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/Admin/Post/AddPost" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Duyuru Ekle</p>
+                    </a>
+                </li>
+
+            </ul>
+        </li>
+
+        <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-copy"></i>
+                <p>
+                    Kategoriler
+                    <i class="fas fa-angle-left right"></i>
+                    <span class="badge badge-info right">6</span>
+                </p>
+            </a>
+            <ul class="nav nav-treeview">
+                <li class="nav-item">
+                    <a href="/Admin/Category" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Kategori Listesi</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/Admin/Category/AddCategory" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Kategori Ekle</p>
+                    </a>
+                </li>
+
+            </ul>
+        </li>
+
+     
+
+
+
+
+     
         <a asp-area="" asp-action="CikisYap" asp-controller="Home" class="list-group-item list-group-item-action ">
             <i class="fas fa-sign-out-alt mr-2"></i>
             Çıkış Yap
         </a>
-    </div>
-</div>
+
+    </ul>
+</nav>

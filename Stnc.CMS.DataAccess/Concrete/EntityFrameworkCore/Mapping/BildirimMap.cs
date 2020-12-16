@@ -1,8 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Stnc.CMS.Entities.Concrete;
 
 namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Mapping
@@ -17,7 +14,6 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Mapping
             builder.Property(I => I.Aciklama).HasColumnType("ntext").IsRequired();
 
             builder.HasOne(I => I.AppUser).WithMany(I => I.Bildirimler).HasForeignKey(I => I.AppUserId);
-
         }
     }
 }
