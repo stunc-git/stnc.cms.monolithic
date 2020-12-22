@@ -8,6 +8,7 @@ using System.Text.RegularExpressions;
 using Microsoft.EntityFrameworkCore;
 using Stnc.CMS.DTO.DTOs.ShopCartDto;
 using Newtonsoft.Json;
+using System.Threading.Tasks;
 
 namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Repositories
 {
@@ -22,6 +23,7 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Repositories
             _context = context;
         }
 
+ 
         public void Delete(int id)
         {
 
@@ -100,10 +102,10 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Repositories
         }
 
 
-        public List<ShopCartAjaxListDto> GetCartDekamProjeTakipIDList(int DekamProjeTakipID)
+         public async   Task<List<ShopCartAjaxListDto>>  GetCartDekamProjeTakipIDList(int dekamProjeTakipID)
         {
-
-            return _context.StShoppingCartItem.Select(I => new ShopCartAjaxListDto()
+            StncCMSContext context =  new StncCMSContext();
+            return await context.StShoppingCartItem.Select(I => new ShopCartAjaxListDto()
             {
                 HayvaniIrkFiyatID = I.HayvaniIrkFiyatID,
                 HayvanIrkAdi = I.HayvanIrkAdi,
@@ -122,13 +124,12 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Repositories
                 DestekTalepTurleriJson = JsonConvert.DeserializeObject(I.DestekTalepTurleriJson),
                 ToplamFiyat = I.ToplamFiyat,
                 AppUserId = I.AppUserId,
+                DekamProjeTakipID=  I.DekamProjeTakipID,
                 Id = I.Id,
 
-            })
-                .OrderByDescending(I => I.Id)
-                .Where(I => I.DekamProjeTakipID == DekamProjeTakipID)
-         
-                .ToList();
+            }).OrderByDescending(I => I.Id)
+            .Where(I => I.DekamProjeTakipID == dekamProjeTakipID)
+            .ToListAsync();
         }
 
 

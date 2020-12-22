@@ -1,6 +1,7 @@
 ﻿using Stnc.CMS.DTO.DTOs.ShopCartDto;
 using Stnc.CMS.Entities.Concrete;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Stnc.CMS.DataAccess.Interfaces
 {
@@ -31,7 +32,9 @@ namespace Stnc.CMS.DataAccess.Interfaces
         List<StShoppingCartItem> GetAll();
 
         List<ShopCartAjaxListDto> GetCartUserIdList(int userID);
-        List<ShopCartAjaxListDto> GetCartDekamProjeTakipIDList(int DekamProjeTakipID);
+        // List<ShopCartAjaxListDto> GetCartDekamProjeTakipIDList(int DekamProjeTakipID);
+
+        Task<List<ShopCartAjaxListDto>> GetCartDekamProjeTakipIDList(int DekamProjeTakipID);
 
         decimal ToplamUcret(int userID);
         decimal ToplamUcretDekamProjeTakipID(int DekamProjeTakipID);

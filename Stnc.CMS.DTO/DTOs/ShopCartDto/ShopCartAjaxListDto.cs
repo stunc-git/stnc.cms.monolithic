@@ -1,10 +1,5 @@
-﻿using Stnc.CMS.Entities.Concrete;
-using System;
-using System.Collections.Generic;
-
-namespace Stnc.CMS.DTO.DTOs.ShopCartDto
+﻿namespace Stnc.CMS.DTO.DTOs.ShopCartDto
 {
-
     public class DestekTalepTurleriJsonDto
     {
         public int ID { get; set; }
@@ -16,7 +11,7 @@ namespace Stnc.CMS.DTO.DTOs.ShopCartDto
     {
         public int Id { get; set; }
         public int HayvaniIrkFiyatID { get; set; }
-        public int DekamProjeTakipID { get; set; }//new 
+        public int DekamProjeTakipID { get; set; }
         public string HayvanIrkAdi { get; set; }
         public string HayvanAdi { get; set; }
         public string HayvanIrkFiyatTipYasBilgisi { get; set; }
@@ -32,10 +27,12 @@ namespace Stnc.CMS.DTO.DTOs.ShopCartDto
         public bool DeneyHayvaniCinsiyet { get; set; }
         public string HayvanAgirlik { get; set; }
         public decimal ToplamFiyat { get; set; }
+
         //burada shop cart
         //  public string ShoppingCartId { get; set; }
-   //    public DestekTalepTurleriJsonDto DestekTalepTurleriJson { get; set; }
-     public dynamic DestekTalepTurleriJson { get; set; }
+        //    public DestekTalepTurleriJsonDto DestekTalepTurleriJson { get; set; }
+        public dynamic DestekTalepTurleriJson { get; set; }
+
         public string DestekTalepTurleriJsonVal { get; set; }
 
         public int? AppUserId { get; set; }

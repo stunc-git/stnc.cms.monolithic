@@ -7,8 +7,8 @@ namespace Stnc.CMS.Entities.Concrete
         public int Id { get; set; }
         public int HayvaniIrkFiyatID { get; set; }
         public int DekamProjeTakipID { get; set; }//new 
-        public string HayvanIrkAdi { get; set; }
         public string  HayvanAdi { get; set; }
+        public string HayvanIrkAdi { get; set; }
         public string HayvanIrkFiyatTipYasBilgisi { get; set; }
         public int  IstenenHayvanSayisi { get; set; }
         public int  DestekIstenenHayvanSayisi { get; set; }
@@ -27,7 +27,6 @@ namespace Stnc.CMS.Entities.Concrete
         public string DestekTalepTurleriJson { get; set; }
 
         public int? AppUserId { get; set; }
-
 
         public DateTime? CreatedAt { get; set; } = DateTime.Now;
         public DateTime? UpdatedAt { get; set; } = DateTime.Now;

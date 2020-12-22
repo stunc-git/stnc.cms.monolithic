@@ -217,7 +217,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
         }
 
         //TODO: burada user id geçiçidir onları duruma göre getiren bir user id gerekiyor 
-        public async Task<IActionResult> GetirPdf()
+        public IActionResult GetirPdf()
         {
             // AppUser user = await GetUserLoginInfo();
             //var path = _dosyaService.FaturaPDfCreate(54);
@@ -225,11 +225,11 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
             return File(path, "application/pdf", Guid.NewGuid() + ".pdf");
         }
 
-        public async Task<IActionResult> GetirPdf2()
+        public IActionResult GetirPdf2()
         {
             // AppUser user = await GetUserLoginInfo();
      
-            var path = _dosyaService.FaturaPDfCreate(54);
+            var path = _dosyaService.FaturaPDfCreate(5);
             return File(path, "application/pdf", Guid.NewGuid() + ".pdf");
         }
 

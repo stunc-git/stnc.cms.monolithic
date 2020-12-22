@@ -5,6 +5,7 @@ using OfficeOpenXml;
 using Stnc.CMS.Business.Interfaces;
 using Stnc.CMS.DataAccess.Interfaces;
 using Stnc.CMS.DataAccess.ShoppingCartLib;
+using Stnc.CMS.DTO.DTOs.ShopCartDto;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -77,11 +78,19 @@ namespace Stnc.CMS.Business.Concrete
             return returnPath;
         }
 
-        public string FaturaPDfCreate(int DekamProjeTakipID)
+        public string FaturaPDfCreate(int dekamProjeTakipID)
         {
-            var cartItemsDataCollection = _shopService.GetCartDekamProjeTakipIDList(DekamProjeTakipID);
-            var toplamUcret = _shopService.ToplamUcretDekamProjeTakipID(DekamProjeTakipID);
-            var dekamProjeTakipData = _dekamProjeTakipService.GetirIdile(DekamProjeTakipID);
+    
+
+
+            var cartItemsDataCollection = _shopService.GetCartDekamProjeTakipIDList(dekamProjeTakipID);
+            cartItemsDataCollection.Wait();
+            List<ShopCartAjaxListDto> cartItemsDataCollectionData = cartItemsDataCollection.Result;
+
+
+
+            var toplamUcret = _shopService.ToplamUcretDekamProjeTakipID(dekamProjeTakipID);
+            var dekamProjeTakipData = _dekamProjeTakipService.GetirIdile(dekamProjeTakipID);
 
             var fileName = Guid.NewGuid() + ".pdf";
             var returnPath = "/documents/" + fileName;
@@ -158,7 +167,7 @@ namespace Stnc.CMS.Business.Concrete
             //****** Fatura Baslık Bilgisi end **** ////
 
             string otenaziDurumu = ""
-; foreach (var cartItemsData in cartItemsDataCollection)
+; foreach (var cartItemsData in cartItemsDataCollectionData)
             {
                 //****** fatura detay Tablo **** ////
                 PdfPTable faturaDetayTable = new PdfPTable(5);
@@ -234,19 +243,19 @@ namespace Stnc.CMS.Business.Concrete
                 faturaDetayTablecell.HorizontalAlignment = PdfCell.ALIGN_CENTER;
                 faturaDetayTable.AddCell(faturaDetayTablecell);
 
-                faturaDetayTablecell = new PdfPCell(new Phrase("MADDE UYGULAMA (ENJEKSİYON, GAVAJ v.s.)  / Fiyat 10 ₺   ", font));
-                faturaDetayTablecell.Colspan = 5;
-                faturaDetayTablecell.PaddingTop = 5;
-                faturaDetayTablecell.PaddingBottom = 5;
-                faturaDetayTablecell.HorizontalAlignment = PdfCell.ALIGN_CENTER;
-                faturaDetayTable.AddCell(faturaDetayTablecell);
+               foreach (var destekTalepTurleriJsonData in cartItemsData.DestekTalepTurleriJson)
+                {
 
-                faturaDetayTablecell = new PdfPCell(new Phrase("KAN ALMA (İNTRAKARDİYOK, İNTRAVENÜZ v.s.)  / Fiyat 5 ₺  ", font));
-                faturaDetayTablecell.Colspan = 5;
-                faturaDetayTablecell.PaddingTop = 5;
-                faturaDetayTablecell.PaddingBottom = 5;
-                faturaDetayTablecell.HorizontalAlignment = PdfCell.ALIGN_CENTER;
-                faturaDetayTable.AddCell(faturaDetayTablecell);
+
+
+                    faturaDetayTablecell = new PdfPCell(new Phrase(destekTalepTurleriJsonData .+"  / Fiyat 10 ₺   ", font));
+                    faturaDetayTablecell.Colspan = 5;
+                    faturaDetayTablecell.PaddingTop = 5;
+                    faturaDetayTablecell.PaddingBottom = 5;
+                    faturaDetayTablecell.HorizontalAlignment = PdfCell.ALIGN_CENTER;
+                    faturaDetayTable.AddCell(faturaDetayTablecell);
+
+                }
 
                 faturaDetayTablecell = new PdfPCell(new Phrase("Birim Toplamı  ", font));
                 faturaDetayTablecell.Colspan = 4;
