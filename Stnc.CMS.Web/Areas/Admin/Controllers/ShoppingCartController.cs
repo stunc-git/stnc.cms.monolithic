@@ -222,8 +222,11 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
                 }
            
                 string sessionData = HttpContext.Session.GetString("DekamSessionCartData");
+                
                 //sessionData = sessionData.Split(',');
+                
                 sessionData +=   Convert.ToString(returnId)+',';
+                
                 HttpContext.Session.SetString( "DekamSessionCartData", sessionData);
 
                 var SuccessCartItemsData = _shopService.GetCartUserIdList(user.Id);
@@ -278,11 +281,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
             Console.WriteLine(String.Join(",", array));
 
 
-
             HttpContext.Session.SetString("DekamSessionCartData", String.Join(",", array));
-
-
-
 
             var user = await GetUserLoginInfo().ConfigureAwait(false);
             _shopService.Delete(id);

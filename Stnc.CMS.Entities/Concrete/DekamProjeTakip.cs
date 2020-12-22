@@ -18,6 +18,7 @@ namespace Stnc.CMS.Entities.Concrete
 
 
 
+
         /*
           public int DeneyHayvaniSayisi { get; set; }
         public int DeneyHayvaniCinsiyet { get; set; }//erkeke dişi sadece iki adet

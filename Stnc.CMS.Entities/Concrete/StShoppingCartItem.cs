@@ -13,9 +13,9 @@ namespace Stnc.CMS.Entities.Concrete
         public int  IstenenHayvanSayisi { get; set; }
         public int  DestekIstenenHayvanSayisi { get; set; }
         public int  BakimDestegiGunSayisi { get; set; }
-        public int   Otenazi { get; set; }
-        public decimal   OtenaziUcreti { get; set; }
-        public decimal   OtenaziToplamUcreti { get; set; }
+        public int Otenazi { get; set; }
+        public decimal OtenaziUcreti { get; set; }
+        public decimal OtenaziToplamUcreti { get; set; }
         public decimal HayvanFiyati { get; set; }
         public decimal GunlukBakimUcreti { get; set; }
         public string DestekTalepTurleri { get; set; }

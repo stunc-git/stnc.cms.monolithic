@@ -21,6 +21,7 @@ namespace Stnc.CMS.DataAccess.ShoppingCartLib
         public string Id { get; set; }
         public IEnumerable<StShoppingCartItem> StShoppingCartItems { get; set; }
 
+        // TODO: burası kullanımdan kalmış olablir bakılacak 
         public static ShoppingCart GetCart(IServiceProvider services)
         {
             ISession session = services.GetRequiredService<IHttpContextAccessor>()?.HttpContext.Session;
@@ -30,6 +31,9 @@ namespace Stnc.CMS.DataAccess.ShoppingCartLib
             session.SetString("CartId", cartId);
             return new ShoppingCart(context) { Id = cartId };
         }
+
+
+
 
         public void AddToCart(StShoppingCartItem cart)
         {

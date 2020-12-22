@@ -469,10 +469,10 @@ namespace Stnc.CMS.DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2020, 12, 15, 16, 5, 29, 537, DateTimeKind.Local).AddTicks(64),
+                            CreatedAt = new DateTime(2020, 12, 9, 15, 34, 48, 99, DateTimeKind.Local).AddTicks(345),
                             DeneyHayvaniTurID = 1,
                             Name = "fare (Balb-C)",
-                            UpdatedAt = new DateTime(2020, 12, 15, 16, 5, 29, 537, DateTimeKind.Local).AddTicks(72)
+                            UpdatedAt = new DateTime(2020, 12, 9, 15, 34, 48, 99, DateTimeKind.Local).AddTicks(356)
                         });
                 });
 
@@ -523,11 +523,11 @@ namespace Stnc.CMS.DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2020, 12, 15, 16, 5, 29, 541, DateTimeKind.Local).AddTicks(7762),
+                            CreatedAt = new DateTime(2020, 12, 9, 15, 34, 48, 103, DateTimeKind.Local).AddTicks(5986),
                             DekamProjeDeneyHayvaniIrkId = 1,
                             DekamProjeDeneyHayvaniTurId = 1,
                             Fiyat = 5m,
-                            UpdatedAt = new DateTime(2020, 12, 15, 16, 5, 29, 541, DateTimeKind.Local).AddTicks(7785),
+                            UpdatedAt = new DateTime(2020, 12, 9, 15, 34, 48, 103, DateTimeKind.Local).AddTicks(6001),
                             YasBilgisi = "8 Haftalık Yaşa Kadar"
                         });
                 });
@@ -577,11 +577,11 @@ namespace Stnc.CMS.DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2020, 12, 15, 16, 5, 29, 535, DateTimeKind.Local).AddTicks(9619),
+                            CreatedAt = new DateTime(2020, 12, 9, 15, 34, 48, 98, DateTimeKind.Local).AddTicks(670),
                             GunlukBakimUcret = 10m,
                             Name = "Fare",
                             OtenaziUcret = 1m,
-                            UpdatedAt = new DateTime(2020, 12, 15, 16, 5, 29, 535, DateTimeKind.Local).AddTicks(9651)
+                            UpdatedAt = new DateTime(2020, 12, 9, 15, 34, 48, 98, DateTimeKind.Local).AddTicks(689)
                         });
                 });
 
@@ -621,9 +621,9 @@ namespace Stnc.CMS.DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2020, 12, 15, 16, 5, 29, 537, DateTimeKind.Local).AddTicks(9037),
+                            CreatedAt = new DateTime(2020, 12, 9, 15, 34, 48, 99, DateTimeKind.Local).AddTicks(9402),
                             Name = "Ernam",
-                            UpdatedAt = new DateTime(2020, 12, 15, 16, 5, 29, 537, DateTimeKind.Local).AddTicks(9045)
+                            UpdatedAt = new DateTime(2020, 12, 9, 15, 34, 48, 99, DateTimeKind.Local).AddTicks(9412)
                         });
                 });
 
@@ -644,6 +644,9 @@ namespace Stnc.CMS.DataAccess.Migrations
 
                     b.Property<DateTime?>("DeletedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<short>("DeneyHayvaniSayisi")
+                        .HasColumnType("smallint");
 
                     b.Property<string>("EtikKurulOnayNumarasi")
                         .IsRequired()
@@ -987,14 +990,14 @@ namespace Stnc.CMS.DataAccess.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 903153916,
+                            Id = 1201567435,
                             Caption = "Lorem ipsum laramde loremde ipsumda inmpala",
-                            CreatedAt = new DateTime(2020, 12, 15, 16, 5, 29, 528, DateTimeKind.Local).AddTicks(3925),
+                            CreatedAt = new DateTime(2020, 12, 9, 15, 34, 48, 91, DateTimeKind.Local).AddTicks(6448),
                             Excerpt = "exceprt data loremmmmmm ipsummmmm",
                             MenuOrder = 1,
                             Picture = "default.jpg",
                             Status = true,
-                            UpdatedAt = new DateTime(2020, 12, 15, 16, 5, 29, 529, DateTimeKind.Local).AddTicks(2912),
+                            UpdatedAt = new DateTime(2020, 12, 9, 15, 34, 48, 92, DateTimeKind.Local).AddTicks(7694),
                             UrlAddress = "",
                             UrlType = (short)0
                         });
@@ -1019,9 +1022,6 @@ namespace Stnc.CMS.DataAccess.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<int>("DekamProjeTakipID")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("DekamProjeTakipId")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("DeletedAt")
@@ -1083,8 +1083,6 @@ namespace Stnc.CMS.DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("AppUserId");
-
-                    b.HasIndex("DekamProjeTakipID");
 
                     b.ToTable("StShoppingCartItem");
                 });
@@ -1281,15 +1279,9 @@ namespace Stnc.CMS.DataAccess.Migrations
 
             modelBuilder.Entity("Stnc.CMS.Entities.Concrete.StShoppingCartItem", b =>
                 {
-                    b.HasOne("Stnc.CMS.Entities.Concrete.AppUser", null)
+                    b.HasOne("Stnc.CMS.Entities.Concrete.AppUser", "AppUser")
                         .WithMany("StShoppingCartItem")
                         .HasForeignKey("AppUserId");
-
-                    b.HasOne("Stnc.CMS.Entities.Concrete.DekamProjeTakip", "DekamProjeTakip")
-                        .WithMany()
-                        .HasForeignKey("DekamProjeTakipID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

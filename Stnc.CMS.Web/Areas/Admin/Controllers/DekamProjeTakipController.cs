@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Stnc.CMS.Business.Interfaces;
 using Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Repositories;
+using Stnc.CMS.DataAccess.Interfaces;
 using Stnc.CMS.DTO.DTOs.DekamProjeTakipDtos;
 using Stnc.CMS.Entities.Concrete;
 using Stnc.CMS.Web.BaseControllers;
@@ -44,6 +45,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
         private readonly IDekamProjeTakipService _dekamProjeTakipService;
         private readonly IDeneyHayvaniIrkFiyatService _deneyHayvaniIrkFiyatService;
         private readonly IDosyaService _dosyaService;
+        private readonly IShopDal _shopService;
         private readonly IMapper _mapper;
         private readonly EfGenericRepository<DekamProjeDeneyHayvaniIrk> DekamProjeDeneyHayvaniIrkRepo;
         private readonly EfGenericRepository<DekamProjeDeneyHayvaniTur> DekamProjeDeneyHayvaniTurRepo;
@@ -51,13 +53,13 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
         private readonly EfGenericRepository<DekamProjeTeknikDestekTalepTur> DekamProjeTeknikDestekTalepTurRepo;
 
 
-        public DekamProjeTakipController(IDekamProjeTakipService dekamProjeTakipService, IDeneyHayvaniIrkFiyatService deneyHayvaniIrkFiyatService, IDosyaService dosyaService, IMapper mapper, UserManager<AppUser> userManager) : base(userManager)
+        public DekamProjeTakipController(IDekamProjeTakipService dekamProjeTakipService, IShopDal shopService, IDeneyHayvaniIrkFiyatService deneyHayvaniIrkFiyatService, IDosyaService dosyaService, IMapper mapper, UserManager<AppUser> userManager) : base(userManager)
         {
             _mapper = mapper;
             _dekamProjeTakipService = dekamProjeTakipService;
             _deneyHayvaniIrkFiyatService = deneyHayvaniIrkFiyatService;
             DekamProjeDeneyHayvaniIrkRepo = new EfGenericRepository<DekamProjeDeneyHayvaniIrk>();
-
+            _shopService = shopService;
             DekamProjeDeneyHayvaniTurRepo = new EfGenericRepository<DekamProjeDeneyHayvaniTur>();
             DekamProjeLaboratuvarlarRepo = new EfGenericRepository<DekamProjeLaboratuvarlar>();
             DekamProjeTeknikDestekTalepTurRepo = new EfGenericRepository<DekamProjeTeknikDestekTalepTur>();
@@ -90,8 +92,8 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
         {
             AppUser user = await GetUserLoginInfo();
 
-            int? returnId;
-            returnId = 0;
+            int returnId;
+           // returnId = 0;
             //projeYurutucusu
 
             var returnData = _dekamProjeTakipService.SaveReturn(
@@ -111,21 +113,35 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
                      AppUserId=user.Id
                  } );
 
-            returnId = returnData.Id;
+
+                //   returnId = returnData.Id;
+                if (returnData != null)
+                {
+                    returnId = returnData.Id;
+                }
+                else
+                {
+                    returnId = 0;
+                }
+
+
             string[] destektalepturleris;
             destektalepturleris = HttpContext.Session.GetString("DekamSessionCartData").Split(',');
+            destektalepturleris = destektalepturleris.Where(x => !string.IsNullOrEmpty(x)).ToArray();
 
+
+            Console.WriteLine(destektalepturleris);
             foreach (string part in destektalepturleris)
             {
-                burada update yapan kodl olacak 
-                /*
-                destekjson.Add(new DestekTalepTurleriJson()
-                {
-                    ID = returndata.Id,
-                    Name = returndata.Name,
-                    Price = returndata.Price,
-                });
-                */
+                // burada update yapan kodl olacak 
+
+                Console.WriteLine("SELMAN---");
+                Console.WriteLine(part);
+               var  sayi= part.TrimStart(new Char[] { '0' });
+                Console.WriteLine("SELMAN- SON");
+                var value = Convert.ToInt32(sayi);
+                _shopService.UpdateDekamProjeTakipID(value, returnId);
+
             }
 
             return Json(new { status = "ok" });
@@ -200,13 +216,22 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
             }
         }
 
-
-        public IActionResult GetirPdf()
+        //TODO: burada user id geçiçidir onları duruma göre getiren bir user id gerekiyor 
+        public async Task<IActionResult> GetirPdf()
         {
+            // AppUser user = await GetUserLoginInfo();
+            //var path = _dosyaService.FaturaPDfCreate(54);
             var path = _dosyaService.AktarMockup();
             return File(path, "application/pdf", Guid.NewGuid() + ".pdf");
         }
 
+        public async Task<IActionResult> GetirPdf2()
+        {
+            // AppUser user = await GetUserLoginInfo();
+     
+            var path = _dosyaService.FaturaPDfCreate(54);
+            return File(path, "application/pdf", Guid.NewGuid() + ".pdf");
+        }
 
         /*
         [HttpPost]

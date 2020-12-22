@@ -14,7 +14,7 @@ namespace Stnc.CMS.Business.Interfaces
         /// <returns></returns>
         string AktarPdf<T>(List<T> list) where T : class, new();
         string AktarMockup() ;
-        string FaturaPDfCreate() ;
+        string FaturaPDfCreate(int userId) ;
         void PDFfooterTEst() ;
        /// <summary>
        /// Geriye excel verisini byte dizisi olarak döner.

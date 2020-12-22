@@ -8,6 +8,8 @@ namespace Stnc.CMS.Business.Interfaces
     {
         int GetProjectTotal();
         List<DekamProjeTakip> ProjeList();
+
+ 
         // DekamProjeTakip GetSlugPost(string slug);
     }
 }

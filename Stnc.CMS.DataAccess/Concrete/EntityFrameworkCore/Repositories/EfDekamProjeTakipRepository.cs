@@ -20,5 +20,15 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Repositories
             using var context = new StncCMSContext();
             return context.DekamProjeTakip.Include(I => I.DekamProjeLaboratuvarlar).OrderByDescending(I => I.Id).ToList();
         }
+
+        //selman alacak 
+        //public void DekamProjeTakipIDUpdate(int DekamProjeTakipID, int value)
+        //{
+        //    using var context = new StncCMSContext();
+        //    Options opt = context.DekamProjeTakip.Where(I => I == DekamProjeTakipID).FirstOrDefault();
+        //    opt.OptionValue = value;
+        //    context.SaveChanges();
+        //}
+
     }
 }

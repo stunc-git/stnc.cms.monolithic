@@ -55,6 +55,11 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Repositories
             return _context.StShoppingCartItem.Where(I => I.AppUserId == userID).Sum(p => p.ToplamFiyat);
         }
 
+        public decimal ToplamUcretDekamProjeTakipID(int DekamProjeTakipID)
+        {
+            return _context.StShoppingCartItem.Where(I => I.DekamProjeTakipID == DekamProjeTakipID).Sum(p => p.ToplamFiyat);
+        }
+
         public int ToplamUrunAdeti(int userID)
         {
             return _context.StShoppingCartItem.Where(I => I.AppUserId == userID).Count();
@@ -87,7 +92,43 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Repositories
                     AppUserId = I.AppUserId,
                     Id=I.Id,
 
-                }).OrderByDescending(I => I.Id).Where(I => I.AppUserId == userID).ToList();
+                })
+                .OrderByDescending(I => I.Id)
+                .Where(I => I.AppUserId == userID )
+                //.Where(I => I.DekamProjeTakipID == 0)
+                .ToList();
+        }
+
+
+        public List<ShopCartAjaxListDto> GetCartDekamProjeTakipIDList(int DekamProjeTakipID)
+        {
+
+            return _context.StShoppingCartItem.Select(I => new ShopCartAjaxListDto()
+            {
+                HayvaniIrkFiyatID = I.HayvaniIrkFiyatID,
+                HayvanIrkAdi = I.HayvanIrkAdi,
+                HayvanAdi = I.HayvanAdi,
+                HayvanIrkFiyatTipYasBilgisi = I.HayvanIrkFiyatTipYasBilgisi,
+                IstenenHayvanSayisi = I.IstenenHayvanSayisi,
+                BakimDestegiGunSayisi = I.BakimDestegiGunSayisi,
+                DestekIstenenHayvanSayisi = I.DestekIstenenHayvanSayisi,
+                Otenazi = I.Otenazi,
+                HayvanAgirlik = I.HayvanAgirlik,
+                DeneyHayvaniCinsiyet = I.DeneyHayvaniCinsiyet,
+                OtenaziUcreti = I.OtenaziUcreti,
+                OtenaziToplamUcreti = I.OtenaziToplamUcreti,
+                HayvanFiyati = I.HayvanFiyati,
+                GunlukBakimUcreti = I.GunlukBakimUcreti,
+                DestekTalepTurleriJson = JsonConvert.DeserializeObject(I.DestekTalepTurleriJson),
+                ToplamFiyat = I.ToplamFiyat,
+                AppUserId = I.AppUserId,
+                Id = I.Id,
+
+            })
+                .OrderByDescending(I => I.Id)
+                .Where(I => I.DekamProjeTakipID == DekamProjeTakipID)
+         
+                .ToList();
         }
 
 
@@ -102,6 +143,24 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Repositories
             _context.SaveChanges();
             return tablo;
         }
+
+
+        public void UpdateDekamProjeTakipID(int id, int value)
+        {
+             StShoppingCartItem opt = _context.StShoppingCartItem.Where(I => I.Id == id).FirstOrDefault();
+              opt.DekamProjeTakipID = value;
+              _context.SaveChanges();
+
+
+
+            // StShoppingCartItem result = _context.StShoppingCartItem.SingleOrDefault(I => I.Id == id);
+            //if (result != null)
+            //{
+            //    result.DekamProjeTakipID = value;
+            //    _context.SaveChanges();
+            //}
+        }
+
 
         public void Update(StShoppingCartItem tablo)
         {

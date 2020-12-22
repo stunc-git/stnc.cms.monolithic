@@ -59,9 +59,18 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Repositories
 
         public void Update(string key, string value)
         {
-            Options opt = _context.Options.Where(I => I.OptionName == key).FirstOrDefault();
-            opt.OptionValue = value;
-            _context.SaveChanges();
+            //Options opt = _context.Options.Where(I => I.OptionName == key).FirstOrDefault();
+            //opt.OptionValue = value;
+            //_context.SaveChanges();
+
+
+            Options result = _context.Options.SingleOrDefault(I => I.OptionName == key);
+            if (result != null)
+            {
+                result.OptionValue = value;
+                _context.SaveChanges();
+            }
+
         }
 
 

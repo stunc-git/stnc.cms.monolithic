@@ -3,15 +3,28 @@ using iTextSharp.text;
 using iTextSharp.text.pdf;
 using OfficeOpenXml;
 using Stnc.CMS.Business.Interfaces;
+using Stnc.CMS.DataAccess.Interfaces;
+using Stnc.CMS.DataAccess.ShoppingCartLib;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
-using Microsoft.AspNetCore.Hosting;
+
 namespace Stnc.CMS.Business.Concrete
 {
     public class DosyaManager : IDosyaService
     {
+        private readonly ShoppingCart _shoppingCart;
+        private readonly IShopDal _shopService;
+        private readonly IDekamProjeTakipService _dekamProjeTakipService;
+
+        public DosyaManager(ShoppingCart shoppingCart, IShopDal shopService, IDekamProjeTakipService dekamProjeTakipService)
+        {
+            _dekamProjeTakipService = dekamProjeTakipService;
+            _shopService = shopService;
+            _shoppingCart = shoppingCart;
+        }
+
         public byte[] AktarExcel<T>(List<T> list) where T : class, new()
         {
             var excelPackage = new ExcelPackage();
@@ -64,8 +77,11 @@ namespace Stnc.CMS.Business.Concrete
             return returnPath;
         }
 
-        public string FaturaPDfCreate()
+        public string FaturaPDfCreate(int DekamProjeTakipID)
         {
+            var cartItemsDataCollection = _shopService.GetCartDekamProjeTakipIDList(DekamProjeTakipID);
+            var toplamUcret = _shopService.ToplamUcretDekamProjeTakipID(DekamProjeTakipID);
+            var dekamProjeTakipData = _dekamProjeTakipService.GetirIdile(DekamProjeTakipID);
 
             var fileName = Guid.NewGuid() + ".pdf";
             var returnPath = "/documents/" + fileName;
@@ -87,7 +103,7 @@ namespace Stnc.CMS.Business.Concrete
             PdfWriter.GetInstance(document, stream);
 
             //****** footer text  **** ////
-            Chunk chkFooter = new Chunk("son", fontMiniSmallBlue);
+            Chunk chkFooter = new Chunk("sayfa numarası yazacak", fontMiniSmallBlue);
             Phrase fo = new Phrase(chkFooter);
             HeaderFooter footer = new HeaderFooter(fo, true);
             footer.Border = Rectangle.NO_BORDER;
@@ -115,14 +131,14 @@ namespace Stnc.CMS.Business.Concrete
 
             //****** Fatura Baslık Bilgisi  **** ////
             PdfPTable FaturaBaslikTable = new PdfPTable(2);
-            PdfPCell FaturaBaslikTableCell = new PdfPCell(new Phrase("ERCİYES ÜNİVERSİTESİ TIP FAKÜLTESİ", fontBold));
+            PdfPCell FaturaBaslikTableCell = new PdfPCell(new Phrase(dekamProjeTakipData.ProjeYurutukurumu, fontBold));
             FaturaBaslikTableCell.Border = Rectangle.NO_BORDER;
             FaturaBaslikTableCell.HorizontalAlignment = PdfCell.ALIGN_LEFT;
             FaturaBaslikTableCell.PaddingTop = 10;
             FaturaBaslikTableCell.PaddingBottom = 10;
             FaturaBaslikTable.AddCell(FaturaBaslikTableCell);
 
-            FaturaBaslikTableCell = new PdfPCell(new Phrase("11.12.2019", fontBold));
+            FaturaBaslikTableCell = new PdfPCell(new Phrase("22.12.2019-tarihi sor?", fontBold));
             FaturaBaslikTableCell.HorizontalAlignment = PdfCell.ALIGN_RIGHT;
             FaturaBaslikTableCell.Border = Rectangle.NO_BORDER;
             FaturaBaslikTableCell.PaddingTop = 10;
@@ -130,7 +146,7 @@ namespace Stnc.CMS.Business.Concrete
             FaturaBaslikTable.AddCell(FaturaBaslikTableCell);
 
             PdfPTable FaturaBaslikBolumTable = new PdfPTable(1);
-            PdfPCell FaturaBaslikBolumTableCell = new PdfPCell(new Phrase("PLASTİK REKONSTRÜKTİF VE ESTETİK CERRAHİ ANABİLİM DALI BAŞKANLIĞI", fontBold));
+            PdfPCell FaturaBaslikBolumTableCell = new PdfPCell(new Phrase(dekamProjeTakipData.ProjeYurutukurumu, fontBold));
             FaturaBaslikBolumTableCell.HorizontalAlignment = PdfCell.ALIGN_LEFT;
             FaturaBaslikBolumTableCell.Border = Rectangle.NO_BORDER;
             FaturaBaslikBolumTableCell.PaddingTop = 10;
@@ -141,113 +157,113 @@ namespace Stnc.CMS.Business.Concrete
             mainFaturaText.Alignment = Element.ALIGN_CENTER;
             //****** Fatura Baslık Bilgisi end **** ////
 
+            string otenaziDurumu = ""
+; foreach (var cartItemsData in cartItemsDataCollection)
+            {
+                //****** fatura detay Tablo **** ////
+                PdfPTable faturaDetayTable = new PdfPTable(5);
+                faturaDetayTable.WidthPercentage = 80;
+                faturaDetayTable.SpacingBefore = 10f;
+                faturaDetayTable.SpacingAfter = 2.5f;
+                PdfPCell faturaDetayTablecell = new PdfPCell(new Phrase("Hayvan Türü -  Yaşı", fontBold));
+                faturaDetayTablecell.HorizontalAlignment = PdfCell.ALIGN_CENTER;
+                faturaDetayTablecell.VerticalAlignment = Element.ALIGN_MIDDLE;
+                faturaDetayTable.AddCell(faturaDetayTablecell);
+                faturaDetayTable.WidthPercentage = 90;
+                faturaDetayTablecell = new PdfPCell(new Phrase("Fiyat", fontBold));
+                faturaDetayTablecell.HorizontalAlignment = PdfCell.ALIGN_CENTER;
+                faturaDetayTablecell.VerticalAlignment = Element.ALIGN_MIDDLE;
+                faturaDetayTable.AddCell(faturaDetayTablecell);
 
+                faturaDetayTablecell = new PdfPCell(new Phrase("İstenen Hayvan Sayısı", fontBold));
+                faturaDetayTablecell.HorizontalAlignment = PdfCell.ALIGN_CENTER;
+                faturaDetayTablecell.VerticalAlignment = Element.ALIGN_MIDDLE;
+                faturaDetayTable.AddCell(faturaDetayTablecell);
 
-            //****** fatura detay Tablo **** ////
-            PdfPTable faturaDetayTable = new PdfPTable(5);
-            faturaDetayTable.WidthPercentage = 80;
-            faturaDetayTable.SpacingBefore = 10f;
-            faturaDetayTable.SpacingAfter = 2.5f;
-            PdfPCell faturaDetayTablecell = new PdfPCell(new Phrase("Hayvan Türü -  Yaşı", fontBold));
-            faturaDetayTablecell.HorizontalAlignment = PdfCell.ALIGN_CENTER;
-            faturaDetayTablecell.VerticalAlignment = Element.ALIGN_MIDDLE;
-            faturaDetayTable.AddCell(faturaDetayTablecell);
-            faturaDetayTable.WidthPercentage = 90;
-            faturaDetayTablecell = new PdfPCell(new Phrase("Fiyat", fontBold));
-            faturaDetayTablecell.HorizontalAlignment = PdfCell.ALIGN_CENTER;
-            faturaDetayTablecell.VerticalAlignment = Element.ALIGN_MIDDLE;
-            faturaDetayTable.AddCell(faturaDetayTablecell);
+                faturaDetayTablecell = new PdfPCell(new Phrase("Destek istenen Hayvan Sayısı", fontBold));
+                faturaDetayTablecell.HorizontalAlignment = PdfCell.ALIGN_CENTER;
+                faturaDetayTablecell.VerticalAlignment = Element.ALIGN_MIDDLE;
+                faturaDetayTable.AddCell(faturaDetayTablecell);
 
-            faturaDetayTablecell = new PdfPCell(new Phrase("İstenen Hayvan Sayısı", fontBold));
-            faturaDetayTablecell.HorizontalAlignment = PdfCell.ALIGN_CENTER;
-            faturaDetayTablecell.VerticalAlignment = Element.ALIGN_MIDDLE;
-            faturaDetayTable.AddCell(faturaDetayTablecell);
+                faturaDetayTablecell = new PdfPCell(new Phrase("Bakım Desteği Gün sayısı", fontBold));
+                faturaDetayTablecell.HorizontalAlignment = PdfCell.ALIGN_CENTER;
+                faturaDetayTablecell.VerticalAlignment = Element.ALIGN_MIDDLE;
+                faturaDetayTable.AddCell(faturaDetayTablecell);
 
-            faturaDetayTablecell = new PdfPCell(new Phrase("Destek istenen Hayvan Sayısı", fontBold));
-            faturaDetayTablecell.HorizontalAlignment = PdfCell.ALIGN_CENTER;
-            faturaDetayTablecell.VerticalAlignment = Element.ALIGN_MIDDLE;
-            faturaDetayTable.AddCell(faturaDetayTablecell);
+                faturaDetayTablecell = new PdfPCell(new Phrase(cartItemsData.HayvanAdi + '/' + cartItemsData.HayvanIrkFiyatTipYasBilgisi, font));
+                faturaDetayTablecell.HorizontalAlignment = PdfCell.ALIGN_CENTER;
+                faturaDetayTablecell.VerticalAlignment = Element.ALIGN_MIDDLE;
+                faturaDetayTable.AddCell(faturaDetayTablecell);
 
-            faturaDetayTablecell = new PdfPCell(new Phrase("Bakım Desteği Gün sayısı", fontBold));
-            faturaDetayTablecell.HorizontalAlignment = PdfCell.ALIGN_CENTER;
-            faturaDetayTablecell.VerticalAlignment = Element.ALIGN_MIDDLE;
-            faturaDetayTable.AddCell(faturaDetayTablecell);
+                faturaDetayTablecell = new PdfPCell(new Phrase(cartItemsData.HayvanFiyati + "  ₺", font));
+                faturaDetayTablecell.HorizontalAlignment = PdfCell.ALIGN_CENTER;
+                faturaDetayTablecell.VerticalAlignment = Element.ALIGN_MIDDLE;
+                faturaDetayTable.AddCell(faturaDetayTablecell);
 
+                faturaDetayTablecell = new PdfPCell(new Phrase(cartItemsData.IstenenHayvanSayisi+"", font));
+                faturaDetayTablecell.HorizontalAlignment = PdfCell.ALIGN_CENTER;
+                faturaDetayTablecell.VerticalAlignment = Element.ALIGN_MIDDLE;
+                faturaDetayTable.AddCell(faturaDetayTablecell);
 
-            faturaDetayTablecell = new PdfPCell(new Phrase(" Fare (Balb-C) / 8 Haftalık Yaşa Kadar ", font));
-            faturaDetayTablecell.HorizontalAlignment = PdfCell.ALIGN_CENTER;
-            faturaDetayTablecell.VerticalAlignment = Element.ALIGN_MIDDLE;
-            faturaDetayTable.AddCell(faturaDetayTablecell);
+                faturaDetayTablecell = new PdfPCell(new Phrase(cartItemsData.DestekIstenenHayvanSayisi+"", font));
+                faturaDetayTablecell.HorizontalAlignment = Element.ALIGN_CENTER;
+                faturaDetayTablecell.VerticalAlignment = Element.ALIGN_MIDDLE;
+                faturaDetayTable.AddCell(faturaDetayTablecell);
 
-            faturaDetayTablecell = new PdfPCell(new Phrase("5 TL", font));
-            faturaDetayTablecell.HorizontalAlignment = PdfCell.ALIGN_CENTER;
-            faturaDetayTablecell.VerticalAlignment = Element.ALIGN_MIDDLE;
-            faturaDetayTable.AddCell(faturaDetayTablecell);
+                faturaDetayTablecell = new PdfPCell(new Phrase(cartItemsData.BakimDestegiGunSayisi+"", font));
+                faturaDetayTablecell.HorizontalAlignment = PdfCell.ALIGN_CENTER;
+                faturaDetayTablecell.VerticalAlignment = Element.ALIGN_MIDDLE;
+                faturaDetayTable.AddCell(faturaDetayTablecell);
 
-            faturaDetayTablecell = new PdfPCell(new Phrase("10", font));
-            faturaDetayTablecell.HorizontalAlignment = PdfCell.ALIGN_CENTER;
-            faturaDetayTablecell.VerticalAlignment = Element.ALIGN_MIDDLE;
-            faturaDetayTable.AddCell(faturaDetayTablecell);
+                if (cartItemsData.Otenazi == 1)
+                {
+                    otenaziDurumu = "Ötenazi[1 TL]: Evet" + cartItemsData.OtenaziUcreti * cartItemsData.IstenenHayvanSayisi;
+                }
 
-            faturaDetayTablecell = new PdfPCell(new Phrase("5", font));
-            faturaDetayTablecell.HorizontalAlignment = Element.ALIGN_CENTER;
-            faturaDetayTablecell.VerticalAlignment = Element.ALIGN_MIDDLE;
-            faturaDetayTable.AddCell(faturaDetayTablecell);
+                faturaDetayTablecell = new PdfPCell(new Phrase("Ağırlık: " + cartItemsData.HayvanAgirlik + " | Cinsiyet: " + cartItemsData.DeneyHayvaniCinsiyet + " | " + otenaziDurumu, font));
+                faturaDetayTablecell.Colspan = 5;
+                faturaDetayTablecell.PaddingTop = 5;
+                faturaDetayTablecell.PaddingBottom = 5;
+                faturaDetayTablecell.HorizontalAlignment = PdfCell.ALIGN_CENTER;
+                faturaDetayTable.AddCell(faturaDetayTablecell);
 
-            faturaDetayTablecell = new PdfPCell(new Phrase("10", font));
-            faturaDetayTablecell.HorizontalAlignment = PdfCell.ALIGN_CENTER;
-            faturaDetayTablecell.VerticalAlignment = Element.ALIGN_MIDDLE;
-            faturaDetayTable.AddCell(faturaDetayTablecell);
+                faturaDetayTablecell = new PdfPCell(new Phrase(" Destek Talep Türü Seçenekleri   ", fontBold));
+                faturaDetayTablecell.Colspan = 5;
+                faturaDetayTablecell.PaddingTop = 5;
+                faturaDetayTablecell.PaddingBottom = 5;
+                faturaDetayTablecell.HorizontalAlignment = PdfCell.ALIGN_CENTER;
+                faturaDetayTable.AddCell(faturaDetayTablecell);
 
+                faturaDetayTablecell = new PdfPCell(new Phrase("MADDE UYGULAMA (ENJEKSİYON, GAVAJ v.s.)  / Fiyat 10 ₺   ", font));
+                faturaDetayTablecell.Colspan = 5;
+                faturaDetayTablecell.PaddingTop = 5;
+                faturaDetayTablecell.PaddingBottom = 5;
+                faturaDetayTablecell.HorizontalAlignment = PdfCell.ALIGN_CENTER;
+                faturaDetayTable.AddCell(faturaDetayTablecell);
 
+                faturaDetayTablecell = new PdfPCell(new Phrase("KAN ALMA (İNTRAKARDİYOK, İNTRAVENÜZ v.s.)  / Fiyat 5 ₺  ", font));
+                faturaDetayTablecell.Colspan = 5;
+                faturaDetayTablecell.PaddingTop = 5;
+                faturaDetayTablecell.PaddingBottom = 5;
+                faturaDetayTablecell.HorizontalAlignment = PdfCell.ALIGN_CENTER;
+                faturaDetayTable.AddCell(faturaDetayTablecell);
 
-            faturaDetayTablecell = new PdfPCell(new Phrase("Ağırlık: 420 gr | Cinsiyet: Erkek | Ötenazi [1 TL]: Evet", font));
-            faturaDetayTablecell.Colspan = 5;
-            faturaDetayTablecell.PaddingTop = 5;
-            faturaDetayTablecell.PaddingBottom = 5;
-            faturaDetayTablecell.HorizontalAlignment = PdfCell.ALIGN_CENTER;
-            faturaDetayTable.AddCell(faturaDetayTablecell);
+                faturaDetayTablecell = new PdfPCell(new Phrase("Birim Toplamı  ", font));
+                faturaDetayTablecell.Colspan = 4;
+                faturaDetayTablecell.PaddingTop = 5;
+                faturaDetayTablecell.PaddingBottom = 5;
+                faturaDetayTablecell.HorizontalAlignment = PdfCell.ALIGN_CENTER;
+                faturaDetayTable.AddCell(faturaDetayTablecell);
 
-            faturaDetayTablecell = new PdfPCell(new Phrase(" Destek Talep Türü Seçenekleri   ", fontBold));
-            faturaDetayTablecell.Colspan = 5;
-            faturaDetayTablecell.PaddingTop = 5;
-            faturaDetayTablecell.PaddingBottom = 5;
-            faturaDetayTablecell.HorizontalAlignment = PdfCell.ALIGN_CENTER;
-            faturaDetayTable.AddCell(faturaDetayTablecell);
-
-
-            faturaDetayTablecell = new PdfPCell(new Phrase("MADDE UYGULAMA (ENJEKSİYON, GAVAJ v.s.)  / Fiyat 10 ₺   ", font));
-            faturaDetayTablecell.Colspan = 5;
-            faturaDetayTablecell.PaddingTop = 5;
-            faturaDetayTablecell.PaddingBottom = 5;
-            faturaDetayTablecell.HorizontalAlignment = PdfCell.ALIGN_CENTER;
-            faturaDetayTable.AddCell(faturaDetayTablecell);
-
-
-
-            faturaDetayTablecell = new PdfPCell(new Phrase("KAN ALMA (İNTRAKARDİYOK, İNTRAVENÜZ v.s.)  / Fiyat 5 ₺  ", font));
-            faturaDetayTablecell.Colspan = 5;
-            faturaDetayTablecell.PaddingTop = 5;
-            faturaDetayTablecell.PaddingBottom = 5;
-            faturaDetayTablecell.HorizontalAlignment = PdfCell.ALIGN_CENTER;
-            faturaDetayTable.AddCell(faturaDetayTablecell);
-
-
-            faturaDetayTablecell = new PdfPCell(new Phrase("Birim Toplamı  ", font));
-            faturaDetayTablecell.Colspan = 4;
-            faturaDetayTablecell.PaddingTop = 5;
-            faturaDetayTablecell.PaddingBottom = 5;
-            faturaDetayTablecell.HorizontalAlignment = PdfCell.ALIGN_CENTER;
-            faturaDetayTable.AddCell(faturaDetayTablecell);
-
-
-            faturaDetayTablecell = new PdfPCell(new Phrase("5 ₺", font));
-            faturaDetayTablecell.Colspan = 1;
-            faturaDetayTablecell.PaddingTop = 5;
-            faturaDetayTablecell.PaddingBottom = 5;
-            faturaDetayTablecell.HorizontalAlignment = PdfCell.ALIGN_CENTER;
-            faturaDetayTable.AddCell(faturaDetayTablecell);
-            //****** fatura detay Tablo --end **** ////
+                faturaDetayTablecell = new PdfPCell(new Phrase("5 ₺", font));
+                faturaDetayTablecell.Colspan = 1;
+                faturaDetayTablecell.PaddingTop = 5;
+                faturaDetayTablecell.PaddingBottom = 5;
+                faturaDetayTablecell.HorizontalAlignment = PdfCell.ALIGN_CENTER;
+                faturaDetayTable.AddCell(faturaDetayTablecell);
+                //****** fatura detay Tablo --end **** ////
+                document.Add(faturaDetayTable);
+            }
 
             //****** fatura detay genel toplam Tablo **** ////
             PdfPTable faturaDetayGenelToplamTable = new PdfPTable(2);
@@ -258,8 +274,7 @@ namespace Stnc.CMS.Business.Concrete
             faturaDetayGenelToplamTableCell.HorizontalAlignment = PdfCell.ALIGN_CENTER;
             faturaDetayGenelToplamTable.AddCell(faturaDetayGenelToplamTableCell);
 
-
-            faturaDetayGenelToplamTableCell = new PdfPCell(new Phrase("5 ₺", font));
+            faturaDetayGenelToplamTableCell = new PdfPCell(new Phrase(toplamUcret + " ₺", font));
             faturaDetayGenelToplamTableCell.PaddingTop = 5;
             faturaDetayGenelToplamTableCell.PaddingBottom = 5;
             faturaDetayGenelToplamTableCell.HorizontalAlignment = PdfCell.ALIGN_CENTER;
@@ -267,6 +282,7 @@ namespace Stnc.CMS.Business.Concrete
             //****** fatura detay genel toplam Tablo --end **** ////
 
             //****** fatura mini bilgi Tablo  **** ////
+
             string infoText = @"
 * Fiyatlar, Erciyes Üniversitesi’ne mensup araştırmacılar için ve kurum dışı taleplerde fiyatlar geçerlidir.
 ** Diyabet projeleri kapsamında takip edilecek hayvanlar için % 50 daha fazla günlük bakım ücreti alınır.
@@ -282,7 +298,6 @@ namespace Stnc.CMS.Business.Concrete
             faturaDetayMiniInfoTable.AddCell(faturaDetayMiniInfoTableCell);
             //****** fatura mini bilgi Tablo --end  **** ////
 
-
             //****** fatura islak İmza Tablo   **** ////
             Image imzaImg = Image.GetInstance(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/pdf/imza.jpg"));
             imzaImg.ScaleAbsolute(120f, 120f);
@@ -295,7 +310,6 @@ namespace Stnc.CMS.Business.Concrete
             faturaIslakImzaTableCell1.Border = Rectangle.NO_BORDER;
             faturaIslakImzaTable.AddCell(faturaIslakImzaTableCell1);
 
-
             PdfPCell faturaIslakImzaTableCell2 = new PdfPCell(imzaImg);
             faturaIslakImzaTableCell2.Border = 0;
             faturaIslakImzaTableCell2.HorizontalAlignment = PdfCell.ALIGN_RIGHT;
@@ -303,9 +317,6 @@ namespace Stnc.CMS.Business.Concrete
             faturaIslakImzaTable.SpacingBefore = 50f;
             faturaIslakImzaTable.SpacingAfter = 50f;
             //****** fatura islak İmza Tablo  --end **** ////
-
-
-
 
             //****** fatura  footer text   **** ////
             Chunk faturaFooterTablebegin = new Chunk("Adres: ", fontMiniBold);
@@ -317,7 +328,7 @@ namespace Stnc.CMS.Business.Concrete
             faturaFooterTablebeginP1.Add(faturaFooterTablebeginPh);
             faturaFooterTablebeginP1.Add(faturaFooterTablebeginPh2);
 
-            //burada table oluşuyor 
+            //burada table oluşuyor
             PdfPTable faturaFooterTable = new PdfPTable(1);
             PdfPCell faturaFooterTableCell = new PdfPCell(faturaFooterTablebeginP1);
             faturaFooterTableCell.Border = Rectangle.NO_BORDER;
@@ -348,12 +359,11 @@ namespace Stnc.CMS.Business.Concrete
 
             //****** fatura  footer text  --end **** ////
 
-
-            document.Add(imageHeaderLogo); //logo 
-            document.Add(FaturaBaslikTable); //bolum ve saat yazan 
+            document.Add(imageHeaderLogo); //logo
+            document.Add(FaturaBaslikTable); //bolum ve saat yazan
             document.Add(FaturaBaslikBolumTable);
             document.Add(mainFaturaText);
-            document.Add(faturaDetayTable);
+
             document.Add(faturaDetayGenelToplamTable);
             document.Add(faturaDetayMiniInfoTable);
             document.Add(faturaIslakImzaTable);
@@ -371,17 +381,15 @@ namespace Stnc.CMS.Business.Concrete
             return returnPath;
         }
 
-
-        //https://github.com/jonbride/strengthreport/blob/master/Backup/StrengthReport/Reporting/ReportFormat/ReportPdf.cs  bolumlere ayırmak için kullan 
+        //https://github.com/jonbride/strengthreport/blob/master/Backup/StrengthReport/Reporting/ReportFormat/ReportPdf.cs  bolumlere ayırmak için kullan
         //https://csharp.hotexamples.com/examples/iTextSharp.text/HeaderFooter/-/php-headerfooter-class-examples.html
         //https://coderanch.com/t/675056/open-source/iText-Page-content-overlapping-footer
-        //https://www.nilthakkar.com/2013/11/itextsharpadd-headerfooter-to-pdf.html bu çok onemli sayfalama mantığı burada var 
-        //https://www.c-sharpcorner.com/blogs/create-table-in-pdf-using-c-sharp-and-itextsharp 
+        //https://www.nilthakkar.com/2013/11/itextsharpadd-headerfooter-to-pdf.html bu çok onemli sayfalama mantığı burada var
+        //https://www.c-sharpcorner.com/blogs/create-table-in-pdf-using-c-sharp-and-itextsharp
         //https://www.mikesdotnetting.com/article/87/itextsharp-working-with-images
         //https://www.mikesdotnetting.com/article/82/itextsharp-adding-text-with-chunks-phrases-and-paragraphs
         public string AktarMockup()
         {
-
             var fileName = Guid.NewGuid() + ".pdf";
             var returnPath = "/documents/" + fileName;
             var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/documents/" + fileName);
@@ -437,14 +445,12 @@ namespace Stnc.CMS.Business.Concrete
             FaturaBaslikTableCell.PaddingBottom = 10;
             FaturaBaslikTable.AddCell(FaturaBaslikTableCell);
 
-
             FaturaBaslikTableCell = new PdfPCell(new Phrase("11.12.2019", fontBold));
             FaturaBaslikTableCell.HorizontalAlignment = PdfCell.ALIGN_RIGHT;
             FaturaBaslikTableCell.Border = Rectangle.NO_BORDER;
             FaturaBaslikTableCell.PaddingTop = 10;
             FaturaBaslikTableCell.PaddingBottom = 10;
             FaturaBaslikTable.AddCell(FaturaBaslikTableCell);
-
 
             PdfPTable FaturaBaslikBolumTable = new PdfPTable(1);
             PdfPCell FaturaBaslikBolumTableCell = new PdfPCell(new Phrase("PLASTİK REKONSTRÜKTİF VE ESTETİK CERRAHİ ANABİLİM DALI BAŞKANLIĞI", fontBold));
@@ -457,8 +463,6 @@ namespace Stnc.CMS.Business.Concrete
             var mainFaturaText = new Paragraph(16, "Proforma Fatura", fontBold);
             mainFaturaText.Alignment = Element.ALIGN_CENTER;
             //****** Fatura Baslık Bilgisi end **** ////
-
-
 
             //****** fatura detay Tablo **** ////
             PdfPTable faturaDetayTable = new PdfPTable(5);
@@ -490,7 +494,6 @@ namespace Stnc.CMS.Business.Concrete
             faturaDetayTablecell.VerticalAlignment = Element.ALIGN_MIDDLE;
             faturaDetayTable.AddCell(faturaDetayTablecell);
 
-
             faturaDetayTablecell = new PdfPCell(new Phrase(" Fare (Balb-C) / 8 Haftalık Yaşa Kadar ", font));
             faturaDetayTablecell.HorizontalAlignment = PdfCell.ALIGN_CENTER;
             faturaDetayTablecell.VerticalAlignment = Element.ALIGN_MIDDLE;
@@ -517,8 +520,6 @@ namespace Stnc.CMS.Business.Concrete
             faturaDetayTablecell.VerticalAlignment = Element.ALIGN_MIDDLE;
             faturaDetayTable.AddCell(faturaDetayTablecell);
 
-
-
             faturaDetayTablecell = new PdfPCell(new Phrase("Ağırlık: 420 gr | Cinsiyet: Erkek | Ötenazi [1 TL]: Evet", font));
             faturaDetayTablecell.Colspan = 5;
             faturaDetayTablecell.PaddingTop = 5;
@@ -533,15 +534,12 @@ namespace Stnc.CMS.Business.Concrete
             faturaDetayTablecell.HorizontalAlignment = PdfCell.ALIGN_CENTER;
             faturaDetayTable.AddCell(faturaDetayTablecell);
 
-
             faturaDetayTablecell = new PdfPCell(new Phrase("MADDE UYGULAMA (ENJEKSİYON, GAVAJ v.s.)  / Fiyat 10 ₺   ", font));
             faturaDetayTablecell.Colspan = 5;
             faturaDetayTablecell.PaddingTop = 5;
             faturaDetayTablecell.PaddingBottom = 5;
             faturaDetayTablecell.HorizontalAlignment = PdfCell.ALIGN_CENTER;
             faturaDetayTable.AddCell(faturaDetayTablecell);
-
-
 
             faturaDetayTablecell = new PdfPCell(new Phrase("KAN ALMA (İNTRAKARDİYOK, İNTRAVENÜZ v.s.)  / Fiyat 5 ₺  ", font));
             faturaDetayTablecell.Colspan = 5;
@@ -550,14 +548,12 @@ namespace Stnc.CMS.Business.Concrete
             faturaDetayTablecell.HorizontalAlignment = PdfCell.ALIGN_CENTER;
             faturaDetayTable.AddCell(faturaDetayTablecell);
 
-
             faturaDetayTablecell = new PdfPCell(new Phrase("Birim Toplamı  ", font));
             faturaDetayTablecell.Colspan = 4;
             faturaDetayTablecell.PaddingTop = 5;
             faturaDetayTablecell.PaddingBottom = 5;
             faturaDetayTablecell.HorizontalAlignment = PdfCell.ALIGN_CENTER;
             faturaDetayTable.AddCell(faturaDetayTablecell);
-
 
             faturaDetayTablecell = new PdfPCell(new Phrase("5 ₺", font));
             faturaDetayTablecell.Colspan = 1;
@@ -575,7 +571,6 @@ namespace Stnc.CMS.Business.Concrete
             faturaDetayGenelToplamTableCell.PaddingBottom = 5;
             faturaDetayGenelToplamTableCell.HorizontalAlignment = PdfCell.ALIGN_CENTER;
             faturaDetayGenelToplamTable.AddCell(faturaDetayGenelToplamTableCell);
-
 
             faturaDetayGenelToplamTableCell = new PdfPCell(new Phrase("5 ₺", font));
             faturaDetayGenelToplamTableCell.PaddingTop = 5;
@@ -600,7 +595,6 @@ namespace Stnc.CMS.Business.Concrete
             faturaDetayMiniInfoTable.AddCell(faturaDetayMiniInfoTableCell);
             //****** fatura mini bilgi Tablo --end  **** ////
 
-
             //****** fatura islak İmza Tablo   **** ////
             Image imzaImg = Image.GetInstance(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/pdf/imza.jpg"));
             imzaImg.ScaleAbsolute(120f, 120f);
@@ -613,7 +607,6 @@ namespace Stnc.CMS.Business.Concrete
             faturaIslakImzaTableCell1.Border = Rectangle.NO_BORDER;
             faturaIslakImzaTable.AddCell(faturaIslakImzaTableCell1);
 
-
             PdfPCell faturaIslakImzaTableCell2 = new PdfPCell(imzaImg);
             faturaIslakImzaTableCell2.Border = 0;
             faturaIslakImzaTableCell2.HorizontalAlignment = PdfCell.ALIGN_RIGHT;
@@ -621,9 +614,6 @@ namespace Stnc.CMS.Business.Concrete
             faturaIslakImzaTable.SpacingBefore = 50f;
             faturaIslakImzaTable.SpacingAfter = 50f;
             //****** fatura islak İmza Tablo  --end **** ////
-
-
-
 
             //****** fatura  footer text   **** ////
             Chunk faturaFooterTablebegin = new Chunk("Adres: ", fontMiniBold);
@@ -635,7 +625,7 @@ namespace Stnc.CMS.Business.Concrete
             faturaFooterTablebeginP1.Add(faturaFooterTablebeginPh);
             faturaFooterTablebeginP1.Add(faturaFooterTablebeginPh2);
 
-            //burada table oluşuyor 
+            //burada table oluşuyor
             PdfPTable faturaFooterTable = new PdfPTable(1);
             PdfPCell faturaFooterTableCell = new PdfPCell(faturaFooterTablebeginP1);
             faturaFooterTableCell.Border = Rectangle.NO_BORDER;
@@ -666,9 +656,8 @@ namespace Stnc.CMS.Business.Concrete
 
             //****** fatura  footer text  --end **** ////
 
-
-            document.Add(imageHeaderLogo); //logo 
-            document.Add(FaturaBaslikTable); //bolum ve saat yazan 
+            document.Add(imageHeaderLogo); //logo
+            document.Add(FaturaBaslikTable); //bolum ve saat yazan
             document.Add(FaturaBaslikBolumTable);
             document.Add(mainFaturaText);
             document.Add(faturaDetayTable);
@@ -689,7 +678,6 @@ namespace Stnc.CMS.Business.Concrete
             return returnPath;
         }
 
-
         public void PDFfooterTEst()
         {
             Document doc = new Document(PageSize.A4.Rotate());
@@ -703,12 +691,10 @@ namespace Stnc.CMS.Business.Concrete
         }
     }
 
-
     public class PageEventHelper : PdfPageEventHelper
     {
-        PdfContentByte cb;
-        PdfTemplate template;
-
+        private PdfContentByte cb;
+        private PdfTemplate template;
 
         public override void OnOpenDocument(PdfWriter writer, Document document)
         {
@@ -729,11 +715,9 @@ namespace Stnc.CMS.Business.Concrete
 
             Font font = new Font(baseFont, 12, Font.NORMAL);
 
-            float len =50;
+            float len = 50;
 
             iTextSharp.text.Rectangle pageSize = document.PageSize;
-
-          
 
             cb.BeginText();
             cb.SetFontAndSize(baseFont, 14);
@@ -758,5 +742,4 @@ namespace Stnc.CMS.Business.Concrete
             template.EndText();
         }
     }
-
 }
