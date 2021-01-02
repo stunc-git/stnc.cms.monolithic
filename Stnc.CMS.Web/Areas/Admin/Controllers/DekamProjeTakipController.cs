@@ -127,7 +127,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
 
             string[] destektalepturleris;
             destektalepturleris = HttpContext.Session.GetString("DekamSessionCartData").Split(',');
-            destektalepturleris = destektalepturleris.Where(x => !string.IsNullOrEmpty(x)).ToArray();
+            destektalepturleris = destektalepturleris.Where(x => !string.IsNullOrEmpty(x)).ToArray();//boş dataları temizler
 
 
             Console.WriteLine(destektalepturleris);
@@ -225,11 +225,11 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
             return File(path, "application/pdf", Guid.NewGuid() + ".pdf");
         }
 
-        public IActionResult GetirPdf2()
+        public IActionResult GetirPdf2(int id)
         {
             // AppUser user = await GetUserLoginInfo();
      
-            var path = _dosyaService.FaturaPDfCreate(5);
+            var path = _dosyaService.FaturaPDfCreate(id);
             return File(path, "application/pdf", Guid.NewGuid() + ".pdf");
         }
 

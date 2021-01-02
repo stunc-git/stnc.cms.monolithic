@@ -1,6 +1,7 @@
 ﻿using FastMember;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
+using Newtonsoft.Json.Linq;
 using OfficeOpenXml;
 using Stnc.CMS.Business.Interfaces;
 using Stnc.CMS.DataAccess.Interfaces;
@@ -10,9 +11,21 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
+using System.Linq;
 
 namespace Stnc.CMS.Business.Concrete
 {
+
+    public class DestekTalepTurleri
+    {
+        public string ID { get; set; }
+        public string Name { get; set; }
+        public string Price { get; set; }
+
+    }
+
+
+
     public class DosyaManager : IDosyaService
     {
         private readonly ShoppingCart _shoppingCart;
@@ -112,13 +125,13 @@ namespace Stnc.CMS.Business.Concrete
             PdfWriter.GetInstance(document, stream);
 
             //****** footer text  **** ////
-            Chunk chkFooter = new Chunk("sayfa numarası yazacak", fontMiniSmallBlue);
+            Chunk chkFooter = new Chunk("Sayfa No ", fontMiniSmallBlue);
             Phrase fo = new Phrase(chkFooter);
             HeaderFooter footer = new HeaderFooter(fo, true);
-            footer.Border = Rectangle.NO_BORDER;
+           // footer.Border = Rectangle.NO_BORDER;
             footer.Alignment = 1;
-            footer.Top = 0;
-            footer.Bottom = 50f;
+            footer.Top = 150f;
+            footer.Bottom = 150f;
             //******  footer text **** ////
 
             document.Footer = footer;
@@ -166,11 +179,13 @@ namespace Stnc.CMS.Business.Concrete
             mainFaturaText.Alignment = Element.ALIGN_CENTER;
             //****** Fatura Baslık Bilgisi end **** ////
 
-            string otenaziDurumu = ""
-; foreach (var cartItemsData in cartItemsDataCollectionData)
+            string otenaziDurumu = "";
+            string cinsiyet = "Dişi";
+                    PdfPTable faturaDetayTable = new PdfPTable(5);
+            ; foreach (var cartItemsData in cartItemsDataCollectionData)
             {
                 //****** fatura detay Tablo **** ////
-                PdfPTable faturaDetayTable = new PdfPTable(5);
+            
                 faturaDetayTable.WidthPercentage = 80;
                 faturaDetayTable.SpacingBefore = 10f;
                 faturaDetayTable.SpacingAfter = 2.5f;
@@ -226,10 +241,15 @@ namespace Stnc.CMS.Business.Concrete
 
                 if (cartItemsData.Otenazi == 1)
                 {
-                    otenaziDurumu = "Ötenazi[1 TL]: Evet" + cartItemsData.OtenaziUcreti * cartItemsData.IstenenHayvanSayisi;
+                    otenaziDurumu = "Ötenazi[1 TL]: Evet " + cartItemsData.OtenaziUcreti * cartItemsData.IstenenHayvanSayisi;
                 }
 
-                faturaDetayTablecell = new PdfPCell(new Phrase("Ağırlık: " + cartItemsData.HayvanAgirlik + " | Cinsiyet: " + cartItemsData.DeneyHayvaniCinsiyet + " | " + otenaziDurumu, font));
+                if (cartItemsData.DeneyHayvaniCinsiyet)
+                {
+                    cinsiyet = "Erkek";
+
+                } 
+                faturaDetayTablecell = new PdfPCell(new Phrase("Ağırlık: " + cartItemsData.HayvanAgirlik + " | Cinsiyet: " + cinsiyet + " | " + otenaziDurumu, font));
                 faturaDetayTablecell.Colspan = 5;
                 faturaDetayTablecell.PaddingTop = 5;
                 faturaDetayTablecell.PaddingBottom = 5;
@@ -243,18 +263,26 @@ namespace Stnc.CMS.Business.Concrete
                 faturaDetayTablecell.HorizontalAlignment = PdfCell.ALIGN_CENTER;
                 faturaDetayTable.AddCell(faturaDetayTablecell);
 
-               foreach (var destekTalepTurleriJsonData in cartItemsData.DestekTalepTurleriJson)
+
+
+                JArray destekTalepTurleriJsonArray = JArray.Parse(cartItemsData.DestekTalepTurleriJsonRead);
+
+                IList<DestekTalepTurleri> destekTalepTurleriJsonList = destekTalepTurleriJsonArray.Select(p => new DestekTalepTurleri
                 {
+                    ID = (string)p["ID"],
+                    Name = (string)p["Name"],
+                    Price = (string)p["Price"],
+                }).ToList();
 
 
-
-                    faturaDetayTablecell = new PdfPCell(new Phrase(destekTalepTurleriJsonData .+"  / Fiyat 10 ₺   ", font));
+                foreach (var destekTalepTurleriJsonData in destekTalepTurleriJsonList)
+                {
+                    faturaDetayTablecell = new PdfPCell(new Phrase(destekTalepTurleriJsonData.Name +"  / Fiyat "+ destekTalepTurleriJsonData.Price+ " ₺   ", font));
                     faturaDetayTablecell.Colspan = 5;
                     faturaDetayTablecell.PaddingTop = 5;
                     faturaDetayTablecell.PaddingBottom = 5;
                     faturaDetayTablecell.HorizontalAlignment = PdfCell.ALIGN_CENTER;
                     faturaDetayTable.AddCell(faturaDetayTablecell);
-
                 }
 
                 faturaDetayTablecell = new PdfPCell(new Phrase("Birim Toplamı  ", font));
@@ -271,7 +299,6 @@ namespace Stnc.CMS.Business.Concrete
                 faturaDetayTablecell.HorizontalAlignment = PdfCell.ALIGN_CENTER;
                 faturaDetayTable.AddCell(faturaDetayTablecell);
                 //****** fatura detay Tablo --end **** ////
-                document.Add(faturaDetayTable);
             }
 
             //****** fatura detay genel toplam Tablo **** ////
@@ -372,6 +399,7 @@ namespace Stnc.CMS.Business.Concrete
             document.Add(FaturaBaslikTable); //bolum ve saat yazan
             document.Add(FaturaBaslikBolumTable);
             document.Add(mainFaturaText);
+            document.Add(faturaDetayTable);
 
             document.Add(faturaDetayGenelToplamTable);
             document.Add(faturaDetayMiniInfoTable);

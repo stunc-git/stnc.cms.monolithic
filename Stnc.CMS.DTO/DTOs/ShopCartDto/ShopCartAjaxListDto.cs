@@ -31,7 +31,9 @@
         //burada shop cart
         //  public string ShoppingCartId { get; set; }
         //    public DestekTalepTurleriJsonDto DestekTalepTurleriJson { get; set; }
-        public dynamic DestekTalepTurleriJson { get; set; }
+
+       public dynamic DestekTalepTurleriJson { get; set; }
+        public string DestekTalepTurleriJsonRead { get; set; }
 
         public string DestekTalepTurleriJsonVal { get; set; }
 
