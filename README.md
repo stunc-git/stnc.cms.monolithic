@@ -31,3 +31,5 @@ Yapılması istenen iş tanımı:
    Sipariş satış sistemi 
    
    Çalışma izin belgesi oluşturulması 
+   
+   https://github.com/thangchung/awesome-dotnet-core#template-engine
