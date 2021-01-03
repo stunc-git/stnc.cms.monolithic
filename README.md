@@ -33,3 +33,5 @@ Yapılması istenen iş tanımı:
    Çalışma izin belgesi oluşturulması 
    
    https://github.com/thangchung/awesome-dotnet-core#template-engine
+   
+   https://github.com/thangchung/clean-code-dotnet
