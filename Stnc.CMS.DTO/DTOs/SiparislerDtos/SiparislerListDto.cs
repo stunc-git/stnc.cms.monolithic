@@ -1,9 +1,9 @@
 ﻿using Stnc.CMS.Entities.Concrete;
 using System;
 
-namespace Stnc.CMS.DTO.DTOs.DekamProjeTakipDtos
+namespace Stnc.CMS.DTO.DTOs.SiparislerDtos
 {
-    public class DekamProjeTakipListDto
+    public class SiparislerListDto
     {
         public int Id { get; set; }
         public string ProjeYurutucusu { get; set; }

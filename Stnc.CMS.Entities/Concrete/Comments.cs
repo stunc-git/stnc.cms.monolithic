@@ -30,6 +30,6 @@ namespace Stnc.CMS.Entities.Concrete
 
         public Comments ParentComment { get; set; }
         public List<Comments> SubComments { get; set; }
-        public DekamProjeTakip Posts { get; set; }
+        public Siparisler Posts { get; set; }
     }
 }

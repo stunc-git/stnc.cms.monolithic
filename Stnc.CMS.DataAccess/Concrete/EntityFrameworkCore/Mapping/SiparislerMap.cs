@@ -4,9 +4,9 @@ using Stnc.CMS.Entities.Concrete;
 
 namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Mapping
 {
-    public class DekamProjeTakipMap : IEntityTypeConfiguration<DekamProjeTakip>
+    public class SiparislerMap : IEntityTypeConfiguration<Siparisler>
     {
-        public void Configure(EntityTypeBuilder<DekamProjeTakip> builder)
+        public void Configure(EntityTypeBuilder<Siparisler> builder)
         {
             builder.HasKey(I => I.Id);
             builder.Property(I => I.Id).UseIdentityColumn();
@@ -22,7 +22,7 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Mapping
             //builder.Property(I => I.DeneyHayvaniYasi).HasColumnType("smallint");
             //builder.Property(I => I.DeneyHayvaniAgirligi).HasColumnType("smallint");
 
-            builder.HasOne(I => I.DekamProjeLaboratuvarlar).WithMany(x => x.DekamProjeTakip).HasForeignKey(I => I.LaboratuvarID);
+            builder.HasOne(I => I.DekamProjeLaboratuvarlar).WithMany(x => x.Siparisler).HasForeignKey(I => I.LaboratuvarID);
    
 
             //https://www.learnentityframeworkcore.com/configuration/one-to-one-relationship-configuration

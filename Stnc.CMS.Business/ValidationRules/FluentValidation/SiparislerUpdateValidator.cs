@@ -1,12 +1,12 @@
 ﻿using FluentValidation;
-using Stnc.CMS.DTO.DTOs.DekamProjeTakipDtos;
+using Stnc.CMS.DTO.DTOs.SiparislerDtos;
 using Stnc.CMS.DTO.DTOs.PostDtos;
 
 namespace Stnc.CMS.Business.ValidationRules.FluentValidation
 {
-    public class DekamProjeTakipCreateValidator : AbstractValidator<DekamProjeTakipCreateDto>
+    public class SiparislerUpdateValidator : AbstractValidator<SiparislerUpdateDto>
     {
-        public DekamProjeTakipCreateValidator()
+        public SiparislerUpdateValidator()
         {
             RuleFor(I => I.ProjeYurutucusu).NotNull().WithMessage("Lütfen Proje Yöneticisi ismini giriniz");
             RuleFor(I => I.ProjeYurutukurumu).NotNull().WithMessage("Lütfen Kurum İsmini  giriniz");
@@ -18,7 +18,7 @@ namespace Stnc.CMS.Business.ValidationRules.FluentValidation
             RuleFor(I => I.ProjeBaslangicTarihi).NotNull().WithMessage("Lütfen proje başlangıç tarihini giriniz");
             RuleFor(I => I.ProjeBitisTarihi).NotNull().WithMessage("Lütfen proje bitiş tarihini giriniz");
             RuleFor(I => I.DeneyHayvaniCinsiyet).NotNull().WithMessage("Lütfen deney hayvanı cinsiyetini giriniz");
-          //  RuleFor(I => I.DeneyHayvaniSayisi).NotNull().WithMessage("Lütfen deney hayvanı sayısını giriniz");
+         //   RuleFor(I => I.DeneyHayvaniSayisi).NotNull().WithMessage("Lütfen deney hayvanı sayısını giriniz");
             RuleFor(I => I.DeneyHayvaniAgirligi).NotNull().WithMessage("Lütfen deney hayvanı ağırlığını giriniz");
             RuleFor(I => I.TeknikDestekSuresiID).NotNull().WithMessage("Lütfen teknik destek süresini giriniz");
             RuleFor(I => I.TeknikDestekTuruID).NotNull().WithMessage("Lütfen teknik destek türünü giriniz");

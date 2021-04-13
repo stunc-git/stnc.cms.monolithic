@@ -5,21 +5,21 @@ using System.Collections.Generic;
 
 namespace Stnc.CMS.Business.Concrete
 {
-    public class DekamProjeTakipManager : IDekamProjeTakipService
+    public class SiparislerManager : ISiparislerService
     {
-        private readonly IDekamProjeTakipDal _dekamProjeTakipDal;
+        private readonly ISiparislerDal _dekamProjeTakipDal;
 
-        public DekamProjeTakipManager(IDekamProjeTakipDal dekamProjeTakipDal)
+        public SiparislerManager(ISiparislerDal dekamProjeTakipDal)
         {
             _dekamProjeTakipDal = dekamProjeTakipDal;
         }
 
-        public List<DekamProjeTakip> GetAll()
+        public List<Siparisler> GetAll()
         {
             return _dekamProjeTakipDal.GetAll();
         }
 
-        public DekamProjeTakip GetirIdile(int id)
+        public Siparisler GetirIdile(int id)
         {
             return _dekamProjeTakipDal.GetID(id);
         }
@@ -29,27 +29,27 @@ namespace Stnc.CMS.Business.Concrete
             return _dekamProjeTakipDal.GetProjectTotal();
         }
 
-        public void Guncelle(DekamProjeTakip tablo)
+        public void Guncelle(Siparisler tablo)
         {
             _dekamProjeTakipDal.Update(tablo);
         }
 
-        public void Kaydet(DekamProjeTakip tablo)
+        public void Kaydet(Siparisler tablo)
         {
             _dekamProjeTakipDal.Save(tablo);
         }
 
-        public List<DekamProjeTakip> ProjeList()
+        public List<Siparisler> ProjeList()
         {
             return _dekamProjeTakipDal.ProjeList();
         }
 
-        public DekamProjeTakip SaveReturn(DekamProjeTakip tablo)
+        public Siparisler SaveReturn(Siparisler tablo)
         {
             return _dekamProjeTakipDal.SaveReturn(tablo);
         }
 
-        public void Sil(DekamProjeTakip tablo)
+        public void Sil(Siparisler tablo)
         {
              _dekamProjeTakipDal.Delete(tablo);
         }

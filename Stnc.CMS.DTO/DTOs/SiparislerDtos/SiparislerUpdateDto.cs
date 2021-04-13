@@ -1,11 +1,11 @@
 ﻿using Stnc.CMS.Entities.Concrete;
 using System;
-using System.Collections.Generic;
 
-namespace Stnc.CMS.DTO.DTOs.DekamProjeTakipDtos
+namespace Stnc.CMS.DTO.DTOs.SiparislerDtos
 {
-    public class DekamProjeTakipCreateDto
+    public class SiparislerUpdateDto
     {
+        public int Id { get; set; }
         public string ProjeYurutucusu { get; set; }
         public string ProjeYurutukurumu { get; set; }
         public string ProjeYurutuTelefon { get; set; }
@@ -31,8 +31,5 @@ namespace Stnc.CMS.DTO.DTOs.DekamProjeTakipDtos
         public int? DeneyHayvaniTurID { get; set; }
         public int? AppUserId { get; set; }
         public AppUser AppUser { get; set; }
-
-        public virtual List<DekamProjeTeknikDestekTalepTur> allEmployees { get; set; }
-
     }
 }

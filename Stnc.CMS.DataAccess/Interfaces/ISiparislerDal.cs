@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace Stnc.CMS.DataAccess.Interfaces
 {
-    public interface IDekamProjeTakipDal : IGenericDal<DekamProjeTakip>
+    public interface ISiparislerDal : IGenericDal<Siparisler>
     {
         int GetProjectTotal();
-        List<DekamProjeTakip> ProjeList();
+        List<Siparisler> ProjeList();
         // DekamProjeTakip GetSlugPost(string slug);
     }
 }

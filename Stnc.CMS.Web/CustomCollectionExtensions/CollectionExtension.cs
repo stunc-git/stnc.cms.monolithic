@@ -5,7 +5,7 @@ using Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts;
 using Stnc.CMS.DTO.DTOs.AciliyetDtos;
 using Stnc.CMS.DTO.DTOs.AppUserDtos;
 using Stnc.CMS.DTO.DTOs.CategoryDtos;
-using Stnc.CMS.DTO.DTOs.DekamProjeTakipDtos;
+using Stnc.CMS.DTO.DTOs.SiparislerDtos;
 using Stnc.CMS.DTO.DTOs.DeneyHayvaniIrkFiyatDtos;
 using Stnc.CMS.DTO.DTOs.GorevDtos;
 using Stnc.CMS.DTO.DTOs.PostDtos;
@@ -63,8 +63,8 @@ namespace Stnc.CMS.Web.CustomCollectionExtensions
             services.AddTransient<IValidator<SliderAddDto>, SliderAddValidator>();
             services.AddTransient<IValidator<SliderUpdateDto>, SliderUpdateValidator>();
 
-            services.AddTransient<IValidator<DekamProjeTakipCreateDto>, DekamProjeTakipCreateValidator>();
-            services.AddTransient<IValidator<DekamProjeTakipUpdateDto>, DekamProjeTakipUpdateValidator>();
+            services.AddTransient<IValidator<SiparislerCreateDto>, SiparislerCreateValidator>();
+            services.AddTransient<IValidator<SiparislerUpdateDto>, SiparislerUpdateValidator>();
 
             services.AddTransient<IValidator<DeneyHayvaniIrkFiyatCreateDto>, DeneyHayvaniIrkFiyatCreateValidator>();
             services.AddTransient<IValidator<DeneyHayvaniIrkFiyatUpdateDto>, DeneyHayvaniIrkFiyatUpdateValidator>();

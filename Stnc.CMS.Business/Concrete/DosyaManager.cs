@@ -30,11 +30,11 @@ namespace Stnc.CMS.Business.Concrete
     {
         private readonly ShoppingCart _shoppingCart;
         private readonly IShopDal _shopService;
-        private readonly IDekamProjeTakipService _dekamProjeTakipService;
+        private readonly ISiparislerService _siparislerService;
 
-        public DosyaManager(ShoppingCart shoppingCart, IShopDal shopService, IDekamProjeTakipService dekamProjeTakipService)
+        public DosyaManager(ShoppingCart shoppingCart, IShopDal shopService, ISiparislerService siparislerService)
         {
-            _dekamProjeTakipService = dekamProjeTakipService;
+            _siparislerService = siparislerService;
             _shopService = shopService;
             _shoppingCart = shoppingCart;
         }
@@ -103,7 +103,7 @@ namespace Stnc.CMS.Business.Concrete
 
 
             var toplamUcret = _shopService.ToplamUcretDekamProjeTakipID(dekamProjeTakipID);
-            var dekamProjeTakipData = _dekamProjeTakipService.GetirIdile(dekamProjeTakipID);
+            var dekamProjeTakipData = _siparislerService.GetirIdile(dekamProjeTakipID);
 
             var fileName = Guid.NewGuid() + ".pdf";
             var returnPath = "/documents/" + fileName;
@@ -182,7 +182,7 @@ namespace Stnc.CMS.Business.Concrete
             string otenaziDurumu = "";
             string cinsiyet = "Dişi";
                     PdfPTable faturaDetayTable = new PdfPTable(5);
-            ; foreach (var cartItemsData in cartItemsDataCollectionData)
+             foreach (var cartItemsData in cartItemsDataCollectionData)
             {
                 //****** fatura detay Tablo **** ////
             
@@ -409,7 +409,7 @@ namespace Stnc.CMS.Business.Concrete
             // metadata
             document.AddCreator("erciyes.edu.tr");
             document.AddKeywords("Erciyes üniversitesi Bilgi İşlem Daire Başkanlığı");
-            document.AddAuthor("@stnc https://github.com/stnc");
+            document.AddAuthor("@dekam");
             document.AddSubject("Proforma Fatura Oluşturucu");
             document.AddTitle("Proforma Fatura");
 

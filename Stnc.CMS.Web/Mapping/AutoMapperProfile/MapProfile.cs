@@ -3,7 +3,7 @@ using Stnc.CMS.DTO.DTOs.AciliyetDtos;
 using Stnc.CMS.DTO.DTOs.AppUserDtos;
 using Stnc.CMS.DTO.DTOs.BildirimDtos;
 using Stnc.CMS.DTO.DTOs.CategoryDtos;
-using Stnc.CMS.DTO.DTOs.DekamProjeTakipDtos;
+using Stnc.CMS.DTO.DTOs.SiparislerDtos;
 using Stnc.CMS.DTO.DTOs.DeneyHayvaniIrkFiyatDtos;
 using Stnc.CMS.DTO.DTOs.GorevDtos;
 using Stnc.CMS.DTO.DTOs.PostDtos;
@@ -109,14 +109,14 @@ namespace Stnc.CMS.Web.Mapping.AutoMapperProfile
 
             #region DekamProjeTakip-DekamProjeTakipDtos
 
-            CreateMap<DekamProjeTakip, DekamProjeTakipListDto>();
-            CreateMap<DekamProjeTakipListDto, DekamProjeTakip>();
+            CreateMap<Siparisler, SiparislerListDto>();
+            CreateMap<SiparislerListDto, Siparisler>();
 
-            CreateMap<DekamProjeTakipCreateDto, DekamProjeTakip>();
-            CreateMap<DekamProjeTakip, DekamProjeTakipCreateDto>();
+            CreateMap<SiparislerCreateDto, Siparisler>();
+            CreateMap<Siparisler, SiparislerCreateDto>();
 
-            CreateMap<DekamProjeTakipUpdateDto, DekamProjeTakip>();
-            CreateMap<DekamProjeTakip, DekamProjeTakipUpdateDto>();
+            CreateMap<SiparislerUpdateDto, Siparisler>();
+            CreateMap<Siparisler, SiparislerUpdateDto>();
 
             #endregion DekamProjeTakip-DekamProjeTakipDtos
 

@@ -4,10 +4,10 @@ using System.Collections.Generic;
 
 namespace Stnc.CMS.Business.Interfaces
 {
-    public interface IDekamProjeTakipService : IGenericService<DekamProjeTakip>
+    public interface ISiparislerService : IGenericService<Siparisler>
     {
         int GetProjectTotal();
-        List<DekamProjeTakip> ProjeList();
+        List<Siparisler> ProjeList();
 
  
         // DekamProjeTakip GetSlugPost(string slug);

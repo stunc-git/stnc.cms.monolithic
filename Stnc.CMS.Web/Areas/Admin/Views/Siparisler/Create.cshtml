@@ -1,4 +1,4 @@
-﻿@model DekamProjeTakipCreateDto
+﻿@model SiparislerCreateDto
 
 @{
     ViewData["Title"] = "EkleAciliyet";
@@ -917,7 +917,7 @@
                     type: 'POST',
                     data: dataPost,
                     datatype: 'json',
-                    url: '/Admin/DekamProjeTakip/Save',
+                    url: '/Admin/Siparisler/Save',
                     success: function (data) {
                         if (data.status == "ok") {
                         } else {
@@ -937,7 +937,7 @@
                 type: 'GET',
                 data: { TurID: $(this).val() },
                 datatype: 'json',
-                url: '/Admin/DekamProjeTakip/FiyatSec',
+                url: '/Admin/Siparisler/FiyatSec',
                 beforeSend: function () {
                     //loadMore.text('').addClass('active');
                 },

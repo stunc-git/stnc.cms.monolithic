@@ -7,18 +7,18 @@ using System.Linq;
 
 namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Repositories
 {
-    public class EfDekamProjeTakipRepository : EfGenericRepository<DekamProjeTakip>, IDekamProjeTakipDal
+    public class EfDekamProjeTakipRepository : EfGenericRepository<Siparisler>, ISiparislerDal
     {
         public int GetProjectTotal()
         {
             using var context = new StncCMSContext();
-            return context.DekamProjeTakip.Count();
+            return context.Siparisler.Count();
         }
 
-        public List<DekamProjeTakip> ProjeList()
+        public List<Siparisler> ProjeList()
         {
             using var context = new StncCMSContext();
-            return context.DekamProjeTakip.Include(I => I.DekamProjeLaboratuvarlar).OrderByDescending(I => I.Id).ToList();
+            return context.Siparisler.Include(I => I.DekamProjeLaboratuvarlar).OrderByDescending(I => I.Id).ToList();
         }
 
         //selman alacak 

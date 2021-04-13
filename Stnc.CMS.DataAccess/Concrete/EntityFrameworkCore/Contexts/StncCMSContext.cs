@@ -32,20 +32,20 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfiguration(new GorevMap());
-            modelBuilder.ApplyConfiguration(new AciliyetMap());
-            modelBuilder.ApplyConfiguration(new RaporMap());
+           // modelBuilder.ApplyConfiguration(new GorevMap());
+          //  modelBuilder.ApplyConfiguration(new AciliyetMap());
+          //  modelBuilder.ApplyConfiguration(new RaporMap());
             modelBuilder.ApplyConfiguration(new AppUserMap());
-            modelBuilder.ApplyConfiguration(new PostMap());
-            modelBuilder.ApplyConfiguration(new CategoryMap());
-            modelBuilder.ApplyConfiguration(new CategoryPostsMap());
-            modelBuilder.ApplyConfiguration(new CommentMap());
-            modelBuilder.ApplyConfiguration(new SliderMap());
-            modelBuilder.ApplyConfiguration(new DekamProjeTakipMap());
+            //modelBuilder.ApplyConfiguration(new PostMap());
+            //modelBuilder.ApplyConfiguration(new CategoryMap());
+            //modelBuilder.ApplyConfiguration(new CategoryPostsMap());
+            //modelBuilder.ApplyConfiguration(new CommentMap());
+            //modelBuilder.ApplyConfiguration(new SliderMap());
+            modelBuilder.ApplyConfiguration(new SiparislerMap());
             modelBuilder.ApplyConfiguration(new DekamProjeDeneyHayvaniTurMap());
             modelBuilder.ApplyConfiguration(new DekamProjeDeneyHayvaniIrkMap());
             modelBuilder.ApplyConfiguration(new DekamProjeLaboratuvarlarMap());
-            modelBuilder.ApplyConfiguration(new OptionsMap());
+            //modelBuilder.ApplyConfiguration(new OptionsMap());
             modelBuilder.ApplyConfiguration(new StShoppingCartItemMap());
             modelBuilder.ApplyConfiguration(new DekamProjeDeneyHayvaniIrkFiyatMap());
             /*
@@ -96,7 +96,7 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts
         public DbSet<Comments> Comments { get; set; }
 
         // DEKAM Kurum içi proje takip
-        public DbSet<DekamProjeTakip> DekamProjeTakip { get; set; }
+        public DbSet<Siparisler> Siparisler { get; set; }
 
         public DbSet<DekamProjeLaboratuvarlar> DekamProjeLaboratuvarlar { get; set; }
         public DbSet<DekamProjeTeknikDestekTalepTur> DekamProjeTeknikDestekTalepTur { get; set; }

@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Stnc.CMS.Business.Interfaces;
 using Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Repositories;
 using Stnc.CMS.DataAccess.Interfaces;
-using Stnc.CMS.DTO.DTOs.DekamProjeTakipDtos;
+using Stnc.CMS.DTO.DTOs.SiparislerDtos;
 using Stnc.CMS.Entities.Concrete;
 using Stnc.CMS.Web.BaseControllers;
 using Stnc.CMS.Web.StringInfo;
@@ -40,9 +40,9 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
 
     [Authorize(Roles = RoleInfo.Admin)]
     [Area(AreaInfo.Admin)]
-    public class DekamProjeTakipController : BaseIdentityController
+    public class SiparislerController : BaseIdentityController
     {
-        private readonly IDekamProjeTakipService _dekamProjeTakipService;
+        private readonly ISiparislerService _siparislerService;
         private readonly IDeneyHayvaniIrkFiyatService _deneyHayvaniIrkFiyatService;
         private readonly IDosyaService _dosyaService;
         private readonly IShopDal _shopService;
@@ -53,10 +53,10 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
         private readonly EfGenericRepository<DekamProjeTeknikDestekTalepTur> DekamProjeTeknikDestekTalepTurRepo;
 
 
-        public DekamProjeTakipController(IDekamProjeTakipService dekamProjeTakipService, IShopDal shopService, IDeneyHayvaniIrkFiyatService deneyHayvaniIrkFiyatService, IDosyaService dosyaService, IMapper mapper, UserManager<AppUser> userManager) : base(userManager)
+        public SiparislerController(ISiparislerService siparislerService, IShopDal shopService, IDeneyHayvaniIrkFiyatService deneyHayvaniIrkFiyatService, IDosyaService dosyaService, IMapper mapper, UserManager<AppUser> userManager) : base(userManager)
         {
             _mapper = mapper;
-            _dekamProjeTakipService = dekamProjeTakipService;
+            _siparislerService = siparislerService;
             _deneyHayvaniIrkFiyatService = deneyHayvaniIrkFiyatService;
             DekamProjeDeneyHayvaniIrkRepo = new EfGenericRepository<DekamProjeDeneyHayvaniIrk>();
             _shopService = shopService;
@@ -71,7 +71,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
         {
             TempData["Active"] = TempdataInfo.Category;
             ViewBag.GeneralTitle = "Proje Takip";
-            return View(_mapper.Map<List<DekamProjeTakipListDto>>(_dekamProjeTakipService.ProjeList()));
+            return View(_mapper.Map<List<SiparislerListDto>>(_siparislerService.ProjeList()));
         }
 
         public IActionResult Create()
@@ -82,7 +82,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
             ViewBag.DeneyHayvaniIrkCategories = new SelectList(DekamProjeDeneyHayvaniIrkRepo.GetAll(), "Id", "Name");
             ViewBag.DeneyHayvaniTurCategories = new SelectList(DekamProjeDeneyHayvaniTurRepo.GetAll(), "Id", "Name");
             ViewBag.LaboratuvarlarCategories = new SelectList(DekamProjeLaboratuvarlarRepo.GetAll(), "Id", "Name");
-            return View(new DekamProjeTakipCreateDto());
+            return View(new SiparislerCreateDto());
         }
 
         [HttpPost]
@@ -96,8 +96,8 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
            // returnId = 0;
             //projeYurutucusu
 
-            var returnData = _dekamProjeTakipService.SaveReturn(
-                 new DekamProjeTakip {
+            var returnData = _siparislerService.SaveReturn(
+                 new Siparisler                 {
                      ProjeYurutucusu = addData.ProjeYurutucusu,
                      ProjeBaslangicTarihi=addData.ProjeBaslangicTarihi,
                      ProjeBitisTarihi=addData.ProjeBitisTarihi,
@@ -166,7 +166,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
             ViewBag.DeneyHayvaniTurCategories = new SelectList(DekamProjeDeneyHayvaniTurRepo.GetAll(), "Id", "Name");
             ViewBag.LaboratuvarlarCategories = new SelectList(DekamProjeLaboratuvarlarRepo.GetAll(), "Id", "Name");
             //http://www.dotnet-stuff.com/tutorials/aspnet-mvc/way-to-use-multiple-models-in-a-view-in-asp-net-mvc
-            DekamProjeTakipCreateDto vmDemo = new DekamProjeTakipCreateDto();
+            SiparislerCreateDto vmDemo = new SiparislerCreateDto();
             vmDemo.allEmployees = DekamProjeTeknikDestekTalepTurRepo.GetAll();
             /* //view kodu
               @foreach (var item in Model.allEmployees)
