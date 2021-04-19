@@ -40,32 +40,18 @@ namespace Stnc.CMS.Web.Controllers
     {
         private readonly SignInManager<AppUser> _signInManager;
         private readonly ICustomLogger _customLogger;
-        private readonly IPostService _postService;
+ 
         private readonly IMapper _mapper;
 
-        public HomeController(IPostService postService, UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, ICustomLogger customLogger, IMapper mapper) : base(userManager)
+        public HomeController( UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, ICustomLogger customLogger, IMapper mapper) : base(userManager)
         {
             _mapper = mapper;
             _customLogger = customLogger;
             _signInManager = signInManager;
-            _postService = postService;
+      
         }
 
-        [Route("icerik/{slug}")]
-        public IActionResult GetPostDetails(string Slug)
-        {
-            var post = _postService.GetSlugPost(Slug);
-            if (post == null)
-            {
-                Response.StatusCode = 404;
-                return View("PageNotFound");
-            }
-            else
-            {
-                return View("~/Views/Post/GetPostDetails.cshtml", _mapper.Map<PostUpdateDto>(post));
-                //return RedirectToAction("Index");
-            }
-        }
+
 
         public IActionResult Index()
         {
@@ -78,45 +64,8 @@ namespace Stnc.CMS.Web.Controllers
             return View();
         }
 
-        [Route("iletisim")]
-        public IActionResult İletisim()
-        {
-            return View();
-        }
-
-        [Route("icerik/yonetim")]
-        public IActionResult Yonetim()
-        {
-            return View("~/Views/Staff/Yonetim.cshtml");
-        }
-
-        [Route("icerik/komisyon-uyeleri")]
-        public IActionResult KomisyonUyeleri()
-        {
-            return View("~/Views/Staff/KomisyonUyeleri.cshtml");
-        }
-
-        [Route("icerik/personel")]
-        public IActionResult Personel()
-        {
-            return View("~/Views/Staff/Personel.cshtml");
-        }
 
 
-        [Route("galeri")]
-        public IActionResult Galeri()
-        {
-            return View("~/Views/Gallery/Index.cshtml");
-        }
-
-        //https://colorlib.com/preview/theme/wiser/single-blog.html
-        [Route("demo-template/{UsersName}")]
-        public IActionResult DemoTemplate(string UsersName)
-        {
-            ViewBag.UsersName = UsersName;
-
-            return View("~/Views/Post/DemoTemplate.cshtml");
-        }
 
         [HttpPost]
         public async Task<IActionResult> GirisYap(AppUserSignInDto model)
@@ -145,82 +94,6 @@ namespace Stnc.CMS.Web.Controllers
             }
             return View("Login", model);
         }
-
-        public IActionResult Menu()
-        {
-            string json = @"[{'text':'Home444','href':'http://home.com','icon':'fas fa-home','target':'_top','title':'My Home','children':[{'text':'Opcion2','href':'','icon':'fas fa-chart-bar','target':'_self','title':''}]},{'text':'Opcion4','href':'','icon':'fas fa-crop','target':'_self','title':'','children':[{'text':'Opcion5','href':'','icon':'fas fa-flask','target':'_self','title':''}]},{'text':'Opcion6','href':'','icon':'fas fa-map-marker','target':'_self','title':'','children':[{'text':'Opcion7-1','href':'','icon':'fas fa-plug','target':'_self','title':''}]},{'text':'Opcion7','href':'','icon':'fas fa-search','target':'_self','title':''}]";
-
-            //JObject parent = JObject.Parse(json);
-            ////  var companies = parent.Value<JObject>("children").Count()
-            //string companies = "";
-
-            string dd = @"
-
- 'id': 123,  
-  'name': 'Mukesh Kumar',  
-  'address': {
-                'street': 'El Camino Real',  
-    'city': 'New Delhi',  
-    'zipcode': 95014
-  },  
-  'experiences': [
-    {
-                'companyid': 77,  
-      'companyname': 'Mind Tree LTD'
-    },  
-    {
-                'companyid': 89,  
-      'companyname': 'TCS'
-    },  
-    {
-                'companyid': 22,  
-      'companyname': 'Hello World LTD'
-    }  
-  ],  
-  'phoneNumber': 9988664422,  
-  'role': 'Developer'
-} 
-";
-
-
-            try
-            {
-                var jObject = JObject.Parse(dd);
-
-                if (jObject != null)
-                {
-                    Console.WriteLine("ID :" + jObject["id"].ToString());
-                    Console.WriteLine("Name :" + jObject["name"].ToString());
-
-                    var address = jObject["address"];
-                    Console.WriteLine("Street :" + address["street"].ToString());
-                    Console.WriteLine("City :" + address["city"].ToString());
-                    Console.WriteLine("Zipcode :" + address["zipcode"]);
-                    JArray experiencesArrary = (JArray)jObject["experiences"];
-                    if (experiencesArrary != null)
-                    {
-                        foreach (var item in experiencesArrary)
-                        {
-                            Console.WriteLine("company Id :" + item["companyid"]);
-                            Console.WriteLine("company Name :" + item["companyname"].ToString());
-                        }
-
-                    }
-                    Console.WriteLine("Phone Number :" + jObject["phoneNumber"].ToString());
-                    Console.WriteLine("Role :" + jObject["role"].ToString());
-
-                }
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-
-
-            return Ok(json);
-        }
-
 
         public IActionResult KayitOl()
         {
