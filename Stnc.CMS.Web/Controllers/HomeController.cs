@@ -58,12 +58,13 @@ namespace Stnc.CMS.Web.Controllers
             return View();
         }
 
+
+
         [Route("adminpanel")]
         public IActionResult Login()
         {
             return View();
         }
-
 
 
 

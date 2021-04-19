@@ -42,7 +42,6 @@ namespace Stnc.CMS.Web
                 options.IdleTimeout = TimeSpan.FromMinutes(360);//You can set Time   
             });
 
-
             services.AddMvc();
             // services.AddMemoryCache();
         }
