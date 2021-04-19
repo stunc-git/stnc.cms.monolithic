@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Stnc.CMS.Business.Interfaces;
 using Stnc.CMS.Entities.Concrete;
 using Stnc.CMS.Web.BaseControllers;
 using Stnc.CMS.Web.StringInfo;
@@ -13,17 +12,11 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
     [Area(AreaInfo.Admin)]
     public class HomeController : BaseIdentityController
     {
-        private readonly IGorevService _gorevService;
-        private readonly IPostService _postService;
-        private readonly IBildirimService _bildirimService;
-        private readonly IRaporService _raporService;
 
-        public HomeController(IGorevService gorevService, IPostService postService, IBildirimService bildirimService, UserManager<AppUser> userManager, IRaporService raporService) : base(userManager)
+
+        public HomeController( UserManager<AppUser> userManager) : base(userManager)
         {
-            _raporService = raporService;
-            _postService = postService;
-            _bildirimService = bildirimService;
-            _gorevService = gorevService;
+
         }
 
         /*
@@ -37,11 +30,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
         {
             var user = await GetUserLoginInfo().ConfigureAwait(false);
             TempData["Active"] = TempdataInfo.Anasayfa;
-            ViewBag.AtanmayiBekleyenGorevSayisi = _gorevService.GetirGorevSayisiAtanmayiBekleyen();
-            ViewBag.TamamlanmisGorevSayisi = _gorevService.GetirGorevTamamlanmis();
-            ViewBag.OkunmamisBildirimSayisi = _bildirimService.GetirOkunmayanSayisiileAppUserId(user.Id);
-            ViewBag.ToplamRaporSayisi = _raporService.GetirRaporSayisi();
-            ViewBag.ToplamPostSayisi = _postService.GetTotalPost();//test yaptığım yer
+
             return View();
         }
     }

@@ -13,28 +13,18 @@ namespace Stnc.CMS.Web.Areas.Member.Controllers
     [Area(AreaInfo.Member)]
     public class HomeController : BaseIdentityController
     {
-        private readonly IRaporService _raporService;
-        private readonly IGorevService _gorevService;
-        private readonly IBildirimService _bildirimService;
 
-        public HomeController(IRaporService raporService, UserManager<AppUser> userManager, IGorevService gorevService, IBildirimService bildirimService) : base(userManager)
+
+        public HomeController( UserManager<AppUser> userManager) : base(userManager)
         {
-            _bildirimService = bildirimService;
-            _gorevService = gorevService;
-
-            _raporService = raporService;
+ 
         }
 
         public async Task<IActionResult> Index()
         {
             var user = await GetUserLoginInfo().ConfigureAwait(false);
             TempData["Active"] = TempdataInfo.Anasayfa;
-            ViewBag.RaporSayisi = _raporService.GetirRaporSayisiileAppUserId(user.Id);
-            ViewBag.TamamlananGorevSayisi = _gorevService.GetirGorevSayisiTamamlananileAppUserId(user.Id);
 
-            ViewBag.TamamlanmasiGerekenGorevSayisi = _gorevService.GetirGorevSayisiTamamlanmasiGerekenileAppUserId(user.Id);
-
-            ViewBag.OkunmamisBildirimSayisi = _bildirimService.GetirOkunmayanSayisiileAppUserId(user.Id);
             return View();
         }
     }

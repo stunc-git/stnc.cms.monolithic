@@ -25,7 +25,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
         public IActionResult Index()
         {
             ViewBag.GeneralTitle = "Laboratuvarlar";
-            TempData["Active"] = TempdataInfo.Category;
+            TempData["Active"] = TempdataInfo.Siparisler;
             var all = Myrepo.GetAll();
             return View(all);
         }
@@ -33,7 +33,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
         public IActionResult Create()
         {
             ViewBag.GeneralTitle = "Laboratuvar Ekleme";
-            TempData["Active"] = TempdataInfo.Category;
+            TempData["Active"] = TempdataInfo.Siparisler;
             return View(new DekamProjeLaboratuvarlar());
         }
 
@@ -61,7 +61,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
         {
             ViewBag.GeneralTitle = "Laboratuvar Düzenleme";
 
-            TempData["Active"] = TempdataInfo.Category;
+            TempData["Active"] = TempdataInfo.Siparisler;
             var data = this.Myrepo.GetID(id);
             if (data != null)
             {

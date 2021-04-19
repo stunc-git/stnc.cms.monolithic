@@ -78,29 +78,9 @@ on AspNetUserRoles.RoleId = AspNetRoles.Id where AspNetRoles.Name='Member'
             return result.ToList();
         }
 
-        /*
-select AspNetUsers.UserName, count(Gorevler.Id) from AspNetUsers inner join Gorevler on AspNetUsers.Id=Gorevler.AppUserId
-where Gorevler.Durum=1 group by AspNetUsers.UserName  */
 
-        public List<DualHelper> GetirEnCokGorevTamamlamisPersoneller()
-        {
-            using var context = new StncCMSContext();
-            return context.Gorevler.Include(I => I.AppUser).Where(I => I.Durum).GroupBy(I => I.AppUser.UserName).OrderByDescending(I => I.Count()).Take(5).Select(I => new DualHelper
-            {
-                Isim = I.Key,
-                GorevSayisi = I.Count()
-            }).ToList();
-        }
 
-        public List<DualHelper> GetirEnCokGorevdeCalisanPersoneller()
-        {
-            using var context = new StncCMSContext();
-            return context.Gorevler.Include(I => I.AppUser).Where(I => !I.Durum && I.AppUserId != null).GroupBy(I => I.AppUser.UserName).OrderByDescending(I => I.Count()).Take(5).Select(I => new DualHelper
-            {
-                Isim = I.Key,
-                GorevSayisi = I.Count()
-            }).ToList();
-        }
+   
     }
 
     //class ThreeModel

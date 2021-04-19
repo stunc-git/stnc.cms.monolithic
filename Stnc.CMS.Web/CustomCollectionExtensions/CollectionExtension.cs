@@ -2,15 +2,9 @@
 using Microsoft.Extensions.DependencyInjection;
 using Stnc.CMS.Business.ValidationRules.FluentValidation;
 using Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts;
-using Stnc.CMS.DTO.DTOs.AciliyetDtos;
 using Stnc.CMS.DTO.DTOs.AppUserDtos;
-using Stnc.CMS.DTO.DTOs.CategoryDtos;
-using Stnc.CMS.DTO.DTOs.SiparislerDtos;
 using Stnc.CMS.DTO.DTOs.DeneyHayvaniIrkFiyatDtos;
-using Stnc.CMS.DTO.DTOs.GorevDtos;
-using Stnc.CMS.DTO.DTOs.PostDtos;
-using Stnc.CMS.DTO.DTOs.RaporDtos;
-using Stnc.CMS.DTO.DTOs.SliderDtos;
+using Stnc.CMS.DTO.DTOs.SiparislerDtos;
 using Stnc.CMS.Entities.Concrete;
 using System;
 
@@ -42,26 +36,13 @@ namespace Stnc.CMS.Web.CustomCollectionExtensions
 
         public static void AddCustomValidator(this IServiceCollection services)
         {
-            services.AddTransient<IValidator<AciliyetAddDto>, AciliyetAddValidator>();
-            services.AddTransient<IValidator<AciliyetUpdateDto>, AciliyetUpdateValidator>();
+
 
             services.AddTransient<IValidator<AppUserAddDto>, AppUserAddValidator>();
             services.AddTransient<IValidator<AppUserSignInDto>, AppUserSignInValidator>();
 
-            services.AddTransient<IValidator<GorevAddDto>, GorevAddValidator>();
-            services.AddTransient<IValidator<GorevUpdateDto>, GorevUpdateValidator>();
 
-            services.AddTransient<IValidator<RaporAddDto>, RaporAddValidator>();
-            services.AddTransient<IValidator<RaporUpdateDto>, RaporUpdateValidator>();
 
-            services.AddTransient<IValidator<PostUpdateDto>, PostUpdateValidator>();
-            services.AddTransient<IValidator<PostAddDto>, PostAddValidator>();
-
-            services.AddTransient<IValidator<CategoryAddDto>, CategoryAddValidator>();
-            services.AddTransient<IValidator<CategoryUpdateDto>, CategoryUpdateValidator>();
-
-            services.AddTransient<IValidator<SliderAddDto>, SliderAddValidator>();
-            services.AddTransient<IValidator<SliderUpdateDto>, SliderUpdateValidator>();
 
             services.AddTransient<IValidator<SiparislerCreateDto>, SiparislerCreateValidator>();
             services.AddTransient<IValidator<SiparislerUpdateDto>, SiparislerUpdateValidator>();

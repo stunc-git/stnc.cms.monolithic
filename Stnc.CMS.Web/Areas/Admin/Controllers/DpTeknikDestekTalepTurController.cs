@@ -25,7 +25,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
         public IActionResult Index()
         {
             ViewBag.GeneralTitle = "Teknik Destek Talep Türleri";
-            TempData["Active"] = TempdataInfo.Category;
+            TempData["Active"] = TempdataInfo.Siparisler;
             var all = Myrepo.GetAll();
             return View(all);
         }
@@ -33,7 +33,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
         public IActionResult Create()
         {
             ViewBag.GeneralTitle = "Teknik Destek Talep Türü Ekleme";
-            TempData["Active"] = TempdataInfo.Category;
+            TempData["Active"] = TempdataInfo.Siparisler;
             return View(new DekamProjeTeknikDestekTalepTur());
         }
 
@@ -62,7 +62,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
         {
             ViewBag.GeneralTitle = "Teknik Destek Talep Türü Düzenleme";
 
-            TempData["Active"] = TempdataInfo.Category;
+            TempData["Active"] = TempdataInfo.Siparisler;
             var data = this.Myrepo.GetID(id);
             if (data != null)
             {

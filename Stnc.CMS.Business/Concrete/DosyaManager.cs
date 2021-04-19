@@ -91,19 +91,19 @@ namespace Stnc.CMS.Business.Concrete
             return returnPath;
         }
 
-        public string FaturaPDfCreate(int dekamProjeTakipID)
+        public string FaturaPDfCreate(int SiparislerID)
         {
     
 
 
-            var cartItemsDataCollection = _shopService.GetCartDekamProjeTakipIDList(dekamProjeTakipID);
+            var cartItemsDataCollection = _shopService.GetCartSiparislerIDList(SiparislerID);
             cartItemsDataCollection.Wait();
             List<ShopCartAjaxListDto> cartItemsDataCollectionData = cartItemsDataCollection.Result;
 
 
 
-            var toplamUcret = _shopService.ToplamUcretDekamProjeTakipID(dekamProjeTakipID);
-            var dekamProjeTakipData = _siparislerService.GetirIdile(dekamProjeTakipID);
+            var toplamUcret = _shopService.ToplamUcretSiparislerID(SiparislerID);
+            var SiparislerData = _siparislerService.GetirIdile(SiparislerID);
 
             var fileName = Guid.NewGuid() + ".pdf";
             var returnPath = "/documents/" + fileName;
@@ -153,7 +153,7 @@ namespace Stnc.CMS.Business.Concrete
 
             //****** Fatura Baslık Bilgisi  **** ////
             PdfPTable FaturaBaslikTable = new PdfPTable(2);
-            PdfPCell FaturaBaslikTableCell = new PdfPCell(new Phrase(dekamProjeTakipData.ProjeYurutukurumu, fontBold));
+            PdfPCell FaturaBaslikTableCell = new PdfPCell(new Phrase(SiparislerData.ProjeYurutukurumu, fontBold));
             FaturaBaslikTableCell.Border = Rectangle.NO_BORDER;
             FaturaBaslikTableCell.HorizontalAlignment = PdfCell.ALIGN_LEFT;
             FaturaBaslikTableCell.PaddingTop = 10;
@@ -168,7 +168,7 @@ namespace Stnc.CMS.Business.Concrete
             FaturaBaslikTable.AddCell(FaturaBaslikTableCell);
 
             PdfPTable FaturaBaslikBolumTable = new PdfPTable(1);
-            PdfPCell FaturaBaslikBolumTableCell = new PdfPCell(new Phrase(dekamProjeTakipData.ProjeYurutukurumu, fontBold));
+            PdfPCell FaturaBaslikBolumTableCell = new PdfPCell(new Phrase(SiparislerData.ProjeYurutukurumu, fontBold));
             FaturaBaslikBolumTableCell.HorizontalAlignment = PdfCell.ALIGN_LEFT;
             FaturaBaslikBolumTableCell.Border = Rectangle.NO_BORDER;
             FaturaBaslikBolumTableCell.PaddingTop = 10;

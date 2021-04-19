@@ -29,16 +29,6 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
             return View();
         }
 
-        public IActionResult EnCokTamamlayan()
-        {
-            var jsonString = JsonConvert.SerializeObject(_appUserService.GetirEnCokGorevTamamlamisPersoneller());
-            return Json(jsonString);
-        }
-
-        public IActionResult EnCokCalisan()
-        {
-            var jsonString = JsonConvert.SerializeObject(_appUserService.GetirEnCokGorevdeCalisanPersoneller());
-            return Json(jsonString);
-        }
+   
     }
 }

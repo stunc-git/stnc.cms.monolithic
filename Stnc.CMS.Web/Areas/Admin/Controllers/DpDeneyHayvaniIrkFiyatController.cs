@@ -46,7 +46,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
         {
             ViewBag.GeneralTitle = "Deney Hayvanı Fiyatlandırma";
 
-            TempData["Active"] = TempdataInfo.Category;
+            TempData["Active"] = TempdataInfo.Siparisler;
 
             return View(_mapper.Map<List<DeneyHayvaniIrkFiyatListAllDto>>(_deneyHayvaniIrkFiyatService.DeneyHayvaniIrkFiyatListesi()));
         }
@@ -55,7 +55,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
         {
             ViewBag.GeneralTitle = "Deney Hayvanı Fiyat Ekleme";
 
-            TempData["Active"] = TempdataInfo.Category;
+            TempData["Active"] = TempdataInfo.Siparisler;
 
             ViewBag.HayvaniTurCategories = new SelectList(DeneyHayvaniTurRepo.GetAll(), "Id", "Name");
 

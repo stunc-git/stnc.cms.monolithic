@@ -140,7 +140,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
                var  sayi= part.TrimStart(new Char[] { '0' });
                 Console.WriteLine("SELMAN- SON");
                 var value = Convert.ToInt32(sayi);
-                _shopService.UpdateDekamProjeTakipID(value, returnId);
+                _shopService.UpdateSiparislerID(value, returnId);
 
             }
 
@@ -167,7 +167,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
             ViewBag.LaboratuvarlarCategories = new SelectList(DekamProjeLaboratuvarlarRepo.GetAll(), "Id", "Name");
             //http://www.dotnet-stuff.com/tutorials/aspnet-mvc/way-to-use-multiple-models-in-a-view-in-asp-net-mvc
             SiparislerCreateDto vmDemo = new SiparislerCreateDto();
-            vmDemo.allEmployees = DekamProjeTeknikDestekTalepTurRepo.GetAll();
+            vmDemo.dekamProjeTeknikDestekTalepTur = DekamProjeTeknikDestekTalepTurRepo.GetAll();
             /* //view kodu
               @foreach (var item in Model.allEmployees)
             {

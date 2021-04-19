@@ -27,7 +27,7 @@ namespace Stnc.CMS.Web.Areas.Member.Controllers
 
         public async Task<IActionResult> Index()
         {
-            TempData["Active"] = TempdataInfo.Profil;
+            TempData["Active"] = TempdataInfo.Siparisler;
             var appUser = await GetUserLoginInfo().ConfigureAwait(false);
             return View(_mapper.Map<AppUserListDto>(appUser));
         }

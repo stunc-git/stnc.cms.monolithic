@@ -10,9 +10,7 @@ namespace Stnc.CMS.Entities.Concrete
         public string Surname { get; set; }
         public string Picture { get; set; } = "default.png";
 
-        public List<Bildirim> Bildirimler { get; set; }
-        public List<Gorev> Gorevler { get; set; }
-        public List<Posts> Posts { get; set; }
+
         // public object Posts { get; set; }
         public List<DekamProjeDeneyHayvaniIrk> DekamProjeDeneyHayvaniIrk { get; set; }
         public List<DekamProjeDeneyHayvaniTur> DekamProjeDeneyHayvaniTur { get; set; }

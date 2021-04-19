@@ -11,7 +11,7 @@
     {
         public int Id { get; set; }
         public int HayvaniIrkFiyatID { get; set; }
-        public int DekamProjeTakipID { get; set; }
+        public int SiparislerID { get; set; }
         public string HayvanIrkAdi { get; set; }
         public string HayvanAdi { get; set; }
         public string HayvanIrkFiyatTipYasBilgisi { get; set; }

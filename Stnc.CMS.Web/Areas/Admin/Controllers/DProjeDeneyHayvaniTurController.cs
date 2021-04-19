@@ -26,7 +26,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
         public IActionResult Index()
         {
             ViewBag.GeneralTitle = "Deney Hayvanı Türleri";
-            TempData["Active"] = TempdataInfo.Category;
+            TempData["Active"] = TempdataInfo.Siparisler;
             var all = Myrepo.GetAll();
             return View(all);
         }
@@ -34,7 +34,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
         public IActionResult Create()
         {
             ViewBag.GeneralTitle = "Deney Hayvanı Türü Ekle";
-            TempData["Active"] = TempdataInfo.Category;
+            TempData["Active"] = TempdataInfo.Siparisler;
             return View(new DekamProjeDeneyHayvaniTur());
         }
 
@@ -64,7 +64,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
         {
             ViewBag.GeneralTitle = "Deney Hayvanı Türü Düzenleme";
 
-            TempData["Active"] = TempdataInfo.Category;
+            TempData["Active"] = TempdataInfo.Siparisler;
             var data = this.Myrepo.GetID(id);
             if (data != null)
             {

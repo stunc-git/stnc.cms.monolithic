@@ -36,11 +36,7 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts
           //  modelBuilder.ApplyConfiguration(new AciliyetMap());
           //  modelBuilder.ApplyConfiguration(new RaporMap());
             modelBuilder.ApplyConfiguration(new AppUserMap());
-            //modelBuilder.ApplyConfiguration(new PostMap());
-            //modelBuilder.ApplyConfiguration(new CategoryMap());
-            //modelBuilder.ApplyConfiguration(new CategoryPostsMap());
-            //modelBuilder.ApplyConfiguration(new CommentMap());
-            //modelBuilder.ApplyConfiguration(new SliderMap());
+
             modelBuilder.ApplyConfiguration(new SiparislerMap());
             modelBuilder.ApplyConfiguration(new DekamProjeDeneyHayvaniTurMap());
             modelBuilder.ApplyConfiguration(new DekamProjeDeneyHayvaniIrkMap());
@@ -48,52 +44,17 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts
             //modelBuilder.ApplyConfiguration(new OptionsMap());
             modelBuilder.ApplyConfiguration(new StShoppingCartItemMap());
             modelBuilder.ApplyConfiguration(new DekamProjeDeneyHayvaniIrkFiyatMap());
-            /*
-            modelBuilder.Entity<StShoppingCartItem>()
-                .HasOne(sci => sci.Cart);
-            */
-
-            //     modelBuilder.Entity<City>()
-            //    .HasOne(e => e.CityInformation)
-            //    .WithMany(e => e.City)
-            //    .HasForeignKey<City>(e => e.CityInformationId)
-            //    .OnDelete(DeleteBehavior.Cascade)
-            //    .IsRequired();
-
-            //  //one to many Person - Address
-            //  modelBuilder.Entity<Person>()
-            //      .HasOne(x => x.Address).WithMany()
-            //      .HasForeignKey(x => x.AddressId);
-
-            //  // one to many Address - Person
-            //  modelBuilder.Entity<Address>()
-            //      .HasOne(x => x.Person).WithMany()
-            //      .HasForeignKey(x => x.PersonId);
-
-            //  modelBuilder.Entity<City>()
-            //.HasOne(x => x.CityInformation).WithMany().HasForeignKey(x => x.CityInformationId);
-
-            //   modelBuilder.Entity<Cheese>()
-            //.HasOne(x => x.CheeseCategory).WithMany(e => e.Cheese).HasForeignKey(x => x.CatID);
-
-            //modelBuilder.Entity<Cheese>()
-            //            .HasOne<CheeseCategory>(e => e.CheeseCategory)
-            //            .WithMany(d => d.Cheese)
-            //            .HasForeignKey(e => e.CatID).IsRequired(false);
+         
             base.OnModelCreating(modelBuilder);
         }
 
-        public DbSet<Posts> Posts { get; set; }
-        public DbSet<Gorev> Gorevler { get; set; }
-        public DbSet<Aciliyet> Aciliyetler { get; set; }
-        public DbSet<Rapor> Raporlar { get; set; }
-        public DbSet<Bildirim> Bildirimler { get; set; }
+       
+    
+ 
+     
 
-        public DbSet<Slider> Slider { get; set; }
-        public DbSet<Category> Categories { get; set; }
 
-        //  public DbSet<CategoryBlogs> CategoryBlogs { get; set; }
-        public DbSet<Comments> Comments { get; set; }
+
 
         // DEKAM Kurum içi proje takip
         public DbSet<Siparisler> Siparisler { get; set; }
@@ -110,13 +71,5 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts
         public DbSet<DekamProjeDeneyHayvaniIrkFiyat> DekamProjeDeneyHayvaniIrkFiyat { get; set; }
         //public DbSet<StCart> StCart { get; set; }
 
-        //public DbSet<City> City { get; set; }
-        //public DbSet<CityInformation> CityInformation { get; set; }
-
-        //public DbSet<Person> Persons { get; set; }
-        //public DbSet<Address> Addresses { get; set; }
-
-        //public DbSet<Cheese> Cheeses { get; set; }
-        //public DbSet<CheeseCategory> CheeseCategories { get; set; }
     }
 }

@@ -29,7 +29,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
         public IActionResult Index()
         {
             ViewBag.GeneralTitle = "Deney Hayvanı Irkları";
-            TempData["Active"] = TempdataInfo.Category;
+            TempData["Active"] = TempdataInfo.Siparisler;
 
             var all = Myrepo.GetAll();
             return View(all);
@@ -38,7 +38,7 @@ namespace Stnc.CMS.Web.Areas.Admin.Controllers
         public IActionResult Create()
         {
             ViewBag.GeneralTitle = "Deney Hayvanı Irkı Ekleme";
-            TempData["Active"] = TempdataInfo.Category;
+            TempData["Active"] = TempdataInfo.Siparisler;
             ViewBag.Categories = new SelectList(DeneyHayvaniTurRepo.GetAll(), "Id", "Name");
             return View(new DekamProjeDeneyHayvaniIrk());
         }

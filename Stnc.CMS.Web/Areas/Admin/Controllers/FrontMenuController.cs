@@ -4,15 +4,10 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Stnc.CMS.Business.Interfaces;
-using Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Contexts;
-using Stnc.CMS.DTO.DTOs.PostDtos;
 using Stnc.CMS.Entities.Concrete;
 using Stnc.CMS.Web.BaseControllers;
 using Stnc.CMS.Web.StringInfo;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace Stnc.CMS.Web.Areas.Admin.Controllers
 {

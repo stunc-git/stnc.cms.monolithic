@@ -2,15 +2,11 @@
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json.Linq;
 using Stnc.CMS.Business.Interfaces;
 using Stnc.CMS.DTO.DTOs.AppUserDtos;
-using Stnc.CMS.DTO.DTOs.PostDtos;
 using Stnc.CMS.Entities.Concrete;
 using Stnc.CMS.Web.BaseControllers;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Stnc.CMS.Web.Controllers

@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Repositories
 {
-    public class EfDekamProjeTakipRepository : EfGenericRepository<Siparisler>, ISiparislerDal
+    public class EfSiparislerRepository : EfGenericRepository<Siparisler>, ISiparislerDal
     {
         public int GetProjectTotal()
         {

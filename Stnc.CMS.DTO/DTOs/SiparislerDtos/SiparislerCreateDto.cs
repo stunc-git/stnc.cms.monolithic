@@ -32,7 +32,7 @@ namespace Stnc.CMS.DTO.DTOs.SiparislerDtos
         public int? AppUserId { get; set; }
         public AppUser AppUser { get; set; }
 
-        public virtual List<DekamProjeTeknikDestekTalepTur> allEmployees { get; set; }
+        public virtual List<DekamProjeTeknikDestekTalepTur> dekamProjeTeknikDestekTalepTur { get; set; }
 
     }
 }

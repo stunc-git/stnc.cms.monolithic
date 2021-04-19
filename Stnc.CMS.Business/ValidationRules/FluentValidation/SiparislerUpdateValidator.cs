@@ -1,6 +1,5 @@
 ﻿using FluentValidation;
 using Stnc.CMS.DTO.DTOs.SiparislerDtos;
-using Stnc.CMS.DTO.DTOs.PostDtos;
 
 namespace Stnc.CMS.Business.ValidationRules.FluentValidation
 {

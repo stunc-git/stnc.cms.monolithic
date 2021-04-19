@@ -32,15 +32,15 @@ namespace Stnc.CMS.DataAccess.Interfaces
         List<StShoppingCartItem> GetAll();
 
         List<ShopCartAjaxListDto> GetCartUserIdList(int userID);
-        // List<ShopCartAjaxListDto> GetCartDekamProjeTakipIDList(int DekamProjeTakipID);
+        // List<ShopCartAjaxListDto> GetCartSiparislerIDList(int SiparislerID);
 
-        Task<List<ShopCartAjaxListDto>> GetCartDekamProjeTakipIDList(int DekamProjeTakipID);
+        Task<List<ShopCartAjaxListDto>> GetCartSiparislerIDList(int SiparislerID);
 
         decimal ToplamUcret(int userID);
-        decimal ToplamUcretDekamProjeTakipID(int DekamProjeTakipID);
+        decimal ToplamUcretSiparislerID(int SiparislerID);
 
         int ToplamUrunAdeti(int userID);
 
-        void UpdateDekamProjeTakipID(int id, int value);
+        void UpdateSiparislerID(int id, int value);
     }
 }

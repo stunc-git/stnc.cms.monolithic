@@ -10,13 +10,13 @@ namespace Stnc.CMS.Web.ViewComponents
     public class Wrapper : ViewComponent
     {
         private readonly UserManager<AppUser> _userManager;
-        private readonly IBildirimService _bildirimService;
+ 
         private readonly IMapper _mapper;
 
-        public Wrapper(UserManager<AppUser> userManager, IBildirimService bildirimService, IMapper mapper)
+        public Wrapper(UserManager<AppUser> userManager,  IMapper mapper)
         {
             _mapper = mapper;
-            _bildirimService = bildirimService;
+        
             _userManager = userManager;
         }
 
@@ -25,9 +25,9 @@ namespace Stnc.CMS.Web.ViewComponents
             var identityUser = _userManager.FindByNameAsync(User.Identity.Name).Result;
             var model = _mapper.Map<AppUserListDto>(identityUser);
 
-            var bildirimler = _bildirimService.GetirOkunmayanlar(model.Id).Count;
+ 
 
-            ViewBag.BildirimSayisi = bildirimler;
+    
 
             var roles = _userManager.GetRolesAsync(identityUser).Result;
 

@@ -57,9 +57,9 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Repositories
             return _context.StShoppingCartItem.Where(I => I.AppUserId == userID).Sum(p => p.ToplamFiyat);
         }
 
-        public decimal ToplamUcretDekamProjeTakipID(int DekamProjeTakipID)
+        public decimal ToplamUcretSiparislerID(int SiparislerID)
         {
-            return _context.StShoppingCartItem.Where(I => I.DekamProjeTakipID == DekamProjeTakipID).Sum(p => p.ToplamFiyat);
+            return _context.StShoppingCartItem.Where(I => I.SiparislerID == SiparislerID).Sum(p => p.ToplamFiyat);
         }
 
         public int ToplamUrunAdeti(int userID)
@@ -97,12 +97,12 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Repositories
                 })
                 .OrderByDescending(I => I.Id)
                 .Where(I => I.AppUserId == userID )
-                //.Where(I => I.DekamProjeTakipID == 0)
+                //.Where(I => I.SiparislerID == 0)
                 .ToList();
         }
 
 
-         public async   Task<List<ShopCartAjaxListDto>>  GetCartDekamProjeTakipIDList(int dekamProjeTakipID)
+         public async   Task<List<ShopCartAjaxListDto>>  GetCartSiparislerIDList(int SiparislerID)
         {
             StncCMSContext context =  new StncCMSContext();
             return await context.StShoppingCartItem.Select(I => new ShopCartAjaxListDto()
@@ -125,11 +125,11 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Repositories
                 DestekTalepTurleriJsonRead=I.DestekTalepTurleriJson,
                 ToplamFiyat = I.ToplamFiyat,
                 AppUserId = I.AppUserId,
-                DekamProjeTakipID=  I.DekamProjeTakipID,
+                SiparislerID=  I.SiparislerID,
                 Id = I.Id,
 
             }).OrderByDescending(I => I.Id)
-            .Where(I => I.DekamProjeTakipID == dekamProjeTakipID)
+            .Where(I => I.SiparislerID == SiparislerID)
             .ToListAsync();
         }
 
@@ -147,10 +147,10 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Repositories
         }
 
 
-        public void UpdateDekamProjeTakipID(int id, int value)
+        public void UpdateSiparislerID(int id, int value)
         {
              StShoppingCartItem opt = _context.StShoppingCartItem.Where(I => I.Id == id).FirstOrDefault();
-              opt.DekamProjeTakipID = value;
+              opt.SiparislerID = value;
               _context.SaveChanges();
 
 
@@ -158,7 +158,7 @@ namespace Stnc.CMS.DataAccess.Concrete.EntityFrameworkCore.Repositories
             // StShoppingCartItem result = _context.StShoppingCartItem.SingleOrDefault(I => I.Id == id);
             //if (result != null)
             //{
-            //    result.DekamProjeTakipID = value;
+            //    result.SiparislerID = value;
             //    _context.SaveChanges();
             //}
         }
