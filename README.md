@@ -1,3 +1,4 @@
+# .net core clean architecture 
 # Branch Amacı
  
 step step alışveriş yapma bolumu yapılacak 
